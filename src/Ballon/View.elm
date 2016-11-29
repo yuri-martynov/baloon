@@ -51,6 +51,5 @@ viewFlying { radius, y } =
 svg' =
     svg
         [ version "1.1"
-        , width "300px"
-        , height "300px"
+        , viewBox "0 0 1024 768" 
         ]

@@ -1,5 +1,7 @@
 module Ballon.Model exposing (..)
 
+import Common.Types exposing (..)
+
 
 type alias Model =
     { state : State
@@ -13,10 +15,10 @@ type State
 
 
 type alias BlowingModel =
-    { radius : Float
-    }
+    Radius' {}
+
 
 type alias FlyingModel =
-    { radius : Float
-    , y: Float
-    }
+    Radius' 
+        { y : Float
+        }
