@@ -4,11 +4,17 @@ import Svg exposing (..)
 import Svg.Attributes exposing (..)
 import Ballon.Model exposing (..)
 import Ballon.Msg exposing (Msg)
+import Common.ViewBox exposing (svg')
 
 
 view : Model -> Svg Msg
-view =
-    view' >> svg'
+view model =
+    case model.windowSize of
+        Just _ ->
+            view' model |> svg'
+
+        Nothing ->
+            svg [] []
 
 
 view' : Model -> List (Svg Msg)
@@ -25,21 +31,9 @@ view' { state } =
 
 
 viewBlowing : BlowingModel -> List (Svg Msg)
-viewBlowing { radius } =
+viewBlowing { radius, x, y } =
     [ circle
-        [ cx "150"
-        , cy "150"
-        , radius |> toString |> r
-        , fill "red"
-        ]
-        []
-    ]
-
-
-viewFlying : FlyingModel -> List (Svg Msg)
-viewFlying { radius, y } =
-    [ circle
-        [ cx "150"
+        [ x |> toString |> cx 
         , y |> toString |> cy
         , radius |> toString |> r
         , fill "red"
@@ -48,8 +42,13 @@ viewFlying { radius, y } =
     ]
 
 
-svg' =
-    svg
-        [ version "1.1"
-        , viewBox "0 0 1024 768" 
+viewFlying : FlyingModel -> List (Svg Msg)
+viewFlying { radius, x, y } =
+    [ circle
+        [ x |> toString |> cx
+        , y |> toString |> cy
+        , radius |> toString |> r
+        , fill "red"
         ]
+        []
+    ]

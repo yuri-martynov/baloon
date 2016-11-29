@@ -1,8 +1,13 @@
 module Ballon.Init exposing (init)
 
+import Common.WindowSize as WindowSize
 import Ballon.Model exposing (Model, State(Na))
-import Ballon.Msg exposing (Msg)
+import Ballon.Msg exposing (Msg(NoOp, WindowSizeChanged))
 
-init: (Model, Cmd Msg)
+
+init : ( Model, Cmd Msg )
 init =
-    { state = Na} ! []
+    { state = Na
+    , windowSize = Nothing
+    }
+        ! [ WindowSize.init NoOp WindowSizeChanged ]

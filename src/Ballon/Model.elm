@@ -1,10 +1,12 @@
 module Ballon.Model exposing (..)
 
+import Window
 import Common.Types exposing (..)
 
 
 type alias Model =
-    { state : State
+    { windowSize: Maybe Window.Size 
+    , state : State
     }
 
 
@@ -15,10 +17,9 @@ type State
 
 
 type alias BlowingModel =
-    Radius' {}
+    Location' (Radius' { boomRadius : Maybe Float})
 
 
 type alias FlyingModel =
-    Radius' 
-        { y : Float
-        }
+    Location' (Radius' {})
+

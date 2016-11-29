@@ -1,16 +1,24 @@
 module Ballon.Sub exposing (subscriptions)
 
 import Mouse
+import Common.WindowSize as WindowSize
 import Ballon.Model exposing (Model, State(..))
 import Ballon.Msg exposing (..)
 import Time exposing (second)
 
 
 subscriptions : Model -> Sub Msg
-subscriptions { state } =
+subscriptions model =
+    [ WindowSize.subscriptions WindowSizeChanged
+    , subscriptions' model
+    ] |> Sub.batch
+    
+
+subscriptions' : Model -> Sub Msg
+subscriptions' { state } =
     case state of
         Na ->
-            Mouse.downs (always Start)
+            Mouse.downs Start
 
         Blowing _ ->
             [ Mouse.ups (always Stop)
@@ -18,5 +26,5 @@ subscriptions { state } =
             ]
                 |> Sub.batch
 
-        Fly _ ->
+        Flying _ ->
             Time.every (second / 30.0) (always Up)

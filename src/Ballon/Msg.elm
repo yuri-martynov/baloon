@@ -1,9 +1,13 @@
 module Ballon.Msg exposing (..)
-
+import Window 
+import Mouse
 
 type Msg
-    = Start
+    = NoOp
+    | WindowSizeChanged Window.Size
+    | Start Mouse.Position
     | Stop
     | Blow
+    | BoomRadiusChanged Float
     | Boom
     | Up
