@@ -43,7 +43,7 @@ g =
 
 init : ( Model, Cmd Msg )
 init =
-    { x = 50.0, y = y0, dropped = Nothing, victory = Nothing } ! []
+    ( Model 50.0 y0 Nothing Nothing, Cmd.none )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -68,12 +68,12 @@ update msg model =
 
 
 updateY : Model -> Time -> Float
-updateY { dropped, y } t0 =
+updateY { dropped, y } t1 =
     case dropped of
         Nothing ->
             y
 
-        Just t1 ->
+        Just t0 ->
             y0 + g * (((t1 - t0) / 100.0) ^ 2) / 2
 
 

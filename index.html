@@ -8416,25 +8416,25 @@ var _elm_lang$svg$Svg_Events$onMouseOver = _elm_lang$svg$Svg_Events$simpleOn('mo
 var _elm_lang$svg$Svg_Events$onMouseUp = _elm_lang$svg$Svg_Events$simpleOn('mouseup');
 var _user$project$Kapiton_Main$g = 9.7;
 var _user$project$Kapiton_Main$y0 = 100.0;
-var _user$project$Kapiton_Main$init = A2(
-	_elm_lang$core$Platform_Cmd_ops['!'],
-	{x: 50.0, y: _user$project$Kapiton_Main$y0, dropped: _elm_lang$core$Maybe$Nothing, victory: _elm_lang$core$Maybe$Nothing},
-	_elm_lang$core$Native_List.fromArray(
-		[]));
 var _user$project$Kapiton_Main$updateY = F2(
-	function (_p0, t0) {
+	function (_p0, t1) {
 		var _p1 = _p0;
 		var _p2 = _p1.dropped;
 		if (_p2.ctor === 'Nothing') {
 			return _p1.y;
 		} else {
-			return _user$project$Kapiton_Main$y0 + ((_user$project$Kapiton_Main$g * Math.pow((_p2._0 - t0) / 100.0, 2)) / 2);
+			return _user$project$Kapiton_Main$y0 + ((_user$project$Kapiton_Main$g * Math.pow((t1 - _p2._0) / 100.0, 2)) / 2);
 		}
 	});
 var _user$project$Kapiton_Main$Model = F4(
 	function (a, b, c, d) {
 		return {x: a, y: b, dropped: c, victory: d};
 	});
+var _user$project$Kapiton_Main$init = {
+	ctor: '_Tuple2',
+	_0: A4(_user$project$Kapiton_Main$Model, 50.0, _user$project$Kapiton_Main$y0, _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
+	_1: _elm_lang$core$Platform_Cmd$none
+};
 var _user$project$Kapiton_Main$Young = {ctor: 'Young'};
 var _user$project$Kapiton_Main$Old = {ctor: 'Old'};
 var _user$project$Kapiton_Main$updateVictory = function (model) {
