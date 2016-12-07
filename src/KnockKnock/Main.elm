@@ -6,10 +6,10 @@ import Array exposing (Array)
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
 import Svg.Events exposing (..)
-import Common.Types exposing (Location')
+import Common.Types exposing (Location_)
 import Html.App as App
 import Time exposing (Time, second)
-import Common.ViewBox exposing (svg')
+import Common.ViewBox exposing (svg_)
 
 
 type alias Model =
@@ -18,7 +18,7 @@ type alias Model =
 
 
 type alias Dot =
-    Location'
+    Location_
         { color : Color
         , new : Bool
         }
@@ -31,7 +31,10 @@ type Color
     | Black
     | Yellow
 
-colors = [Red, Green, Purple, Black, Yellow] |> Array.fromList
+
+colors =
+    [ Red, Green, Purple, Black, Yellow ] |> Array.fromList
+
 
 type Msg
     = NoOp
@@ -68,7 +71,7 @@ update msg model =
                 { model
                     | map =
                         model.map
-                            |> Dict.map (\_ d -> {d | new = False})
+                            |> Dict.map (\_ d -> { d | new = False })
                             |> Dict.insert x
                                 { x = toFloat (x % 200)
                                 , y = toFloat (x % 150)
@@ -81,10 +84,14 @@ update msg model =
         _ ->
             ( model, Cmd.none )
 
-getColor x = 
+
+getColor x =
     case colors |> Array.get (x % (colors |> Array.length)) of
-        Just color -> color
-        Nothing -> Debug.crash "impossible))))"
+        Just color ->
+            color
+
+        Nothing ->
+            Debug.crash "impossible))))"
 
 
 view : Model -> Svg Msg
@@ -92,18 +99,23 @@ view model =
     model.map
         |> Dict.toList
         |> List.map viewDot
-        |> svg'
+        |> svg_
 
 
 viewDot : ( Int, Dot ) -> Svg Msg
-viewDot ( id, {x,y,color,new} ) =
+viewDot ( id, { x, y, color, new } ) =
     circle
         [ x |> toString |> cx
         , y |> toString |> cy
         , r "50"
         , color |> toString |> toLower |> fill
         , onClick (Click id)
-        , (if new then "hidden" else "show") |> class
+        , (if new then
+            "hidden"
+           else
+            "show"
+          )
+            |> class
         ]
         []
 

@@ -1,6 +1,6 @@
 module Kapiton.Main exposing (main)
 
-import Html.App as App
+import Html exposing (program)
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
 import Svg.Events exposing (..)
@@ -58,7 +58,7 @@ update msg model =
                 ! []
 
         Drop ->
-            model ! [ Time.now |> Task.perform (always NoOp) DropTime ]
+            model ! [ Time.now |> Task.perform DropTime ]
 
         DropTime time ->
             { model | dropped = Just time } ! []
@@ -113,15 +113,15 @@ view model =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    if model.victory == Nothing then 
+    if model.victory == Nothing then
         AnimationFrame.times Step
-    else 
+    else
         Sub.none
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    App.program
+    program
         { init = init
         , view = view
         , update = update

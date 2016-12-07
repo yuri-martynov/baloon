@@ -1,4 +1,4 @@
-module Common.ViewBox exposing (svg', fromMouse)
+module Common.ViewBox exposing (svg_, fromMouse)
 
 import Common.Types exposing (..)
 import Window
@@ -7,20 +7,20 @@ import Svg.Attributes exposing (version, viewBox)
 import Svg exposing (Svg, svg)
 
 
-svg' : List (Svg msg) -> Svg msg
-svg' =
+svg_ : List (Svg msg) -> Svg msg
+svg_ =
     let
         { w, h } =
             size
 
-        fold' a b =
+        fold_ a b =
             b ++ (toString a) ++ " "
 
-        viewBox' =
+        viewBox_ =
             [ 0.0, 0.0, w, h ]
-                |> List.foldl fold' ""
+                |> List.foldl fold_ ""
     in
-        svg [ version "1.1", viewBox viewBox' ]
+        svg [ version "1.1", viewBox viewBox_ ]
 
 
 size : Size
@@ -42,6 +42,9 @@ size =
 
 
 fromMouse : Window.Size -> Mouse.Position -> Location
-fromMouse { width, height }  { x, y } =
-    let { w, h } = size in
-    { x = (toFloat x) * (w / (toFloat width)), y = (toFloat y) * (h / (toFloat height)) }
+fromMouse { width, height } { x, y } =
+    let
+        { w, h } =
+            size
+    in
+        { x = (toFloat x) * (w / (toFloat width)), y = (toFloat y) * (h / (toFloat height)) }

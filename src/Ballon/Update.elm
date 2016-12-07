@@ -22,7 +22,7 @@ update msg ({ state, windowSize } as model) =
                         { model
                             | state = Blowing { radius = 0.0, x = x, y = y, boomRadius = Nothing }
                         }
-                            ! [getBoomRadius]
+                            ! [ getBoomRadius ]
 
                 _ ->
                     update NoOp model
@@ -32,7 +32,7 @@ update msg ({ state, windowSize } as model) =
 
         ( Blow, Blowing ({ radius, boomRadius } as blowing) ) ->
             case boomRadius of
-                Just boomRadius -> 
+                Just boomRadius ->
                     if radius > boomRadius then
                         update Boom model
                     else
@@ -40,10 +40,12 @@ update msg ({ state, windowSize } as model) =
                             | state = Blowing { blowing | radius = radius + 1.0 }
                         }
                             ! []
-                _ -> update NoOp model
 
-        ( BoomRadiusChanged boomRadius, Blowing blowing) ->
-            {model | state = Blowing {blowing | boomRadius = Just boomRadius}} ! []
+                _ ->
+                    update NoOp model
+
+        ( BoomRadiusChanged boomRadius, Blowing blowing ) ->
+            { model | state = Blowing { blowing | boomRadius = Just boomRadius } } ! []
 
         ( Stop, Blowing { radius, x, y } ) ->
             { model | state = Flying { radius = radius, y = y, x = x } } ! []

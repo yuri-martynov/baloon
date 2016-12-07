@@ -10,12 +10,13 @@ import Time exposing (second)
 subscriptions : Model -> Sub Msg
 subscriptions model =
     [ WindowSize.subscriptions WindowSizeChanged
-    , subscriptions' model
-    ] |> Sub.batch
-    
+    , subscriptions_ model
+    ]
+        |> Sub.batch
 
-subscriptions' : Model -> Sub Msg
-subscriptions' { state } =
+
+subscriptions_ : Model -> Sub Msg
+subscriptions_ { state } =
     case state of
         Na ->
             Mouse.downs Start

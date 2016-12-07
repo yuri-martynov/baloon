@@ -4,21 +4,21 @@ import Svg exposing (..)
 import Svg.Attributes exposing (..)
 import Ballon.Model exposing (..)
 import Ballon.Msg exposing (Msg)
-import Common.ViewBox exposing (svg')
+import Common.ViewBox exposing (svg_)
 
 
 view : Model -> Svg Msg
 view model =
     case model.windowSize of
         Just _ ->
-            view' model |> svg'
+            view_ model |> svg_
 
         Nothing ->
             svg [] []
 
 
-view' : Model -> List (Svg Msg)
-view' { state } =
+view_ : Model -> List (Svg Msg)
+view_ { state } =
     case state of
         Na ->
             []
@@ -33,7 +33,7 @@ view' { state } =
 viewBlowing : BlowingModel -> List (Svg Msg)
 viewBlowing { radius, x, y } =
     [ circle
-        [ x |> toString |> cx 
+        [ x |> toString |> cx
         , y |> toString |> cy
         , radius |> toString |> r
         , fill "red"

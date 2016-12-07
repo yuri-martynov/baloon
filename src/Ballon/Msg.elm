@@ -1,6 +1,8 @@
 module Ballon.Msg exposing (..)
-import Window 
+
+import Window
 import Mouse
+
 
 type Msg
     = NoOp

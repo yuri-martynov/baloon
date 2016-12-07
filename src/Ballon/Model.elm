@@ -5,7 +5,7 @@ import Common.Types exposing (..)
 
 
 type alias Model =
-    { windowSize: Maybe Window.Size 
+    { windowSize : Maybe Window.Size
     , state : State
     }
 
@@ -17,9 +17,8 @@ type State
 
 
 type alias BlowingModel =
-    Location' (Radius' { boomRadius : Maybe Float})
+    Location_ (Radius_ { boomRadius : Maybe Float })
 
 
 type alias FlyingModel =
-    Location' (Radius' {})
-
+    Location_ (Radius_ {})
