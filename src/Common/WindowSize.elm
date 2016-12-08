@@ -4,9 +4,9 @@ import Window exposing (Size, resizes, size)
 import Task exposing (perform)
 
 
-init : msg -> (Size -> msg) -> Cmd msg
-init noOp sizeMsg =
-    size |> perform (always noOp) sizeMsg
+init : (Size -> msg) -> Cmd msg
+init sizeMsg =
+    size |> perform sizeMsg
 
 
 subscriptions : (Size -> msg) -> Sub msg

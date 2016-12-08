@@ -1,50 +1,31 @@
-module Common.ViewBox exposing (svg_, fromMouse)
+module Common.ViewBox exposing (init, location, size)
 
-import Common.Types exposing (..)
+import Svg.Attributes exposing (viewBox)
 import Window
 import Mouse
-import Svg.Attributes exposing (version, viewBox)
-import Svg exposing (Svg, svg)
+import Common.Types exposing (Size, Location)
 
 
-svg_ : List (Svg msg) -> Svg msg
-svg_ =
+init { w, h } =
+    [ 0.0, 0.0, w, h ]
+        |> List.foldl fold_ ""
+        |> viewBox
+
+
+location : Size -> Window.Size -> Mouse.Position -> Location
+location { w, h } { width, height } { x, y } =
+    { x = (toFloat x) * (w / (toFloat width))
+    , y = (toFloat y) * (h / (toFloat height))
+    }
+
+
+size : Float -> Window.Size -> Size
+size viewBoxWidth windowSize =
     let
-        { w, h } =
-            size
-
-        fold_ a b =
-            b ++ (toString a) ++ " "
-
-        viewBox_ =
-            [ 0.0, 0.0, w, h ]
-                |> List.foldl fold_ ""
-    in
-        svg [ version "1.1", viewBox viewBox_ ]
-
-
-size : Size
-size =
-    let
-        iPhone6 =
-            { w = 1920.0, h = 1080.0 }
-
         aspectRation =
-            iPhone6.h / iPhone6.w
+            (toFloat windowSize.height) / (toFloat windowSize.width)
 
-        w =
-            1000.0
-
-        h =
-            w * aspectRation
+        viewBoxHeight =
+            viewBoxWidth * aspectRation
     in
-        { w = w, h = h }
-
-
-fromMouse : Window.Size -> Mouse.Position -> Location
-fromMouse { width, height } { x, y } =
-    let
-        { w, h } =
-            size
-    in
-        { x = (toFloat x) * (w / (toFloat width)), y = (toFloat y) * (h / (toFloat height)) }
+        { w = viewBoxWidth, h = viewBoxHeight }

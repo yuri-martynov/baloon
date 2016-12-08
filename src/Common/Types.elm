@@ -5,21 +5,27 @@ type alias Radius_ a =
     { a | radius : Float }
 
 
-type alias Size =
-    { h : Float
-    , w : Float
+type alias Size_ a =
+    { a
+        | w : Float
+        , h : Float
     }
+
+
+type alias Size =
+    Size_ {}
 
 
 type alias Angle_ a =
     { a | angle : Float }
 
 
+type alias Len_ a =
+    { a | len : Float }
+
+
 type alias Vector_ a =
-    Angle_
-        { a
-            | len : Float
-        }
+    Angle_ (Len_ a)
 
 
 type alias Acceleration_ a =
