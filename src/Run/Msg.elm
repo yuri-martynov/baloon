@@ -1,7 +1,8 @@
-module Run.Msg exposing (Msg)
+module Run.Msg exposing (Msg(..))
 
-import Run.Screens.BlackScreen.Msg as BlackScreen
+import Window
+import Run.Screens.Game.Msg as Game
 
-
-type Msg =
-    | BlackScreenMsg BlackScreen.Msg
+type Msg
+    = WindowSizeChanged Window.Size
+    | GameMsg Game.Msg 

@@ -9,5 +9,5 @@ type alias Model =
 
 
 type Screen
-    = BlackScreen
+    = Splash
     | Game Game.Model
