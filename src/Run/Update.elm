@@ -1,7 +1,8 @@
 module Run.Update exposing (update)
 
 import Window
-import Run.Model exposing (Model, Screen(..))
+import Return exposing (mapBoth)
+import Run.Model exposing (Model(..))
 import Run.Msg exposing (Msg(..))
 import Run.Screens.Game.Update as Game
 import Run.Screens.Game.Init as GameInit
@@ -10,45 +11,33 @@ import Run.Screens.Game.Init as GameInit
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        WindowSizeChanged s ->
-            updateWindowSize s model
+        WindowSizeChanged size ->
+            updateWindowSize size model
 
         _ ->
-            let
-                ( screen, cmd ) =
-                    updateScreen msg model.screen
-            in
-                ( { model | screen = screen }, cmd )
+            update0 msg model
 
 
-updateScreen : Msg -> Screen -> ( Screen, Cmd Msg )
-updateScreen msg screen =
-    case ( screen, msg ) of
+
+update0 : Msg -> Model -> ( Model, Cmd Msg )
+update0 msg model =
+    case ( model, msg ) of
         ( Game model, GameMsg msg ) ->
-            let
-                ( model_, cmd ) =
-                    Game.update msg model
-            in
-                Game model_ ! [ cmd |> Cmd.map GameMsg ]
+            Game.update msg model
+                |> mapBoth GameMsg Game
 
         _ ->
-            screen ! []
+            model ! []
 
 
 updateWindowSize : Window.Size -> Model -> ( Model, Cmd Msg )
-updateWindowSize s model =
-    case model.screen of
+updateWindowSize size model =
+    case model of
         Splash ->
-            updateSplashWindowSize s model
+            GameInit.init size
+                |> mapBoth GameMsg Game
+
 
         Game game ->
-            { model | screen = Game.updateWindowSize s game |> Game } ! []
-
-
-updateSplashWindowSize : Window.Size -> Model -> ( Model, Cmd Msg )
-updateSplashWindowSize s model =
-    { model
-        | screen =
-            Game (GameInit.init s)
-    }
-        ! []
+            Game.updateWindowSize size game
+                |> mapBoth GameMsg Game

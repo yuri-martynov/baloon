@@ -1,9 +1,8 @@
 module Run.Screens.Game.Msg exposing (..)
 
+import Run.Screens.Game.Objects.Settlement as Settlement
+
 
 type Msg
-    = NoOp
-    | Message2
-    | Message3
-
-
+    = SettlementMsg Int Settlement.Msg
+ 

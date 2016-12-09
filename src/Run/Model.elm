@@ -1,13 +1,8 @@
-module Run.Model exposing (Model, Screen(..))
+module Run.Model exposing (Model(..))
 
 import Run.Screens.Game.Model as Game
 
 
-type alias Model =
-    { screen : Screen
-    }
-
-
-type Screen
+type Model
     = Splash
     | Game Game.Model
