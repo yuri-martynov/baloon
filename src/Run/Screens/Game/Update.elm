@@ -5,7 +5,8 @@ import Window
 import Return exposing (mapBoth)
 import Run.Screens.Game.Model exposing (Model)
 import Run.Screens.Game.Msg exposing (..)
-import Run.Screens.Game.Objects.Settlement as Settlement
+import Run.Screens.Game.Objects.Settlement.Update as Settlement
+import Run.Screens.Game.Objects.Settlement.Model as Settlement
 
 
 updateWindowSize : Window.Size -> Model -> ( Model, Cmd Msg )
@@ -20,12 +21,12 @@ update msg ({ settlements } as model) =
             case settlements |> Dict.get id of
                 Just settlement ->
                     Settlement.update msg settlement
-                        |> mapBoth (SettlementMsg id) (updateSettlements model id)
+                        |> mapBoth (SettlementMsg id) (updateSettlement model id)
 
                 Nothing ->
                     model ! []
 
 
-updateSettlements : Model -> Int -> Settlement.Model -> Model
-updateSettlements ({ settlements } as model) id settlement =
+updateSettlement : Model -> Int -> Settlement.Model -> Model
+updateSettlement ({ settlements } as model) id settlement =
     { model | settlements = settlements |> Dict.insert id settlement }
