@@ -10,8 +10,8 @@ init s =
     { windowSize = s
     , viewBoxWidth = 1000.0
     , settlements =  
-        [ { player = 0, x = 50, y = 50, population = 4}
-        , { player = 1, x = 100, y = 100, population = 2}
+        [ { player = 0, x = 50, y = 50, population = 1}
+        , { player = 1, x = 200, y = 200, population = 4}
         ] 
             |> List.indexedMap (,)
             |> Dict.fromList

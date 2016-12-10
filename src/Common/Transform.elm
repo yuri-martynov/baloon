@@ -1,17 +1,28 @@
-module Common.Translate exposing (..)
+module Common.Transform exposing (..)
 
 import Svg exposing (Svg, g)
 import Svg.Attributes exposing (transform)
 import Common.Types exposing (Location_)
 
 
-location : Location_ a -> Svg msg -> Svg msg
-location { x, y } element =
+translate : Location_ a -> Svg msg -> Svg msg
+translate { x, y } element =
     g
         [ "translate("
             ++ (x |> toString)
             ++ " "
             ++ (y |> toString)
+            ++ ")"
+            |> transform
+        ]
+        [ element ]
+
+
+scale : number -> Svg msg -> Svg msg
+scale s element =
+    g
+        [ "scale("
+            ++ (s |> toString)
             ++ ")"
             |> transform
         ]

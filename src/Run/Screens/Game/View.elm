@@ -13,10 +13,7 @@ import Run.Screens.Game.Objects.Settlement.Model as Settlement
 
 view : Model -> Svg Msg
 view model =
-    svg_ model
-        ([ defs [] [Settlement.svg ]
-        ] ++ 
-        (view_ model))
+    svg_ model <| defs_ :: (view_ model)
 
 
 view_ : Model -> List (Svg Msg)
@@ -32,8 +29,12 @@ settlement id settlement =
         |> Settlement.view
         |> Svg.map (SettlementMsg id)
 
+defs_ : Svg msg
+defs_ =
+    defs [] [ Settlement.town ]
 
-svg_ : Model -> List (Svg Msg) -> Svg Msg
+
+svg_ : Model -> List (Svg msg) -> Svg msg
 svg_ { windowSize, viewBoxWidth } =
     let
         size =

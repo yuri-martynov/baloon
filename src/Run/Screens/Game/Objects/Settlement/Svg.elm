@@ -1,11 +1,11 @@
-module Run.Screens.Game.Objects.Settlement.Svg exposing (svg)
+module Run.Screens.Game.Objects.Settlement.Svg exposing (town)
 
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
 
 
-svg : Svg msg
-svg =
+town : Svg msg
+town =
     g [id "town"]
         [ circle [ r "50", fill "blue" ] []
         , circle [ r "25" ] []
