@@ -23,7 +23,7 @@ view_ { settlements } =
         |> g []
 
 
-settlement : Int -> Settlement.Model -> Svg Msg
+settlement : SettlementId -> Settlement.Model -> Svg Msg
 settlement id settlement =
     settlement
         |> Settlement.view

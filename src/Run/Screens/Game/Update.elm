@@ -3,7 +3,7 @@ module Run.Screens.Game.Update exposing (updateWindowSize, update)
 import Dict
 import Window
 import Return exposing (mapBoth)
-import Run.Screens.Game.Model exposing (Model)
+import Run.Screens.Game.Model exposing (..)
 import Run.Screens.Game.Msg exposing (..)
 import Run.Screens.Game.Objects.Settlement.Update as Settlement
 import Run.Screens.Game.Objects.Settlement.Model as Settlement
@@ -27,6 +27,6 @@ update msg ({ settlements } as model) =
                     model ! []
 
 
-updateSettlement : Model -> Int -> Settlement.Model -> Model
+updateSettlement : Model -> SettlementId -> Settlement.Model -> Model
 updateSettlement ({ settlements } as model) id settlement =
     { model | settlements = settlements |> Dict.insert id settlement }
