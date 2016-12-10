@@ -12,13 +12,3 @@ view ({ player, population } as model )=
     use [xlinkHref "#town", class ("player" ++ toString player)] []
         |> Translate.location model
 
-playerColor player =
-    case player of
-        0 ->
-            "red"
-
-        1 ->
-            "blue"
-
-        _ ->
-            "black"
