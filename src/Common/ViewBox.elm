@@ -1,4 +1,4 @@
-module Common.ViewBox exposing (init, location, size)
+module Common.ViewBox exposing (init, location, size, location_)
 
 import Svg.Attributes exposing (viewBox)
 import Svg exposing (Attribute)
@@ -19,6 +19,11 @@ location { w, h } { width, height } { x, y } =
     { x = (toFloat x) * (w / (toFloat width))
     , y = (toFloat y) * (h / (toFloat height))
     }
+
+
+location_ : Float -> Window.Size -> Mouse.Position -> Location
+location_ viewBoxWidth windowSize mousePosition =
+    location (size viewBoxWidth windowSize) windowSize mousePosition
 
 
 size : Float -> Window.Size -> Size

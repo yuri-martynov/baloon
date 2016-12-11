@@ -1,7 +1,7 @@
-module Run.Screens.Game.Objects.Settlement.Update exposing (update)
+module Atrapos.Screens.Game.Objects.Settlement.Update exposing (update)
 
-import Run.Screens.Game.Objects.Settlement.Model exposing (..)
-import Run.Screens.Game.Objects.Settlement.Msg exposing (..)
+import Atrapos.Screens.Game.Objects.Settlement.Model exposing (..)
+import Atrapos.Screens.Game.Objects.Settlement.Msg exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

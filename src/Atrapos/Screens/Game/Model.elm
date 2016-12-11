@@ -1,10 +1,10 @@
-module Run.Screens.Game.Model exposing (..)
+module Atrapos.Screens.Game.Model exposing (..)
 
 import Window
 import Dict exposing (Dict)
 import Common.Types exposing (Location)
-import Run.Screens.Game.Objects.Settlement.Model as Settlement
-import Run.Screens.Game.Objects.Army.Model as Army
+import Atrapos.Screens.Game.Objects.Settlement.Model as Settlement
+import Atrapos.Screens.Game.Objects.Army.Model as Army
 
 
 type alias Model =

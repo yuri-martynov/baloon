@@ -1,15 +1,15 @@
-module Run.Screens.Game.View exposing (view)
+module Atrapos.Screens.Game.View exposing (view)
 
 import Dict
 import Svg exposing (Svg, svg, circle, g, defs)
 import Svg.Attributes exposing (..)
 import Common.ViewBox as ViewBox
-import Run.Screens.Game.Model exposing (..)
-import Run.Screens.Game.Msg exposing (..)
-import Run.Screens.Game.Objects.Settlement.View as Settlement
-import Run.Screens.Game.Objects.Settlement.Svg as Settlement
-import Run.Screens.Game.Objects.Settlement.Model as Settlement
-import Run.Screens.Game.Objects.Attack as Attack
+import Atrapos.Screens.Game.Model exposing (..)
+import Atrapos.Screens.Game.Msg exposing (..)
+import Atrapos.Screens.Game.Objects.Settlement.View as Settlement
+import Atrapos.Screens.Game.Objects.Settlement.Svg as Settlement
+import Atrapos.Screens.Game.Objects.Settlement.Model as Settlement
+import Atrapos.Screens.Game.Objects.Attack as Attack
 
 
 view : Model -> Svg Msg

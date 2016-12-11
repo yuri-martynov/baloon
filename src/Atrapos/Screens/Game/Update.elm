@@ -1,17 +1,17 @@
-module Run.Screens.Game.Update exposing (updateWindowSize, update)
+module Atrapos.Screens.Game.Update exposing (updateWindowSize, update)
 
 import Dict
 import Window
 import Return exposing (mapBoth)
 import Common.Dict as Dict
-import Run.Screens.Game.Model exposing (..)
-import Run.Screens.Game.Msg exposing (..)
-import Run.Screens.Game.Objects.Settlement.Msg as Settlement
-import Run.Screens.Game.Objects.Settlement.Update as Settlement
-import Run.Screens.Game.Objects.Settlement.Model as Settlement
-import Run.Screens.Game.Objects.Army.Update as Army
-import Run.Screens.Game.Objects.Army.Model as Army
-import Run.Screens.Game.Objects.Attack as Attack
+import Atrapos.Screens.Game.Model exposing (..)
+import Atrapos.Screens.Game.Msg exposing (..)
+import Atrapos.Screens.Game.Objects.Settlement.Msg as Settlement
+import Atrapos.Screens.Game.Objects.Settlement.Update as Settlement
+import Atrapos.Screens.Game.Objects.Settlement.Model as Settlement
+import Atrapos.Screens.Game.Objects.Army.Update as Army
+import Atrapos.Screens.Game.Objects.Army.Model as Army
+import Atrapos.Screens.Game.Objects.Attack as Attack
 
 
 updateWindowSize : Window.Size -> Model -> ( Model, Cmd Msg )

@@ -1,9 +1,9 @@
-module Run.Screens.Game.Init exposing (init)
+module Atrapos.Screens.Game.Init exposing (init)
 
 import Window 
 import Dict
-import Run.Screens.Game.Model exposing (..)
-import Run.Screens.Game.Msg exposing (Msg)
+import Atrapos.Screens.Game.Model exposing (..)
+import Atrapos.Screens.Game.Msg exposing (Msg)
 
 init: Window.Size -> (Model, Cmd Msg) 
 init s =

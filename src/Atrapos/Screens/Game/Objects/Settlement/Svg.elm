@@ -1,4 +1,4 @@
-module Run.Screens.Game.Objects.Settlement.Svg exposing (town)
+module Atrapos.Screens.Game.Objects.Settlement.Svg exposing (town)
 
 import Svg exposing (..)
 import Svg.Attributes exposing (..)

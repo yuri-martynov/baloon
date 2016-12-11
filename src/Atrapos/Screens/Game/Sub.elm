@@ -1,12 +1,12 @@
-module Run.Screens.Game.Sub exposing (subscriptions)
+module Atrapos.Screens.Game.Sub exposing (subscriptions)
 
 import Dict
 import Mouse
 import Common.ViewBox as ViewBox
-import Run.Screens.Game.Model exposing (..)
-import Run.Screens.Game.Msg exposing (..)
-import Run.Screens.Game.Objects.Settlement.Sub as Settlement
-import Run.Screens.Game.Objects.Settlement.Model as Settlement
+import Atrapos.Screens.Game.Model exposing (..)
+import Atrapos.Screens.Game.Msg exposing (..)
+import Atrapos.Screens.Game.Objects.Settlement.Sub as Settlement
+import Atrapos.Screens.Game.Objects.Settlement.Model as Settlement
 
 
 subscriptions : Model -> Sub Msg

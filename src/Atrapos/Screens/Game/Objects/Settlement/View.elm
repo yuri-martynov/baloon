@@ -1,11 +1,11 @@
-module Run.Screens.Game.Objects.Settlement.View exposing (view)
+module Atrapos.Screens.Game.Objects.Settlement.View exposing (view)
 
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
 import Svg.Events exposing (..)
 import Common.Transform as Transform
-import Run.Screens.Game.Objects.Settlement.Model exposing (..)
-import Run.Screens.Game.Objects.Settlement.Msg exposing (..)
+import Atrapos.Screens.Game.Objects.Settlement.Model exposing (..)
+import Atrapos.Screens.Game.Objects.Settlement.Msg exposing (..)
 
 
 view : Model -> Svg Msg

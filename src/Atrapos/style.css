@@ -12,15 +12,10 @@ svg {
     width: 100%;
 }
 
-.hidden {
-    opacity: 0;
+.player0   {
+    fill: red
 }
 
-.show {
-    opacity: 1;
-    transition: opacity 0.3s ease-out 
+.player1  {
+    fill: green
 }
-
-/*.flip {
-    transform: "scaleX(-1)"
-}*/
