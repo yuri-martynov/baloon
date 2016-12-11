@@ -12,10 +12,16 @@ svg {
     width: 100%;
 }
 
-.player0   {
-    fill: red
+.link {
+    /*stroke: url(#stroke);*/
+    stroke: silver;
+    stroke-width: 0.5;
 }
 
-.player1  {
-    fill: green
+.link.selected {
+    stroke: black;
+}
+
+.node {
+    fill: blue;
 }

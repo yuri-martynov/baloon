@@ -5,7 +5,6 @@ import Mouse
 import Common.ViewBox as ViewBox
 import Atrapos.Screens.Game.Model exposing (..)
 import Atrapos.Screens.Game.Msg exposing (..)
-import Atrapos.Screens.Game.Objects.Node.Model as Node
 
 
 subscriptions : Model -> Sub Msg

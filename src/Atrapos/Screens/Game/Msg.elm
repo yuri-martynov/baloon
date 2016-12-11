@@ -1,10 +1,11 @@
 module Atrapos.Screens.Game.Msg exposing (..)
 
-import Common.Types exposing (Location)
 import Atrapos.Screens.Game.Objects.Node.Msg as Node
-import Atrapos.Screens.Game.Model exposing (NodeId)
+import Atrapos.Screens.Game.Objects.Link.Msg as Link
+import Atrapos.Screens.Game.Model exposing (NodeId, LinkId)
 
 
 type Msg
     = NodeMsg NodeId Node.Msg
+    | LinkMsg LinkId Link.Msg
  

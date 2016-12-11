@@ -11,3 +11,13 @@ justGet key dict =
 
         _ ->
             Debug.crash <| "id not found: " ++ (toString key)
+
+
+(#) : Dict comparable a -> comparable -> a
+(#) =
+    flip justGet
+
+
+(@) : Dict comparable a -> (comparable -> a -> b) -> List b
+(@) dict map =
+    dict |> Dict.map map |> Dict.values
