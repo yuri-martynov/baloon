@@ -9,15 +9,13 @@ init: Window.Size -> (Model, Cmd Msg)
 init s =
     { windowSize = s
     , viewBoxWidth = 1000.0
-    , settlements =  
-        [ { player = 0, x = 250, y = 200, population = 4}
-        , { player = 0, x = 50, y = 50, population = 1}
-        , { player = 1, x = 300, y = 150, population = 4}
-        , { player = 1, x = 230, y = 100, population = 4}
-        , { player = 1, x = 450, y = 100, population = 4}
+    , nodes =  
+        [ { x = 250, y = 200} 
+        , { x = 50, y = 50}
+        , { x = 300, y = 150}
+        , { x = 230, y = 100}
+        , { x = 450, y = 100}
         ] 
             |> List.indexedMap (,)
             |> Dict.fromList
-    , armies = Dict.empty
-    , attack = NoAttack
     } ! []

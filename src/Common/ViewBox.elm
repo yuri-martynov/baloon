@@ -1,4 +1,4 @@
-module Common.ViewBox exposing (init, location, size, location_)
+module Common.ViewBox exposing (Model_, Model, init, location)
 
 import Svg.Attributes exposing (viewBox)
 import Svg exposing (Attribute)
@@ -7,27 +7,39 @@ import Mouse
 import Common.Types exposing (Size, Location)
 
 
-init : Size -> Attribute msg
-init { w, h } =
+type alias Model_ a =
+    { a
+        | windowSize : Window.Size
+        , viewBoxWidth : Float
+    }
+
+
+type alias Model =
+    Model_ {}
+
+init: Model_ a -> Attribute msg
+init model =
+    model |> size |> init_
+
+
+init_ : Size -> Attribute msg
+init_ { w, h } =
     [ 0.0, 0.0, w, h ]
         |> List.foldl fold_ ""
         |> viewBox
 
 
-location : Size -> Window.Size -> Mouse.Position -> Location
-location { w, h } { width, height } { x, y } =
-    { x = (toFloat x) * (w / (toFloat width))
-    , y = (toFloat y) * (h / (toFloat height))
-    }
+location : Model_ a -> Mouse.Position -> Location
+location ({ viewBoxWidth, windowSize } as model) mousePosition =
+    location_ (size model) windowSize mousePosition
 
 
-location_ : Float -> Window.Size -> Mouse.Position -> Location
-location_ viewBoxWidth windowSize mousePosition =
-    location (size viewBoxWidth windowSize) windowSize mousePosition
+
+-- PRIVATES ---------
 
 
-size : Float -> Window.Size -> Size
-size viewBoxWidth windowSize =
+size : Model_ a -> Size
+size { viewBoxWidth, windowSize } =
     let
         aspectRation =
             (toFloat windowSize.height) / (toFloat windowSize.width)
@@ -36,6 +48,13 @@ size viewBoxWidth windowSize =
             viewBoxWidth * aspectRation
     in
         { w = viewBoxWidth, h = viewBoxHeight }
+
+
+location_ : Size -> Window.Size -> Mouse.Position -> Location
+location_ { w, h } { width, height } { x, y } =
+    { x = (toFloat x) * (w / (toFloat width))
+    , y = (toFloat y) * (h / (toFloat height))
+    }
 
 
 fold_ a b =
