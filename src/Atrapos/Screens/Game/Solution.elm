@@ -1,6 +1,7 @@
 module Atrapos.Screens.Game.Solution exposing (solution, apply)
 
 import Dict exposing (Dict)
+import Common.List as List
 import Atrapos.Screens.Game.Model exposing (..)
 
 
@@ -18,7 +19,7 @@ solution ({ nodes, links } as model) =
                     else
                         step tail (head :: acc)
     in
-        step (orderedByLen links) [] 
+        step (orderedByLen links) []
             |> List.map (\( id, _, _ ) -> id)
 
 
@@ -47,30 +48,19 @@ orderedByLen =
 
 path : NodeId -> NodeId -> List ( LinkId, NodeId, NodeId ) -> Bool
 path n1 n2 edges =
-    let
-        edges_ =
-            edges
-                |> List.sortBy
-                    (\( _, m1, _ ) ->
-                        if n1 == m1 then
-                            0
-                        else
-                            1
-                    )
-    in
-        case edges_ of
-            [] ->
-                False
+    case edges |> List.headBy (\( _, m1, _ ) -> n1 == m1) of
+        [] ->
+            False
 
-            ( _, m1, m2 ) :: tail ->
-                let
-                    path_ m1 m2 =
-                        if (n1 == m1) then
-                            if (n2 == m2) then
-                                True
-                            else
-                                path m2 n2 tail
+        ( _, m1, m2 ) :: tail ->
+            let
+                path_ m1 m2 =
+                    if (n1 == m1) then
+                        if (n2 == m2) then
+                            True
                         else
-                            path n1 n2 tail
-                in
-                    path_ m1 m2 || path_ m2 m1
+                            path m2 n2 tail
+                    else
+                        path n1 n2 tail
+            in
+                path_ m1 m2 || path_ m2 m1
