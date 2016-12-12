@@ -5,29 +5,19 @@ import Common.List as List
 import Atrapos.Screens.Game.Model exposing (..)
 
 
-solution : Model -> List LinkId
-solution ({ nodes, links } as model) =
-    let
-        step edges acc =
-            case edges of
-                [] ->
-                    acc
-
-                (( _, n1, n2 ) as head) :: tail ->
-                    if path n1 n2 acc then
-                        step tail acc
-                    else
-                        step tail (head :: acc)
-    in
-        step (orderedByLen links) []
-            |> List.map (\( id, _, _ ) -> id)
+solution : Nodes -> Links -> Solution
+solution nodes links =
+    links
+        |> orderedByLen
+        |> flip solution_ []
+        |> List.map (\( id, _, _ ) -> id)
 
 
 apply : Model -> Model
 apply model =
     let
         solution_ =
-            solution model
+            solution model.nodes model.links
 
         links_ =
             model.links |> Dict.map (\id link -> { link | selected = solution_ |> List.member id })
@@ -39,14 +29,31 @@ apply model =
 -- PRIVATE ---------------------
 
 
-orderedByLen : Dict LinkId Link -> List ( LinkId, NodeId, NodeId )
+type alias Links_ =
+    List ( LinkId, NodeId, NodeId )
+
+
+orderedByLen : Links -> Links_
 orderedByLen =
     Dict.toList
         >> List.sortBy (Tuple.second >> .len)
         >> List.map (\( id, { node1, node2 } ) -> ( id, node1, node2 ))
 
 
-path : NodeId -> NodeId -> List ( LinkId, NodeId, NodeId ) -> Bool
+solution_ : Links_ -> Links_ -> Links_
+solution_ edges acc =
+    case edges of
+        [] ->
+            acc
+
+        (( _, n1, n2 ) as head) :: tail ->
+            if path n1 n2 acc then
+                solution_ tail acc
+            else
+                solution_ tail (head :: acc)
+
+
+path : NodeId -> NodeId -> Links_ -> Bool
 path n1 n2 edges =
     case edges |> List.headBy (\( _, m1, _ ) -> n1 == m1) of
         [] ->

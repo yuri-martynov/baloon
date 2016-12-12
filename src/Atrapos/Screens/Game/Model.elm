@@ -8,20 +8,9 @@ import Common.Types exposing (Location, Len_)
 type alias Model =
     ViewBox.Model_
         { nodes : Nodes
-        , links : Dict LinkId Link
+        , links : Links
+        , solution: Solution
         }
-
-
-type alias NodeId =
-    Int
-
-
-type alias Nodes =
-    Dict NodeId Node
-
-
-type alias LinkId =
-    Int
 
 
 type alias Node =
@@ -34,3 +23,22 @@ type alias Link =
         , node2 : NodeId
         , selected : Bool
         }
+
+type alias Solution =
+    List LinkId
+
+
+type alias NodeId =
+    Int
+
+
+type alias Nodes =
+    Dict NodeId Node
+
+
+type alias Links =
+    Dict LinkId Link
+
+
+type alias LinkId =
+    Int
