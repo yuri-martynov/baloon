@@ -19,7 +19,7 @@ solve ({ nodes, links } as model) =
         path n1 n2 edges  =
             case edges |> List.sortBy (\(_,m1,_) -> if n1 == m1 then 0 else 1) of
                 [] -> False
-                ((id, m1, m2) as head)::tail -> 
+                (id, m1, m2)::tail -> 
                     let path_ n1 n2 m1 m2  =
                         if (n1 == m1) then
                             if (n2 == m2) then 
@@ -33,10 +33,6 @@ solve ({ nodes, links } as model) =
                         path_ n1 n2 m1 m2 
                         ||
                         path_ n1 n2 m2 m1 
-                        -- ||
-                        -- path_ n2 n1 m1 m2 
-                        -- ||
-                        -- path_ n2 n1 m2 m1 
 
         disconnected n1 n2 edges =
             not <| path n1 n2 edges               
