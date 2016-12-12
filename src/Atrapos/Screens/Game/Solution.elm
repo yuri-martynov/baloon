@@ -55,7 +55,7 @@ solution_ edges acc =
 
 path : NodeId -> NodeId -> Links_ -> Bool
 path n1 n2 edges =
-    case edges |> List.headBy (\( _, m1, _ ) -> n1 == m1) of
+    case edges |> List.headBy (\( _, m1, m2 ) -> n1 == m1 || n1 == m2) of
         [] ->
             False
 
