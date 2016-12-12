@@ -4,7 +4,7 @@ import Window
 import Dict
 import Atrapos.Screens.Game.Model exposing (..)
 import Atrapos.Screens.Game.Msg exposing (Msg)
-import Atrapos.Screens.Game.Solution exposing (solve)
+import Atrapos.Screens.Game.Solution as Solution
 import Atrapos.Screens.Game.Objects.Link.Init as Link
 
 
@@ -42,7 +42,7 @@ init s =
                 |> List.indexedMap (,)
                 |> Dict.fromList
     in
-        solve
+        Solution.apply
             { windowSize = s
             , viewBoxWidth = 40.0
             , nodes = nodes_

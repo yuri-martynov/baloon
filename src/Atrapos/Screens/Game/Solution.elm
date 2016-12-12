@@ -1,11 +1,11 @@
-module Atrapos.Screens.Game.Solution exposing (solve)
+module Atrapos.Screens.Game.Solution exposing (solution, apply)
 
 import Dict
 import Atrapos.Screens.Game.Model exposing (..)
 
 
-solve : Model -> Model
-solve ({ nodes, links } as model) =
+solution : Model -> List LinkId
+solution ({ nodes, links } as model) =
     let
         ordered =
             links
@@ -52,10 +52,16 @@ solve ({ nodes, links } as model) =
                         step tail acc
                     else
                         step tail (head :: acc)
-
-        solution_ =
-            step ordered [] |> List.map (\( id, _, _ ) -> id)
     in
-        { model
-            | links = links |> Dict.map (\id link -> { link | selected = solution_ |> List.member id })
-        }
+        step ordered [] |> List.map (\( id, _, _ ) -> id)
+
+
+apply : Model -> Model
+apply model =
+    let
+        solution_ =
+            solution model
+        links_ =
+            model.links |> Dict.map (\id link -> { link | selected = solution_ |> List.member id })
+    in
+        { model | links = links_ }
