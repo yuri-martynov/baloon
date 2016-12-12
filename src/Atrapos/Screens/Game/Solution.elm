@@ -27,17 +27,14 @@ solve ({ nodes, links } as model) =
                             else
                                 path m2 n2 tail 
                         else
-                            -- if acc |> List.member id then
                                 path n1 n2 tail 
-                            -- else
-                                -- path n1 n2 (tail ++ [head]) (id::acc)
                             
                     in
                         path_ n1 n2 m1 m2 
                         ||
                         path_ n1 n2 m2 m1 
-                        ||
-                        path_ n2 n1 m1 m2 
+                        -- ||
+                        -- path_ n2 n1 m1 m2 
                         -- ||
                         -- path_ n2 n1 m2 m1 
 
