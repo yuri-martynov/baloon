@@ -29,7 +29,7 @@ solve ({ nodes, links } as model) =
                     [] ->
                         False
 
-                    ( id, m1, m2 ) :: tail ->
+                    ( _, m1, m2 ) :: tail ->
                         let
                             path_ m1 m2 =
                                 if (n1 == m1) then
@@ -47,7 +47,7 @@ solve ({ nodes, links } as model) =
                 [] ->
                     acc
 
-                (( id, n1, n2 ) as head) :: tail ->
+                (( _, n1, n2 ) as head) :: tail ->
                     if path n1 n2 acc then
                         step tail acc
                     else
