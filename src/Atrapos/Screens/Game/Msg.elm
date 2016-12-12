@@ -8,4 +8,5 @@ import Atrapos.Screens.Game.Model exposing (NodeId, LinkId)
 type Msg
     = NodeMsg NodeId Node.Msg
     | LinkMsg LinkId Link.Msg
+    | Help
  

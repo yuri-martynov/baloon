@@ -25,3 +25,7 @@ svg {
 .node {
     fill: blue;
 }
+
+.help {
+    fill: green;
+}

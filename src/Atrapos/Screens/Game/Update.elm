@@ -6,6 +6,7 @@ import Return exposing (mapBoth)
 import Common.Dict exposing ((#))
 import Atrapos.Screens.Game.Model exposing (..)
 import Atrapos.Screens.Game.Msg exposing (..)
+import Atrapos.Screens.Game.Solution as Solution
 import Atrapos.Screens.Game.Objects.Link.Update as Link
 
 
@@ -17,6 +18,9 @@ updateWindowSize s model =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg ({ nodes, links } as model) =
     case msg of
+        Help ->
+            (model |> Solution.apply) ! []
+
         LinkMsg id msg ->
             links # id
                 |> Link.update msg

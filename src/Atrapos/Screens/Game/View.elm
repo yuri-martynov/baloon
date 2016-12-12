@@ -2,6 +2,7 @@ module Atrapos.Screens.Game.View exposing (view)
 
 import Svg exposing (Svg, svg, circle, g, defs)
 import Svg.Attributes exposing (..)
+import Svg.Events exposing (..)
 import Common.ViewBox as ViewBox
 import Common.Dict exposing ((@))
 import Atrapos.Screens.Game.Model exposing (..)
@@ -12,12 +13,16 @@ import Atrapos.Screens.Game.Objects.Link.View as Link
 
 view : Model -> Svg Msg
 view model =
-    defs_ :: view_ model |> svg_ model
+    defs_ :: help :: view_ model |> svg_ model
 
 
 view_ : Model -> List (Svg Msg)
 view_ ({ nodes, links } as model) =
     (links @ link model) ++ (nodes @ node)
+
+help: Svg Msg
+help =
+    circle [r "4", class "help", onClick Help] []
 
 
 link : Model -> LinkId -> Link -> Svg Msg

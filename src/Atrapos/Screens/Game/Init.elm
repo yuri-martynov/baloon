@@ -42,11 +42,10 @@ init s =
                 |> List.indexedMap (,)
                 |> Dict.fromList
     in
-        Solution.apply
-            { windowSize = s
-            , viewBoxWidth = 40.0
-            , nodes = nodes_
-            , links = links_
-            , solution = Solution.solution nodes_ links_
-            }
-            ! []
+        { windowSize = s
+        , viewBoxWidth = 40.0
+        , nodes = nodes_
+        , links = links_
+        , solution = Solution.solution nodes_ links_
+        }
+        ! []
