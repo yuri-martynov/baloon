@@ -46,6 +46,7 @@ init s =
         , viewBoxWidth = 40.0
         , nodes = nodes_
         , links = links_
-        , solution = Solution.solution nodes_ links_
+        , solution = Solution.solution nodes_ links_ |> List.sort
+        , victory = False
         }
         ! []

@@ -13,16 +13,21 @@ import Atrapos.Screens.Game.Objects.Link.View as Link
 
 view : Model -> Svg Msg
 view model =
-    defs_ :: help :: view_ model |> svg_ model
+    defs_ :: help model :: view_ model |> svg_ model
 
 
 view_ : Model -> List (Svg Msg)
 view_ ({ nodes, links } as model) =
     (links @ link model) ++ (nodes @ node)
 
-help: Svg Msg
-help =
-    circle [r "4", class "help", onClick Help] []
+
+help : Model -> Svg Msg
+help {victory} =
+    let
+        class_ =
+            if victory then "victory" else "help"
+    in 
+        circle [ r "4", class class_, onClick Help ] []
 
 
 link : Model -> LinkId -> Link -> Svg Msg

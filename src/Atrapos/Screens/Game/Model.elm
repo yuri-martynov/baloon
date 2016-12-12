@@ -10,6 +10,7 @@ type alias Model =
         { nodes : Nodes
         , links : Links
         , solution: Solution
+        , victory: Bool
         }
 
 

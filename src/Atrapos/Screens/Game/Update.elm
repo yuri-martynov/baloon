@@ -19,10 +19,11 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg ({ nodes, links } as model) =
     case msg of
         Help ->
-            (model |> Solution.apply) ! []
+            (model |> Solution.apply |> victory) ! []
 
         LinkMsg id msg ->
-            links # id
+            links
+                # id
                 |> Link.update msg
                 |> mapBoth (LinkMsg id) (link model id)
 
@@ -33,6 +34,24 @@ update msg ({ nodes, links } as model) =
 link : Model -> LinkId -> Link -> Model
 link ({ links } as model) id link =
     { model | links = links |> Dict.insert id link }
+        |> victory
+
+
+victory : Model -> Model
+victory model =
+    { model | victory = isVictory model }
+
+
+isVictory : Model -> Bool
+isVictory { links, solution } =
+    let
+        selected =
+            links
+                |> Dict.filter (always .selected)
+                |> Dict.keys
+                |> List.sort
+    in
+        selected == solution
 
 
 
