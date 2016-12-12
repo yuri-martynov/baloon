@@ -2,6 +2,7 @@ module Atrapos.Update exposing (update)
 
 import Window
 import Return exposing (mapBoth)
+import Common.Dict exposing ((#))
 import Atrapos.Model exposing (Model(..))
 import Atrapos.Msg exposing (Msg(..))
 import Atrapos.Screens.Levels.Update as Levels
@@ -28,8 +29,8 @@ update0 msg model =
             Game.update msg model
                 |> mapBoth GameMsg Game
 
-        ( Levels {windowSize}, LevelsMsg (Levels.Play level) ) ->
-            Game.init windowSize
+        ( Levels {windowSize, levels}, LevelsMsg (Levels.Play level) ) ->
+            Game.init windowSize (levels # level)
                 |> mapBoth GameMsg Game
 
         ( Levels model, LevelsMsg msg ) ->

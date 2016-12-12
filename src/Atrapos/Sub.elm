@@ -19,4 +19,6 @@ subscriptions_ model =
     case model of
         Game model ->
             Game.subscriptions model |> Sub.map GameMsg
-        _ -> Sub.none
+
+        _ ->
+            Sub.none
