@@ -27,9 +27,18 @@ init s { nodes, links } =
         solution_ =
             Solution.solution nodes_ links_
                 |> List.sort
+
+        viewBoxWidth_ =
+            nodes 
+                |> List.map (\(x,y) -> [x,y])
+                |> List.concat 
+                |> List.maximum 
+                |> Maybe.withDefault 40 
+                |> (+) 2
+                |> toFloat
     in
         { windowSize = s
-        , viewBoxWidth = 40.0
+        , viewBoxWidth = viewBoxWidth_
         , nodes = nodes_
         , links = links_
         , solution = solution_
