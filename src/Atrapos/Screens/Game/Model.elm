@@ -2,17 +2,22 @@ module Atrapos.Screens.Game.Model exposing (..)
 
 import Dict exposing (Dict)
 import Common.ViewBox as ViewBox
-import Common.Types exposing (Location)
+import Common.Types exposing (Location, Len_)
+
 
 type alias Model =
     ViewBox.Model_
-        { nodes : Dict NodeId Node
+        { nodes : Nodes
         , links : Dict LinkId Link
         }
 
 
 type alias NodeId =
     Int
+
+
+type alias Nodes =
+    Dict NodeId Node
 
 
 type alias LinkId =
@@ -24,7 +29,8 @@ type alias Node =
 
 
 type alias Link =
-    { node1 : NodeId
-    , node2 : NodeId
-    , selected: Bool
-    }
+    Len_
+        { node1 : NodeId
+        , node2 : NodeId
+        , selected : Bool
+        }
