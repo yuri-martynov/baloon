@@ -23,18 +23,23 @@ view_ ({ nodes, links } as model) =
 
 
 help : Model -> Svg Msg
-help {victory} =
+help { victory } =
     let
         class_ =
-            if victory then "victory" else "help"
-    in 
+            if victory then
+                "victory"
+            else
+                "help"
+    in
         circle [ r "4", class class_, onClick Help ] []
 
+
 reset : Model -> Svg Msg
-reset {links} =
+reset { links } =
     case links |> Dict.values |> List.any .selected of
         True ->
-            circle [ r "4", class "reset", onClick Reset ] []
+            circle [ r "4", cx "10", class "reset", onClick Reset ] []
+
         False ->
             g [] []
 

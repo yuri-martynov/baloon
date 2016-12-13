@@ -9,8 +9,9 @@ type alias Model =
     ViewBox.Model_
         { nodes : Nodes
         , links : Links
-        , solution: Solution
-        , victory: Bool
+        , solution : Solution
+        , victory : Bool
+        , selection : Maybe Selection
         }
 
 
@@ -24,6 +25,12 @@ type alias Link =
         , node2 : NodeId
         , selected : Bool
         }
+
+
+type alias Selection =
+    { lastNode : Maybe NodeId
+    }
+
 
 type alias Solution =
     List LinkId

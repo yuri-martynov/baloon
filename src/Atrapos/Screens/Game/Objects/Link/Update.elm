@@ -1,4 +1,4 @@
-module Atrapos.Screens.Game.Objects.Link.Update exposing (update, reset)
+module Atrapos.Screens.Game.Objects.Link.Update exposing (update, reset, select)
 
 import Atrapos.Screens.Game.Model exposing (Link)
 import Atrapos.Screens.Game.Objects.Link.Msg exposing (..)
@@ -14,3 +14,7 @@ update msg model =
 reset : Link -> Link
 reset link =
     { link | selected = False }
+
+select : Link -> Link
+select link =
+    { link | selected = True }

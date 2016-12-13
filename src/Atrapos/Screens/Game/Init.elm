@@ -43,5 +43,6 @@ init s { nodes, links } =
         , links = links_
         , solution = solution_
         , victory = False
+        , selection = Nothing
         }
             ! []

@@ -32,19 +32,19 @@ view { nodes } ({ node1, node2, selected, len } as link) =
             [ id_ |> id
             , dLine n1 n2 |> d
             -- , d <| "M" ++ (n1.x |> toString) ++ " " ++ (n1.y |> toString) ++ " L" ++ (n2.x |> toString) ++ " " ++ (n2.y |> toString)
-            , onMouseDown Toggle
+            -- , onMouseDown Toggle
               -- , on "touchstart" (succeed Toggle)
             , "link " ++ class_ |> class
             ]
             []
-        , text_
-            [ class "len" ]
-            [ [ len |> toString |> text ]
-                |> textPath
-                    [ id_ |> (++) "#" |> xlinkHref
-                      , startOffset "50%"
-                    ]
-            ]
+        -- , text_
+        --     [ class "len" ]
+        --     [ [ len |> toString |> text ]
+        --         |> textPath
+        --             [ id_ |> (++) "#" |> xlinkHref
+        --               , startOffset "50%"
+        --             ]
+        --     ]
         ]
             |> g []
 

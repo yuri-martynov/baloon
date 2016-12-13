@@ -36,14 +36,12 @@ svg {
 
 .reset {
     fill: darkgray;
-    position: absolute;
-    right: 0;
-    top: 0;
+    transform: translateX(5)
 }
 
 .len {
     pointer-events: none;
     color: dimgray;
-    font-size: 2;
+    font-size: 0.75;
     text-anchor: middle;
 }

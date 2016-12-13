@@ -4,10 +4,14 @@ import Dict
 import Window
 import Return exposing (mapBoth)
 import Common.Dict exposing ((#))
+import Common.Types exposing (Location)
+import Common.Math exposing (len)
 import Atrapos.Screens.Game.Model exposing (..)
 import Atrapos.Screens.Game.Msg exposing (..)
 import Atrapos.Screens.Game.Solution as Solution
 import Atrapos.Screens.Game.Objects.Link.Update as Link
+import Atrapos.Screens.Game.Shared exposing (link, victory)
+import Atrapos.Screens.Game.Selection as Selection
 
 
 updateWindowSize : Window.Size -> Model -> ( Model, Cmd Msg )
@@ -19,10 +23,13 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg ({ nodes, links } as model) =
     case msg of
         Reset ->
-            { model | links = links |> Dict.map (always Link.reset) } ! []
-            
+            ({ model | links = links |> Dict.map (always Link.reset) } |> victory) ! []
+
         Help ->
             (model |> Solution.apply |> victory) ! []
+
+        Mouse msg ->
+            ( Selection.update msg model, Cmd.none )
 
         LinkMsg id msg ->
             links
@@ -34,43 +41,4 @@ update msg ({ nodes, links } as model) =
             model ! []
 
 
-link : Model -> LinkId -> Link -> Model
-link ({ links } as model) id link =
-    { model | links = links |> Dict.insert id link }
-        |> victory
 
-
-victory : Model -> Model
-victory model =
-    { model | victory = isVictory model }
-
-isVictory : Model -> Bool
-isVictory { links, solution } =
-    let
-        selected =
-            links
-                |> Dict.filter (always .selected)
-                |> Dict.keys
-                |> List.sort
-    in
-        selected == solution
-
-
-
--- startAttack : Model -> ( Model, Cmd Msg )
--- startAttack ({ attack, nodes } as model) =
---     case attack of
---         AttackFromTo from _ ->
---             let
---                 settlementFrom =
---                     nodes |> Dict.justGet from
---                 settlementFrom_ =
---                     { settlementFrom | population = settlementFrom.population // 3 }
---             in
---                 { model
---                     | attack = NoAttack
---                     , nodes = nodes |> Dict.insert from settlementFrom_
---                 }
---                     ! []
---         _ ->
---             { model | attack = NoAttack } ! []

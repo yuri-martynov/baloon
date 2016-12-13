@@ -12,7 +12,7 @@ view : Node -> Svg Msg
 view model =
     use
         [ xlinkHref "#node"
-        , onMouseOver Over
+        -- , onMouseOver Over
         ]
         []
         |> Transform.translate model
