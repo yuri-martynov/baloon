@@ -1,7 +1,6 @@
 module Atrapos.Screens.Levels.Cmd exposing (load)
 
 import Http
-import Dict exposing (Dict)
 import Json.Decode exposing (Decoder, field, dict, list, int, map2)
 import Common.Decode exposing (customDecoder)
 import Atrapos.Screens.Levels.Model exposing (..)
@@ -11,64 +10,43 @@ import Atrapos.Screens.Levels.Msg exposing (Msg(Loaded))
 load : Cmd Msg
 load =
     Http.get "screens/levels/levels.json" (dict decodeLevel)
-        |> Http.send (mapResult >> Loaded)
+        |> Http.send Loaded
 
 
 
 -- PRIVATES ----------
 
 
-mapResult : Result Http.Error (Dict String Level_) -> Result Http.Error Levels
-mapResult result =
-    case result of
-        Err err ->
-            Err err
-
-        Ok levels ->
-            levels |> Dict.map (always mapLevel) |> Ok
-
-
-decodeLevel : Decoder Level_
+decodeLevel : Decoder Level
 decodeLevel =
-    map2 Level_
-        (field "nodes" decodeListx2)
-        (field "links" decodeListx2)
+    map2 Level
+        (field "nodes" (listOfList parseNode))
+        (field "links" (listOfList parseLink))
 
 
-type alias Level_ =
-    { nodes : ListX2
-    , links : ListX2
-    }
+parseNode : List Int -> Result String Node
+parseNode data =
+    case data of
+        [ n1, n2 ] ->
+            Ok ( n1, n2 )
+
+        _ ->
+            Err "node expected to be [int,int]"
 
 
-type alias ListX2 =
-    List (List Int)
+parseLink : List Int -> Result String Link
+parseLink data =
+    case data of
+        [n] ->
+            Err "link expected to be [int, int, ...]"
+
+        n :: nn ->
+            Ok ( n, nn )
+
+        [] ->
+            Err "link can not be an empty array"
 
 
-decodeListx2 : Decoder ListX2
-decodeListx2 =
-    list (list int)
-
-
-mapLevel : Level_ -> Level
-mapLevel { nodes, links } =
-    let
-        node data =
-            case data of
-                [ n1, n2 ] ->
-                    ( n1, n2 )
-
-                _ ->
-                    Debug.crash "node"
-
-        link data =
-            case data of
-                n :: nn ->
-                    ( n, nn )
-
-                _ ->
-                    Debug.crash "link"
-    in
-        { nodes = nodes |> List.map node
-        , links = links |> List.map link
-        }
+listOfList : (List Int -> Result String a) -> Decoder (List a)
+listOfList =
+    customDecoder (list int) >> list

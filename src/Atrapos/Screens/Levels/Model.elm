@@ -11,9 +11,17 @@ type alias Model =
 
 
 type alias Level =
-    { nodes : List ( Int, Int )
-    , links : List ( Int, List Int )
+    { nodes : List Node
+    , links : List Link
     }
+
+
+type alias Node =
+    ( Int, Int )
+
+
+type alias Link =
+    ( Int, List Int )
 
 
 type alias LevelId =
