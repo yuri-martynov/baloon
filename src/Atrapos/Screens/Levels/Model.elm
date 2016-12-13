@@ -1,12 +1,13 @@
 module Atrapos.Screens.Levels.Model exposing (..)
 
 import Dict exposing (Dict)
-import Window
+import Common.WindowSize as WindowSize
+
 
 type alias Model =
-    { windowSize: Window.Size
-    , levels : Levels
-    }
+    WindowSize.Model
+        { levels : Levels
+        }
 
 
 type alias Level =

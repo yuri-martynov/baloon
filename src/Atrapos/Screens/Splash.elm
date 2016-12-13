@@ -2,12 +2,11 @@ module Atrapos.Screens.Splash exposing (init, view)
 
 import Html exposing (..)
 import Window
-import Task
-
+import Common.WindowSize as WindowSize
 
 init : (Window.Size -> msg) -> Cmd msg
-init msg =
-    Window.size |> Task.perform msg
+init =
+    WindowSize.init
 
 
 view : Html msg
