@@ -5,6 +5,7 @@ import Svg.Attributes exposing (..)
 import Svg.Events exposing (..)
 import Json.Decode exposing (succeed)
 import Common.Dict exposing (..)
+import Common.Svg exposing (..)
 import Atrapos.Screens.Game.Model exposing (Link, Node, Model, NodeId)
 import Atrapos.Screens.Game.Objects.Link.Msg exposing (..)
 
@@ -29,7 +30,8 @@ view { nodes } ({ node1, node2, selected, len } as link) =
     in
         [ Svg.path
             [ id_ |> id
-            , d <| "M" ++ (n1.x |> toString) ++ " " ++ (n1.y |> toString) ++ " L" ++ (n2.x |> toString) ++ " " ++ (n2.y |> toString)
+            , dLine n1 n2 |> d
+            -- , d <| "M" ++ (n1.x |> toString) ++ " " ++ (n1.y |> toString) ++ " L" ++ (n2.x |> toString) ++ " " ++ (n2.y |> toString)
             , onMouseDown Toggle
               -- , on "touchstart" (succeed Toggle)
             , "link " ++ class_ |> class
