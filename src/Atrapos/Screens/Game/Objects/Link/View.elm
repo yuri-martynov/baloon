@@ -25,26 +25,23 @@ view { nodes } ({ node1, node2, selected, len } as link) =
                 ""
 
         id_ =
-            linkHash link |> toString
+            "link_" ++ (toString node1) ++ "_" ++ (toString node2)
     in
-        [ line
+        [ Svg.path
             [ id_ |> id
-            , n1.x |> toString |> x1
-            , n1.y |> toString |> y1
-            , n2.x |> toString |> x2
-            , n2.y |> toString |> y2
+            , d <| "M" ++ (n1.x |> toString) ++ " " ++ (n1.y |> toString) ++ " L" ++ (n2.x |> toString) ++ " " ++ (n2.y |> toString)
             , onMouseDown Toggle
               -- , on "touchstart" (succeed Toggle)
             , "link " ++ class_ |> class
             ]
             []
         , text_
-            [ (n1.x + n2.x) / 2 |> toString |> x
-            , (n1.y + n2.y) / 2 |> toString |> y
-            , class "len"
-            ]
+            [ class "len" ]
             [ [ len |> toString |> text ]
-                |> textPath [ linkHash link |> toString |> (++) "#" |> xlinkHref ]
+                |> textPath
+                    [ id_ |> (++) "#" |> xlinkHref
+                      , startOffset "50%"
+                    ]
             ]
         ]
             |> g []
@@ -60,8 +57,3 @@ stroke =
 
 
 -- PRIVATE ------------------
-
-
-linkHash : Link -> Int
-linkHash { node1, node2 } =
-    node1 * 100 + node2

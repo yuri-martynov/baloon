@@ -45,4 +45,5 @@ svg {
     pointer-events: none;
     color: dimgray;
     font-size: 2;
+    text-anchor: middle;
 }
