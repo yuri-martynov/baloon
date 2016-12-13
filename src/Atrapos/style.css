@@ -40,3 +40,9 @@ svg {
     right: 0;
     top: 0;
 }
+
+.len {
+    pointer-events: none;
+    color: dimgray;
+    font-size: 2;
+}
