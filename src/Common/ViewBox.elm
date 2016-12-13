@@ -5,13 +5,14 @@ import Svg exposing (Attribute)
 import Window
 import Mouse
 import Common.Types exposing (Size, Location)
+import Common.WindowSize as WindowSize 
 
 
 type alias Model_ a =
-    { a
-        | windowSize : Window.Size
-        , viewBoxWidth : Float
-    }
+    WindowSize.Model 
+        { a
+            | viewBoxWidth : Float
+        }
 
 
 type alias Model =
