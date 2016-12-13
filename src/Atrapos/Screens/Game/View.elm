@@ -1,5 +1,6 @@
 module Atrapos.Screens.Game.View exposing (view)
 
+import Dict
 import Svg exposing (Svg, svg, circle, g, defs)
 import Svg.Attributes exposing (..)
 import Svg.Events exposing (..)
@@ -13,7 +14,7 @@ import Atrapos.Screens.Game.Objects.Link.View as Link
 
 view : Model -> Svg Msg
 view model =
-    defs_ :: help model :: view_ model |> svg_ model
+    defs_ :: help model :: reset model :: view_ model |> svg_ model
 
 
 view_ : Model -> List (Svg Msg)
@@ -28,6 +29,14 @@ help {victory} =
             if victory then "victory" else "help"
     in 
         circle [ r "4", class class_, onClick Help ] []
+
+reset : Model -> Svg Msg
+reset {links} =
+    case links |> Dict.values |> List.any .selected of
+        True ->
+            circle [ r "4", class "reset", onClick Reset ] []
+        False ->
+            g [] []
 
 
 link : Model -> LinkId -> Link -> Svg Msg

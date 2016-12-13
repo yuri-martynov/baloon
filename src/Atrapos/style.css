@@ -33,3 +33,10 @@ svg {
 .victory {
     fill: gold;
 }
+
+.reset {
+    fill: darkgray;
+    position: absolute;
+    right: 0;
+    top: 0;
+}

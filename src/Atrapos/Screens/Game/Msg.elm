@@ -9,4 +9,5 @@ type Msg
     = NodeMsg NodeId Node.Msg
     | LinkMsg LinkId Link.Msg
     | Help
+    | Reset
  

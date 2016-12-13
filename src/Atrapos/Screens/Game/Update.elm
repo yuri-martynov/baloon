@@ -18,6 +18,9 @@ updateWindowSize s model =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg ({ nodes, links } as model) =
     case msg of
+        Reset ->
+            { model | links = links |> Dict.map (always Link.reset) } ! []
+            
         Help ->
             (model |> Solution.apply |> victory) ! []
 
@@ -40,7 +43,6 @@ link ({ links } as model) id link =
 victory : Model -> Model
 victory model =
     { model | victory = isVictory model }
-
 
 isVictory : Model -> Bool
 isVictory { links, solution } =
