@@ -2,7 +2,8 @@ module Atrapos.Screens.Levels.Cmd exposing (load)
 
 import Http
 import Dict exposing (Dict)
-import Json.Decode exposing (Decoder, field, dict, succeed, list, int, map2)
+import Json.Decode exposing (Decoder, field, dict, list, int, map2)
+import Common.Decode exposing (customDecoder)
 import Atrapos.Screens.Levels.Model exposing (..)
 import Atrapos.Screens.Levels.Msg exposing (Msg(Loaded))
 
@@ -30,8 +31,8 @@ mapResult result =
 decodeLevel : Decoder Level_
 decodeLevel =
     map2 Level_
-        (field "nodes" listx2)
-        (field "links" listx2)
+        (field "nodes" decodeListx2)
+        (field "links" decodeListx2)
 
 
 type alias Level_ =
@@ -44,8 +45,8 @@ type alias ListX2 =
     List (List Int)
 
 
-listx2 : Decoder ListX2
-listx2 =
+decodeListx2 : Decoder ListX2
+decodeListx2 =
     list (list int)
 
 
