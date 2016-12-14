@@ -1,21 +1,30 @@
-module Atrapos.Screens.Levels.Cmd exposing (load)
+module Atrapos.Screens.Levels.Cmd exposing (loadLevelList, loadLevel)
 
 import Http
-import Json.Decode exposing (Decoder, field, dict, list, int, map2)
+import Json.Decode exposing (Decoder, field, dict, list, int, string, map, map2)
 import Common.Decode exposing (customDecoder)
 import Atrapos.Screens.Levels.Model exposing (..)
-import Atrapos.Screens.Levels.Msg exposing (Msg(Loaded))
+import Atrapos.Screens.Levels.Msg exposing (Msg(LevelListLoaded, LevelLoaded))
 
 
-load : Cmd Msg
-load =
-    Http.get "screens/levels/levels.json" (dict decodeLevel)
-        |> Http.send Loaded
+loadLevelList : Cmd Msg
+loadLevelList =
+    Http.get "db/levels.json" (dict decodeLevelTitle)
+        |> Http.send LevelListLoaded
+
+loadLevel : LevelId -> Cmd Msg
+loadLevel id =
+    Http.get ("db/" ++ id ++ ".json") decodeLevel
+        |> Http.send LevelLoaded
 
 
 
 -- PRIVATES ----------
 
+decodeLevelTitle: Decoder LevelTitle
+decodeLevelTitle = 
+    map LevelTitle
+        (field "title" string)
 
 decodeLevel : Decoder Level
 decodeLevel =

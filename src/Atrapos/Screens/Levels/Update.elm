@@ -1,16 +1,24 @@
 module Atrapos.Screens.Levels.Update exposing (update)
 
 import Atrapos.Screens.Levels.Model exposing (Model)
-import Atrapos.Screens.Levels.Msg exposing (Msg(Loaded))
+import Atrapos.Screens.Levels.Msg exposing (..)
+import Atrapos.Screens.Levels.Cmd exposing (loadLevel)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Loaded (Err _) ->
+        LevelListLoaded (Err _) ->
             ( model, Cmd.none )
 
-        Loaded (Ok levels) ->
+        LevelListLoaded (Ok levels) ->
             { model | levels = levels } ! []
 
-        _ -> Debug.crash "levels update"
+        Play id ->
+            model ! [ loadLevel id ]
+
+        LevelLoaded (Err _) ->
+            ( model, Cmd.none )
+
+        _ ->
+            Debug.crash "levels update"

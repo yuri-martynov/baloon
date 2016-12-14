@@ -4,14 +4,12 @@ import Dict
 import Window
 import Return exposing (mapBoth)
 import Common.Dict exposing ((#))
-import Common.Types exposing (Location)
-import Common.Math exposing (len)
 import Atrapos.Screens.Game.Model exposing (..)
 import Atrapos.Screens.Game.Msg exposing (..)
 import Atrapos.Screens.Game.Solution as Solution
-import Atrapos.Screens.Game.Objects.Link.Update as Link
+import Atrapos.Screens.Game.Link.Update as Link
 import Atrapos.Screens.Game.Shared exposing (link, victory)
-import Atrapos.Screens.Game.Selection as Selection
+import Atrapos.Screens.Game.Selection.Update as Selection
 
 
 updateWindowSize : Window.Size -> Model -> ( Model, Cmd Msg )

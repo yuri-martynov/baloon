@@ -1,11 +1,11 @@
-module Atrapos.Screens.Game.Objects.Node.View exposing (view, template)
+module Atrapos.Screens.Game.Node.View exposing (view, template)
 
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
 import Svg.Events exposing (..)
 import Common.Transform as Transform
 import Atrapos.Screens.Game.Model exposing (Node)
-import Atrapos.Screens.Game.Objects.Node.Msg exposing (..)
+import Atrapos.Screens.Game.Node.Msg exposing (..)
 
 
 view : Node -> Svg Msg

@@ -1,7 +1,7 @@
-module Atrapos.Screens.Game.Objects.Link.Update exposing (update, reset, select)
+module Atrapos.Screens.Game.Link.Update exposing (update, reset, select)
 
 import Atrapos.Screens.Game.Model exposing (Link)
-import Atrapos.Screens.Game.Objects.Link.Msg exposing (..)
+import Atrapos.Screens.Game.Link.Msg exposing (..)
 
 
 update : Msg -> Link -> ( Link, Cmd Msg )

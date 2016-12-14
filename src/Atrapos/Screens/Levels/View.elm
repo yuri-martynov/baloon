@@ -16,13 +16,9 @@ view { levels } =
         |> div []
 
 
-level : LevelId -> Level -> Html Msg
-level title { nodes, links } =
+level : LevelId -> LevelTitle -> Html Msg
+level id { title } =
     div []
         [ title |> text
-        , "nodes " |> text
-        , nodes |> List.length |> toString |> text
-        , ", links " |> text
-        , links |> List.length |> toString |> text
-        , button [onClick <| Play title ] [text "Play"]
+        , button [onClick <| Play id ] [text "Play"]
         ]

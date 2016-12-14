@@ -29,8 +29,8 @@ update0 msg model =
             Game.update msg model
                 |> mapBoth GameMsg Game
 
-        ( Levels {windowSize, levels}, LevelsMsg (Levels.Play level) ) ->
-            Game.init windowSize (levels # level)
+        ( Levels {windowSize}, LevelsMsg (Levels.LevelLoaded (Ok level)) ) ->
+            Game.init windowSize level
                 |> mapBoth GameMsg Game
 
         ( Levels model, LevelsMsg msg ) ->
