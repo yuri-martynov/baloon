@@ -1,4 +1,4 @@
-module Atrapos.Screens.Game.Objects.Link.View exposing (view, stroke)
+module Atrapos.Screens.Game.Link.View exposing (view, stroke)
 
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
@@ -7,7 +7,7 @@ import Json.Decode exposing (succeed)
 import Common.Dict exposing (..)
 import Common.Svg exposing (..)
 import Atrapos.Screens.Game.Model exposing (Link, Node, Model, NodeId)
-import Atrapos.Screens.Game.Objects.Link.Msg exposing (..)
+import Atrapos.Screens.Game.Link.Msg exposing (..)
 
 
 view : Model -> Link -> Svg Msg

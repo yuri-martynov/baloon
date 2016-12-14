@@ -20,7 +20,8 @@ apply model =
             solution model.nodes model.links
 
         links_ =
-            model.links |> Dict.map (\id link -> { link | selected = solution_ |> List.member id })
+            model.links
+                |> Dict.map (\id link -> { link | selected = solution_ |> List.member id })
     in
         { model | links = links_ }
 

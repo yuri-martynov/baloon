@@ -1,4 +1,4 @@
-module Atrapos.Screens.Game.Objects.Link.Init exposing (init)
+module Atrapos.Screens.Game.Link.Init exposing (init)
 
 import Common.Math exposing (len)
 import Common.Dict exposing ((#))

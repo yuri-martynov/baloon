@@ -9,7 +9,7 @@ type alias Model =
     ViewBox.Model_
         { nodes : Nodes
         , links : Links
-        , solution : Solution
+        , minLen : Float
         , victory : Bool
         , selection : Maybe Selection
         }
@@ -30,7 +30,6 @@ type alias Link =
 type alias Selection =
     { lastNode : Maybe NodeId
     }
-
 
 type alias Solution =
     List LinkId

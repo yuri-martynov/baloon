@@ -1,4 +1,4 @@
-module Atrapos.Screens.Game.Selection exposing (update)
+module Atrapos.Screens.Game.Selection.Update exposing (update)
 
 import Dict
 import Common.Dict as Dict
@@ -6,7 +6,7 @@ import Common.Types exposing (Location)
 import Common.Math exposing (len)
 import Atrapos.Screens.Game.Model exposing (..)
 import Atrapos.Screens.Game.Msg exposing (..)
-import Atrapos.Screens.Game.Objects.Link.Update as Link
+import Atrapos.Screens.Game.Link.Update as Link
 import Atrapos.Screens.Game.Shared exposing (link)
 
 
@@ -25,6 +25,7 @@ update msg model =
         _ ->
             model
 
+-- PRIVATE ---------------------------------------
 
 select : Location -> Selection -> Model -> Model
 select p {lastNode} model =

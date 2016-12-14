@@ -2,6 +2,7 @@ module Atrapos.Screens.Game.Shared exposing (link, victory)
 
 import Dict
 import Atrapos.Screens.Game.Model exposing (..)
+import Atrapos.Screens.Game.Selection.Path as Selection
 
 
 link : Model -> LinkId -> Link -> Model
@@ -16,12 +17,15 @@ victory model =
 
 
 isVictory : Model -> Bool
-isVictory { links, solution } =
+isVictory { links, minLen } =
     let
         selected =
             links
                 |> Dict.filter (always .selected)
                 |> Dict.keys
-                |> List.sort
+
+        len =
+            selected
+                |> Selection.len links
     in
-        selected == solution
+        len == minLen
