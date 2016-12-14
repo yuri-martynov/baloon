@@ -25,7 +25,11 @@ svg {
 
 .node {
     pointer-events: none;
-    fill: blue;
+    fill: green;
+}
+
+.selected.node {
+    fill: gold;
 }
 
 .help {

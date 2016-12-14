@@ -8,6 +8,7 @@ import Atrapos.Screens.Game.Model exposing (..)
 import Atrapos.Screens.Game.Msg exposing (..)
 import Atrapos.Screens.Game.Link.Update as Link
 import Atrapos.Screens.Game.Shared exposing (link)
+import Atrapos.Screens.Game.Selection.Path as Selection
 
 
 update : MouseMsg -> Model -> Model

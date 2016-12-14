@@ -22,7 +22,7 @@ view model =
 
 view_ : Model -> List (Svg Msg)
 view_ ({ nodes, links } as model) =
-    (links @ link model) ++ (nodes @ node)
+    (links @ link model) ++ (nodes @ node model)
 
 
 help : Model -> Svg Msg
@@ -57,16 +57,16 @@ link model id link =
     link |> Link.view model |> Svg.map (LinkMsg id)
 
 
-node : NodeId -> Node -> Svg Msg
-node id node =
+node : Model -> NodeId -> Node -> Svg Msg
+node model id node =
     node
-        |> Node.view
+        |> Node.view model id
         |> Svg.map (NodeMsg id)
 
 
 defs_ : Svg msg
 defs_ =
-    defs [] [ Node.template, Link.stroke ]
+    defs [] [ Link.stroke ]
 
 
 svg_ : Model -> List (Svg Msg) -> Svg Msg
@@ -83,3 +83,4 @@ svg_ model =
 position : Touch -> Mouse.Position
 position { clientX, clientY } =
     { x = round clientX, y = round clientY }
+ 
