@@ -16,6 +16,7 @@ svg {
     /*stroke: url(#stroke);*/
     stroke: silver;
     stroke-width: 0.5;
+    pointer-events: none;
 }
 
 .link.selected {
@@ -23,6 +24,7 @@ svg {
 }
 
 .node {
+    pointer-events: none;
     fill: blue;
 }
 
@@ -45,3 +47,8 @@ svg {
     font-size: 0.75;
     text-anchor: middle;
 }
+
+.progress {
+    font-size: 0.5;
+}
+

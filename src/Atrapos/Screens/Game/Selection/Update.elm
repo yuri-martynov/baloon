@@ -59,7 +59,7 @@ selectNext last next ({ links } as model) =
             Just id ->
                 links
                     |> Dict.justGet id
-                    |> Link.select
+                    |> Link.toggle
                     |> link model id
                     |> updateLastNode next
 

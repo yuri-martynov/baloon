@@ -28,5 +28,8 @@ progress { links, minLen } =
 
 
 isVictory : Model -> Bool
-isVictory =
-    progress >> (==) 1
+isVictory model =
+    let
+        p = progress model 
+    in
+        p > 0.99 && p < 1.01
