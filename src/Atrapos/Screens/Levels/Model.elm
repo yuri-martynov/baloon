@@ -29,4 +29,7 @@ type alias LevelId =
 
 
 type alias Levels =
-    Dict LevelId Level
+    Dict LevelId LevelTitle
+
+type alias LevelTitle =
+    { title: String}
