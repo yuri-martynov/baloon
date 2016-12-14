@@ -1,4 +1,4 @@
-module Atrapos.Screens.Game.Shared exposing (link, victory)
+module Atrapos.Screens.Game.Shared exposing (link, victory, progress)
 
 import Dict
 import Atrapos.Screens.Game.Model exposing (..)
@@ -16,16 +16,17 @@ victory model =
     { model | victory = isVictory model }
 
 
-isVictory : Model -> Bool
-isVictory { links, minLen } =
+progress : Model -> Float
+progress { links, minLen } =
     let
-        selected =
-            links
-                |> Dict.filter (always .selected)
-                |> Dict.keys
-
         len =
-            selected
+            links
+                |> Selection.selected
                 |> Selection.len links
     in
-        len == minLen
+        len / minLen
+
+
+isVictory : Model -> Bool
+isVictory =
+    progress >> (==) 1
