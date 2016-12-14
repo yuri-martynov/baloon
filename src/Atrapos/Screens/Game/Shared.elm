@@ -32,4 +32,4 @@ isVictory model =
     let
         p = progress model 
     in
-        p > 0.99 && p < 1.01
+        p > 0.9999 && p < 1.0001
