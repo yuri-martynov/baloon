@@ -67,12 +67,4 @@ svg_ model =
     svg [ version "1.1", ViewBox.init model ]
 
 
-progress : Model -> Float
-progress { links, minLen } =
-    let
-        len =
-            links
-                |> Selection.selected
-                |> Selection.len links
-    in
-        len / minLen
+
