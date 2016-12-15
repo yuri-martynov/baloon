@@ -12,6 +12,7 @@ type alias Model =
         , minLen : Float
         , victory : Bool
         , selection : Maybe Selection
+        , nodesTurned: Maybe Nodes
         }
 
 

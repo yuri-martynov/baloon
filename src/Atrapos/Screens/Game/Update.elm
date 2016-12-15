@@ -10,11 +10,12 @@ import Atrapos.Screens.Game.Solution as Solution
 import Atrapos.Screens.Game.Link.Update as Link
 import Atrapos.Screens.Game.Shared exposing (link, victory)
 import Atrapos.Screens.Game.Selection.Update as Selection
+import Atrapos.Screens.Game.Orientation as Orientation
 
 
 updateWindowSize : Window.Size -> Model -> ( Model, Cmd Msg )
 updateWindowSize s model =
-    { model | windowSize = s } ! []
+    ({ model | windowSize = s } |> Orientation.update , Cmd.none)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -37,6 +38,9 @@ update msg ({ nodes, links } as model) =
 
         _ ->
             model ! []
+
+
+
 
 
 
