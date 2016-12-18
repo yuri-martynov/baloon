@@ -9,12 +9,12 @@ import Atrapos.Screens.Levels.Msg exposing (Msg(LevelListLoaded, LevelLoaded))
 
 loadLevelList : Cmd Msg
 loadLevelList =
-    Http.get "db/levels.json" (dict decodeLevelTitle)
+    Http.get "Db/levels.json" (dict decodeLevelTitle)
         |> Http.send LevelListLoaded
 
 loadLevel : LevelId -> Cmd Msg
 loadLevel id =
-    Http.get ("db/" ++ id ++ ".json") decodeLevel
+    Http.get ("Db/" ++ id ++ ".json") decodeLevel
         |> Http.send LevelLoaded
 
 
