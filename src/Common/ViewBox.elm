@@ -11,7 +11,7 @@ import Common.WindowSize as WindowSize
 type alias Model_ a =
     WindowSize.Model 
         { a
-            | viewBoxWidth : Float
+            | viewBoxSize : Size
         }
 
 
@@ -31,7 +31,7 @@ init_ { w, h } =
 
 
 location : Model_ a -> Mouse.Position -> Location
-location ({ viewBoxWidth, windowSize } as model) mousePosition =
+location ({ windowSize } as model) mousePosition =
     location_ (size model) windowSize mousePosition
 
 
@@ -40,15 +40,15 @@ location ({ viewBoxWidth, windowSize } as model) mousePosition =
 
 
 size : Model_ a -> Size
-size { viewBoxWidth, windowSize } =
+size { viewBoxSize, windowSize } =
     let
         aspectRation =
             (toFloat windowSize.height) / (toFloat windowSize.width)
 
         viewBoxHeight =
-            viewBoxWidth * aspectRation
+            viewBoxSize.w * aspectRation
     in
-        { w = viewBoxWidth, h = viewBoxHeight }
+        { w = viewBoxSize.w, h = viewBoxHeight }
 
 
 location_ : Size -> Window.Size -> Mouse.Position -> Location

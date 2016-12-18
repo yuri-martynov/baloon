@@ -22,13 +22,21 @@ init s { nodes, links } =
         minY =
             nodes |> List.map Tuple.second |> List.minimum |> Maybe.return 
 
+        maxX =
+            nodes |> List.map Tuple.first |> List.maximum |> Maybe.return 
+
+        maxY =
+            nodes |> List.map Tuple.second |> List.maximum |> Maybe.return 
+
+        offset = 2
+
         nodes_ =
             nodes
                 |> List.indexedMap 
                     (\i ( x, y ) -> 
                         ( i + 1, 
-                          { x = toFloat <| x - minX + 2
-                          , y = toFloat <| y - minY + 2
+                          { x = toFloat <| x - minX + offset
+                          , y = toFloat <| y - minY + offset
                           } 
                         )
                     )
@@ -47,18 +55,10 @@ init s { nodes, links } =
         minLen =
             solution |> Selection.len links_
 
-
-        viewBoxWidth =
-            nodes_
-                |> Dict.values 
-                |> List.map (\{x,y} -> [x,y])
-                |> List.concat 
-                |> List.maximum 
-                |> Maybe.return 
-                |> (+) 2
+        viewBoxSize = { w = toFloat <| maxX + offset, h = toFloat <| maxY + offset }
     in
         ( { windowSize = s
-          , viewBoxWidth = viewBoxWidth
+          , viewBoxSize = viewBoxSize
           , nodes = nodes_
           , links = links_
           , minLen = minLen
