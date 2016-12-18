@@ -1,0 +1,58 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden
+}
+
+svg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.link {
+    /*stroke: url(#stroke);*/
+    stroke: silver;
+    stroke-width: 0.5;
+    pointer-events: none;
+}
+
+.link.selected {
+    stroke: black;
+}
+
+.node {
+    pointer-events: none;
+    fill: blue;
+}
+
+.selected.node {
+    fill: magenta;
+}
+
+.help {
+    fill: green;
+}
+
+.victory {
+    fill: gold;
+}
+
+.reset {
+    fill: darkgray;
+    transform: translateX(5)
+}
+
+.len {
+    pointer-events: none;
+    color: dimgray;
+    font-size: 0.75;
+    text-anchor: middle;
+}
+
+.progress {
+    font-size: 0.5;
+}
+
