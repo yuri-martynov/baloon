@@ -6,6 +6,7 @@
         "**/.hg": true,
         "**/.DS_Store": true,
         "**/main.js": true,
-        "**/elm-stuff":true
+        "**/elm-stuff":true,
+        "docs": true
     }
 }
