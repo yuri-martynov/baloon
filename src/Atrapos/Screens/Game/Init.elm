@@ -22,12 +22,6 @@ init s { nodes, links } =
         minY =
             nodes |> List.map Tuple.second |> List.minimum |> Maybe.return 
 
-        maxX =
-            nodes |> List.map Tuple.first |> List.maximum |> Maybe.return 
-
-        maxY =
-            nodes |> List.map Tuple.second |> List.maximum |> Maybe.return 
-
         offset = 2
 
         nodes_ =
@@ -55,7 +49,14 @@ init s { nodes, links } =
         minLen =
             solution |> Selection.len links_
 
-        viewBoxSize = { w = toFloat <| maxX + offset, h = toFloat <| maxY + offset }
+        maxX =
+            nodes_ |> Dict.toList |> List.map (Tuple.second >> .x) |> List.maximum |> Maybe.return 
+
+        maxY =
+            nodes_ |> Dict.toList |>  List.map (Tuple.second >> .y) |> List.maximum |> Maybe.return 
+        
+
+        viewBoxSize = { w = maxX + offset, h = maxY + offset }
     in
         ( { windowSize = s
           , viewBoxSize = viewBoxSize

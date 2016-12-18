@@ -25,4 +25,4 @@ update ({windowSize, viewBoxSize, nodes, nodesTurned }as model) =
                             | nodes = nodes |> Dict.map (\_ p -> Orientation.turn (\x y -> {x = x , y = y}) h p )
                             , nodesTurned = Just nodes
                             , viewBoxSize = viewBoxSize |> Size.turn
-                        }
+                        } 

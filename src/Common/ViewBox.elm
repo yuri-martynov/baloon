@@ -51,9 +51,7 @@ size { viewBoxSize, windowSize } =
 
         downScale ({w, h} as size) =
             if h < viewBoxSize.h then
-                let scale = viewBoxSize.h / h
-                in
-                    { w = w * scale, h = h * scale}
+                { w = viewBoxSize.h / aspectRation, h = viewBoxSize.h}
             else
                 size
  

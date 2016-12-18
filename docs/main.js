@@ -10298,34 +10298,28 @@ var _user$project$Common_ViewBox$location_ = F3(
 	});
 var _user$project$Common_ViewBox$size = function (_p6) {
 	var _p7 = _p6;
-	var _p12 = _p7.windowSize;
-	var _p11 = _p7.viewBoxSize;
+	var _p11 = _p7.windowSize;
+	var _p10 = _p7.viewBoxSize;
+	var aspectRation = _elm_lang$core$Basics$toFloat(_p11.height) / _elm_lang$core$Basics$toFloat(_p11.width);
+	var viewBoxHeight = _p10.w * aspectRation;
 	var downScale = function (_p8) {
 		var _p9 = _p8;
-		var _p10 = _p9.h;
-		if (_elm_lang$core$Native_Utils.cmp(_p10, _p11.h) < 0) {
-			var scale = _p11.h / _p10;
-			return {w: _p9.w * scale, h: _p10 * scale};
-		} else {
-			return _p9;
-		}
+		return (_elm_lang$core$Native_Utils.cmp(_p9.h, _p10.h) < 0) ? {w: _p10.h / aspectRation, h: _p10.h} : _p9;
 	};
-	var aspectRation = _elm_lang$core$Basics$toFloat(_p12.height) / _elm_lang$core$Basics$toFloat(_p12.width);
-	var viewBoxHeight = _p11.w * aspectRation;
 	return downScale(
-		{w: _p11.w, h: viewBoxHeight});
+		{w: _p10.w, h: viewBoxHeight});
 };
 var _user$project$Common_ViewBox$location = F2(
-	function (_p13, mousePosition) {
-		var _p14 = _p13;
+	function (_p12, mousePosition) {
+		var _p13 = _p12;
 		return A3(
 			_user$project$Common_ViewBox$location_,
-			_user$project$Common_ViewBox$size(_p14),
-			_p14.windowSize,
+			_user$project$Common_ViewBox$size(_p13),
+			_p13.windowSize,
 			mousePosition);
 	});
-var _user$project$Common_ViewBox$init_ = function (_p15) {
-	var _p16 = _p15;
+var _user$project$Common_ViewBox$init_ = function (_p14) {
+	var _p15 = _p14;
 	return _elm_lang$svg$Svg_Attributes$viewBox(
 		A3(
 			_elm_lang$core$List$foldl,
@@ -10339,10 +10333,10 @@ var _user$project$Common_ViewBox$init_ = function (_p15) {
 					_0: 0.0,
 					_1: {
 						ctor: '::',
-						_0: _p16.w,
+						_0: _p15.w,
 						_1: {
 							ctor: '::',
-							_0: _p16.h,
+							_0: _p15.h,
 							_1: {ctor: '[]'}
 						}
 					}
@@ -11120,24 +11114,14 @@ var _user$project$Atrapos_Screens_Game_Link_Init$init = F3(
 var _user$project$Atrapos_Screens_Game_Init$init = F2(
 	function (s, _p0) {
 		var _p1 = _p0;
-		var _p6 = _p1.nodes;
+		var _p8 = _p1.nodes;
 		var offset = 2;
-		var maxY = _user$project$Common_Maybe$return(
-			_elm_lang$core$List$maximum(
-				A2(_elm_lang$core$List$map, _elm_lang$core$Tuple$second, _p6)));
-		var maxX = _user$project$Common_Maybe$return(
-			_elm_lang$core$List$maximum(
-				A2(_elm_lang$core$List$map, _elm_lang$core$Tuple$first, _p6)));
-		var viewBoxSize = {
-			w: _elm_lang$core$Basics$toFloat(maxX + offset),
-			h: _elm_lang$core$Basics$toFloat(maxY + offset)
-		};
 		var minY = _user$project$Common_Maybe$return(
 			_elm_lang$core$List$minimum(
-				A2(_elm_lang$core$List$map, _elm_lang$core$Tuple$second, _p6)));
+				A2(_elm_lang$core$List$map, _elm_lang$core$Tuple$second, _p8)));
 		var minX = _user$project$Common_Maybe$return(
 			_elm_lang$core$List$minimum(
-				A2(_elm_lang$core$List$map, _elm_lang$core$Tuple$first, _p6)));
+				A2(_elm_lang$core$List$map, _elm_lang$core$Tuple$first, _p8)));
 		var nodes_ = _elm_lang$core$Dict$fromList(
 			A2(
 				_elm_lang$core$List$indexedMap,
@@ -11153,7 +11137,7 @@ var _user$project$Atrapos_Screens_Game_Init$init = F2(
 							}
 						};
 					}),
-				_p6));
+				_p8));
 		var links_ = _elm_lang$core$Dict$fromList(
 			A2(
 				_elm_lang$core$List$indexedMap,
@@ -11176,6 +11160,29 @@ var _user$project$Atrapos_Screens_Game_Init$init = F2(
 						_p1.links))));
 		var solution = A2(_user$project$Atrapos_Screens_Game_Solution$solution, nodes_, links_);
 		var minLen = A2(_user$project$Atrapos_Screens_Game_Selection_Path$len, links_, solution);
+		var maxX = _user$project$Common_Maybe$return(
+			_elm_lang$core$List$maximum(
+				A2(
+					_elm_lang$core$List$map,
+					function (_p6) {
+						return function (_) {
+							return _.x;
+						}(
+							_elm_lang$core$Tuple$second(_p6));
+					},
+					_elm_lang$core$Dict$toList(nodes_))));
+		var maxY = _user$project$Common_Maybe$return(
+			_elm_lang$core$List$maximum(
+				A2(
+					_elm_lang$core$List$map,
+					function (_p7) {
+						return function (_) {
+							return _.y;
+						}(
+							_elm_lang$core$Tuple$second(_p7));
+					},
+					_elm_lang$core$Dict$toList(nodes_))));
+		var viewBoxSize = {w: maxX + offset, h: maxY + offset};
 		return {
 			ctor: '_Tuple2',
 			_0: _user$project$Atrapos_Screens_Game_Orientation$update(
