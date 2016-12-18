@@ -36,6 +36,7 @@ location ({ windowSize } as model) mousePosition =
 
 
 
+
 -- PRIVATES ---------
 
 
@@ -47,8 +48,18 @@ size { viewBoxSize, windowSize } =
 
         viewBoxHeight =
             viewBoxSize.w * aspectRation
+
+        downScale ({w, h} as size) =
+            if h < viewBoxSize.h then
+                let scale = viewBoxSize.h / h
+                in
+                    { w = w * scale, h = h * scale}
+            else
+                size
+ 
     in
-        { w = viewBoxSize.w, h = viewBoxHeight }
+        { w = viewBoxSize.w, h = viewBoxHeight } 
+            |> downScale
 
 
 location_ : Size -> Window.Size -> Mouse.Position -> Location

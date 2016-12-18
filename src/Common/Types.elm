@@ -47,3 +47,8 @@ type alias Location =
 
 type alias Circle_ a =
     Location_ (Radius_ a)
+
+
+turn : Size -> Size
+turn {h,w} =
+    {w = h, h = w}
