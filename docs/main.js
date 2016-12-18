@@ -11681,11 +11681,7 @@ var _user$project$Atrapos_Screens_Game_View$view = function (model) {
 				_1: {
 					ctor: '::',
 					_0: _user$project$Atrapos_Screens_Game_View$reset(model),
-					_1: {
-						ctor: '::',
-						_0: _user$project$Atrapos_Screens_Game_View$progress(model),
-						_1: _user$project$Atrapos_Screens_Game_View$view_(model)
-					}
+					_1: _user$project$Atrapos_Screens_Game_View$view_(model)
 				}
 			}
 		});

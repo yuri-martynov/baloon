@@ -17,7 +17,8 @@ import TouchEvents as Touch exposing (Touch, onTouchEvent)
 
 view : Model -> Svg Msg
 view model =
-    defs_ :: help model :: reset model :: progress model :: view_ model |> svg_ model
+    defs_ :: help model :: reset model :: view_ model |> svg_ model
+    
 
 
 view_ : Model -> List (Svg Msg)
