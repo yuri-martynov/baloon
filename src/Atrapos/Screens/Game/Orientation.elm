@@ -18,9 +18,9 @@ update ({windowSize, nodes, nodesTurned }as model) =
                     {model | nodesTurned = Just nodes, nodes = nodes_}
                 Nothing ->
                     let 
-                        h = nodes |> Dict.values |> List.map .y |> List.maximum |> Maybe.return
+                        h = nodes |> Dict.values |> List.map .y |> List.maximum |> Maybe.return |> (+) 2
                     in
                         {model 
-                            | nodes = nodes |> Dict.map (\_ p -> Orientation.turn (\x y -> {x = x + 2, y = y}) h p )
+                            | nodes = nodes |> Dict.map (\_ p -> Orientation.turn (\x y -> {x = x , y = y}) h p )
                             , nodesTurned = Just nodes
                         }
