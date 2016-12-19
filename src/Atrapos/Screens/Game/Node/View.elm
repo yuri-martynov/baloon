@@ -8,7 +8,7 @@ import Atrapos.Screens.Game.Model exposing (..)
 import Atrapos.Screens.Game.Node.Msg exposing (..)
 
 
-view : Model -> NodeId -> Node -> Svg Msg
+view : Model_ -> NodeId -> Node -> Svg Msg
 view { links } id node =
     let
         class_ =

@@ -5,6 +5,8 @@ import Atrapos.Screens.Levels.Model as Levels
 
 
 type Model
-    = Splash
+    = NotFound
     | Levels Levels.Model
     | Game Game.Model
+
+

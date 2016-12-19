@@ -1,16 +1,21 @@
 module Atrapos.Main exposing (main)
 
-import Html
+import Navigation
+import Atrapos.Routes as Routes
+import Atrapos.Model exposing (Model)
+import Atrapos.Msg exposing (Msg(UrlChanged))
 import Atrapos.Init exposing (..)
 import Atrapos.Update exposing (..)
-import Atrapos.View exposing (..)
-import Atrapos.Sub exposing (..)
+import Atrapos.View exposing (..) 
+import Atrapos.Sub exposing (..) 
+ 
 
-
+main : Program Never Model Msg
 main =
-    Html.program
-        { init = init
+    Navigation.program (UrlChanged << Routes.parse)
+        { init = init << Routes.parse
         , view = view
         , update = update
         , subscriptions = subscriptions
         }
+ 

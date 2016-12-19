@@ -17,16 +17,19 @@ import TouchEvents as Touch exposing (Touch, onTouchEvent)
 
 view : Model -> Svg Msg
 view model =
-    defs_ :: help model :: reset model :: view_ model |> svg_ model
+    case model of
+        Loading -> [text_ [] [text "loading"] ]|> svg []
+        Loaded model ->
+            defs_ :: help model :: reset model :: view_ model |> svg_ model
     
 
 
-view_ : Model -> List (Svg Msg)
+view_ : Model_ -> List (Svg Msg)
 view_ ({ nodes, links } as model) =
     (links @ link model) ++ (nodes @ node model)
 
 
-help : Model -> Svg Msg
+help : Model_ -> Svg Msg
 help { victory } =
     let
         class_ =
@@ -38,12 +41,12 @@ help { victory } =
         circle [ r "4", class class_, onClick Help ] []
 
 
-progress : Model -> Svg Msg
+progress : Model_ -> Svg Msg
 progress model =
     text_ [ x "10", y "2", class "progress" ] [ model |> Game.progress |> toString |> text ]
 
 
-reset : Model -> Svg Msg
+reset : Model_ -> Svg Msg
 reset { links } =
     case links |> Dict.values |> List.any .selected of
         True ->
@@ -53,12 +56,12 @@ reset { links } =
             g [] []
 
 
-link : Model -> LinkId -> Link -> Svg Msg
+link : Model_ -> LinkId -> Link -> Svg Msg
 link model id link =
     link |> Link.view model |> Svg.map (LinkMsg id)
 
 
-node : Model -> NodeId -> Node -> Svg Msg
+node : Model_ -> NodeId -> Node -> Svg Msg
 node model id node =
     node
         |> Node.view model id
@@ -70,7 +73,7 @@ defs_ =
     defs [] [ Link.stroke ]
 
 
-svg_ : Model -> List (Svg Msg) -> Svg Msg
+svg_ : Model_ -> List (Svg Msg) -> Svg Msg
 svg_ model =
     svg
         [ version "1.1"

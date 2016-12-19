@@ -6,7 +6,7 @@ import Common.Orientation as Orientation
 import Common.Types as Size
 import Atrapos.Screens.Game.Model exposing (..)
 
-update: Model -> Model
+update: Model_ -> Model_
 update ({windowSize, viewBoxSize, nodes, nodesTurned }as model) =
     let
         windowOrientation = [{x = windowSize.width, y = windowSize.height}] |> Orientation.orientation

@@ -11,7 +11,7 @@ import Atrapos.Screens.Game.Shared exposing (link)
 import Atrapos.Screens.Game.Selection.Path as Selection
 
 
-update : MouseMsg -> Model -> Model
+update : MouseMsg -> Model_ -> Model_
 update msg model =
     case ( msg, model.selection ) of
         ( Down, _ ) ->
@@ -28,7 +28,7 @@ update msg model =
 
 -- PRIVATE ---------------------------------------
 
-select : Location -> Selection -> Model -> Model
+select : Location -> Selection -> Model_ -> Model_
 select p {lastNode} model =
     case ( lastNode, nearestNode p model ) of
         ( Nothing, Just first ) ->
@@ -41,7 +41,7 @@ select p {lastNode} model =
             model
 
 
-selectNext : NodeId -> NodeId -> Model -> Model
+selectNext : NodeId -> NodeId -> Model_ -> Model_
 selectNext last next ({ links } as model) =
     let
         nextLink =
@@ -65,12 +65,12 @@ selectNext last next ({ links } as model) =
                     |> updateLastNode next
 
 
-updateLastNode : NodeId -> Model -> Model
+updateLastNode : NodeId -> Model_ -> Model_
 updateLastNode id model =
     { model | selection = Just { lastNode = Just id } }
 
 
-nearestNode : Location -> Model -> Maybe NodeId
+nearestNode : Location -> Model_ -> Maybe NodeId
 nearestNode p { nodes } =
     let
         node =

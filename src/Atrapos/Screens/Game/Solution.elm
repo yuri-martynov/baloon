@@ -13,7 +13,7 @@ solution nodes links =
         |> List.map (\( id, _, _ ) -> id)
 
 
-apply : Model -> Model
+apply : Model_ -> Model_
 apply model =
     let
         solution_ =

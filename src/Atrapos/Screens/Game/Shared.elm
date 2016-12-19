@@ -5,18 +5,18 @@ import Atrapos.Screens.Game.Model exposing (..)
 import Atrapos.Screens.Game.Selection.Path as Selection
 
 
-link : Model -> LinkId -> Link -> Model
+link : Model_ -> LinkId -> Link -> Model_
 link ({ links } as model) id link =
     { model | links = links |> Dict.insert id link }
         |> victory
 
 
-victory : Model -> Model
+victory : Model_ -> Model_
 victory model =
     { model | victory = isVictory model }
 
 
-progress : Model -> Float
+progress : Model_ -> Float
 progress { links, minLen } =
     let
         len =
@@ -27,7 +27,7 @@ progress { links, minLen } =
         len / minLen
 
 
-isVictory : Model -> Bool
+isVictory : Model_ -> Bool
 isVictory model =
     let
         p = progress model 

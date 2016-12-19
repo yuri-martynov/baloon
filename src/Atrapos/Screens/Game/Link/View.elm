@@ -6,11 +6,11 @@ import Svg.Events exposing (..)
 import Json.Decode exposing (succeed)
 import Common.Dict exposing (..)
 import Common.Svg exposing (..)
-import Atrapos.Screens.Game.Model exposing (Link, Node, Model, NodeId)
+import Atrapos.Screens.Game.Model exposing (Link, Node, Model_, NodeId)
 import Atrapos.Screens.Game.Link.Msg exposing (..)
 
 
-view : Model -> Link -> Svg Msg
+view : Model_ -> Link -> Svg Msg
 view { nodes } ({ node1, node2, selected, len } as link) =
     let
         n1 =

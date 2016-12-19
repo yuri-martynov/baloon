@@ -6,6 +6,4 @@ import Atrapos.Screens.Levels.Model exposing (..)
 
 type Msg
     = LevelListLoaded (Result Http.Error Levels)
-    | LevelLoaded (Result Http.Error Level)
-    | Play LevelId
 

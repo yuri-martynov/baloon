@@ -4,8 +4,11 @@ import Dict exposing (Dict)
 import Common.ViewBox as ViewBox
 import Common.Types exposing (Location, Len_)
 
+type Model
+    = Loading
+    | Loaded Model_ 
 
-type alias Model =
+type alias Model_ =
     ViewBox.Model_
         { nodes : Nodes
         , links : Links

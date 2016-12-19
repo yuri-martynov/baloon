@@ -5,24 +5,8 @@ import Common.WindowSize as WindowSize
 
 
 type alias Model =
-    WindowSize.Model
-        { levels : Levels
-        }
-
-
-type alias Level =
-    { nodes : List Node
-    , links : List Link
+    { levels : Levels
     }
-
-
-type alias Node =
-    ( Int, Int )
-
-
-type alias Link =
-    ( Int, List Int )
-
 
 type alias LevelId =
     String
