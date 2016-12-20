@@ -1,18 +1,16 @@
 module Atrapos.Screens.Game.View exposing (view)
 
-import Dict
 import Mouse
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
-import Svg.Events exposing (..)
+import TouchEvents as Touch exposing (Touch, onTouchEvent)
 import Common.ViewBox as ViewBox
 import Common.Dict exposing ((@))
 import Atrapos.Screens.Game.Model exposing (..)
 import Atrapos.Screens.Game.Msg exposing (..)
 import Atrapos.Screens.Game.Node.View as Node
 import Atrapos.Screens.Game.Link.View as Link
-import Atrapos.Screens.Game.Shared as Game
-import TouchEvents as Touch exposing (Touch, onTouchEvent)
+import Atrapos.Screens.Game.UI as UI
 
 
 view : Model -> Svg Msg
@@ -20,41 +18,15 @@ view model =
     case model of
         Loading -> [text_ [] [text "loading"] ]|> svg []
         Loaded model ->
-            defs_ :: help model :: reset model :: view_ model |> svg_ model
+            defs_ :: view_ model 
+                |> svg_ model
+                |> UI.view model
     
 
 
 view_ : Model_ -> List (Svg Msg)
 view_ ({ nodes, links } as model) =
     (links @ link model) ++ (nodes @ node model)
-
-
-help : Model_ -> Svg Msg
-help { victory } =
-    let
-        class_ =
-            if victory then
-                "victory"
-            else
-                "help"
-    in
-        circle [ r "4", class class_, onClick Help ] []
-
-
-progress : Model_ -> Svg Msg
-progress model =
-    text_ [ x "10", y "2", class "progress" ] [ model |> Game.progress |> toString |> text ]
-
-
-reset : Model_ -> Svg Msg
-reset { links } =
-    case links |> Dict.values |> List.any .selected of
-        True ->
-            circle [ r "4", cx "10", class "reset", onClick Reset ] []
-
-        False ->
-            g [] []
-
 
 link : Model_ -> LinkId -> Link -> Svg Msg
 link model id link =
@@ -72,11 +44,11 @@ defs_ : Svg msg
 defs_ =
     defs [] [ Link.stroke ]
 
-
 svg_ : Model_ -> List (Svg Msg) -> Svg Msg
 svg_ model =
     svg
         [ version "1.1"
+        , class "game"
         , ViewBox.init model
         , onTouchEvent Touch.TouchStart (Mouse << (always Down))
         , onTouchEvent Touch.TouchMove (Mouse << Move << ViewBox.location model << position)
