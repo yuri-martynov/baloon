@@ -1,0 +1,74 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: black;
+}
+
+.game {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.game-ui {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.link {
+    stroke: gray;
+    stroke-dasharray: 0.2, 0.5;
+    /*stroke: lightskyblue;*/
+    stroke-width: 0.05;
+    pointer-events: none;
+}
+
+.link.selected {
+    stroke-width: 0.1;
+    stroke: silver;
+    stroke-dasharray: none;   
+}
+
+.node {
+    pointer-events: none;
+    fill: dimgray;
+}
+
+.selected.node {
+    /*fill: white;*/
+    animation: node 0.5s ease-in-out;
+    animation-fill-mode: both;
+}
+@keyframes node {
+    /*0% {fill: gold; }*/
+    100% {fill: white;}
+}
+
+.help {
+    fill: green;
+}
+
+.victory {
+    color: gold;
+}
+
+.reset {
+    fill: darkgray;
+    transform: translateX(5)
+}
+
+.len {
+    pointer-events: none;
+    color: dimgray;
+    font-size: 0.75;
+    text-anchor: middle;
+}
+
+.progress {
+    font-size: 0.5;
+}
+

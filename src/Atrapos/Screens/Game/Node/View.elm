@@ -17,8 +17,16 @@ view { links } id node =
             else
                 ""
     in
-        circle [ r "0.5", class <| "node " ++ class_ ] []
-            |> Transform.translate node
+        image 
+            [ xlinkHref "screens/Game/Node/star.svg"
+            , width "1"
+            , height "1"
+            , node.x - 0.5 |> toString |> x
+            , node.y - 0.5 |> toString |> y
+            , class <| "node " ++ class_ 
+            ] []
+        -- circle [ r "0.5", class <| "node " ++ class_ ] []
+            -- |> Transform.translate node
 
 
 

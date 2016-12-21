@@ -11948,7 +11948,12 @@ var _user$project$Atrapos_Screens_Levels_View$view = function (_p2) {
 				_elm_lang$html$Html$span,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('pure-menu-heading'),
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'background', _1: 'red'},
+							_1: {ctor: '[]'}
+						}),
 					_1: {ctor: '[]'}
 				},
 				{
@@ -12046,21 +12051,36 @@ var _user$project$Atrapos_Screens_Game_Node_View$view = F3(
 		var _p3 = _p2;
 		var class_ = A2(_user$project$Atrapos_Screens_Game_Node_View$connected, _p3.links, id) ? 'selected' : '';
 		return A2(
-			_user$project$Common_Transform$translate,
-			node,
-			A2(
-				_elm_lang$svg$Svg$circle,
-				{
+			_elm_lang$svg$Svg$image,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$xlinkHref('screens/Game/Node/star.svg'),
+				_1: {
 					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$r('0.5'),
+					_0: _elm_lang$svg$Svg_Attributes$width('1'),
 					_1: {
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$class(
-							A2(_elm_lang$core$Basics_ops['++'], 'node ', class_)),
-						_1: {ctor: '[]'}
+						_0: _elm_lang$svg$Svg_Attributes$height('1'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$x(
+								_elm_lang$core$Basics$toString(node.x - 0.5)),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$y(
+									_elm_lang$core$Basics$toString(node.y - 0.5)),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$class(
+										A2(_elm_lang$core$Basics_ops['++'], 'node ', class_)),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
 					}
-				},
-				{ctor: '[]'}));
+				}
+			},
+			{ctor: '[]'});
 	});
 
 var _user$project$Common_Svg$dLine = F2(

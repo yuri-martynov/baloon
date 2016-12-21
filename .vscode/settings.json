@@ -5,7 +5,7 @@
         "**/.svn": true,
         "**/.hg": true,
         "**/.DS_Store": true,
-        "**/main.js": true,
+        "src/Atrapos/main.js": true,
         "**/elm-stuff":true,
         "docs": true
     }
