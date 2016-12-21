@@ -4,5 +4,7 @@
     "3": { "title": "start 3" } ,
     "4": { "title": "start 4" } ,
     "5": { "title": "start 5" } ,
-    "dragon":  { "title": "dragon" }
+    "dragon":  { "title": "dragon" } ,
+    "perseus": { "title": "perseus"} ,
+    "columba": { "title": "columba"}
 }

@@ -1,7 +1,8 @@
 html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden
+    overflow: hidden;
+    background: black;
 }
 
 .game {
@@ -19,23 +20,32 @@ html, body {
 }
 
 .link {
-    /*stroke: url(#stroke);*/
-    stroke: silver;
-    stroke-width: 0.5;
+    stroke: gray;
+    stroke-dasharray: 0.2, 0.5;
+    /*stroke: lightskyblue;*/
+    stroke-width: 0.05;
     pointer-events: none;
 }
 
 .link.selected {
-    stroke: black;
+    stroke-width: 0.1;
+    stroke: silver;
+    stroke-dasharray: none;   
 }
 
 .node {
     pointer-events: none;
-    fill: blue;
+    fill: dimgray;
 }
 
 .selected.node {
-    fill: magenta;
+    /*fill: white;*/
+    animation: node 0.5s ease-in-out;
+    animation-fill-mode: both;
+}
+@keyframes node {
+    /*0% {fill: gold; }*/
+    100% {fill: white;}
 }
 
 .help {
