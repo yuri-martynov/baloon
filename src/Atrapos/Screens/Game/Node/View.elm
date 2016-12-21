@@ -18,7 +18,7 @@ view { links } id node =
                 ""
     in
         image 
-            [ xlinkHref "screens/Game/Node/star.svg"
+            [ xlinkHref "Screens/Game/Node/star.svg"
             , width "1"
             , height "1"
             , node.x - 0.5 |> toString |> x
