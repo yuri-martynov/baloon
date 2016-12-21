@@ -12054,7 +12054,7 @@ var _user$project$Atrapos_Screens_Game_Node_View$view = F3(
 			_elm_lang$svg$Svg$image,
 			{
 				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$xlinkHref('screens/Game/Node/star.svg'),
+				_0: _elm_lang$svg$Svg_Attributes$xlinkHref('Screens/Game/Node/star.svg'),
 				_1: {
 					ctor: '::',
 					_0: _elm_lang$svg$Svg_Attributes$width('1'),
