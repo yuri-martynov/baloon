@@ -6,5 +6,7 @@
     "5": { "title": "start 5" } ,
     "dragon":  { "title": "dragon" } ,
     "perseus": { "title": "perseus"} ,
-    "columba": { "title": "columba"}
+    "columba": { "title": "columba"} ,
+    "lepus": { "title": "lepus"} ,
+    "orion": { "title": "orion"}
 }
