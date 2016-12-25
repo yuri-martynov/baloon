@@ -39,12 +39,6 @@ update_ msg ({ nodes, links } as model) =
         Mouse msg ->
             ( Selection.update msg model, Cmd.none )
 
-        LinkMsg id msg ->
-            links
-                # id
-                |> Link.update msg
-                |> mapBoth (LinkMsg id) (link model id)
-
         WindowSizeChanged size ->
             ({ model | windowSize = size } |> Orientation.update , Cmd.none)
 

@@ -1,14 +1,6 @@
-module Atrapos.Screens.Game.Link.Update exposing (update, reset, select, toggle)
+module Atrapos.Screens.Game.Link.Update exposing (reset, select, toggle)
 
 import Atrapos.Screens.Game.Model exposing (Link)
-import Atrapos.Screens.Game.Link.Msg exposing (..)
-
-
-update : Msg -> Link -> ( Link, Cmd Msg )
-update msg model =
-    case msg of
-        Toggle ->
-            toggle model ! []
 
 
 reset : Link -> Link

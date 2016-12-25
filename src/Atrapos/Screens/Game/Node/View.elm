@@ -3,12 +3,10 @@ module Atrapos.Screens.Game.Node.View exposing (view)
 import Dict
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
-import Common.Transform as Transform
 import Atrapos.Screens.Game.Model exposing (..)
-import Atrapos.Screens.Game.Node.Msg exposing (..)
 
 
-view : Model_ -> NodeId -> Node -> Svg Msg
+view : Model_ -> NodeId -> Node -> Svg msg
 view { links } id node =
     let
         class_ =
@@ -25,10 +23,6 @@ view { links } id node =
             , node.y - 0.5 |> toString |> y
             , class <| "node " ++ class_ 
             ] []
-        -- circle [ r "0.5", class <| "node " ++ class_ ] []
-            -- |> Transform.translate node
-
-
 
 -- PRIVATE ---------------
 

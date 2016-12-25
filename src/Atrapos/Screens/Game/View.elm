@@ -30,14 +30,14 @@ view_ ({ nodes, links } as model) =
 
 link : Model_ -> LinkId -> Link -> Svg Msg
 link model id link =
-    link |> Link.view model |> Svg.map (LinkMsg id)
+    link |> Link.view model 
 
 
 node : Model_ -> NodeId -> Node -> Svg Msg
 node model id node =
     node
         |> Node.view model id
-        |> Svg.map (NodeMsg id)
+  
 
 
 defs_ : Svg msg
