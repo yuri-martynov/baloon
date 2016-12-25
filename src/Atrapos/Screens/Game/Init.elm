@@ -72,7 +72,7 @@ init_ s { nodes, links } =
           , links = links_
           , minLen = minLen
           , victory = False
-          , selection = Nothing
+          , selection = None
           , nodesTurned = Nothing
           } 
             |> Orientation.update

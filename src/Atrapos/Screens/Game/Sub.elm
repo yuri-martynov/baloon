@@ -14,16 +14,22 @@ subscriptions model =
             Sub.none
 
         Loaded ({ selection } as model) ->
-            case selection of
-                Nothing ->
-                    [ Mouse.downs <| Mouse << (always Down)
-                    , Window.resizes WindowSizeChanged
-                    ] 
-                        |> Sub.batch
+            let 
+                mouse msg = Mouse << msg << ViewBox.location model 
+                resizes = Window.resizes WindowSizeChanged
+            in
+                case selection of
+                    None ->
+                        [ Mouse.downs <| mouse Down
+                        , resizes
+                        ] 
+                            |> Sub.batch
 
-                Just _ ->
-                    [ Mouse.moves <| Mouse << Move << ViewBox.location model
-                    , Mouse.ups <| Mouse << (always Up)
-                    , Window.resizes WindowSizeChanged
-                    ]
-                        |> Sub.batch
+                    _ ->
+                        [ Mouse.moves <| mouse Move
+                        , Mouse.ups <| mouse Up
+                        , resizes
+                        ]
+                            |> Sub.batch
+
+

@@ -1,41 +1,46 @@
 module Atrapos.Screens.Game.Selection.Update exposing (update)
 
 import Dict
-import Common.Dict as Dict
+import Common.Dict as Dict exposing ((#))
 import Common.Types exposing (Location)
-import Common.Math exposing (len)
+import Common.Math exposing (len, intersect)
 import Atrapos.Screens.Game.Model exposing (..)
 import Atrapos.Screens.Game.Msg exposing (..)
 import Atrapos.Screens.Game.Link.Update as Link
 import Atrapos.Screens.Game.Shared exposing (link)
-import Atrapos.Screens.Game.Selection.Path as Selection
+import Atrapos.Screens.Game.Selection.Path exposing (selected)
 
 
 update : MouseMsg -> Model_ -> Model_
 update msg model =
     case ( msg, model.selection ) of
-        ( Down, _ ) ->
-            { model | selection = Just { lastNode = Nothing } }
+        ( Down p, _ ) ->
+            case nearestNode p model of
+                Just n ->
+                    model |> updateLastNode n
 
-        ( Move p, Just selection ) ->
+                Nothing ->
+                    { model | selection = Deselection {startLocation = p}}
+
+        ( Move p, Selection selection ) ->
             select p selection model
 
-        ( Up, _ ) ->
-            { model | selection = Nothing }
+        ( Move p, Deselection deselection ) ->
+            deselect p deselection model
+
+        ( Up _, _ ) ->
+            { model | selection = None }
 
         _ ->
             model
 
 -- PRIVATE ---------------------------------------
 
-select : Location -> Selection -> Model_ -> Model_
+select : Location -> SelectionModel -> Model_ -> Model_
 select p {lastNode} model =
-    case ( lastNode, nearestNode p model ) of
-        ( Nothing, Just first ) ->
-            model |> updateLastNode first
-
-        ( Just last, Just next ) ->
-            model |> selectNext last next
+    case nearestNode p model  of
+        Just next ->
+            model |> selectNext lastNode next
 
         _ ->
             model
@@ -67,7 +72,7 @@ selectNext last next ({ links } as model) =
 
 updateLastNode : NodeId -> Model_ -> Model_
 updateLastNode id model =
-    { model | selection = Just { lastNode = Just id } }
+    { model | selection = Selection { lastNode = id } }
 
 
 nearestNode : Location -> Model_ -> Maybe NodeId
@@ -89,3 +94,36 @@ nearestNode p { nodes } =
                     Just id
                 else
                     Nothing
+
+
+deselect: Location -> DeselectionModel -> Model_ -> Model_
+deselect p {startLocation} ({links, nodes} as model) =
+    let
+        deselect_ a b linkIds acc =
+            case linkIds of
+                [] -> acc
+                id :: rest ->
+                    let 
+                        {node1, node2} = links # id 
+                        acc_ = 
+                            if intersect a b (nodes # node1) (nodes # node2) then
+                                id::acc
+                            else
+                                acc
+                    in
+                        deselect_ a b rest acc_
+        
+        deselectIds = 
+            deselect_ startLocation p (selected links) []
+    
+    in
+        { model 
+          | links = links 
+            |> Dict.map (\id link -> 
+                if deselectIds|> List.member id then
+                    link |> Link.reset
+                else
+                    link
+                )
+        }
+

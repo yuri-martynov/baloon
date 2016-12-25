@@ -3,7 +3,6 @@ module Atrapos.Screens.Game.Msg exposing (..)
 import Window
 import Http
 import Common.Types exposing (Location)
-import Atrapos.Screens.Game.Model exposing (NodeId, LinkId)
 import Atrapos.Screens.Game.Cmd as Cmd
 
 
@@ -15,6 +14,6 @@ type Msg
     | WindowSizeChanged Window.Size
 
 type MouseMsg
-    = Down
+    = Down Location
     | Move Location
-    | Up
+    | Up Location

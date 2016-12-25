@@ -14,7 +14,7 @@ type alias Model_ =
         , links : Links
         , minLen : Float
         , victory : Bool
-        , selection : Maybe Selection
+        , selection : Selection
         , nodesTurned: Maybe Nodes
         }
 
@@ -30,9 +30,17 @@ type alias Link =
         , selected : Bool
         }
 
+type Selection
+    = None
+    | Selection SelectionModel
+    | Deselection DeselectionModel
 
-type alias Selection =
-    { lastNode : Maybe NodeId
+type alias SelectionModel =
+    { lastNode : NodeId
+    }
+
+type alias DeselectionModel = 
+    { startLocation: Location
     }
 
 type alias Solution =
