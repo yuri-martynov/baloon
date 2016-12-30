@@ -4,8 +4,8 @@ import Return exposing (mapBoth)
 import Atrapos.Model exposing (Model(..))
 import Atrapos.Msg exposing (Msg(..))
 import Atrapos.Init exposing (init)
-import Atrapos.Screens.Levels.Update as Levels
-import Atrapos.Screens.Game.Update as Game
+import Atrapos.Levels.Update as Levels
+import Atrapos.Game.Update as Game
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

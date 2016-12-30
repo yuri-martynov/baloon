@@ -1,8 +1,8 @@
-module Atrapos.Screens.Game.Link.Init exposing (init)
+module Atrapos.Game.Link.Init exposing (init)
 
 import Common.Math exposing (len)
 import Common.Dict exposing ((#))
-import Atrapos.Screens.Game.Model exposing (..)
+import Atrapos.Game.Model exposing (..)
 
 
 init : NodeId -> NodeId -> Nodes -> Link

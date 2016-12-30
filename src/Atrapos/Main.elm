@@ -6,9 +6,9 @@ import Atrapos.Model exposing (Model)
 import Atrapos.Msg exposing (Msg(UrlChanged))
 import Atrapos.Init exposing (..)
 import Atrapos.Update exposing (..)
-import Atrapos.View exposing (..) 
-import Atrapos.Sub exposing (..) 
- 
+import Atrapos.View exposing (..)
+import Atrapos.Sub exposing (..)
+
 
 main : Program Never Model Msg
 main =
@@ -18,4 +18,3 @@ main =
         , update = update
         , subscriptions = subscriptions
         }
- 

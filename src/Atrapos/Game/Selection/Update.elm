@@ -1,14 +1,14 @@
-module Atrapos.Screens.Game.Selection.Update exposing (update)
+module Atrapos.Game.Selection.Update exposing (update)
 
 import Dict
 import Common.Dict as Dict exposing ((#))
 import Common.Types exposing (Location)
 import Common.Math exposing (len, intersect)
-import Atrapos.Screens.Game.Model exposing (..)
-import Atrapos.Screens.Game.Msg exposing (..)
-import Atrapos.Screens.Game.Link.Update as Link
-import Atrapos.Screens.Game.Shared exposing (link)
-import Atrapos.Screens.Game.Selection.Path exposing (selected)
+import Atrapos.Game.Model exposing (..)
+import Atrapos.Game.Msg exposing (..)
+import Atrapos.Game.Link.Update as Link
+import Atrapos.Game.Shared exposing (link)
+import Atrapos.Game.Selection.Path exposing (selected)
 
 
 update : MouseMsg -> Model_ -> Model_

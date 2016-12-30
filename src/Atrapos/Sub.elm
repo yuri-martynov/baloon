@@ -2,7 +2,7 @@ module Atrapos.Sub exposing (subscriptions)
 
 import Atrapos.Model exposing (..)
 import Atrapos.Msg exposing (..)
-import Atrapos.Screens.Game.Sub as Game
+import Atrapos.Game.Sub as Game
 
 subscriptions : Model -> Sub Msg
 subscriptions model =

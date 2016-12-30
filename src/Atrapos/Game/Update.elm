@@ -1,17 +1,17 @@
-module Atrapos.Screens.Game.Update exposing (update)
+module Atrapos.Game.Update exposing (update)
 
 import Dict
 import Window
 import Return exposing (mapBoth)
 import Common.Dict exposing ((#))
-import Atrapos.Screens.Game.Model exposing (..)
-import Atrapos.Screens.Game.Msg exposing (..)
-import Atrapos.Screens.Game.Solution as Solution
-import Atrapos.Screens.Game.Link.Update as Link
-import Atrapos.Screens.Game.Shared exposing (link, victory)
-import Atrapos.Screens.Game.Selection.Update as Selection
-import Atrapos.Screens.Game.Orientation as Orientation
-import Atrapos.Screens.Game.Init exposing (init_)
+import Atrapos.Game.Model exposing (..)
+import Atrapos.Game.Msg exposing (..)
+import Atrapos.Game.Solution as Solution
+import Atrapos.Game.Link.Update as Link
+import Atrapos.Game.Shared exposing (link, victory)
+import Atrapos.Game.Selection.Update as Selection
+import Atrapos.Game.Orientation as Orientation
+import Atrapos.Game.Init exposing (init_)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

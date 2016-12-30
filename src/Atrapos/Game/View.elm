@@ -1,4 +1,4 @@
-module Atrapos.Screens.Game.View exposing (view)
+module Atrapos.Game.View exposing (view)
 
 import Mouse
 import Svg exposing (..)
@@ -6,11 +6,11 @@ import Svg.Attributes exposing (..)
 import TouchEvents as Touch exposing (Touch, onTouchEvent)
 import Common.ViewBox as ViewBox
 import Common.Dict exposing ((@))
-import Atrapos.Screens.Game.Model exposing (..)
-import Atrapos.Screens.Game.Msg exposing (..)
-import Atrapos.Screens.Game.Node.View as Node
-import Atrapos.Screens.Game.Link.View as Link
-import Atrapos.Screens.Game.UI as UI
+import Atrapos.Game.Model exposing (..)
+import Atrapos.Game.Msg exposing (..)
+import Atrapos.Game.Node.View as Node
+import Atrapos.Game.Link.View as Link
+import Atrapos.Game.UI as UI
 
 
 view : Model -> Svg Msg

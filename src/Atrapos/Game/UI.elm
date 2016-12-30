@@ -1,12 +1,12 @@
-module Atrapos.Screens.Game.UI exposing (view)
+module Atrapos.Game.UI exposing (view)
 
 import Dict
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Atrapos.Screens.Game.Model exposing (..)
-import Atrapos.Screens.Game.Msg exposing (..)
-import Atrapos.Screens.Game.Shared as Game
+import Atrapos.Game.Model exposing (..)
+import Atrapos.Game.Msg exposing (..)
+import Atrapos.Game.Shared as Game
 
 
 view: Model_ -> Html Msg -> Html Msg

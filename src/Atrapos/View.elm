@@ -3,8 +3,8 @@ module Atrapos.View exposing (view)
 import Html exposing (Html, text)
 import Atrapos.Model exposing (Model(..))
 import Atrapos.Msg exposing (Msg(..))
-import Atrapos.Screens.Levels.View as Levels
-import Atrapos.Screens.Game.View as Game
+import Atrapos.Levels.View as Levels
+import Atrapos.Game.View as Game
 
 
 view : Model -> Html Msg

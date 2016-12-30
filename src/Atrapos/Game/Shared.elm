@@ -1,8 +1,8 @@
-module Atrapos.Screens.Game.Shared exposing (link, victory, progress)
+module Atrapos.Game.Shared exposing (link, victory, progress)
 
 import Dict
-import Atrapos.Screens.Game.Model exposing (..)
-import Atrapos.Screens.Game.Selection.Path as Selection
+import Atrapos.Game.Model exposing (..)
+import Atrapos.Game.Selection.Path as Selection
 
 
 link : Model_ -> LinkId -> Link -> Model_

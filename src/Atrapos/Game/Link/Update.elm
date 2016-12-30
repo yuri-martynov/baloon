@@ -1,6 +1,6 @@
-module Atrapos.Screens.Game.Link.Update exposing (reset, select, toggle)
+module Atrapos.Game.Link.Update exposing (reset, select, toggle)
 
-import Atrapos.Screens.Game.Model exposing (Link)
+import Atrapos.Game.Model exposing (Link)
 
 
 reset : Link -> Link

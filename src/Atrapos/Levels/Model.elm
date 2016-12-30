@@ -1,4 +1,4 @@
-module Atrapos.Screens.Levels.Model exposing (..)
+module Atrapos.Levels.Model exposing (..)
 
 import Dict exposing (Dict)
 import Common.WindowSize as WindowSize

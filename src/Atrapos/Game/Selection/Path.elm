@@ -1,8 +1,8 @@
-module Atrapos.Screens.Game.Selection.Path exposing (selected, len)
+module Atrapos.Game.Selection.Path exposing (selected, len)
 
 import Dict
 import Common.Dict as Dict
-import Atrapos.Screens.Game.Model exposing (..)
+import Atrapos.Game.Model exposing (..)
 
 
 selected : Links -> List LinkId

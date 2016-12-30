@@ -1,8 +1,8 @@
-module Atrapos.Screens.Game.Solution exposing (solution, apply)
+module Atrapos.Game.Solution exposing (solution, apply)
 
 import Dict exposing (Dict)
 import Common.List as List
-import Atrapos.Screens.Game.Model exposing (..)
+import Atrapos.Game.Model exposing (..)
 
 
 solution : Nodes -> Links -> Solution

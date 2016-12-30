@@ -1,10 +1,10 @@
-module Atrapos.Screens.Game.Orientation exposing (update)
+module Atrapos.Game.Orientation exposing (update)
 
 import Dict
 import Common.Maybe as Maybe
 import Common.Orientation as Orientation
 import Common.Types as Size
-import Atrapos.Screens.Game.Model exposing (..)
+import Atrapos.Game.Model exposing (..)
 
 update: Model_ -> Model_
 update ({windowSize, viewBoxSize, nodes, nodesTurned }as model) =

@@ -1,9 +1,9 @@
-module Atrapos.Screens.Game.Node.View exposing (view)
+module Atrapos.Game.Node.View exposing (view)
 
 import Dict
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
-import Atrapos.Screens.Game.Model exposing (..)
+import Atrapos.Game.Model exposing (..)
 
 
 view : Model_ -> NodeId -> Node -> Svg msg
@@ -16,7 +16,7 @@ view { links } id node =
                 ""
     in
         image 
-            [ xlinkHref "Screens/Game/Node/star.svg"
+            [ xlinkHref "Game/Node/star.svg"
             , width "1"
             , height "1"
             , node.x - 0.5 |> toString |> x

@@ -1,4 +1,4 @@
-module Atrapos.Screens.Game.Model exposing (..)
+module Atrapos.Game.Model exposing (..)
 
 import Dict exposing (Dict)
 import Common.ViewBox as ViewBox

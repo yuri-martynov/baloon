@@ -1,10 +1,10 @@
-module Atrapos.Screens.Game.Cmd exposing (Level, load)
+module Atrapos.Game.Cmd exposing (Level, load)
 
 import Http
 import Task exposing (Task)
 import Json.Decode exposing (Decoder, field, dict, list, int, string, map, map2)
 import Common.Decode exposing (customDecoder)
-import Atrapos.Screens.Levels.Model exposing (LevelId)
+import Atrapos.Levels.Model exposing (LevelId)
 
 type alias Level =
     { nodes : List Node

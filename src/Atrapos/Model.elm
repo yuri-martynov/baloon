@@ -1,7 +1,7 @@
 module Atrapos.Model exposing (Model(..))
 
-import Atrapos.Screens.Game.Model as Game
-import Atrapos.Screens.Levels.Model as Levels
+import Atrapos.Game.Model as Game
+import Atrapos.Levels.Model as Levels
 
 
 type Model

@@ -1,9 +1,9 @@
-module Atrapos.Screens.Game.Msg exposing (..)
+module Atrapos.Game.Msg exposing (..)
 
 import Window
 import Http
 import Common.Types exposing (Location)
-import Atrapos.Screens.Game.Cmd as Cmd
+import Atrapos.Game.Cmd as Cmd
 
 
 type Msg

@@ -1,17 +1,17 @@
-module Atrapos.Screens.Game.Init exposing (init, init_)
+module Atrapos.Game.Init exposing (init, init_)
 
 import Window 
 import Dict
 import Task
 import Common.Maybe as Maybe
-import Atrapos.Screens.Levels.Model exposing (LevelId)
-import Atrapos.Screens.Game.Model exposing (..)
-import Atrapos.Screens.Game.Msg exposing (Msg(Init))
-import Atrapos.Screens.Game.Solution as Solution
-import Atrapos.Screens.Game.Selection.Path as Selection
-import Atrapos.Screens.Game.Link.Init as Link
-import Atrapos.Screens.Game.Orientation as Orientation
-import Atrapos.Screens.Game.Cmd as Cmd
+import Atrapos.Levels.Model exposing (LevelId)
+import Atrapos.Game.Model exposing (..)
+import Atrapos.Game.Msg exposing (Msg(Init))
+import Atrapos.Game.Solution as Solution
+import Atrapos.Game.Selection.Path as Selection
+import Atrapos.Game.Link.Init as Link
+import Atrapos.Game.Orientation as Orientation
+import Atrapos.Game.Cmd as Cmd
 
 init : LevelId -> (Model, Cmd Msg)
 init id = 

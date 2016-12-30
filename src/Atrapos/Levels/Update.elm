@@ -1,7 +1,7 @@
-module Atrapos.Screens.Levels.Update exposing (update)
+module Atrapos.Levels.Update exposing (update)
 
-import Atrapos.Screens.Levels.Model exposing (Model)
-import Atrapos.Screens.Levels.Msg exposing (..)
+import Atrapos.Levels.Model exposing (Model)
+import Atrapos.Levels.Msg exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

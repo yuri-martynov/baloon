@@ -1,12 +1,12 @@
-module Atrapos.Screens.Levels.View exposing (view)
+module Atrapos.Levels.View exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Dict
 import Common.List exposing (lst)
 import Atrapos.Routes exposing (Route(Level), url)
-import Atrapos.Screens.Levels.Model exposing (..)
-import Atrapos.Screens.Levels.Msg exposing (..)
+import Atrapos.Levels.Model exposing (..)
+import Atrapos.Levels.Msg exposing (..)
 
 
 view : Model -> Html Msg

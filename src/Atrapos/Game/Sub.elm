@@ -1,10 +1,10 @@
-module Atrapos.Screens.Game.Sub exposing (subscriptions)
+module Atrapos.Game.Sub exposing (subscriptions)
 
 import Window
 import Mouse
 import Common.ViewBox as ViewBox
-import Atrapos.Screens.Game.Model exposing (..)
-import Atrapos.Screens.Game.Msg exposing (..)
+import Atrapos.Game.Model exposing (..)
+import Atrapos.Game.Msg exposing (..)
 
 
 subscriptions : Model -> Sub Msg
