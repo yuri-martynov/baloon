@@ -2,6 +2,7 @@ module Atrapos.Game.Update exposing (update)
 
 import Dict
 import Window
+import Navigation
 import Return exposing (mapBoth)
 import Common.Dict exposing ((#))
 import Atrapos.Game.Model exposing (..)
@@ -28,7 +29,7 @@ update msg model =
 
 
 update_ : Msg -> Model_ -> ( Model_, Cmd Msg )
-update_ msg ({ nodes, links, menu } as model) =
+update_ msg ({ nodes, links, menu, back } as model) =
     case msg of
         Reset ->
             ({ model | links = links |> Dict.map (always Link.reset) } |> victory) ! []
@@ -37,10 +38,21 @@ update_ msg ({ nodes, links, menu } as model) =
             (model |> Solution.apply |> victory) ! []
 
         Mouse Click ->
-            {model | menu = not menu } ! []
+            { model | menu = not menu } ! []
+
+        Mouse EdgeSwipe -> 
+            { model | back = True } ! []
+
+        Mouse (Up {x} as msg) ->
+            if back then
+                ( model
+                  , if x > 1.5 then Navigation.back 1 else Cmd.none
+                )
+            else 
+                selection msg model
 
         Mouse msg ->
-            ( Selection.update msg model, Cmd.none )
+            selection msg model
 
         WindowSizeChanged size ->
             ({ model | windowSize = size } |> Orientation.update , Cmd.none)
@@ -48,6 +60,6 @@ update_ msg ({ nodes, links, menu } as model) =
         _ ->
             model ! []
 
-
-
+selection msg model =
+    (Selection.update msg model, Cmd.none)
 

@@ -17,6 +17,7 @@ type alias Model_ =
         , selection : Selection
         , nodesTurned: Maybe Nodes
         , menu: Menu
+        , back: Back
         }
 
 
@@ -64,3 +65,6 @@ type alias LinkId =
     Int
 
 type alias Menu = Bool
+
+type alias Back = Bool
+

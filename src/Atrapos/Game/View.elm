@@ -48,17 +48,20 @@ defs_ =
 svg_ : Model_ -> List (Svg Msg) -> Svg Msg
 svg_ model =
     let
+        location = 
+            ViewBox.location model 
+
         touch event msg =
             onTouchEvent event 
-            (Mouse << msg << ViewBox.location model << position)
+            (Mouse << msg << position )
     in
         svg
             [ version "1.1"
             , class "game"
             , ViewBox.init model
-            , touch Touch.TouchStart Down
-            , touch Touch.TouchMove  Move
-            , touch Touch.TouchEnd   Up
+            , touch Touch.TouchStart <| down location 
+            , touch Touch.TouchMove  <| Move << location 
+            , touch Touch.TouchEnd   <| Up << location 
             , onClick (Mouse Click)
             ] 
 

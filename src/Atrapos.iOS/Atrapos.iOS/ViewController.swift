@@ -20,21 +20,16 @@ class ViewController: UIViewController {
         webView.scrollView.bounces = false
         webView.loadRequest(request as URLRequest);
         
-        let rightSwipe = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.handleSwipes));
-        rightSwipe.edges = .left;
-        view.addGestureRecognizer(rightSwipe);
+//        let rightSwipe = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.handleSwipes));
+//        rightSwipe.edges = .left;
+//        view.addGestureRecognizer(rightSwipe);
     }
     
-    func handleSwipes(sender:UISwipeGestureRecognizer) {
-        if (sender.state ==  .ended && webView.canGoBack) {
-            webView.goBack()
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+//    func handleSwipes(sender:UISwipeGestureRecognizer) {
+//        if (sender.state ==  .ended && webView.canGoBack) {
+//            webView.goBack()
+//        }
+//    }
 
 
 }

@@ -75,6 +75,7 @@ init_ s { nodes, links } =
           , selection = None
           , nodesTurned = Nothing
           , menu = False
+          , back = False
           } 
             |> Orientation.update
             |> Loaded

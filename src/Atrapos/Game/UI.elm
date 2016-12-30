@@ -37,7 +37,12 @@ ui ({victory, links, menu} as model) =
         [text "Help" ]
     , label [victoryClass model] [model |> Game.progress |> toString |> text]
     ]
-        |> div [classList [("game-ui", True) , ("active", menu)]]   
+        |> div 
+            [ classList 
+                 [ ("game-ui", True)
+                 , ("active", menu)
+                 ]
+            ]   
 
 resetDisabled = 
     .links >> Dict.values >> List.any .selected >> not >> disabled
