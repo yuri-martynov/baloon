@@ -16,6 +16,7 @@ type alias Model_ =
         , victory : Bool
         , selection : Selection
         , nodesTurned: Maybe Nodes
+        , menu: Menu
         }
 
 
@@ -61,3 +62,5 @@ type alias Links =
 
 type alias LinkId =
     Int
+
+type alias Menu = Bool

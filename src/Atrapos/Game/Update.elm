@@ -28,13 +28,16 @@ update msg model =
 
 
 update_ : Msg -> Model_ -> ( Model_, Cmd Msg )
-update_ msg ({ nodes, links } as model) =
+update_ msg ({ nodes, links, menu } as model) =
     case msg of
         Reset ->
             ({ model | links = links |> Dict.map (always Link.reset) } |> victory) ! []
 
         Help ->
             (model |> Solution.apply |> victory) ! []
+
+        Mouse Click ->
+            {model | menu = not menu } ! []
 
         Mouse msg ->
             ( Selection.update msg model, Cmd.none )

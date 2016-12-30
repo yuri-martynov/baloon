@@ -3,6 +3,7 @@ module Atrapos.Game.View exposing (view)
 import Mouse
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
+import Svg.Events exposing (..)
 import TouchEvents as Touch exposing (Touch, onTouchEvent)
 import Common.ViewBox as ViewBox
 import Common.Dict exposing ((@))
@@ -58,6 +59,7 @@ svg_ model =
             , touch Touch.TouchStart Down
             , touch Touch.TouchMove  Move
             , touch Touch.TouchEnd   Up
+            , onClick (Mouse Click)
             ] 
 
 

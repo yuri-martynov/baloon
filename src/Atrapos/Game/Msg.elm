@@ -17,3 +17,4 @@ type MouseMsg
     = Down Location
     | Move Location
     | Up Location
+    | Click

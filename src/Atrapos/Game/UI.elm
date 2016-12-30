@@ -18,7 +18,7 @@ view model viewGame  =
 
 
 ui: Model_ -> Html Msg
-ui ({victory, links} as model) =
+ui ({victory, links, menu} as model) =
     [ a 
         [ class "pure-button"
         , href "#levels" 
@@ -37,13 +37,11 @@ ui ({victory, links} as model) =
         [text "Help" ]
     , label [victoryClass model] [model |> Game.progress |> toString |> text]
     ]
-        |> div [class "game-ui"]   
+        |> div [classList [("game-ui", True) , ("active", menu)]]   
 
 resetDisabled = 
     .links >> Dict.values >> List.any .selected >> not >> disabled
 
 victoryClass {victory} =
     (if victory then "victory" else "") |> class
-    
 
-    
