@@ -87,9 +87,9 @@ svg_ ({swipe} as model) =
             
     in
         [ version "1.1"
-        -- , class "game"
+        , class "game-field"
+        , ViewBox.init model
         ]
-        ++ ViewBox.init model
         ++ events 
             |> svg
 

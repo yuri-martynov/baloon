@@ -10945,8 +10945,8 @@ var _user$project$Common_ViewBox$location_ = F3(
 		var _p4 = _p1;
 		var _p5 = _p0;
 		return {
-			x: (_elm_lang$core$Basics$toFloat(_p5.x) - _p6.left) * (_p4.w / _elm_lang$core$Basics$toFloat(_p7.width)),
-			y: (_elm_lang$core$Basics$toFloat(_p5.y) - _p6.top) * (_p4.h / _elm_lang$core$Basics$toFloat(_p7.height))
+			x: (_elm_lang$core$Basics$toFloat(_p5.x) - _p6.left) * (_p4.w / ((_elm_lang$core$Basics$toFloat(_p7.width) - _p6.left) - _p6.right)),
+			y: (_elm_lang$core$Basics$toFloat(_p5.y) - _p6.top) * (_p4.h / ((_elm_lang$core$Basics$toFloat(_p7.height) - _p6.top) - _p6.bottom))
 		};
 	});
 var _user$project$Common_ViewBox$size = function (_p8) {
@@ -10971,69 +10971,33 @@ var _user$project$Common_ViewBox$location = F2(
 			_user$project$Common_ViewBox$size(model),
 			mousePosition);
 	});
-var _user$project$Common_ViewBox$init_ = F2(
-	function (_p16, _p15) {
-		var _p17 = _p16;
-		var _p18 = _p15;
-		return {
-			ctor: '::',
-			_0: _elm_lang$svg$Svg_Attributes$viewBox(
-				A3(
-					_elm_lang$core$List$foldl,
-					_user$project$Common_ViewBox$fold_,
-					'',
-					{
+var _user$project$Common_ViewBox$init_ = function (_p15) {
+	var _p16 = _p15;
+	return _elm_lang$svg$Svg_Attributes$viewBox(
+		A3(
+			_elm_lang$core$List$foldl,
+			_user$project$Common_ViewBox$fold_,
+			'',
+			{
+				ctor: '::',
+				_0: 0.0,
+				_1: {
+					ctor: '::',
+					_0: 0.0,
+					_1: {
 						ctor: '::',
-						_0: 0.0,
+						_0: _p16.w,
 						_1: {
 							ctor: '::',
-							_0: 0.0,
-							_1: {
-								ctor: '::',
-								_0: _p18.w,
-								_1: {
-									ctor: '::',
-									_0: _p18.h,
-									_1: {ctor: '[]'}
-								}
-							}
+							_0: _p16.h,
+							_1: {ctor: '[]'}
 						}
-					})),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$style(
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						A3(
-							_elm_lang$core$List$foldl,
-							_user$project$Common_ViewBox$fold_,
-							'margin: ',
-							{
-								ctor: '::',
-								_0: _p17.top,
-								_1: {
-									ctor: '::',
-									_0: _p17.right,
-									_1: {
-										ctor: '::',
-										_0: _p17.bottom,
-										_1: {
-											ctor: '::',
-											_0: _p17.left,
-											_1: {ctor: '[]'}
-										}
-									}
-								}
-							}),
-						';')),
-				_1: {ctor: '[]'}
-			}
-		};
-	});
+					}
+				}
+			}));
+};
 var _user$project$Common_ViewBox$init = function (model) {
-	return A2(
-		_user$project$Common_ViewBox$init_,
-		model.padding,
+	return _user$project$Common_ViewBox$init_(
 		_user$project$Common_ViewBox$size(model));
 };
 
@@ -11493,7 +11457,7 @@ var _user$project$Atrapos_Game_Init$init_ = F2(
 				_user$project$Atrapos_Game_Orientation$update(
 					{
 						windowSize: s,
-						padding: {left: 16, top: 16, right: 16, bottom: 16},
+						padding: {left: 50, top: 50, right: 50, bottom: 50},
 						viewBoxSize: viewBoxSize,
 						nodes: nodes_,
 						links: links_,
@@ -12281,12 +12245,17 @@ var _user$project$Atrapos_Game_View$svg_ = function (_p2) {
 			{
 				ctor: '::',
 				_0: _elm_lang$svg$Svg_Attributes$version('1.1'),
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$class('game-field'),
+					_1: {
+						ctor: '::',
+						_0: _user$project$Common_ViewBox$init(_p13),
+						_1: {ctor: '[]'}
+					}
+				}
 			},
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				_user$project$Common_ViewBox$init(_p13),
-				events)));
+			events));
 };
 var _user$project$Atrapos_Game_View$defs_ = A2(
 	_elm_lang$svg$Svg$defs,

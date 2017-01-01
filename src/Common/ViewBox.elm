@@ -19,16 +19,14 @@ type alias Model =
     Model_ {}
 
 
-init: Model_ a -> List (Attribute msg)
+init: Model_ a -> Attribute msg
 init model =
-    model |> size |> init_ model.padding
+    model |> size |> init_ 
 
 
-init_ : Padding -> Size -> List (Attribute msg)
-init_ {top, right, bottom, left} { w, h } =
-    [ [ 0.0, 0.0, w, h ] |> List.foldl fold_ "" |> viewBox
-    , ([top, right, bottom, left] |> List.foldl fold_ "margin: ") ++ ";" |> style
-    ]
+init_ : Size -> Attribute msg
+init_ { w, h } =
+    [ 0.0, 0.0, w, h ] |> List.foldl fold_ "" |> viewBox
 
 
 location : Model_ a -> Mouse.Position -> Location
@@ -63,8 +61,8 @@ size { padding, viewBoxSize, windowSize } =
 
 location_ : Model_ a -> Size -> Mouse.Position -> Location
 location_ {padding, windowSize} { w, h }  { x, y } =
-    { x = (toFloat x - padding.left) * (w / (toFloat windowSize.width))
-    , y = (toFloat y - padding.top) * (h / (toFloat windowSize.height))
+    { x = (toFloat x - padding.left) * (w / (toFloat windowSize.width - padding.left - padding.right))
+    , y = (toFloat y - padding.top) * (h / (toFloat windowSize.height - padding.top - padding.bottom))
     }
 
 

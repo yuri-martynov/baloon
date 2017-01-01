@@ -67,7 +67,7 @@ init_ s { nodes, links } =
         viewBoxSize = { w = maxX + offset, h = maxY + offset }
     in
         ( { windowSize = s
-          , padding = {left = 16, top = 16, right = 16, bottom = 16 }
+          , padding = {left = 50, top = 50, right = 50, bottom = 50 }
           , viewBoxSize = viewBoxSize
           , nodes = nodes_
           , links = links_
