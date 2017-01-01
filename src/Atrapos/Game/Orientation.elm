@@ -19,7 +19,7 @@ update ({windowSize, viewBoxSize, nodes, nodesTurned }as model) =
                     {model | nodesTurned = Just nodes, nodes = nodes_, viewBoxSize = viewBoxSize |> Size.turn }
                 Nothing ->
                     let 
-                        h = nodes |> Dict.values |> List.map .y |> List.maximum |> Maybe.return |> (+) 2
+                        h = nodes |> Dict.values |> List.map .y |> List.maximum |> Maybe.return |> (+) 1
                     in
                         {model 
                             | nodes = nodes |> Dict.map (\_ p -> Orientation.turn (\x y -> {x = x , y = y}) h p )

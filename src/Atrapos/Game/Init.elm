@@ -30,7 +30,7 @@ init_ s { nodes, links } =
         minY =
             nodes |> List.map Tuple.second |> List.minimum |> Maybe.return 
 
-        offset = 2
+        offset = 1
 
         nodes_ =
             nodes
@@ -67,7 +67,7 @@ init_ s { nodes, links } =
         viewBoxSize = { w = maxX + offset, h = maxY + offset }
     in
         ( { windowSize = s
-          , padding = {left = 50, top = 50, right = 50, bottom = 50 }
+          , padding = {left = 16, top = 16, right = 16, bottom = 16 }
           , viewBoxSize = viewBoxSize
           , nodes = nodes_
           , links = links_
