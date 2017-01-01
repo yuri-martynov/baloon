@@ -40,14 +40,11 @@ update_ msg ({ nodes, links, menu } as model) =
         Mouse Click ->
             { model | menu = not menu } ! []
 
-        Mouse (EdgeSwipeStarted p) -> 
+        EdgeSwipeStarted p -> 
             { model | swipe = Just p } ! []
 
-        Mouse (EdgeSwipeEnded Back) ->
+        EdgeSwipeEnded ->
             (model, Navigation.back 1)
-
-        Mouse (EdgeSwipeEnded _) ->
-            model ! []
 
         Mouse msg ->
             selection msg model

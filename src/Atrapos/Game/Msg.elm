@@ -13,19 +13,16 @@ type Msg
     | Reset
     | Mouse MouseMsg
     | WindowSizeChanged Window.Size
-
+    | EdgeSwipeStarted Location
+    | EdgeSwipeEnded
 
 type MouseMsg
     = Down Location
     | Move Location
     | Up Location
     | Click
-    | EdgeSwipeStarted Mouse.Position
-    | EdgeSwipeEnded SwipeMsg
 
-type SwipeMsg
-    = Na
-    | Back
+
 
 
 

@@ -54,36 +54,12 @@ svg_ ({swipe} as model) =
         touch event msg =
             onTouchEvent event 
             (Mouse << msg << position )
-
-        down ({x,y} as mouse) =
-            if x < 10 then 
-                EdgeSwipeStarted mouse
-            else 
-                mouse |> location |> Down
         
-        up ({x,y} as mouse) =
-            case swipe of
-                Nothing -> 
-                    mouse |> location |> Up 
-
-                Just p -> 
-                    let k = (toFloat p.y) / (toFloat y) in
-                    if (x > p.x && k > 0.8 && k < 1.2 ) then
-                        EdgeSwipeEnded Back 
-                    else 
-                        EdgeSwipeEnded Na
-        events_ = 
-            [ touch Touch.TouchStart <| down 
-            , touch Touch.TouchEnd   <| up 
-            , onClick                <| Mouse Click
-            ]
-
         events = 
-            if swipe == Nothing then
-                (touch Touch.TouchMove  <| Move << location) :: events_
-            else
-                events_
-            
+            [ touch Touch.TouchStart <| Down << location 
+            , touch Touch.TouchEnd   <| Up << location 
+            , touch Touch.TouchMove  <| Move << location
+            ]
             
     in
         [ version "1.1"

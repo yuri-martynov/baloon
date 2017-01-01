@@ -4,6 +4,7 @@ import Dict
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Common.Events exposing (onRightEdgeSwipeStart, onRightEdgeSwipeEnd)
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Shared as Game
@@ -11,10 +12,14 @@ import Atrapos.Game.Shared as Game
 
 view: Model_ -> Html Msg -> Html Msg
 view model viewGame  = 
-    [ viewGame
-    , ui model 
-    ]
-        |> div [class "container"]   
+    div 
+        [ class "container"
+        , onClick (Mouse Click)
+        , swipe model
+        ] 
+        [ viewGame
+        , ui model 
+        ] 
 
 
 ui: Model_ -> Html Msg
@@ -50,3 +55,8 @@ resetDisabled =
 victoryClass {victory} =
     (if victory then "victory" else "") |> class
 
+
+swipe {swipe} =
+    case swipe of
+        Nothing -> onRightEdgeSwipeStart EdgeSwipeStarted
+        Just start -> onRightEdgeSwipeEnd start EdgeSwipeEnded

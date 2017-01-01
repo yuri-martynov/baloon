@@ -1,7 +1,6 @@
 module Atrapos.Game.Model exposing (..)
 
 import Dict exposing (Dict)
-import Mouse
 import Common.ViewBox as ViewBox
 import Common.Types exposing (Location, Len_)
 
@@ -68,5 +67,5 @@ type alias LinkId =
 type alias Menu = Bool
 
 type alias Swipe = 
-    Mouse.Position
+    Location
 
