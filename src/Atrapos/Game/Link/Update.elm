@@ -1,4 +1,4 @@
-module Atrapos.Game.Link.Update exposing (reset, select, toggle)
+module Atrapos.Game.Link.Update exposing (reset, select)
 
 import Atrapos.Game.Model exposing (Link)
 
@@ -12,7 +12,3 @@ select : Link -> Link
 select link =
     { link | selected = True }
 
-
-toggle : Link -> Link
-toggle link =
-    { link | selected = not link.selected } 
