@@ -1,10 +1,9 @@
 module Common.ViewBox exposing (Model_, Model, init, location)
 
-import Svg.Attributes exposing (viewBox)
+import Svg.Attributes exposing (viewBox, style)
 import Svg exposing (Attribute)
-import Window
 import Mouse
-import Common.Types exposing (Size, Location)
+import Common.Types exposing (Size, Location, Padding)
 import Common.WindowSize as WindowSize 
 
 
@@ -12,27 +11,29 @@ type alias Model_ a =
     WindowSize.Model 
         { a
             | viewBoxSize : Size
+            , padding: Padding
         }
 
 
 type alias Model =
     Model_ {}
 
-init: Model_ a -> Attribute msg
+
+init: Model_ a -> List (Attribute msg)
 init model =
-    model |> size |> init_
+    model |> size |> init_ model.padding
 
 
-init_ : Size -> Attribute msg
-init_ { w, h } =
-    [ 0.0, 0.0, w, h ]
-        |> List.foldl fold_ ""
-        |> viewBox
+init_ : Padding -> Size -> List (Attribute msg)
+init_ {top, right, bottom, left} { w, h } =
+    [ [ 0.0, 0.0, w, h ] |> List.foldl fold_ "" |> viewBox
+    , ([top, right, bottom, left] |> List.foldl fold_ "margin: ") ++ ";" |> style
+    ]
 
 
 location : Model_ a -> Mouse.Position -> Location
-location ({ windowSize } as model) mousePosition =
-    location_ (size model) windowSize mousePosition
+location model mousePosition =
+    location_ model (size model) mousePosition
 
 
 
@@ -41,10 +42,10 @@ location ({ windowSize } as model) mousePosition =
 
 
 size : Model_ a -> Size
-size { viewBoxSize, windowSize } =
+size { padding, viewBoxSize, windowSize } =
     let
         aspectRation =
-            (toFloat windowSize.height) / (toFloat windowSize.width)
+            (toFloat windowSize.height - padding.top - padding.bottom) / (toFloat windowSize.width - padding.left - padding.right)
 
         viewBoxHeight =
             viewBoxSize.w * aspectRation
@@ -60,10 +61,10 @@ size { viewBoxSize, windowSize } =
             |> downScale
 
 
-location_ : Size -> Window.Size -> Mouse.Position -> Location
-location_ { w, h } { width, height } { x, y } =
-    { x = (toFloat x) * (w / (toFloat width))
-    , y = (toFloat y) * (h / (toFloat height))
+location_ : Model_ a -> Size -> Mouse.Position -> Location
+location_ {padding, windowSize} { w, h }  { x, y } =
+    { x = (toFloat x - padding.left) * (w / (toFloat windowSize.width))
+    , y = (toFloat y - padding.top) * (h / (toFloat windowSize.height))
     }
 
 

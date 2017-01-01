@@ -49,6 +49,17 @@ type alias Circle_ a =
     Location_ (Radius_ a)
 
 
+type alias Padding_ a =
+    { a 
+        | left: Float
+        , top: Float
+        , right: Float
+        , bottom: Float
+    }
+
+type alias Padding = Padding_ {}
+
+
 turn : Size -> Size
 turn {h,w} =
     {w = h, h = w}

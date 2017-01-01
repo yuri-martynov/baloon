@@ -10940,62 +10940,100 @@ var _user$project$Common_ViewBox$fold_ = F2(
 var _user$project$Common_ViewBox$location_ = F3(
 	function (_p2, _p1, _p0) {
 		var _p3 = _p2;
+		var _p7 = _p3.windowSize;
+		var _p6 = _p3.padding;
 		var _p4 = _p1;
 		var _p5 = _p0;
 		return {
-			x: _elm_lang$core$Basics$toFloat(_p5.x) * (_p3.w / _elm_lang$core$Basics$toFloat(_p4.width)),
-			y: _elm_lang$core$Basics$toFloat(_p5.y) * (_p3.h / _elm_lang$core$Basics$toFloat(_p4.height))
+			x: (_elm_lang$core$Basics$toFloat(_p5.x) - _p6.left) * (_p4.w / _elm_lang$core$Basics$toFloat(_p7.width)),
+			y: (_elm_lang$core$Basics$toFloat(_p5.y) - _p6.top) * (_p4.h / _elm_lang$core$Basics$toFloat(_p7.height))
 		};
 	});
-var _user$project$Common_ViewBox$size = function (_p6) {
-	var _p7 = _p6;
-	var _p11 = _p7.windowSize;
-	var _p10 = _p7.viewBoxSize;
-	var aspectRation = _elm_lang$core$Basics$toFloat(_p11.height) / _elm_lang$core$Basics$toFloat(_p11.width);
-	var viewBoxHeight = _p10.w * aspectRation;
-	var downScale = function (_p8) {
-		var _p9 = _p8;
-		return (_elm_lang$core$Native_Utils.cmp(_p9.h, _p10.h) < 0) ? {w: _p10.h / aspectRation, h: _p10.h} : _p9;
+var _user$project$Common_ViewBox$size = function (_p8) {
+	var _p9 = _p8;
+	var _p14 = _p9.windowSize;
+	var _p13 = _p9.viewBoxSize;
+	var _p12 = _p9.padding;
+	var aspectRation = ((_elm_lang$core$Basics$toFloat(_p14.height) - _p12.top) - _p12.bottom) / ((_elm_lang$core$Basics$toFloat(_p14.width) - _p12.left) - _p12.right);
+	var viewBoxHeight = _p13.w * aspectRation;
+	var downScale = function (_p10) {
+		var _p11 = _p10;
+		return (_elm_lang$core$Native_Utils.cmp(_p11.h, _p13.h) < 0) ? {w: _p13.h / aspectRation, h: _p13.h} : _p11;
 	};
 	return downScale(
-		{w: _p10.w, h: viewBoxHeight});
+		{w: _p13.w, h: viewBoxHeight});
 };
 var _user$project$Common_ViewBox$location = F2(
-	function (_p12, mousePosition) {
-		var _p13 = _p12;
+	function (model, mousePosition) {
 		return A3(
 			_user$project$Common_ViewBox$location_,
-			_user$project$Common_ViewBox$size(_p13),
-			_p13.windowSize,
+			model,
+			_user$project$Common_ViewBox$size(model),
 			mousePosition);
 	});
-var _user$project$Common_ViewBox$init_ = function (_p14) {
-	var _p15 = _p14;
-	return _elm_lang$svg$Svg_Attributes$viewBox(
-		A3(
-			_elm_lang$core$List$foldl,
-			_user$project$Common_ViewBox$fold_,
-			'',
-			{
-				ctor: '::',
-				_0: 0.0,
-				_1: {
-					ctor: '::',
-					_0: 0.0,
-					_1: {
+var _user$project$Common_ViewBox$init_ = F2(
+	function (_p16, _p15) {
+		var _p17 = _p16;
+		var _p18 = _p15;
+		return {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$viewBox(
+				A3(
+					_elm_lang$core$List$foldl,
+					_user$project$Common_ViewBox$fold_,
+					'',
+					{
 						ctor: '::',
-						_0: _p15.w,
+						_0: 0.0,
 						_1: {
 							ctor: '::',
-							_0: _p15.h,
-							_1: {ctor: '[]'}
+							_0: 0.0,
+							_1: {
+								ctor: '::',
+								_0: _p18.w,
+								_1: {
+									ctor: '::',
+									_0: _p18.h,
+									_1: {ctor: '[]'}
+								}
+							}
 						}
-					}
-				}
-			}));
-};
+					})),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$style(
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						A3(
+							_elm_lang$core$List$foldl,
+							_user$project$Common_ViewBox$fold_,
+							'margin: ',
+							{
+								ctor: '::',
+								_0: _p17.top,
+								_1: {
+									ctor: '::',
+									_0: _p17.right,
+									_1: {
+										ctor: '::',
+										_0: _p17.bottom,
+										_1: {
+											ctor: '::',
+											_0: _p17.left,
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}),
+						';')),
+				_1: {ctor: '[]'}
+			}
+		};
+	});
 var _user$project$Common_ViewBox$init = function (model) {
-	return _user$project$Common_ViewBox$init_(
+	return A2(
+		_user$project$Common_ViewBox$init_,
+		model.padding,
 		_user$project$Common_ViewBox$size(model));
 };
 
@@ -11028,7 +11066,12 @@ var _user$project$Atrapos_Game_Msg$Help = {ctor: 'Help'};
 var _user$project$Atrapos_Game_Msg$Init = function (a) {
 	return {ctor: 'Init', _0: a};
 };
-var _user$project$Atrapos_Game_Msg$EdgeSwipe = {ctor: 'EdgeSwipe'};
+var _user$project$Atrapos_Game_Msg$EdgeSwipeEnded = function (a) {
+	return {ctor: 'EdgeSwipeEnded', _0: a};
+};
+var _user$project$Atrapos_Game_Msg$EdgeSwipeStarted = function (a) {
+	return {ctor: 'EdgeSwipeStarted', _0: a};
+};
 var _user$project$Atrapos_Game_Msg$Click = {ctor: 'Click'};
 var _user$project$Atrapos_Game_Msg$Up = function (a) {
 	return {ctor: 'Up', _0: a};
@@ -11039,11 +11082,8 @@ var _user$project$Atrapos_Game_Msg$Move = function (a) {
 var _user$project$Atrapos_Game_Msg$Down = function (a) {
 	return {ctor: 'Down', _0: a};
 };
-var _user$project$Atrapos_Game_Msg$down = F2(
-	function (location, mouse) {
-		return (_elm_lang$core$Native_Utils.cmp(mouse.x, 10) < 0) ? _user$project$Atrapos_Game_Msg$EdgeSwipe : _user$project$Atrapos_Game_Msg$Down(
-			location(mouse));
-	});
+var _user$project$Atrapos_Game_Msg$Back = {ctor: 'Back'};
+var _user$project$Atrapos_Game_Msg$Na = {ctor: 'Na'};
 
 var _user$project$Common_List$lst = function (a) {
 	return {
@@ -11451,7 +11491,19 @@ var _user$project$Atrapos_Game_Init$init_ = F2(
 			ctor: '_Tuple2',
 			_0: _user$project$Atrapos_Game_Model$Loaded(
 				_user$project$Atrapos_Game_Orientation$update(
-					{windowSize: s, viewBoxSize: viewBoxSize, nodes: nodes_, links: links_, minLen: minLen, victory: false, selection: _user$project$Atrapos_Game_Model$None, nodesTurned: _elm_lang$core$Maybe$Nothing, menu: false, back: false})),
+					{
+						windowSize: s,
+						padding: {left: 16, top: 16, right: 16, bottom: 16},
+						viewBoxSize: viewBoxSize,
+						nodes: nodes_,
+						links: links_,
+						minLen: minLen,
+						victory: false,
+						selection: _user$project$Atrapos_Game_Model$None,
+						nodesTurned: _elm_lang$core$Maybe$Nothing,
+						menu: false,
+						swipe: _elm_lang$core$Maybe$Nothing
+					})),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
 	});
@@ -11476,11 +11528,6 @@ var _user$project$Atrapos_Game_Init$init = function (id) {
 	};
 };
 
-var _user$project$Atrapos_Game_Link_Update$toggle = function (link) {
-	return _elm_lang$core$Native_Utils.update(
-		link,
-		{selected: !link.selected});
-};
 var _user$project$Atrapos_Game_Link_Update$select = function (link) {
 	return _elm_lang$core$Native_Utils.update(
 		link,
@@ -11804,7 +11851,7 @@ var _user$project$Atrapos_Game_Selection_Update$selectNext = F3(
 					_user$project$Atrapos_Game_Shared$link,
 					_p24,
 					_p22,
-					_user$project$Atrapos_Game_Link_Update$toggle(
+					_user$project$Atrapos_Game_Link_Update$select(
 						A2(_user$project$Common_Dict$justGet, _p22, _p23))));
 		}
 	});
@@ -12086,19 +12133,28 @@ var _user$project$Atrapos_Game_Update$update_ = F2(
 								_p3,
 								{menu: !_p1.menu}),
 							{ctor: '[]'});
-					case 'EdgeSwipe':
+					case 'EdgeSwipeStarted':
 						return A2(
 							_elm_lang$core$Platform_Cmd_ops['!'],
 							_elm_lang$core$Native_Utils.update(
 								_p3,
-								{back: true}),
+								{
+									swipe: _elm_lang$core$Maybe$Just(_p2._0._0)
+								}),
 							{ctor: '[]'});
-					case 'Up':
-						return _p1.back ? {
-							ctor: '_Tuple2',
-							_0: _p3,
-							_1: (_elm_lang$core$Native_Utils.cmp(_p2._0._0.x, 1.5) > 0) ? _elm_lang$navigation$Navigation$back(1) : _elm_lang$core$Platform_Cmd$none
-						} : A2(_user$project$Atrapos_Game_Update$selection, _p2._0, _p3);
+					case 'EdgeSwipeEnded':
+						if (_p2._0._0.ctor === 'Back') {
+							return {
+								ctor: '_Tuple2',
+								_0: _p3,
+								_1: _elm_lang$navigation$Navigation$back(1)
+							};
+						} else {
+							return A2(
+								_elm_lang$core$Platform_Cmd_ops['!'],
+								_p3,
+								{ctor: '[]'});
+						}
 					default:
 						return A2(_user$project$Atrapos_Game_Update$selection, _p2._0, _p3);
 				}
@@ -12160,65 +12216,77 @@ var _user$project$Atrapos_Game_View$position = function (_p0) {
 		y: _elm_lang$core$Basics$round(_p1.clientY)
 	};
 };
-var _user$project$Atrapos_Game_View$svg_ = function (model) {
+var _user$project$Atrapos_Game_View$svg_ = function (_p2) {
+	var _p3 = _p2;
+	var _p14 = _p3.swipe;
+	var _p13 = _p3;
 	var touch = F2(
 		function (event, msg) {
 			return A2(
 				_knledg$touch_events$TouchEvents$onTouchEvent,
 				event,
-				function (_p2) {
+				function (_p4) {
 					return _user$project$Atrapos_Game_Msg$Mouse(
 						msg(
-							_user$project$Atrapos_Game_View$position(_p2)));
+							_user$project$Atrapos_Game_View$position(_p4)));
 				});
 		});
-	var location = _user$project$Common_ViewBox$location(model);
-	return _elm_lang$svg$Svg$svg(
-		{
+	var location = _user$project$Common_ViewBox$location(_p13);
+	var down = function (_p5) {
+		var _p6 = _p5;
+		var _p7 = _p6;
+		return (_elm_lang$core$Native_Utils.cmp(_p6.x, 10) < 0) ? _user$project$Atrapos_Game_Msg$EdgeSwipeStarted(_p7) : _user$project$Atrapos_Game_Msg$Down(
+			location(_p7));
+	};
+	var up = function (_p8) {
+		var _p9 = _p8;
+		var _p10 = _p14;
+		if (_p10.ctor === 'Nothing') {
+			return _user$project$Atrapos_Game_Msg$Up(
+				location(_p9));
+		} else {
+			var _p11 = _p10._0;
+			var k = _elm_lang$core$Basics$toFloat(_p11.y) / _elm_lang$core$Basics$toFloat(_p9.y);
+			return ((_elm_lang$core$Native_Utils.cmp(_p9.x, _p11.x) > 0) && ((_elm_lang$core$Native_Utils.cmp(k, 0.8) > 0) && (_elm_lang$core$Native_Utils.cmp(k, 1.2) < 0))) ? _user$project$Atrapos_Game_Msg$EdgeSwipeEnded(_user$project$Atrapos_Game_Msg$Back) : _user$project$Atrapos_Game_Msg$EdgeSwipeEnded(_user$project$Atrapos_Game_Msg$Na);
+		}
+	};
+	var events_ = {
+		ctor: '::',
+		_0: A2(touch, _knledg$touch_events$TouchEvents$TouchStart, down),
+		_1: {
 			ctor: '::',
-			_0: _elm_lang$svg$Svg_Attributes$version('1.1'),
+			_0: A2(touch, _knledg$touch_events$TouchEvents$TouchEnd, up),
 			_1: {
 				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$class('game'),
-				_1: {
-					ctor: '::',
-					_0: _user$project$Common_ViewBox$init(model),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							touch,
-							_knledg$touch_events$TouchEvents$TouchStart,
-							_user$project$Atrapos_Game_Msg$down(location)),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								touch,
-								_knledg$touch_events$TouchEvents$TouchMove,
-								function (_p3) {
-									return _user$project$Atrapos_Game_Msg$Move(
-										location(_p3));
-								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									touch,
-									_knledg$touch_events$TouchEvents$TouchEnd,
-									function (_p4) {
-										return _user$project$Atrapos_Game_Msg$Up(
-											location(_p4));
-									}),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$svg$Svg_Events$onClick(
-										_user$project$Atrapos_Game_Msg$Mouse(_user$project$Atrapos_Game_Msg$Click)),
-									_1: {ctor: '[]'}
-								}
-							}
-						}
-					}
-				}
+				_0: _elm_lang$svg$Svg_Events$onClick(
+					_user$project$Atrapos_Game_Msg$Mouse(_user$project$Atrapos_Game_Msg$Click)),
+				_1: {ctor: '[]'}
 			}
-		});
+		}
+	};
+	var events = _elm_lang$core$Native_Utils.eq(_p14, _elm_lang$core$Maybe$Nothing) ? {
+		ctor: '::',
+		_0: A2(
+			touch,
+			_knledg$touch_events$TouchEvents$TouchMove,
+			function (_p12) {
+				return _user$project$Atrapos_Game_Msg$Move(
+					location(_p12));
+			}),
+		_1: events_
+	} : events_;
+	return _elm_lang$svg$Svg$svg(
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$version('1.1'),
+				_1: {ctor: '[]'}
+			},
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Common_ViewBox$init(_p13),
+				events)));
 };
 var _user$project$Atrapos_Game_View$defs_ = A2(
 	_elm_lang$svg$Svg$defs,
@@ -12236,23 +12304,23 @@ var _user$project$Atrapos_Game_View$link = F3(
 	function (model, id, link) {
 		return A2(_user$project$Atrapos_Game_Link_View$view, model, link);
 	});
-var _user$project$Atrapos_Game_View$view_ = function (_p5) {
-	var _p6 = _p5;
-	var _p7 = _p6;
+var _user$project$Atrapos_Game_View$view_ = function (_p15) {
+	var _p16 = _p15;
+	var _p17 = _p16;
 	return A2(
 		_elm_lang$core$Basics_ops['++'],
 		A2(
 			_user$project$Common_Dict_ops['@'],
-			_p6.links,
-			_user$project$Atrapos_Game_View$link(_p7)),
+			_p16.links,
+			_user$project$Atrapos_Game_View$link(_p17)),
 		A2(
 			_user$project$Common_Dict_ops['@'],
-			_p6.nodes,
-			_user$project$Atrapos_Game_View$node(_p7)));
+			_p16.nodes,
+			_user$project$Atrapos_Game_View$node(_p17)));
 };
 var _user$project$Atrapos_Game_View$view = function (model) {
-	var _p8 = model;
-	if (_p8.ctor === 'Loading') {
+	var _p18 = model;
+	if (_p18.ctor === 'Loading') {
 		return A2(
 			_elm_lang$svg$Svg$svg,
 			{ctor: '[]'},
@@ -12269,17 +12337,17 @@ var _user$project$Atrapos_Game_View$view = function (model) {
 				_1: {ctor: '[]'}
 			});
 	} else {
-		var _p9 = _p8._0;
+		var _p19 = _p18._0;
 		return A2(
 			_user$project$Atrapos_Game_UI$view,
-			_p9,
+			_p19,
 			A2(
 				_user$project$Atrapos_Game_View$svg_,
-				_p9,
+				_p19,
 				{
 					ctor: '::',
 					_0: _user$project$Atrapos_Game_View$defs_,
-					_1: _user$project$Atrapos_Game_View$view_(_p9)
+					_1: _user$project$Atrapos_Game_View$view_(_p19)
 				}));
 	}
 };
