@@ -20,13 +20,14 @@ type MouseMsg
     | Move Location
     | Up Location
     | Click
-    | EdgeSwipe
+    | EdgeSwipeStarted Mouse.Position
+    | EdgeSwipeEnded SwipeMsg
+
+type SwipeMsg
+    = Na
+    | Back
 
 
 
-down: (Mouse.Position -> Location) -> Mouse.Position -> MouseMsg
-down location mouse =
-    if mouse.x < 10 then 
-        EdgeSwipe 
-    else 
-        mouse |> location |> Down
+
+

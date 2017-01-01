@@ -29,7 +29,7 @@ update msg model =
 
 
 update_ : Msg -> Model_ -> ( Model_, Cmd Msg )
-update_ msg ({ nodes, links, menu, back } as model) =
+update_ msg ({ nodes, links, menu } as model) =
     case msg of
         Reset ->
             ({ model | links = links |> Dict.map (always Link.reset) } |> victory) ! []
@@ -40,16 +40,14 @@ update_ msg ({ nodes, links, menu, back } as model) =
         Mouse Click ->
             { model | menu = not menu } ! []
 
-        Mouse EdgeSwipe -> 
-            { model | back = True } ! []
+        Mouse (EdgeSwipeStarted p) -> 
+            { model | swipe = Just p } ! []
 
-        Mouse (Up {x} as msg) ->
-            if back then
-                ( model
-                  , if x > 1.5 then Navigation.back 1 else Cmd.none
-                )
-            else 
-                selection msg model
+        Mouse (EdgeSwipeEnded Back) ->
+            (model, Navigation.back 1)
+
+        Mouse (EdgeSwipeEnded _) ->
+            model ! []
 
         Mouse msg ->
             selection msg model
