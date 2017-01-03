@@ -19,18 +19,6 @@ class ViewController: UIViewController {
         let request = NSURLRequest(url: url! as URL);
         webView.scrollView.bounces = false
         webView.loadRequest(request as URLRequest);
-        
-//        let rightSwipe = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.handleSwipes));
-//        rightSwipe.edges = .left;
-//        view.addGestureRecognizer(rightSwipe);
     }
-    
-//    func handleSwipes(sender:UISwipeGestureRecognizer) {
-//        if (sender.state ==  .ended && webView.canGoBack) {
-//            webView.goBack()
-//        }
-//    }
-
-
 }
 
