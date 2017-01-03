@@ -14,8 +14,8 @@ view: Model_ -> Html Msg -> Html Msg
 view model viewGame  = 
     div 
         [ class "container"
-        , onClick (Mouse Click)
-        , swipe model
+        , onDoubleClick (Mouse Click)
+        , onSwipe model
         ] 
         [ viewGame
         , ui model 
@@ -56,7 +56,7 @@ victoryClass {victory} =
     (if victory then "victory" else "") |> class
 
 
-swipe {swipe} =
+onSwipe {swipe} =
     case swipe of
         Nothing -> onRightEdgeSwipeStart EdgeSwipeStarted
         Just start -> onRightEdgeSwipeEnd start EdgeSwipeEnded

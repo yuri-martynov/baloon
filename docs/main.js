@@ -11968,7 +11968,7 @@ var _user$project$Common_Events$onRightEdgeSwipeStart = function (msg) {
 			_user$project$Common_Events$leftEdgeSwipeStart(msg)));
 };
 
-var _user$project$Atrapos_Game_UI$swipe = function (_p0) {
+var _user$project$Atrapos_Game_UI$onSwipe = function (_p0) {
 	var _p1 = _p0;
 	var _p2 = _p1.swipe;
 	if (_p2.ctor === 'Nothing') {
@@ -12102,11 +12102,11 @@ var _user$project$Atrapos_Game_UI$view = F2(
 				_0: _elm_lang$html$Html_Attributes$class('container'),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$html$Html_Events$onClick(
+					_0: _elm_lang$html$Html_Events$onDoubleClick(
 						_user$project$Atrapos_Game_Msg$Mouse(_user$project$Atrapos_Game_Msg$Click)),
 					_1: {
 						ctor: '::',
-						_0: _user$project$Atrapos_Game_UI$swipe(model),
+						_0: _user$project$Atrapos_Game_UI$onSwipe(model),
 						_1: {ctor: '[]'}
 					}
 				}
