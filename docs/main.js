@@ -11451,19 +11451,20 @@ var _user$project$Atrapos_Game_Init$init_ = F2(
 			ctor: '_Tuple2',
 			_0: _user$project$Atrapos_Game_Model$Loaded(
 				_user$project$Atrapos_Game_Orientation$update(
-					{
-						windowSize: s,
-						padding: {left: 25, top: 50, right: 25, bottom: 25},
-						viewBoxSize: viewBoxSize,
-						nodes: nodes_,
-						links: links_,
-						minLen: minLen,
-						victory: false,
-						selection: _user$project$Atrapos_Game_Model$None,
-						nodesTurned: _elm_lang$core$Maybe$Nothing,
-						menu: false,
-						swipe: _elm_lang$core$Maybe$Nothing
-					})),
+					_user$project$Atrapos_Game_Solution$apply(
+						{
+							windowSize: s,
+							padding: {left: 25, top: 50, right: 25, bottom: 25},
+							viewBoxSize: viewBoxSize,
+							nodes: nodes_,
+							links: links_,
+							minLen: minLen,
+							victory: false,
+							selection: _user$project$Atrapos_Game_Model$None,
+							nodesTurned: _elm_lang$core$Maybe$Nothing,
+							menu: false,
+							swipe: _elm_lang$core$Maybe$Nothing
+						}))),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
 	});

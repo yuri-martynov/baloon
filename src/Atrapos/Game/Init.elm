@@ -78,6 +78,7 @@ init_ s { nodes, links } =
           , menu = False
           , swipe = Nothing
           } 
+            |> Solution.apply
             |> Orientation.update
             |> Loaded
           , Cmd.none 
