@@ -11453,7 +11453,7 @@ var _user$project$Atrapos_Game_Init$init_ = F2(
 				_user$project$Atrapos_Game_Orientation$update(
 					{
 						windowSize: s,
-						padding: {left: 16, top: 36, right: 16, bottom: 16},
+						padding: {left: 25, top: 50, right: 25, bottom: 25},
 						viewBoxSize: viewBoxSize,
 						nodes: nodes_,
 						links: links_,
