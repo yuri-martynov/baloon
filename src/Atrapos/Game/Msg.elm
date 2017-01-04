@@ -8,7 +8,7 @@ import Atrapos.Game.Cmd as Cmd
 
 
 type Msg
-    = Init (Result Http.Error (Window.Size, Cmd.Level))
+    = Init (Result Http.Error ( Window.Size, Cmd.Level ))
     | Help
     | Reset
     | Mouse MouseMsg
@@ -16,15 +16,9 @@ type Msg
     | EdgeSwipeStarted Location
     | EdgeSwipeEnded
 
+
 type MouseMsg
     = Down Location
     | Move Location
     | Up Location
     | Click
-
-
-
-
-
-
-

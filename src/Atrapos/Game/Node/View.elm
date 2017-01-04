@@ -15,14 +15,17 @@ view { links } id node =
             else
                 ""
     in
-        image 
+        image
             [ xlinkHref "Game/Node/star.svg"
             , width "1"
             , height "1"
             , node.x - 0.5 |> toString |> x
             , node.y - 0.5 |> toString |> y
-            , class <| "node " ++ class_ 
-            ] []
+            , class <| "node " ++ class_
+            ]
+            []
+
+
 
 -- PRIVATE ---------------
 

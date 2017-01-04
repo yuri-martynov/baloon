@@ -10,21 +10,22 @@ import Atrapos.Levels.Msg exposing (..)
 
 
 view : Model -> Html Msg
-view { levels } = 
-    [ span [style [("background", "red")]] [text "Levels"] 
+view { levels } =
+    [ span [ style [ ( "background", "red" ) ] ] [ text "Levels" ]
     , levels
         |> Dict.map level
         |> Dict.values
-        |> ul [class "pure-menu-list"]
+        |> ul [ class "pure-menu-list" ]
     ]
-        |> div [class "pure-menu"]
+        |> div [ class "pure-menu" ]
 
 
 level : LevelId -> LevelTitle -> Html Msg
 level id { title } =
     li [ class "pure-menu-item" ]
-        [ a 
+        [ a
             [ class "pure-menu-link"
-            , Level id |> url |> href 
-            ] 
-            [title |> text] ]
+            , Level id |> url |> href
+            ]
+            [ title |> text ]
+        ]

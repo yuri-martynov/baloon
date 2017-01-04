@@ -20,7 +20,7 @@ update msg model =
                     model |> updateLastNode n
 
                 Nothing ->
-                    { model | selection = Deselection {startLocation = p}}
+                    { model | selection = Deselection { startLocation = p } }
 
         ( Move p, Selection selection ) ->
             select p selection model
@@ -34,11 +34,14 @@ update msg model =
         _ ->
             model
 
+
+
 -- PRIVATE ---------------------------------------
 
+
 select : Location -> SelectionModel -> Model_ -> Model_
-select p {lastNode} model =
-    case nearestNode p model  of
+select p { lastNode } model =
+    case nearestNode p model of
         Just next ->
             model |> selectNext lastNode next
 
@@ -96,34 +99,38 @@ nearestNode p { nodes } =
                     Nothing
 
 
-deselect: Location -> DeselectionModel -> Model_ -> Model_
-deselect p {startLocation} ({links, nodes} as model) =
+deselect : Location -> DeselectionModel -> Model_ -> Model_
+deselect p { startLocation } ({ links, nodes } as model) =
     let
         deselect_ a b linkIds acc =
             case linkIds of
-                [] -> acc
+                [] ->
+                    acc
+
                 id :: rest ->
-                    let 
-                        {node1, node2} = links # id 
-                        acc_ = 
+                    let
+                        { node1, node2 } =
+                            links # id
+
+                        acc_ =
                             if intersect a b (nodes # node1) (nodes # node2) then
-                                id::acc
+                                id :: acc
                             else
                                 acc
                     in
                         deselect_ a b rest acc_
-        
-        deselectIds = 
-            deselect_ startLocation p (selected links) []
-    
-    in
-        { model 
-          | links = links 
-            |> Dict.map (\id link -> 
-                if deselectIds|> List.member id then
-                    link |> Link.reset
-                else
-                    link
-                )
-        }
 
+        deselectIds =
+            deselect_ startLocation p (selected links) []
+    in
+        { model
+            | links =
+                links
+                    |> Dict.map
+                        (\id link ->
+                            if deselectIds |> List.member id then
+                                link |> Link.reset
+                            else
+                                link
+                        )
+        }

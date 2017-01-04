@@ -8,5 +8,3 @@ type Model
     = NotFound
     | Levels Levels.Model
     | Game Game.Model
-
-

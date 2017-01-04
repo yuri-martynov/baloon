@@ -1,5 +1,6 @@
 module Common.List exposing (headBy, lst)
 
+
 headBy : (a -> Bool) -> List a -> List a
 headBy predicate list =
     let
@@ -16,5 +17,6 @@ headBy predicate list =
     in
         headBy_ list []
 
+
 lst a =
-    [a]
+    [ a ]

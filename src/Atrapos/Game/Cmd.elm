@@ -6,6 +6,7 @@ import Json.Decode exposing (Decoder, field, dict, list, int, string, map, map2)
 import Common.Decode exposing (customDecoder)
 import Atrapos.Levels.Model exposing (LevelId)
 
+
 type alias Level =
     { nodes : List Node
     , links : List Link
@@ -19,14 +20,17 @@ type alias Node =
 type alias Link =
     ( Int, List Int )
 
+
 load : LevelId -> Task Http.Error Level
 load id =
     Http.get ("Db/" ++ id ++ ".json") decodeLevel
         |> Http.toTask
-        -- |> Http.send msg
 
 
+
+-- |> Http.send msg
 -- PRIVATES ----------
+
 
 decodeLevel : Decoder Level
 decodeLevel =
@@ -48,7 +52,7 @@ parseNode data =
 parseLink : List Int -> Result String Link
 parseLink data =
     case data of
-        [n] ->
+        [ n ] ->
             Err "link expected to be [int, int, ...]"
 
         n :: nn ->

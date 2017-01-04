@@ -17,60 +17,61 @@ import Atrapos.Game.UI as UI
 view : Model -> Svg Msg
 view model =
     case model of
-        Loading -> [text_ [] [text "loading"] ]|> svg []
+        Loading ->
+            [ text_ [] [ text "loading" ] ] |> svg []
+
         Loaded model ->
-            defs_ :: view_ model 
+            defs_
+                :: view_ model
                 |> svg_ model
                 |> UI.view model
-    
 
 
 view_ : Model_ -> List (Svg Msg)
 view_ ({ nodes, links } as model) =
     (links @ link model) ++ (nodes @ node model)
 
+
 link : Model_ -> LinkId -> Link -> Svg Msg
 link model id link =
-    link |> Link.view model 
+    link |> Link.view model
 
 
 node : Model_ -> NodeId -> Node -> Svg Msg
 node model id node =
     node
         |> Node.view model id
-  
 
 
 defs_ : Svg msg
 defs_ =
     defs [] [ Link.stroke ]
 
+
 svg_ : Model_ -> List (Svg Msg) -> Svg Msg
-svg_ ({swipe} as model) =
+svg_ ({ swipe } as model) =
     let
-        location = 
-            ViewBox.location model 
+        location =
+            ViewBox.location model
 
         touch event msg =
-            onTouchEvent event 
-            (Mouse << msg << position )
-        
-        events = 
-            [ touch Touch.TouchStart <| Down << location 
-            , touch Touch.TouchEnd   <| Up << location 
-            , touch Touch.TouchMove  <| Move << location
+            onTouchEvent event
+                (Mouse << msg << position)
+
+        events =
+            [ touch Touch.TouchStart <| Down << location
+            , touch Touch.TouchEnd <| Up << location
+            , touch Touch.TouchMove <| Move << location
             ]
-            
     in
         [ version "1.1"
         , class "game-field"
         , ViewBox.init model
         ]
-        ++ events 
+            ++ events
             |> svg
 
 
 position : Touch -> Mouse.Position
 position { clientX, clientY } =
     { x = round clientX, y = round clientY }
- 

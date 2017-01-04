@@ -50,16 +50,18 @@ type alias Circle_ a =
 
 
 type alias Padding_ a =
-    { a 
-        | left: Float
-        , top: Float
-        , right: Float
-        , bottom: Float
+    { a
+        | left : Float
+        , top : Float
+        , right : Float
+        , bottom : Float
     }
 
-type alias Padding = Padding_ {}
+
+type alias Padding =
+    Padding_ {}
 
 
 turn : Size -> Size
-turn {h,w} =
-    {w = h, h = w}
+turn { h, w } =
+    { w = h, h = w }

@@ -31,14 +31,14 @@ view { nodes } ({ node1, node2, selected, len } as link) =
             , "link " ++ class_ |> class
             ]
             []
-        -- , text_
-        --     [ class "len" ]
-        --     [ [ len |> toString |> text ]
-        --         |> textPath
-        --             [ id_ |> (++) "#" |> xlinkHref
-        --               , startOffset "50%"
-        --             ]
-        --     ]
+          -- , text_
+          --     [ class "len" ]
+          --     [ [ len |> toString |> text ]
+          --         |> textPath
+          --             [ id_ |> (++) "#" |> xlinkHref
+          --               , startOffset "50%"
+          --             ]
+          --     ]
         ]
             |> g []
 

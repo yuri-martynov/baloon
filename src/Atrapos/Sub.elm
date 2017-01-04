@@ -4,6 +4,7 @@ import Atrapos.Model exposing (..)
 import Atrapos.Msg exposing (..)
 import Atrapos.Game.Sub as Game
 
+
 subscriptions : Model -> Sub Msg
 subscriptions model =
     case model of

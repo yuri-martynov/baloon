@@ -4,14 +4,14 @@ import Svg.Attributes exposing (viewBox, style)
 import Svg exposing (Attribute)
 import Mouse
 import Common.Types exposing (Size, Location, Padding)
-import Common.WindowSize as WindowSize 
+import Common.WindowSize as WindowSize
 
 
 type alias Model_ a =
-    WindowSize.Model 
+    WindowSize.Model
         { a
             | viewBoxSize : Size
-            , padding: Padding
+            , padding : Padding
         }
 
 
@@ -19,9 +19,9 @@ type alias Model =
     Model_ {}
 
 
-init: Model_ a -> Attribute msg
+init : Model_ a -> Attribute msg
 init model =
-    model |> size |> init_ 
+    model |> size |> init_
 
 
 init_ : Size -> Attribute msg
@@ -32,7 +32,6 @@ init_ { w, h } =
 location : Model_ a -> Mouse.Position -> Location
 location model mousePosition =
     location_ model (size model) mousePosition
-
 
 
 
@@ -48,19 +47,18 @@ size { padding, viewBoxSize, windowSize } =
         viewBoxHeight =
             viewBoxSize.w * aspectRation
 
-        downScale ({w, h} as size) =
+        downScale ({ w, h } as size) =
             if h < viewBoxSize.h then
-                { w = viewBoxSize.h / aspectRation, h = viewBoxSize.h}
+                { w = viewBoxSize.h / aspectRation, h = viewBoxSize.h }
             else
                 size
- 
     in
-        { w = viewBoxSize.w, h = viewBoxHeight } 
+        { w = viewBoxSize.w, h = viewBoxHeight }
             |> downScale
 
 
 location_ : Model_ a -> Size -> Mouse.Position -> Location
-location_ {padding, windowSize} { w, h }  { x, y } =
+location_ { padding, windowSize } { w, h } { x, y } =
     { x = (toFloat x - padding.left) * (w / (toFloat windowSize.width - padding.left - padding.right))
     , y = (toFloat y - padding.top) * (h / (toFloat windowSize.height - padding.top - padding.bottom))
     }

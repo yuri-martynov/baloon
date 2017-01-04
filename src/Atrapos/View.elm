@@ -19,6 +19,7 @@ view model =
         Game model ->
             Game.view model |> Html.map GameMsg
 
+
 viewNotFound : Html msg
 viewNotFound =
     text "not found... redirecting..."

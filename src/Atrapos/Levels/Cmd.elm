@@ -12,11 +12,11 @@ load =
         |> Http.send LevelListLoaded
 
 
+
 -- PRIVATES ----------
 
-decodeLevelTitle: Decoder LevelTitle
-decodeLevelTitle = 
+
+decodeLevelTitle : Decoder LevelTitle
+decodeLevelTitle =
     map LevelTitle
         (field "title" string)
-
-

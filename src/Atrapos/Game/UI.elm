@@ -10,53 +10,63 @@ import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Shared as Game
 
 
-view: Model_ -> Html Msg -> Html Msg
-view model viewGame  = 
-    div 
+view : Model_ -> Html Msg -> Html Msg
+view model viewGame =
+    div
         [ class "container"
         , onDoubleClick (Mouse Click)
         , onSwipe model
-        ] 
+        ]
         [ viewGame
-        , ui model 
-        ] 
+        , ui model
+        ]
 
 
-ui: Model_ -> Html Msg
-ui ({victory, links, menu} as model) =
-    [ a 
+ui : Model_ -> Html Msg
+ui ({ victory, links, menu } as model) =
+    [ a
         [ class "pure-button"
-        , href "#levels" 
-        ] 
-        [text "back"]
-    , button 
+        , href "#levels"
+        ]
+        [ text "back" ]
+    , button
         [ class "pure-button"
-        , onClick Reset 
+        , onClick Reset
         , resetDisabled model
-        ] 
-        [text "reset"]
-    , button 
+        ]
+        [ text "reset" ]
+    , button
         [ class "pure-button"
         , onClick Help
-        ] 
-        [text "Help" ]
-    , label [victoryClass model] [model |> Game.progress |> toString |> text]
+        ]
+        [ text "Help" ]
+    , label [ victoryClass model ] [ model |> Game.progress |> toString |> text ]
     ]
-        |> div 
-            [ classList 
-                 [ ("game-ui", True)
-                 , ("active", menu)
-                 ]
-            ]   
+        |> div
+            [ classList
+                [ ( "game-ui", True )
+                , ( "active", menu )
+                ]
+            ]
 
-resetDisabled = 
+
+resetDisabled =
     .links >> Dict.values >> List.any .selected >> not >> disabled
 
-victoryClass {victory} =
-    (if victory then "victory" else "") |> class
+
+victoryClass { victory } =
+    (if victory then
+        "victory"
+     else
+        ""
+    )
+        |> class
 
 
-onSwipe {swipe} =
+onSwipe { swipe } =
     case swipe of
-        Nothing -> onRightEdgeSwipeStart EdgeSwipeStarted
-        Just start -> onRightEdgeSwipeEnd start EdgeSwipeEnded
+        Nothing ->
+            onRightEdgeSwipeStart EdgeSwipeStarted
+
+        Just start ->
+            onRightEdgeSwipeEnd start EdgeSwipeEnded

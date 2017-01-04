@@ -11,4 +11,3 @@ reset link =
 select : Link -> Link
 select link =
     { link | selected = True }
-

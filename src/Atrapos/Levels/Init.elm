@@ -7,6 +7,9 @@ import Atrapos.Levels.Cmd exposing (load)
 
 
 -- init : Model, Cmd Msg
+
+
 init =
-    { levels = Dict.empty 
-    } ![load]
+    { levels = Dict.empty
+    }
+        ! [ load ]

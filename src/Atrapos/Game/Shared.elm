@@ -30,6 +30,7 @@ progress { links, minLen } =
 isVictory : Model_ -> Bool
 isVictory model =
     let
-        p = progress model 
+        p =
+            progress model
     in
         p > 0.9999 && p < 1.0001

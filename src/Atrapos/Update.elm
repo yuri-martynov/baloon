@@ -11,7 +11,7 @@ import Atrapos.Game.Update as Game
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case ( model, msg ) of
-        (_, UrlChanged route) -> 
+        ( _, UrlChanged route ) ->
             init route
 
         ( Game model, GameMsg msg ) ->

@@ -4,9 +4,11 @@ import Dict exposing (Dict)
 import Common.ViewBox as ViewBox
 import Common.Types exposing (Location, Len_)
 
+
 type Model
     = Loading
-    | Loaded Model_ 
+    | Loaded Model_
+
 
 type alias Model_ =
     ViewBox.Model_
@@ -15,9 +17,9 @@ type alias Model_ =
         , minLen : Float
         , victory : Bool
         , selection : Selection
-        , nodesTurned: Maybe Nodes
-        , menu: Menu
-        , swipe: Maybe Swipe
+        , nodesTurned : Maybe Nodes
+        , menu : Menu
+        , swipe : Maybe Swipe
         }
 
 
@@ -32,18 +34,22 @@ type alias Link =
         , selected : Bool
         }
 
+
 type Selection
     = None
     | Selection SelectionModel
     | Deselection DeselectionModel
 
+
 type alias SelectionModel =
     { lastNode : NodeId
     }
 
-type alias DeselectionModel = 
-    { startLocation: Location
+
+type alias DeselectionModel =
+    { startLocation : Location
     }
+
 
 type alias Solution =
     List LinkId
@@ -64,8 +70,10 @@ type alias Links =
 type alias LinkId =
     Int
 
-type alias Menu = Bool
 
-type alias Swipe = 
+type alias Menu =
+    Bool
+
+
+type alias Swipe =
     Location
-

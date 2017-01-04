@@ -17,15 +17,19 @@ import Atrapos.Game.Init exposing (init_)
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case (msg, model) of
-        (Init (Ok (size, level)), Loading) -> 
+    case ( msg, model ) of
+        ( Init (Ok ( size, level )), Loading ) ->
             init_ size level
-        
-        (_, Loaded model) -> 
-            let (model_, cmd) = update_ msg model
-            in (Loaded model_, cmd)
 
-        _ -> Debug.crash "game update not found"
+        ( _, Loaded model ) ->
+            let
+                ( model_, cmd ) =
+                    update_ msg model
+            in
+                ( Loaded model_, cmd )
+
+        _ ->
+            Debug.crash "game update not found"
 
 
 update_ : Msg -> Model_ -> ( Model_, Cmd Msg )
@@ -40,21 +44,21 @@ update_ msg ({ nodes, links, menu } as model) =
         Mouse Click ->
             { model | menu = not menu } ! []
 
-        EdgeSwipeStarted p -> 
+        EdgeSwipeStarted p ->
             { model | swipe = Just p } ! []
 
         EdgeSwipeEnded ->
-            (model, Navigation.back 1)
+            ( model, Navigation.back 1 )
 
         Mouse msg ->
             selection msg model
 
         WindowSizeChanged size ->
-            ({ model | windowSize = size } |> Orientation.update , Cmd.none)
+            ( { model | windowSize = size } |> Orientation.update, Cmd.none )
 
         _ ->
             model ! []
 
-selection msg model =
-    (Selection.update msg model, Cmd.none)
 
+selection msg model =
+    ( Selection.update msg model, Cmd.none )

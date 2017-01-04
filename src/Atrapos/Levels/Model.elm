@@ -8,6 +8,7 @@ type alias Model =
     { levels : Levels
     }
 
+
 type alias LevelId =
     String
 
@@ -15,5 +16,6 @@ type alias LevelId =
 type alias Levels =
     Dict LevelId LevelTitle
 
+
 type alias LevelTitle =
-    { title: String}
+    { title : String }
