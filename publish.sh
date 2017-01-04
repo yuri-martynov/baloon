@@ -1,6 +1,7 @@
 cp src/atrapos/index.html docs
 cp src/atrapos/main.js docs
 cp src/atrapos/style.css docs
+cp src/atrapos/*.png docs
 cp src/atrapos/db/*.* docs/db
 cp src/atrapos/game/node/*.svg docs/game/node
 

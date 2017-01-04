@@ -1,13 +1,13 @@
 {
     "wiki": { "title": "Example from Wikipedia" } ,
-    "2": { "title": "start 2" } ,
-    "3": { "title": "start 3" } ,
-    "4": { "title": "start 4" } ,
-    "5": { "title": "start 5" } ,
-    "dragon":  { "title": "dragon" } ,
-    "perseus": { "title": "perseus"} ,
-    "columba": { "title": "columba"} ,
-    "lepus": { "title": "lepus"} ,
-    "orion": { "title": "orion"} ,
-    "hydra": { "title": "hydra"}
+    "bear": { "title": "Bear" } ,
+    "gemini": { "title": "Gemini" } ,
+    "leo": { "title": "Leo" } ,
+    "virgo": { "title": "Virgo" } ,
+    "dragon":  { "title": "Dragon" } ,
+    "perseus": { "title": "Perseus"} ,
+    "columba": { "title": "Columba"} ,
+    "lepus": { "title": "Lepus"} ,
+    "orion": { "title": "Orion"} ,
+    "hydra": { "title": "Hydra"}
 }

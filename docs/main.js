@@ -11451,20 +11451,19 @@ var _user$project$Atrapos_Game_Init$init_ = F2(
 			ctor: '_Tuple2',
 			_0: _user$project$Atrapos_Game_Model$Loaded(
 				_user$project$Atrapos_Game_Orientation$update(
-					_user$project$Atrapos_Game_Solution$apply(
-						{
-							windowSize: s,
-							padding: {left: 25, top: 50, right: 25, bottom: 25},
-							viewBoxSize: viewBoxSize,
-							nodes: nodes_,
-							links: links_,
-							minLen: minLen,
-							victory: false,
-							selection: _user$project$Atrapos_Game_Model$None,
-							nodesTurned: _elm_lang$core$Maybe$Nothing,
-							menu: false,
-							swipe: _elm_lang$core$Maybe$Nothing
-						}))),
+					{
+						windowSize: s,
+						padding: {left: 25, top: 50, right: 25, bottom: 25},
+						viewBoxSize: viewBoxSize,
+						nodes: nodes_,
+						links: links_,
+						minLen: minLen,
+						victory: false,
+						selection: _user$project$Atrapos_Game_Model$None,
+						nodesTurned: _elm_lang$core$Maybe$Nothing,
+						menu: false,
+						swipe: _elm_lang$core$Maybe$Nothing
+					})),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
 	});
@@ -11766,8 +11765,8 @@ var _user$project$Atrapos_Game_Selection_Update$nearestNode = F2(
 			return _elm_lang$core$Native_Utils.crashCase(
 				'Atrapos.Game.Selection.Update',
 				{
-					start: {line: 88, column: 9},
-					end: {line: 96, column: 28}
+					start: {line: 91, column: 9},
+					end: {line: 99, column: 28}
 				},
 				_p12)('nearestNode');
 		} else {
@@ -12103,7 +12102,7 @@ var _user$project$Atrapos_Game_UI$view = F2(
 				_0: _elm_lang$html$Html_Attributes$class('container'),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$html$Html_Events$onDoubleClick(
+					_0: _elm_lang$html$Html_Events$onClick(
 						_user$project$Atrapos_Game_Msg$Mouse(_user$project$Atrapos_Game_Msg$Click)),
 					_1: {
 						ctor: '::',
@@ -12228,7 +12227,7 @@ var _user$project$Atrapos_Game_Update$update = F2(
 			'Atrapos.Game.Update',
 			{
 				start: {line: 20, column: 5},
-				end: {line: 28, column: 49}
+				end: {line: 32, column: 48}
 			},
 			_p4)('game update not found');
 	});

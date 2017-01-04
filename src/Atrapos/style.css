@@ -7,7 +7,24 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: black;
+}
+
+.container {
+    background: url(sky-01.png) no-repeat center center fixed;
+    background-size: cover;
+    animation-name: rotate;
+    /*animation-duration:600s;*/
+    /*animation-iteration-count:infinite;*/
+    /*animation-timing-function:linear;*/
+    /*position: fixed;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*transform: scale(10)*/
+}
+
+@keyframes rotate {
+  from {transform:rotate(0deg);}
+  to {  transform:rotate(360deg);}
 }
 
 .game-field {

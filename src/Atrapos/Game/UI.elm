@@ -14,7 +14,7 @@ view : Model_ -> Html Msg -> Html Msg
 view model viewGame =
     div
         [ class "container"
-        , onDoubleClick (Mouse Click)
+        , onClick (Mouse Click)
         , onSwipe model
         ]
         [ viewGame
