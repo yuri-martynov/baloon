@@ -24,28 +24,23 @@ view model viewGame =
 
 ui : Model_ -> Html Msg
 ui ({ victory, links, menu } as model) =
-    [ a
-        [ class "pure-button"
-        , href "#levels"
-        ]
-        [ text "back" ]
-    , button
-        [ class "pure-button"
-        , onClick Reset
-        , resetDisabled model
-        ]
-        [ text "reset" ]
-    , button
-        [ class "pure-button"
+    [ 
+      button
+        [ class "hint"
         , onClick Help
         ]
-        [ text "Help" ]
+        [ text "Hint" ]
     , label [ victoryClass model ] [ model |> Game.progress |> toString |> text ]
+    , button
+        [ class "menu"
+        --, onClick Help
+        ]
+        [ ]
     ]
         |> div
             [ classList
                 [ ( "game-ui", True )
-                , ( "active", menu )
+                , ( "active", True )
                 ]
             ]
 
@@ -56,9 +51,9 @@ resetDisabled =
 
 victoryClass { victory } =
     (if victory then
-        "victory"
+        "victory percent"
      else
-        ""
+        "percent"
     )
         |> class
 
