@@ -11980,7 +11980,7 @@ var _user$project$Atrapos_Game_UI$onSwipe = function (_p0) {
 var _user$project$Atrapos_Game_UI$victoryClass = function (_p3) {
 	var _p4 = _p3;
 	return _elm_lang$html$Html_Attributes$class(
-		_p4.victory ? 'victory' : '');
+		_p4.victory ? 'victory percent' : 'percent');
 };
 var _user$project$Atrapos_Game_UI$resetDisabled = function (_p5) {
 	return _elm_lang$html$Html_Attributes$disabled(
@@ -12007,7 +12007,7 @@ var _user$project$Atrapos_Game_UI$ui = function (_p6) {
 					_0: {ctor: '_Tuple2', _0: 'game-ui', _1: true},
 					_1: {
 						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'active', _1: _p7.menu},
+						_0: {ctor: '_Tuple2', _0: 'active', _1: true},
 						_1: {ctor: '[]'}
 					}
 				}),
@@ -12016,41 +12016,35 @@ var _user$project$Atrapos_Game_UI$ui = function (_p6) {
 		{
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$a,
+				_elm_lang$html$Html$button,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('pure-button'),
+					_0: _elm_lang$html$Html_Attributes$class('hint'),
 					_1: {
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$href('#levels'),
+						_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Help),
 						_1: {ctor: '[]'}
 					}
 				},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text('back'),
+					_0: _elm_lang$html$Html$text('Hint'),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$button,
+					_elm_lang$html$Html$label,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('pure-button'),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Reset),
-							_1: {
-								ctor: '::',
-								_0: _user$project$Atrapos_Game_UI$resetDisabled(_p8),
-								_1: {ctor: '[]'}
-							}
-						}
+						_0: _user$project$Atrapos_Game_UI$victoryClass(_p8),
+						_1: {ctor: '[]'}
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text('reset'),
+						_0: _elm_lang$html$Html$text(
+							_elm_lang$core$Basics$toString(
+								_user$project$Atrapos_Game_Shared$progress(_p8))),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
@@ -12059,36 +12053,11 @@ var _user$project$Atrapos_Game_UI$ui = function (_p6) {
 						_elm_lang$html$Html$button,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('pure-button'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Help),
-								_1: {ctor: '[]'}
-							}
-						},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text('Help'),
+							_0: _elm_lang$html$Html_Attributes$class('menu'),
 							_1: {ctor: '[]'}
-						}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$label,
-							{
-								ctor: '::',
-								_0: _user$project$Atrapos_Game_UI$victoryClass(_p8),
-								_1: {ctor: '[]'}
-							},
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html$text(
-									_elm_lang$core$Basics$toString(
-										_user$project$Atrapos_Game_Shared$progress(_p8))),
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					}
+						},
+						{ctor: '[]'}),
+					_1: {ctor: '[]'}
 				}
 			}
 		});
