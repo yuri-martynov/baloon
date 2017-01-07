@@ -7,6 +7,7 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-family: Lato; 
 }
 
 .container {
@@ -42,7 +43,8 @@ html, body {
   color: #4C61AB;
   display: flex;
   flex-direction: row;
-  border: 1px solid; 
+  border: 0 solid; 
+  border-bottom-width: 1px;
 }
 
 .hint{
@@ -57,7 +59,8 @@ html, body {
 
 .percent{
     color: #4C61AB;
-    width: 35px;
+    width: 30px;
+    overflow: hidden;
     align-self: center;
     margin-left: 15;
 }
@@ -66,6 +69,8 @@ html, body {
     flex: 1;
     align-self: center;
     font-size: 1em;
+    margin-left: 15;
+    text-shadow: 1px 1px 2px black, 0 0 1em lightblue, 0 0 0.2em #4C61AB;
 }
 
 .menu{
