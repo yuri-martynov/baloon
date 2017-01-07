@@ -12016,19 +12016,17 @@ var _user$project$Atrapos_Game_UI$ui = function (_p6) {
 		{
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$button,
+				_elm_lang$html$Html$label,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('hint'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Help),
-						_1: {ctor: '[]'}
-					}
+					_0: _user$project$Atrapos_Game_UI$victoryClass(_p8),
+					_1: {ctor: '[]'}
 				},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text('Hint'),
+					_0: _elm_lang$html$Html$text(
+						_elm_lang$core$Basics$toString(
+							_user$project$Atrapos_Game_Shared$progress(_p8))),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
@@ -12037,14 +12035,12 @@ var _user$project$Atrapos_Game_UI$ui = function (_p6) {
 					_elm_lang$html$Html$label,
 					{
 						ctor: '::',
-						_0: _user$project$Atrapos_Game_UI$victoryClass(_p8),
+						_0: _elm_lang$html$Html_Attributes$class('game-name'),
 						_1: {ctor: '[]'}
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text(
-							_elm_lang$core$Basics$toString(
-								_user$project$Atrapos_Game_Shared$progress(_p8))),
+						_0: _elm_lang$html$Html$text('PATHFINDER'),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
@@ -12053,11 +12049,30 @@ var _user$project$Atrapos_Game_UI$ui = function (_p6) {
 						_elm_lang$html$Html$button,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('menu'),
-							_1: {ctor: '[]'}
+							_0: _elm_lang$html$Html_Attributes$class('hint'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Help),
+								_1: {ctor: '[]'}
+							}
 						},
-						{ctor: '[]'}),
-					_1: {ctor: '[]'}
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('HINTS'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$button,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('menu'),
+								_1: {ctor: '[]'}
+							},
+							{ctor: '[]'}),
+						_1: {ctor: '[]'}
+					}
 				}
 			}
 		});
