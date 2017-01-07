@@ -33,19 +33,49 @@ html, body {
 }
 
 .game-ui {
-    display: none;
-}
-
-.game-ui {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 3em;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
+  background: #0C1122;
+  color: #4C61AB;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid; 
 }
 
-.game-ui.active {
-    display: inherit;
+.hint{
+    flex: 0.25;
+    color: #4C61AB;
+    font-size: 1em;
+    border: 1px solid #4C61AB;
+    border-radius: 5px;
+    margin: 8 10;
+    background: #161D36;
+}
+
+.percent{
+    color: #4C61AB;
+    width: 35px;
+    align-self: center;
+    margin-left: 15;
+}
+
+.game-name{
+    flex: 1;
+    align-self: center;
+    font-size: 1em;
+}
+
+.menu{
+    width: 35px;
+    height: 34px;
+    align-self: center;
+    margin-right: 15;
+    margin-left: 15;
+    background: url(settings-icon.svg);
+    border: 0;
 }
 
 .link {
@@ -58,8 +88,10 @@ html, body {
 
 .link.selected {
     stroke-width: 0.1;
-    stroke: silver;
+    stroke: lightblue;
     stroke-dasharray: none;   
+    /*filter: drop-shadow(16px 16px 20px blue);*/
+    filter: opacity(50%);
 }
 
 .node {

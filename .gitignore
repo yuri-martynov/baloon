@@ -2,3 +2,8 @@ elm-stuff
 src/**/main.js
 platforms
 plugins
+src/Atrapos.iOS/Atrapos.iOS.xcodeproj/project.xcworkspace/xcuserdata/yoda.xcuserdatad/UserInterfaceState.xcuserstate
+src/Atrapos.iOS/Atrapos.iOS.xcodeproj/project.xcworkspace/xcuserdata/yoda.xcuserdatad/WorkspaceSettings.xcsettings
+src/Atrapos.iOS/Atrapos.iOS.xcodeproj/xcuserdata/yoda.xcuserdatad/xcschemes/Atrapos.iOS.xcscheme
+src/Atrapos.iOS/Atrapos.iOS.xcodeproj/xcuserdata/yoda.xcuserdatad/xcschemes/xcschememanagement.plist
+src/Atrapos.iOS/Atrapos.iOS.xcodeproj/project.pbxproj
