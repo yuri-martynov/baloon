@@ -15,12 +15,13 @@ view { links } id node =
             else
                 ""
     in
+    --  TODO: make orbit red when not selected 
         image
             [ xlinkHref "Game/Node/star.svg"
-            , width "1"
-            , height "1"
-            , node.x - 0.5 |> toString |> x
-            , node.y - 0.5 |> toString |> y
+            , width "1.5"
+            , height "1.5"
+            , node.x - 0.75 |> toString |> x
+            , node.y - 0.75 |> toString |> y
             , class <| "node " ++ class_
             ]
             []

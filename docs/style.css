@@ -30,7 +30,7 @@ html, body {
 
 .game-field {
     margin: 25;
-    margin-top: 50;
+    margin-top: 75;
 }
 
 .game-ui {
@@ -45,6 +45,7 @@ html, body {
   flex-direction: row;
   border: 0 solid; 
   border-bottom-width: 1px;
+  padding-top: 20;
 }
 
 .hint{
@@ -108,6 +109,10 @@ html, body {
     /*fill: white;*/
     animation: node 0.5s ease-in-out;
     animation-fill-mode: both;
+}
+
+.selected .orbit {
+    stroke: gray;
 }
 @keyframes node {
     /*0% {fill: gold; }*/

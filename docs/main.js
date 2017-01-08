@@ -11634,18 +11634,18 @@ var _user$project$Atrapos_Game_Node_View$view = F3(
 				_0: _elm_lang$svg$Svg_Attributes$xlinkHref('Game/Node/star.svg'),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$width('1'),
+					_0: _elm_lang$svg$Svg_Attributes$width('1.5'),
 					_1: {
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$height('1'),
+						_0: _elm_lang$svg$Svg_Attributes$height('1.5'),
 						_1: {
 							ctor: '::',
 							_0: _elm_lang$svg$Svg_Attributes$x(
-								_elm_lang$core$Basics$toString(node.x - 0.5)),
+								_elm_lang$core$Basics$toString(node.x - 0.75)),
 							_1: {
 								ctor: '::',
 								_0: _elm_lang$svg$Svg_Attributes$y(
-									_elm_lang$core$Basics$toString(node.y - 0.5)),
+									_elm_lang$core$Basics$toString(node.y - 0.75)),
 								_1: {
 									ctor: '::',
 									_0: _elm_lang$svg$Svg_Attributes$class(
