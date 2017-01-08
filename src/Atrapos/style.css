@@ -96,27 +96,28 @@ html, body {
     stroke-width: 0.1;
     stroke: lightblue;
     stroke-dasharray: none;   
-    /*filter: drop-shadow(16px 16px 20px blue);*/
-    filter: opacity(50%);
 }
 
 .node {
     pointer-events: none;
-    fill: dimgray;
+    /*fill: #58E5FF;*/
 }
 
 .selected.node {
-    /*fill: white;*/
     animation: node 0.5s ease-in-out;
     animation-fill-mode: both;
 }
 
-.selected .orbit {
-    stroke: gray;
+.orbit {
+    opacity: 0.8;
 }
-@keyframes node {
+
+.selected.orbit {
+    stroke: #58E5FF;
+}
+@keyframes orbit {
     /*0% {fill: gold; }*/
-    100% {fill: white;}
+    100% {stroke: #58E5FF;}
 }
 
 .help {
