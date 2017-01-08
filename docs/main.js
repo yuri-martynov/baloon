@@ -11628,36 +11628,110 @@ var _user$project$Atrapos_Game_Node_View$view = F3(
 		var _p3 = _p2;
 		var class_ = A2(_user$project$Atrapos_Game_Node_View$connected, _p3.links, id) ? 'selected' : '';
 		return A2(
-			_elm_lang$svg$Svg$image,
+			_elm_lang$svg$Svg$g,
+			{ctor: '[]'},
 			{
 				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$xlinkHref('Game/Node/star.svg'),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$width('1.5'),
-					_1: {
+				_0: A2(
+					_elm_lang$svg$Svg$circle,
+					{
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$height('1.5'),
+						_0: _elm_lang$svg$Svg_Attributes$fill('#58E5FF'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$x(
-								_elm_lang$core$Basics$toString(node.x - 0.75)),
+							_0: _elm_lang$svg$Svg_Attributes$cx('0'),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$y(
-									_elm_lang$core$Basics$toString(node.y - 0.75)),
+								_0: _elm_lang$svg$Svg_Attributes$cy('0'),
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$class(
-										A2(_elm_lang$core$Basics_ops['++'], 'node ', class_)),
-									_1: {ctor: '[]'}
+									_0: _elm_lang$svg$Svg_Attributes$r('0.5'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$opacity('0.8'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$transform(
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													'matrix(1 0 0 1 ',
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														_elm_lang$core$Basics$toString(node.x),
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															' ',
+															A2(
+																_elm_lang$core$Basics_ops['++'],
+																_elm_lang$core$Basics$toString(node.y),
+																')'))))),
+											_1: {ctor: '[]'}
+										}
+									}
 								}
 							}
 						}
-					}
+					},
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$svg$Svg$circle,
+						{
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$fill('none'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$stroke('red'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$cx('0'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$cy('0'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$r('1'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$strokeWidth('0.05'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$opacity('0.8'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$svg$Svg_Attributes$transform(
+															A2(
+																_elm_lang$core$Basics_ops['++'],
+																'matrix(1 0 0 1 ',
+																A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	_elm_lang$core$Basics$toString(node.x),
+																	A2(
+																		_elm_lang$core$Basics_ops['++'],
+																		' ',
+																		A2(
+																			_elm_lang$core$Basics_ops['++'],
+																			_elm_lang$core$Basics$toString(node.y),
+																			')'))))),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$svg$Svg_Attributes$class(
+																A2(_elm_lang$core$Basics_ops['++'], 'node orbit ', class_)),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						{ctor: '[]'}),
+					_1: {ctor: '[]'}
 				}
-			},
-			{ctor: '[]'});
+			});
 	});
 
 var _user$project$Atrapos_Game_Shared$progress = function (_p0) {
