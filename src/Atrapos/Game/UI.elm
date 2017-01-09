@@ -14,7 +14,6 @@ view : Model_ -> Html Msg -> Html Msg
 view model viewGame =
     div
         [ class "container"
-        , onClick (Mouse Click)
         , onSwipe model
         ]
         [ viewGame
@@ -25,43 +24,53 @@ view model viewGame =
 ui : Model_ -> Html Msg
 ui ({ victory, links, menu, minLen } as model) =
     let
+        len =
+            model |> Game.linksLen
+
         progress =
-            (model |> Game.linksLen |> round |> toString)
+            (len |> round |> toString)
                 ++ " / "
                 ++ (minLen |> round |> toString)
+
+        overdraft =
+            len > minLen
     in
         [ label [ class "game-name" ] [ text "PATHFINDER" ]
-        , label [ victoryClass model ] [ text progress ]
+        , [ text progress ]
+            |> label
+                [ classList
+                    [ ( "percent", True )
+                    , ( "victory", victory )
+                    , ( "overdraft", overdraft )
+                    ]
+                ]
         , button
             [ class "hint"
             , onClick Help
             ]
             [ text "HINTS" ]
         , button
-            [ class "menu"
-              --, onClick Help
+            [ classList [("menu", True), ("active", menu)]
+            , onClick Menu
             ]
             []
-        ]
+        ] ++ (if menu then [menuPopup] else [])
             |> div
                 [ classList
                     [ ( "game-ui", True )
                     , ( "active", True )
                     ]
                 ]
+menuPopup: Html Msg
+menuPopup = 
+    div [class "menu-popup"]
+        [ button [onClick Reset, class "reset"] [text "reset"]
+        , button [onClick EdgeSwipeEnded, class "back"] [text "Back"]
+        ]
 
 
 resetDisabled =
     .links >> Dict.values >> List.any .selected >> not >> disabled
-
-
-victoryClass { victory } =
-    (if victory then
-        "victory percent"
-     else
-        "percent"
-    )
-        |> class
 
 
 onSwipe { swipe } =

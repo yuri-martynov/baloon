@@ -15,10 +15,10 @@ type Msg
     | WindowSizeChanged Window.Size
     | EdgeSwipeStarted Location
     | EdgeSwipeEnded
+    | Menu
 
 
 type MouseMsg
     = Down Location
     | Move Location
     | Up Location
-    | Click
