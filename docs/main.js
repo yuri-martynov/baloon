@@ -11453,7 +11453,7 @@ var _user$project$Atrapos_Game_Init$init_ = F2(
 				_user$project$Atrapos_Game_Orientation$update(
 					{
 						windowSize: s,
-						padding: {left: 25, top: 50, right: 25, bottom: 25},
+						padding: {left: 25, top: 75, right: 25, bottom: 25},
 						viewBoxSize: viewBoxSize,
 						nodes: nodes_,
 						links: links_,
@@ -11734,14 +11734,17 @@ var _user$project$Atrapos_Game_Node_View$view = F3(
 			});
 	});
 
-var _user$project$Atrapos_Game_Shared$progress = function (_p0) {
+var _user$project$Atrapos_Game_Shared$linksLen = function (_p0) {
 	var _p1 = _p0;
 	var _p2 = _p1.links;
-	var len = A2(
+	return A2(
 		_user$project$Atrapos_Game_Selection_Path$len,
 		_p2,
 		_user$project$Atrapos_Game_Selection_Path$selected(_p2));
-	return len / _p1.minLen;
+};
+var _user$project$Atrapos_Game_Shared$progress = function (_p3) {
+	var _p4 = _p3;
+	return _user$project$Atrapos_Game_Shared$linksLen(_p4) / _p4.minLen;
 };
 var _user$project$Atrapos_Game_Shared$isVictory = function (model) {
 	var p = _user$project$Atrapos_Game_Shared$progress(model);
@@ -11755,13 +11758,13 @@ var _user$project$Atrapos_Game_Shared$victory = function (model) {
 		});
 };
 var _user$project$Atrapos_Game_Shared$link = F3(
-	function (_p3, id, link) {
-		var _p4 = _p3;
+	function (_p5, id, link) {
+		var _p6 = _p5;
 		return _user$project$Atrapos_Game_Shared$victory(
 			_elm_lang$core$Native_Utils.update(
-				_p4,
+				_p6,
 				{
-					links: A3(_elm_lang$core$Dict$insert, id, link, _p4.links)
+					links: A3(_elm_lang$core$Dict$insert, id, link, _p6.links)
 				}));
 	});
 
@@ -12071,6 +12074,16 @@ var _user$project$Atrapos_Game_UI$resetDisabled = function (_p5) {
 var _user$project$Atrapos_Game_UI$ui = function (_p6) {
 	var _p7 = _p6;
 	var _p8 = _p7;
+	var progress = A2(
+		_elm_lang$core$Basics_ops['++'],
+		_elm_lang$core$Basics$toString(
+			_elm_lang$core$Basics$round(
+				_user$project$Atrapos_Game_Shared$linksLen(_p8))),
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			' / ',
+			_elm_lang$core$Basics$toString(
+				_elm_lang$core$Basics$round(_p7.minLen))));
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -12112,9 +12125,7 @@ var _user$project$Atrapos_Game_UI$ui = function (_p6) {
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text(
-							_elm_lang$core$Basics$toString(
-								_user$project$Atrapos_Game_Shared$progress(_p8))),
+						_0: _elm_lang$html$Html$text(progress),
 						_1: {ctor: '[]'}
 					}),
 				_1: {

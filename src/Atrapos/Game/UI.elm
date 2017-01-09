@@ -23,28 +23,32 @@ view model viewGame =
 
 
 ui : Model_ -> Html Msg
-ui ({ victory, links, menu } as model) =
-    [ 
-      label [ class "game-name"] [text "PATHFINDER"]
-    
-    , label [ victoryClass model ] [ model |> Game.progress |> toString |> text ]
-    , button
-        [ class "hint"
-        , onClick Help
-        ]
-        [ text "HINTS" ]
-    , button
-        [ class "menu"
-        --, onClick Help
-        ] 
-        [ ]
-    ]
-        |> div
-            [ classList
-                [ ( "game-ui", True )
-                , ( "active", True )
-                ]
+ui ({ victory, links, menu, minLen } as model) =
+    let
+        progress =
+            (model |> Game.linksLen |> round |> toString)
+                ++ " / "
+                ++ (minLen |> round |> toString)
+    in
+        [ label [ class "game-name" ] [ text "PATHFINDER" ]
+        , label [ victoryClass model ] [ text progress ]
+        , button
+            [ class "hint"
+            , onClick Help
             ]
+            [ text "HINTS" ]
+        , button
+            [ class "menu"
+              --, onClick Help
+            ]
+            []
+        ]
+            |> div
+                [ classList
+                    [ ( "game-ui", True )
+                    , ( "active", True )
+                    ]
+                ]
 
 
 resetDisabled =

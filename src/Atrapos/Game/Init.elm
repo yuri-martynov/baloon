@@ -70,7 +70,7 @@ init_ s { nodes, links } =
             { w = maxX + offset, h = maxY + offset }
     in
         ( { windowSize = s
-          , padding = { left = 25, top = 50, right = 25, bottom = 25 }
+          , padding = { left = 25, top = 75, right = 25, bottom = 25 }
           , viewBoxSize = viewBoxSize
           , nodes = nodes_
           , links = links_
@@ -82,7 +82,8 @@ init_ s { nodes, links } =
           , swipe = Nothing
           }
             -- |> Solution.apply
-            |> Orientation.update
+            |>
+                Orientation.update
             |> Loaded
         , Cmd.none
         )
