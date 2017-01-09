@@ -25,16 +25,18 @@ view model viewGame =
 ui : Model_ -> Html Msg
 ui ({ victory, links, menu } as model) =
     [ 
-      button
+      label [ class "game-name"] [text "PATHFINDER"]
+    
+    , label [ victoryClass model ] [ model |> Game.progress |> toString |> text ]
+    , button
         [ class "hint"
         , onClick Help
         ]
-        [ text "Hint" ]
-    , label [ victoryClass model ] [ model |> Game.progress |> toString |> text ]
+        [ text "HINTS" ]
     , button
         [ class "menu"
         --, onClick Help
-        ]
+        ] 
         [ ]
     ]
         |> div
