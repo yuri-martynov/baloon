@@ -75,7 +75,7 @@ html, body {
     text-shadow: 1px 1px 2px black, 0 0 1em lightblue, 0 0 0.2em #4C61AB;
 }
 
-.menu{
+.menu {
     width: 35px;
     height: 34px;
     align-self: center;
@@ -85,6 +85,26 @@ html, body {
     border: 0;
 }
 
+.menu.active {
+    animation-name: rotate;
+    animation-duration:300ms;
+    animation-timing-function:ease-in-out;
+}
+
+.menu-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.menu-popup .reset {
+    color: red;
+}
+
+.menu-popup .back {
+    color: green;
+}
 .link {
     stroke: gray;
     stroke-dasharray: 0.2, 0.5;
@@ -127,6 +147,10 @@ html, body {
 
 .victory {
     color: gold;
+}
+
+.overdraft {
+    color: red;
 }
 
 .reset {

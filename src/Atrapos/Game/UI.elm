@@ -50,22 +50,29 @@ ui ({ victory, links, menu, minLen } as model) =
             ]
             [ text "HINTS" ]
         , button
-            [ classList [("menu", True), ("active", menu)]
+            [ classList [ ( "menu", True ), ( "active", menu ) ]
             , onClick Menu
             ]
             []
-        ] ++ (if menu then [menuPopup] else [])
+        ]
+            ++ (if menu then
+                    [ menuPopup ]
+                else
+                    []
+               )
             |> div
                 [ classList
                     [ ( "game-ui", True )
                     , ( "active", True )
                     ]
                 ]
-menuPopup: Html Msg
-menuPopup = 
-    div [class "menu-popup"]
-        [ button [onClick Reset, class "reset"] [text "reset"]
-        , button [onClick EdgeSwipeEnded, class "back"] [text "Back"]
+
+
+menuPopup : Html Msg
+menuPopup =
+    div [ class "menu-popup" ]
+        [ button [ onClick Reset, class "reset" ] [ text "reset" ]
+        , button [ onClick EdgeSwipeEnded, class "back" ] [ text "Back" ]
         ]
 
 
