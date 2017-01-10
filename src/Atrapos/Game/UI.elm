@@ -33,7 +33,7 @@ ui ({ victory, links, menu, minLen } as model) =
                 ++ (minLen |> round |> toString)
 
         overdraft =
-            len > minLen
+            not victory && len > minLen
     in
         [ label [ class "game-name" ] [ text "PATHFINDER" ]
         , [ text progress ]
