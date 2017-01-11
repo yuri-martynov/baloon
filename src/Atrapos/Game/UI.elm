@@ -72,9 +72,9 @@ menuPopup : Html Msg
 menuPopup =
     div [ class "menu-popup" ]
         [ label [ class "name" ] [ text "PATHFINDER"]
-        , button [ onClick Reset, class "reset" ] [ text "Restart Level" ]
-        , button [ onClick EdgeSwipeEnded, class "back" ] [ text "Menu" ]
-        , button [ onClick Menu, class "close" ] [ text "Close" ]
+        , label [ onClick Reset, class "reset" ] [ text "Restart Level" ]
+        , label [ onClick EdgeSwipeEnded, class "back" ] [ text "Menu" ]
+        , label [ onClick Menu, class "close" ] [ text "Close" ]
         ]
 
 

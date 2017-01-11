@@ -12087,7 +12087,7 @@ var _user$project$Atrapos_Game_UI$menuPopup = A2(
 		_1: {
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$button,
+				_elm_lang$html$Html$label,
 				{
 					ctor: '::',
 					_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Reset),
@@ -12105,7 +12105,7 @@ var _user$project$Atrapos_Game_UI$menuPopup = A2(
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$button,
+					_elm_lang$html$Html$label,
 					{
 						ctor: '::',
 						_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$EdgeSwipeEnded),
@@ -12123,7 +12123,7 @@ var _user$project$Atrapos_Game_UI$menuPopup = A2(
 				_1: {
 					ctor: '::',
 					_0: A2(
-						_elm_lang$html$Html$button,
+						_elm_lang$html$Html$label,
 						{
 							ctor: '::',
 							_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Menu),
