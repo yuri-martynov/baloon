@@ -10,5 +10,6 @@
     "lepus": { "title": "Lepus"} ,
     "orion": { "title": "Orion"} ,
     "hydra": { "title": "Hydra"} ,
-    "wolf": { "title": "Wolf"} 
+    "wolf": { "title": "Wolf"} ,
+    "canis": { "title": "dog"}
 }

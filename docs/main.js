@@ -11744,9 +11744,10 @@ var _user$project$Atrapos_Game_Shared$linksLen = function (_p0) {
 };
 var _user$project$Atrapos_Game_Shared$isVictory = function (_p3) {
 	var _p4 = _p3;
-	var _p5 = _p4.minLen;
 	var len = _user$project$Atrapos_Game_Shared$linksLen(_p4);
-	return (_elm_lang$core$Native_Utils.cmp(len, _p5 - 1.0e-4) > 0) && (_elm_lang$core$Native_Utils.cmp(len, _p5 + 1.0e-4) < 0);
+	return _elm_lang$core$Native_Utils.eq(
+		_elm_lang$core$Basics$round(len),
+		_elm_lang$core$Basics$round(_p4.minLen));
 };
 var _user$project$Atrapos_Game_Shared$victory = function (model) {
 	return _elm_lang$core$Native_Utils.update(
@@ -11756,13 +11757,13 @@ var _user$project$Atrapos_Game_Shared$victory = function (model) {
 		});
 };
 var _user$project$Atrapos_Game_Shared$link = F3(
-	function (_p6, id, link) {
-		var _p7 = _p6;
+	function (_p5, id, link) {
+		var _p6 = _p5;
 		return _user$project$Atrapos_Game_Shared$victory(
 			_elm_lang$core$Native_Utils.update(
-				_p7,
+				_p6,
 				{
-					links: A3(_elm_lang$core$Dict$insert, id, link, _p7.links)
+					links: A3(_elm_lang$core$Dict$insert, id, link, _p6.links)
 				}));
 	});
 
@@ -12110,6 +12111,7 @@ var _user$project$Atrapos_Game_UI$menuPopup = A2(
 	});
 var _user$project$Atrapos_Game_UI$ui = function (_p4) {
 	var _p5 = _p4;
+	var _p8 = _p5.victory;
 	var _p7 = _p5.minLen;
 	var _p6 = _p5.menu;
 	var len = _user$project$Atrapos_Game_Shared$linksLen(_p5);
@@ -12122,7 +12124,7 @@ var _user$project$Atrapos_Game_UI$ui = function (_p4) {
 			' / ',
 			_elm_lang$core$Basics$toString(
 				_elm_lang$core$Basics$round(_p7))));
-	var overdraft = _elm_lang$core$Native_Utils.cmp(len, _p7) > 0;
+	var overdraft = (!_p8) && (_elm_lang$core$Native_Utils.cmp(len, _p7) > 0);
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -12167,7 +12169,7 @@ var _user$project$Atrapos_Game_UI$ui = function (_p4) {
 									_0: {ctor: '_Tuple2', _0: 'percent', _1: true},
 									_1: {
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'victory', _1: _p5.victory},
+										_0: {ctor: '_Tuple2', _0: 'victory', _1: _p8},
 										_1: {
 											ctor: '::',
 											_0: {ctor: '_Tuple2', _0: 'overdraft', _1: overdraft},
