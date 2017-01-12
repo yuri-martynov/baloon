@@ -71,8 +71,10 @@ ui ({ victory, links, menu, minLen } as model) =
 menuPopup : Html Msg
 menuPopup =
     div [ class "menu-popup" ]
-        [ button [ onClick Reset, class "reset" ] [ text "reset" ]
-        , button [ onClick EdgeSwipeEnded, class "back" ] [ text "Back" ]
+        [ label [ class "name" ] [ text "PATHFINDER"]
+        , label [ onClick Reset, class "reset" ] [ text "Restart Level" ]
+        , label [ onClick EdgeSwipeEnded, class "back" ] [ text "Menu" ]
+        , label [ onClick Menu, class "close" ] [ text "Close" ]
         ]
 
 

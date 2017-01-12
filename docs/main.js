@@ -12073,40 +12073,74 @@ var _user$project$Atrapos_Game_UI$menuPopup = A2(
 	{
 		ctor: '::',
 		_0: A2(
-			_elm_lang$html$Html$button,
+			_elm_lang$html$Html$label,
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Reset),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('reset'),
-					_1: {ctor: '[]'}
-				}
+				_0: _elm_lang$html$Html_Attributes$class('name'),
+				_1: {ctor: '[]'}
 			},
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html$text('reset'),
+				_0: _elm_lang$html$Html$text('PATHFINDER'),
 				_1: {ctor: '[]'}
 			}),
 		_1: {
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$button,
+				_elm_lang$html$Html$label,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$EdgeSwipeEnded),
+					_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Reset),
 					_1: {
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('back'),
+						_0: _elm_lang$html$Html_Attributes$class('reset'),
 						_1: {ctor: '[]'}
 					}
 				},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text('Back'),
+					_0: _elm_lang$html$Html$text('Restart Level'),
 					_1: {ctor: '[]'}
 				}),
-			_1: {ctor: '[]'}
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$label,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$EdgeSwipeEnded),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('back'),
+							_1: {ctor: '[]'}
+						}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('Menu'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$label,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Menu),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('close'),
+								_1: {ctor: '[]'}
+							}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Close'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			}
 		}
 	});
 var _user$project$Atrapos_Game_UI$ui = function (_p4) {
