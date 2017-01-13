@@ -12076,8 +12076,12 @@ var _user$project$Atrapos_Game_UI$menuPopup = A2(
 			_elm_lang$html$Html$label,
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('name'),
-				_1: {ctor: '[]'}
+				_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Menu),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('name'),
+					_1: {ctor: '[]'}
+				}
 			},
 			{
 				ctor: '::',
