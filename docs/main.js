@@ -12715,12 +12715,7 @@ var _user$project$Atrapos_Levels_View$view = function (_p2) {
 				_elm_lang$html$Html$span,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$style(
-						{
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'background', _1: 'red'},
-							_1: {ctor: '[]'}
-						}),
+					_0: _elm_lang$html$Html_Attributes$class('map-header'),
 					_1: {ctor: '[]'}
 				},
 				{
