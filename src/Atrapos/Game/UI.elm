@@ -35,8 +35,9 @@ ui ({ victory, links, menu, minLen } as model) =
         overdraft =
             not victory && len > minLen
     in
-        [ label [ class "game-name" ] [ text "PATHFINDER" ]
-        , [ text progress ]
+        [ 
+            --label [ class "game-name" ] [ text "PATHFINDER" ]
+         [ text progress ]
             |> label
                 [ classList
                     [ ( "percent", True )
@@ -73,8 +74,8 @@ menuPopup =
     div [ class "menu-popup" ]
         [ label [ onClick Menu, class "name" ] [ text "PATHFINDER"]
         , label [ onClick Reset, class "reset" ] [ text "Restart Level" ]
-        , label [ onClick EdgeSwipeEnded, class "back" ] [ text "Menu" ]
-        , label [ onClick Menu, class "close" ] [ text "Close" ]
+        , label [ onClick EdgeSwipeEnded, class "back" ] [ text "Menu map" ]
+        , label [ onClick Menu, class "close" ] [ text "Continue" ]
         ]
 
 

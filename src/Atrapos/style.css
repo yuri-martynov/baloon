@@ -66,6 +66,7 @@ html, body {
     overflow: hidden;
     align-self: center;
     margin-left: 15;
+    flex: 1;
 }
 
 .game-name{
@@ -77,10 +78,10 @@ html, body {
 }
 
 .menu {
-    width: 35px;
-    height: 34px;
+    width: 24px;
+    height: 25px;
     align-self: center;
-    margin-right: 15;
+    margin-right: 25;
     margin-left: 15;
     background: url(settings-icon.svg);
     border: 0;
@@ -97,28 +98,24 @@ html, body {
     from {transform: translate(250px,0);}
 }
 
-/*@-webkit-keyframes offcanvas-right {
-    from {-webkit-transform: translate(300px,0);transform: translate(300px,0)};
-}*/
-
 .menu-popup {
   position: fixed;
   top: 0;
-  right: -50px;
-  width: 50%;
+  right: -100px;
+  width: 70%;
   height: 100%;
   animation-name: offcanvas-right;
   animation-duration:200ms;
   animation-timing-function:cubic-bezier(0.175, 0.885, 0.32, 1.275);
   margin: 0;
   padding: 0;
-  margin-right: 50px;
+  padding-right: 100px;
   background: #0C1122;
   display: flex;
   flex-direction: column;
   text-align: center;
   padding-top: 15px;
-  
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .menu-popup .reset, .menu-popup .back, .menu-popup .close {
@@ -171,6 +168,8 @@ html, body {
 
 .selected.orbit {
     stroke: #58E5FF;
+    fill: #59E5FF;
+    fill-opacity: 0.3;
 }
 @keyframes orbit {
     /*0% {fill: gold; }*/

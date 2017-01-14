@@ -15,28 +15,9 @@ view { links } id node =
             else
                 ""
     in
-        --  TODO: make orbit red when not selected
-        -- image
-        --     [ xlinkHref "Game/Node/star.svg"
-        --     , width "1.5"
-        --     , height "1.5"
-        --     , node.x - 0.75 |> toString |> x
-        --     , node.y - 0.75 |> toString |> y
-        --     , class <| "node " ++ class_
-        --     ]
-        --     []
         g []
-            [ circle
-                [ fill "#58E5FF"
-                , cx "0"
-                , cy "0"
-                , r "0.5"
-                , opacity "0.8"
-                , transform ("matrix(1 0 0 1 " ++ toString node.x ++ " " ++ toString node.y ++ ")")
-                  -- , class <| "node " ++ class_
-                ]
-                []
-            , circle
+            [   
+                circle
                 [ fill "none"
                 , stroke "red"
                 , cx "0"
@@ -48,16 +29,19 @@ view { links } id node =
                 , class <| "node orbit " ++ class_
                 ]
                 []
+                , circle
+                [ fill "#58E5FF"
+                , cx "0"
+                , cy "0"
+                , r "0.5"
+                , opacity "0.8"
+                , transform ("matrix(1 0 0 1 " ++ toString node.x ++ " " ++ toString node.y ++ ")")
+                  -- , class <| "node " ++ class_
+                ]
+                []
             ]
 
 
-
--- circle
--- [ fill "#58E5FF", cx "0", cy "0", r "0.5"
--- , transform ("matrix(1 0 0 1 " ++ toString node.x  ++ " " ++ toString node.y ++ ")")
--- , class <| "node " ++ class_
--- ]
--- []
 -- PRIVATE ---------------
 
 

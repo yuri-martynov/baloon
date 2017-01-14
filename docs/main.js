@@ -11636,36 +11636,49 @@ var _user$project$Atrapos_Game_Node_View$view = F3(
 					_elm_lang$svg$Svg$circle,
 					{
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$fill('#58E5FF'),
+						_0: _elm_lang$svg$Svg_Attributes$fill('none'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$cx('0'),
+							_0: _elm_lang$svg$Svg_Attributes$stroke('red'),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$cy('0'),
+								_0: _elm_lang$svg$Svg_Attributes$cx('0'),
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$r('0.5'),
+									_0: _elm_lang$svg$Svg_Attributes$cy('0'),
 									_1: {
 										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$opacity('0.8'),
+										_0: _elm_lang$svg$Svg_Attributes$r('1'),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$transform(
-												A2(
-													_elm_lang$core$Basics_ops['++'],
-													'matrix(1 0 0 1 ',
-													A2(
-														_elm_lang$core$Basics_ops['++'],
-														_elm_lang$core$Basics$toString(node.x),
+											_0: _elm_lang$svg$Svg_Attributes$strokeWidth('0.05'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$opacity('0.8'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$transform(
 														A2(
 															_elm_lang$core$Basics_ops['++'],
-															' ',
+															'matrix(1 0 0 1 ',
 															A2(
 																_elm_lang$core$Basics_ops['++'],
-																_elm_lang$core$Basics$toString(node.y),
-																')'))))),
-											_1: {ctor: '[]'}
+																_elm_lang$core$Basics$toString(node.x),
+																A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	' ',
+																	A2(
+																		_elm_lang$core$Basics_ops['++'],
+																		_elm_lang$core$Basics$toString(node.y),
+																		')'))))),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$svg$Svg_Attributes$class(
+															A2(_elm_lang$core$Basics_ops['++'], 'node orbit ', class_)),
+														_1: {ctor: '[]'}
+													}
+												}
+											}
 										}
 									}
 								}
@@ -11679,49 +11692,36 @@ var _user$project$Atrapos_Game_Node_View$view = F3(
 						_elm_lang$svg$Svg$circle,
 						{
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$fill('none'),
+							_0: _elm_lang$svg$Svg_Attributes$fill('#58E5FF'),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$stroke('red'),
+								_0: _elm_lang$svg$Svg_Attributes$cx('0'),
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$cx('0'),
+									_0: _elm_lang$svg$Svg_Attributes$cy('0'),
 									_1: {
 										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$cy('0'),
+										_0: _elm_lang$svg$Svg_Attributes$r('0.5'),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$r('1'),
+											_0: _elm_lang$svg$Svg_Attributes$opacity('0.8'),
 											_1: {
 												ctor: '::',
-												_0: _elm_lang$svg$Svg_Attributes$strokeWidth('0.05'),
-												_1: {
-													ctor: '::',
-													_0: _elm_lang$svg$Svg_Attributes$opacity('0.8'),
-													_1: {
-														ctor: '::',
-														_0: _elm_lang$svg$Svg_Attributes$transform(
+												_0: _elm_lang$svg$Svg_Attributes$transform(
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														'matrix(1 0 0 1 ',
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															_elm_lang$core$Basics$toString(node.x),
 															A2(
 																_elm_lang$core$Basics_ops['++'],
-																'matrix(1 0 0 1 ',
+																' ',
 																A2(
 																	_elm_lang$core$Basics_ops['++'],
-																	_elm_lang$core$Basics$toString(node.x),
-																	A2(
-																		_elm_lang$core$Basics_ops['++'],
-																		' ',
-																		A2(
-																			_elm_lang$core$Basics_ops['++'],
-																			_elm_lang$core$Basics$toString(node.y),
-																			')'))))),
-														_1: {
-															ctor: '::',
-															_0: _elm_lang$svg$Svg_Attributes$class(
-																A2(_elm_lang$core$Basics_ops['++'], 'node orbit ', class_)),
-															_1: {ctor: '[]'}
-														}
-													}
-												}
+																	_elm_lang$core$Basics$toString(node.y),
+																	')'))))),
+												_1: {ctor: '[]'}
 											}
 										}
 									}
@@ -12121,7 +12121,7 @@ var _user$project$Atrapos_Game_UI$menuPopup = A2(
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text('Menu'),
+						_0: _elm_lang$html$Html$text('Menu map'),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
@@ -12139,7 +12139,7 @@ var _user$project$Atrapos_Game_UI$menuPopup = A2(
 						},
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html$text('Close'),
+							_0: _elm_lang$html$Html$text('Continue'),
 							_1: {ctor: '[]'}
 						}),
 					_1: {ctor: '[]'}
@@ -12187,39 +12187,43 @@ var _user$project$Atrapos_Game_UI$ui = function (_p4) {
 					_elm_lang$html$Html$label,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('game-name'),
+						_0: _elm_lang$html$Html_Attributes$classList(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'percent', _1: true},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'victory', _1: _p8},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'overdraft', _1: overdraft},
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
 						_1: {ctor: '[]'}
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text('PATHFINDER'),
+						_0: _elm_lang$html$Html$text(progress),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
 					ctor: '::',
 					_0: A2(
-						_elm_lang$html$Html$label,
+						_elm_lang$html$Html$button,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$classList(
-								{
-									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'percent', _1: true},
-									_1: {
-										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'victory', _1: _p8},
-										_1: {
-											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'overdraft', _1: overdraft},
-											_1: {ctor: '[]'}
-										}
-									}
-								}),
-							_1: {ctor: '[]'}
+							_0: _elm_lang$html$Html_Attributes$class('hint'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Help),
+								_1: {ctor: '[]'}
+							}
 						},
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html$text(progress),
+							_0: _elm_lang$html$Html$text('HINTS'),
 							_1: {ctor: '[]'}
 						}),
 					_1: {
@@ -12228,43 +12232,24 @@ var _user$project$Atrapos_Game_UI$ui = function (_p4) {
 							_elm_lang$html$Html$button,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('hint'),
+								_0: _elm_lang$html$Html_Attributes$classList(
+									{
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'menu', _1: true},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'active', _1: _p6},
+											_1: {ctor: '[]'}
+										}
+									}),
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Help),
+									_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Menu),
 									_1: {ctor: '[]'}
 								}
 							},
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html$text('HINTS'),
-								_1: {ctor: '[]'}
-							}),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$button,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$classList(
-										{
-											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'menu', _1: true},
-											_1: {
-												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: 'active', _1: _p6},
-												_1: {ctor: '[]'}
-											}
-										}),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onClick(_user$project$Atrapos_Game_Msg$Menu),
-										_1: {ctor: '[]'}
-									}
-								},
-								{ctor: '[]'}),
-							_1: {ctor: '[]'}
-						}
+							{ctor: '[]'}),
+						_1: {ctor: '[]'}
 					}
 				}
 			},
