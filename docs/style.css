@@ -25,6 +25,7 @@ html, body {
 }
 .map-header {
     margin: 40;
+    opacity: 0.7;
 }
 .pure-menu{
     margin: 25;
@@ -167,12 +168,14 @@ html, body {
     /*stroke: lightskyblue;*/
     stroke-width: 0.05;
     pointer-events: none;
+    transition: stroke 1s, stroke-dasharray 1.5s;
 }
 
 .link.selected {
     stroke-width: 0.1;
     stroke: lightblue;
     stroke-dasharray: none;   
+    transition: 0.2s;
 }
 
 .node {
@@ -193,6 +196,7 @@ html, body {
     stroke: #58E5FF;
     fill: #59E5FF;
     fill-opacity: 0.3;
+    transition: stroke 1.5s, fill 1s;
 }
 @keyframes orbit {
     /*0% {fill: gold; }*/
