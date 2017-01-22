@@ -12,7 +12,7 @@ html, body {
 }
 
 .container {
-    background: url(sky-01.png) no-repeat center center fixed;
+    background: url(BG-2.png) no-repeat center center fixed;
     background-size: cover;
     animation-name: rotate;
     /*animation-duration:600s;*/
@@ -44,6 +44,7 @@ html, body {
 
 .pure-menu li{
     margin: 6 0;
+    transition: margin 0.2s;
 }
 
 @keyframes rotate {
@@ -163,7 +164,7 @@ html, body {
 }
 
 .link {
-    stroke: gray;
+    stroke: whitesmoke;
     stroke-dasharray: 0.2, 0.5;
     /*stroke: lightskyblue;*/
     stroke-width: 0.05;
@@ -197,6 +198,7 @@ html, body {
     fill: #59E5FF;
     fill-opacity: 0.3;
     transition: stroke 1.5s, fill 1s;
+    filter: drop-shadow( -5px -5px 5px pink );
 }
 @keyframes orbit {
     /*0% {fill: gold; }*/
