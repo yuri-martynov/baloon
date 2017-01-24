@@ -23,10 +23,20 @@ linksLen { links } =
         |> Selection.len links
 
 
+-- PRIVATE --------------------
+
 isVictory : Model_ -> Bool
-isVictory ({ minLen } as model) =
+isVictory ({ minLen, nodes, links } as model) =
     let
         len =
             linksLen model
     in
         round (len) == round (minLen)
+        &&
+        (nodes |> Dict.keys |> List.all (connected links) )
+
+connected links id =
+    links
+        |> Dict.filter (always .selected)
+        |> Dict.values
+        |> List.any (\{ node1, node2 } -> node1 == id || node2 == id)

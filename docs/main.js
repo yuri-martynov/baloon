@@ -11781,20 +11781,40 @@ var _user$project$Atrapos_Game_Node_View$view = F3(
 			{ctor: '::', _0: planet, _1: orbits});
 	});
 
-var _user$project$Atrapos_Game_Shared$linksLen = function (_p0) {
-	var _p1 = _p0;
-	var _p2 = _p1.links;
+var _user$project$Atrapos_Game_Shared$connected = F2(
+	function (links, id) {
+		return A2(
+			_elm_lang$core$List$any,
+			function (_p0) {
+				var _p1 = _p0;
+				return _elm_lang$core$Native_Utils.eq(_p1.node1, id) || _elm_lang$core$Native_Utils.eq(_p1.node2, id);
+			},
+			_elm_lang$core$Dict$values(
+				A2(
+					_elm_lang$core$Dict$filter,
+					_elm_lang$core$Basics$always(
+						function (_) {
+							return _.selected;
+						}),
+					links)));
+	});
+var _user$project$Atrapos_Game_Shared$linksLen = function (_p2) {
+	var _p3 = _p2;
+	var _p4 = _p3.links;
 	return A2(
 		_user$project$Atrapos_Game_Selection_Path$len,
-		_p2,
-		_user$project$Atrapos_Game_Selection_Path$selected(_p2));
+		_p4,
+		_user$project$Atrapos_Game_Selection_Path$selected(_p4));
 };
-var _user$project$Atrapos_Game_Shared$isVictory = function (_p3) {
-	var _p4 = _p3;
-	var len = _user$project$Atrapos_Game_Shared$linksLen(_p4);
+var _user$project$Atrapos_Game_Shared$isVictory = function (_p5) {
+	var _p6 = _p5;
+	var len = _user$project$Atrapos_Game_Shared$linksLen(_p6);
 	return _elm_lang$core$Native_Utils.eq(
 		_elm_lang$core$Basics$round(len),
-		_elm_lang$core$Basics$round(_p4.minLen));
+		_elm_lang$core$Basics$round(_p6.minLen)) && A2(
+		_elm_lang$core$List$all,
+		_user$project$Atrapos_Game_Shared$connected(_p6.links),
+		_elm_lang$core$Dict$keys(_p6.nodes));
 };
 var _user$project$Atrapos_Game_Shared$victory = function (model) {
 	return _elm_lang$core$Native_Utils.update(
@@ -11804,13 +11824,13 @@ var _user$project$Atrapos_Game_Shared$victory = function (model) {
 		});
 };
 var _user$project$Atrapos_Game_Shared$link = F3(
-	function (_p5, id, link) {
-		var _p6 = _p5;
+	function (_p7, id, link) {
+		var _p8 = _p7;
 		return _user$project$Atrapos_Game_Shared$victory(
 			_elm_lang$core$Native_Utils.update(
-				_p6,
+				_p8,
 				{
-					links: A3(_elm_lang$core$Dict$insert, id, link, _p6.links)
+					links: A3(_elm_lang$core$Dict$insert, id, link, _p8.links)
 				}));
 	});
 
