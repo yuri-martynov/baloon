@@ -4,50 +4,49 @@ import Dict
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
 import Atrapos.Game.Model exposing (..)
+import Common.Svg exposing (classList)
+import Common.Transform exposing (translate)
 
 
 view : Model_ -> NodeId -> Node -> Svg msg
 view { links } id node =
     let
-        class_ =
-            if connected links id then
-                "selected"
-            else
-                ""
-    in
-        g []
-            [   
-                circle
-                [ fill "none"
-                , stroke "red"
-                , cx "0"
-                , cy "0"
-                , r "1"
-                , strokeWidth "0.05"
-                , opacity "0.8"
-                , transform ("matrix(1 0 0 1 " ++ toString node.x ++ " " ++ toString node.y ++ ")")
-                , class <| "node orbit " ++ class_
-                ]
-                []
-                , circle
-                [ fill "#58E5FF"
-                , cx "0"
-                , cy "0"
-                , r "0.5"
-                , opacity "0.8"
-                , transform ("matrix(1 0 0 1 " ++ toString node.x ++ " " ++ toString node.y ++ ")")
-                  -- , class <| "node " ++ class_
-                ]
-                []
+        connections =
+            connected links id
+
+        planet =
+            circle [ r "1", class "planet" ] []
+
+        orbit n =
+            [ circle [ r "1" ] []
+            , circle [ r "0.1", cx "1", class "sputnik" ] []
             ]
+                |> g
+                    [ [ ( "orbit", True )
+                      , ( "orbit-" ++ toString n, True )
+                      ]
+                        |> classList
+                    ]
+
+        orbits =
+            List.range 1 connections
+                |> List.map orbit
+    in
+        (planet :: orbits)
+            |> g
+                [ translate node
+                , [ ( "selected", connections > 0 ) ] |> classList
+                ]
+
 
 
 -- PRIVATE ---------------
 
 
-connected : Links -> NodeId -> Bool
+connected : Links -> NodeId -> Int
 connected links id =
     links
         |> Dict.filter (always .selected)
         |> Dict.values
-        |> List.any (\{ node1, node2 } -> node1 == id || node2 == id)
+        |> List.filter (\{ node1, node2 } -> node1 == id || node2 == id)
+        |> List.length

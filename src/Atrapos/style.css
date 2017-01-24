@@ -1,36 +1,32 @@
 * {
     -webkit-touch-callout: none;
-    -webkit-user-select: none; /* Disable selection/copy in UIWebView */
+    -webkit-user-select: none;
+    /* Disable selection/copy in UIWebView */
 }
 
 html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-family: Lato; 
+    font-family: Lato;
     background: #0C1122;
 }
 
 .container {
     background: url(BG-2.png) no-repeat center center fixed;
     background-size: cover;
-    animation-name: rotate;
-    /*animation-duration:600s;*/
-    /*animation-iteration-count:infinite;*/
-    /*animation-timing-function:linear;*/
-    /*position: fixed;*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*transform: scale(10)*/
 }
+
 .map-header {
     margin: 40;
     opacity: 0.7;
 }
-.pure-menu{
+
+.pure-menu {
     margin: 25;
 }
-.pure-menu, .pure-menu a, .pure-menu ul{
+
+.pure-menu, .pure-menu a, .pure-menu ul {
     background: #0C1122;
     color: #4C61AB;
     font-size: 1em;
@@ -42,16 +38,19 @@ html, body {
     list-style-type: none;
 }
 
-.pure-menu li{
+.pure-menu li {
     margin: 6 0;
     transition: margin 0.2s;
 }
 
 @keyframes rotate {
-  from {transform:rotate(0deg);}
-  to {  transform:rotate(360deg);}
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
-
 
 .game-field {
     margin: 25;
@@ -59,21 +58,21 @@ html, body {
 }
 
 .game-ui {
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 3em;
-  position: fixed;
-  /*background: #0C1122;*/
-  color: #4C61AB;
-  display: flex;
-  flex-direction: row;
-  border: 0 solid; 
-  /*border-bottom-width: 1px;*/
-  padding-top: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 3em;
+    position: fixed;
+    /*background: #0C1122;*/
+    color: #4C61AB;
+    display: flex;
+    flex-direction: row;
+    border: 0 solid;
+    /*border-bottom-width: 1px;*/
+    padding-top: 10;
 }
 
-.hint{
+.hint {
     flex: 0.25;
     color: #4C61AB;
     font-size: 1em;
@@ -84,7 +83,7 @@ html, body {
     background: transparent;
 }
 
-.percent{
+.percent {
     color: #4C61AB;
     width: 60px;
     overflow: hidden;
@@ -93,7 +92,7 @@ html, body {
     flex: 1;
 }
 
-.game-name{
+.game-name {
     flex: 1;
     align-self: center;
     font-size: 1em;
@@ -113,34 +112,34 @@ html, body {
 
 .menu.active {
     animation-name: rotate;
-    animation-duration:300ms;
-    animation-timing-function:ease-in-out;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out;
 }
-
 
 @keyframes offcanvas-right {
-    from {transform: translate(250px,0);}
+    from {
+        transform: translate(250px, 0);
+    }
 }
 
-
 .menu-popup {
-  position: fixed;
-  top: 0;
-  right: -100px;
-  width: 70%;
-  height: 100%;
-  animation-name: offcanvas-right;
-  animation-duration:200ms;
-  animation-timing-function:cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  margin: 0;
-  padding: 0;
-  padding-right: 100px;
-  background: #0C1122;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding-top: 15px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    position: fixed;
+    top: 0;
+    right: -100px;
+    width: 70%;
+    height: 100%;
+    animation-name: offcanvas-right;
+    animation-duration: 200ms;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin: 0;
+    padding: 0;
+    padding-right: 100px;
+    background: #0C1122;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .menu-popup .reset, .menu-popup .back, .menu-popup .close {
@@ -175,34 +174,74 @@ html, body {
 .link.selected {
     stroke-width: 0.1;
     stroke: lightblue;
-    stroke-dasharray: none;   
+    stroke-dasharray: none;
     transition: 0.2s;
 }
 
-.node {
+.planet {
     pointer-events: none;
     /*fill: #58E5FF;*/
 }
 
-.selected.node {
+.selected .planet {
     animation: node 0.5s ease-in-out;
     animation-fill-mode: both;
 }
 
-.orbit {
+.planet {
+    fill: #58E5FF;
     opacity: 0.8;
+    transform: scale(0.5)
 }
 
-.selected.orbit {
+.orbit {
+    opacity: 0.8;
+    fill: none;
+    stroke: red;
+    stroke-width: 0.05;
+}
+
+.orbit-1 {
+    transform: scale(0.7);
+}
+
+.orbit-2 {
+    transform: scale(0.8) rotate(30deg);
+}
+
+.orbit-3 {
+    animation:spin 4s linear infinite;
+}
+
+.orbit-4 {
+    transform: scale(1.25) rotate(90deg);
+}
+
+.orbit-3 .sputnik {
+    stroke: gold;
+    fill: yellow;
+    fill-opacity: 0.8;
+}
+
+.selected .orbit {
     stroke: #58E5FF;
     fill: #59E5FF;
     fill-opacity: 0.3;
     transition: stroke 1.5s, fill 1s;
-    filter: drop-shadow( -5px -5px 5px pink );
+    filter: drop-shadow( -5px -5px 5px pink);
 }
+
 @keyframes orbit {
     /*0% {fill: gold; }*/
-    100% {stroke: #58E5FF;}
+    100% {
+        stroke: #58E5FF;
+    }
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .help {
@@ -232,4 +271,3 @@ html, body {
 .progress {
     font-size: 0.5;
 }
-

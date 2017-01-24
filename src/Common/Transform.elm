@@ -5,17 +5,14 @@ import Svg.Attributes exposing (transform)
 import Common.Types exposing (Location_)
 
 
-translate : Location_ a -> Svg msg -> Svg msg
-translate { x, y } element =
-    g
-        [ "translate("
-            ++ (x |> toString)
-            ++ " "
-            ++ (y |> toString)
-            ++ ")"
-            |> transform
-        ]
-        [ element ]
+translate : Location_ a -> Svg.Attribute msg
+translate { x, y } =
+    "translate("
+        ++ (x |> toString)
+        ++ " "
+        ++ (y |> toString)
+        ++ ")"
+        |> transform
 
 
 scale : number -> Svg msg -> Svg msg

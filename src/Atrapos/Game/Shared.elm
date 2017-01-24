@@ -29,4 +29,4 @@ isVictory ({ minLen } as model) =
         len =
             linksLen model
     in
-        round (len) == round (minLen) 
+        round (len) == round (minLen)

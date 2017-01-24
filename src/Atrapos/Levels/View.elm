@@ -11,7 +11,7 @@ import Atrapos.Levels.Msg exposing (..)
 
 view : Model -> Html Msg
 view { levels } =
-    [ span [ class "map-header"] [ text "Levels" ]
+    [ span [ class "map-header" ] [ text "Levels" ]
     , levels
         |> Dict.map level
         |> Dict.values
