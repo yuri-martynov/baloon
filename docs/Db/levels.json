@@ -15,5 +15,8 @@
     "corona": { "title": "Corona"} ,
     "dolphin": { "title": "Dolphin"} ,
     "giraffe": { "title": "Giraffe"} ,
-    "unicorn": { "title": "Unicorn"}
+    "unicorn": { "title": "Unicorn"} , 
+    "A": { "title": "A"} ,
+    "B": { "title": "B"} , 
+    "C": { "title": "C"}
 }
