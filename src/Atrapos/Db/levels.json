@@ -18,5 +18,8 @@
     "unicorn": { "title": "Unicorn"} , 
     "A": { "title": "A"} ,
     "B": { "title": "B"} , 
-    "C": { "title": "C"}
+    "C": { "title": "C"} ,
+    "D": { "title": "D"} ,
+    "E": { "title": "E"} ,
+    "F": { "title": "F"}
 }
