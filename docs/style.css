@@ -144,9 +144,9 @@ html, body {
 
 .menu-popup .reset, .menu-popup .back, .menu-popup .close {
     color: #4C61AB;
-    font-size: 1em;
+    font-size: 1.24em;
     font-family: Lato;
-    margin: 7px 0;
+    margin: 15px 0;
     text-transform: uppercase;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -154,7 +154,7 @@ html, body {
 
 .menu-popup .name {
     margin: 10px 0;
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
 .menu-popup .reset:hover, .menu-popup .back:hover {
@@ -186,12 +186,12 @@ html, body {
 .selected .planet {
     animation: node 0.5s ease-in-out;
     animation-fill-mode: both;
+    fill: #58E5FF;
 }
 
 .planet {
-    fill: #58E5FF;
-    opacity: 0.8;
-    transform: scale(0.5)
+    fill: orangered;
+    transform: scale(0.4);
 }
 
 .orbit {
@@ -202,19 +202,23 @@ html, body {
 }
 
 .orbit-1 {
-    transform: scale(0.7);
+    animation: pop 0.2s ease-in-out;
+    
 }
 
 .orbit-2 {
-    transform: scale(0.8) rotate(30deg);
+    transform: scale(1.5) rotate(30deg);
 }
 
 .orbit-3 {
-    animation:spin 4s linear infinite;
+    /*animation:spin 4s linear infinite;*/
+
+    transform: scale(2);
+    transition: all 0.2 ease-in-out;
 }
 
 .orbit-4 {
-    transform: scale(1.25) rotate(90deg);
+    transform: scale(1.9) rotate(90deg);
 }
 
 .orbit-3 .sputnik {
@@ -238,6 +242,11 @@ html, body {
     }
 }
 
+@keyframes pop {
+    100% {
+        transform: scale(1.2);
+    }
+}
 @keyframes spin {
     100% {
         transform: rotate(360deg);

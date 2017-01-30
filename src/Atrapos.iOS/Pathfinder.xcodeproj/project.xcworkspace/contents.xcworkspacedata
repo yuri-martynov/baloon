@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Atrapos.iOS.xcodeproj">
+      location = "self:/Users/yoda/baloon/src/Atrapos.iOS/Pathfinder.xcodeproj">
    </FileRef>
 </Workspace>

@@ -96,12 +96,12 @@
 				TargetAttributes = {
 					C5C3383E1E06FBD100AAF996 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = 57THEC7K9G;
+						DevelopmentTeam = R9X4Y675WU;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = C5C3383A1E06FBD100AAF996 /* Build configuration list for PBXProject "Atrapos.iOS" */;
+			buildConfigurationList = C5C3383A1E06FBD100AAF996 /* Build configuration list for PBXProject "Pathfinder" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -261,7 +261,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 57THEC7K9G;
+				DEVELOPMENT_TEAM = R9X4Y675WU;
 				INFOPLIST_FILE = Atrapos.iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ym.Atrapos-iOS";
@@ -274,7 +274,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 57THEC7K9G;
+				DEVELOPMENT_TEAM = R9X4Y675WU;
 				INFOPLIST_FILE = Atrapos.iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ym.Atrapos-iOS";
@@ -286,7 +286,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C5C3383A1E06FBD100AAF996 /* Build configuration list for PBXProject "Atrapos.iOS" */ = {
+		C5C3383A1E06FBD100AAF996 /* Build configuration list for PBXProject "Pathfinder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C5C3384F1E06FBD100AAF996 /* Debug */,
