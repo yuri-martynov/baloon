@@ -12,6 +12,7 @@ import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Node.View as Node
 import Atrapos.Game.Link.View as Link
 import Atrapos.Game.UI as UI
+import Atrapos.Game.Selection.View as Selection
 
 
 view : Model -> Svg Msg
@@ -29,7 +30,7 @@ view model =
 
 view_ : Model_ -> List (Svg Msg)
 view_ ({ nodes, links, selection } as model) =
-    (links @ link model) ++ (nodes @ node model) --++ (selection selection)
+    (links @ link model) ++ (nodes @ node model) ++ [selection |> Selection.view nodes]
 
 
 link : Model_ -> LinkId -> Link -> Svg Msg

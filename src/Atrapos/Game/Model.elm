@@ -41,14 +41,21 @@ type Selection
     | Deselection DeselectionModel
 
 
-type alias SelectionModel =
-    { lastNode : NodeId
+type alias EndLocation a =
+    { a 
+        | endLocation : Location
     }
+
+type alias SelectionModel =
+    EndLocation
+        { lastNode : NodeId
+        }
 
 
 type alias DeselectionModel =
-    { startLocation : Location
-    }
+    EndLocation
+        { startLocation : Location
+        }
 
 
 type alias Solution =

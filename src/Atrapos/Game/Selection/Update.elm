@@ -17,16 +17,20 @@ update msg model =
         ( Down p, _ ) ->
             case nearestNode p model of
                 Just n ->
-                    model |> updateLastNode n
+                    model |> updateLastNode n p
 
                 Nothing ->
-                    { model | selection = Deselection { startLocation = p } }
+                    { model | selection = Deselection { startLocation = p, endLocation = p } }
 
         ( Move p, Selection selection ) ->
-            select p selection model
+            model 
+                |> select p selection 
+                |> updateEndLocation p
 
         ( Move p, Deselection deselection ) ->
-            deselect p deselection model
+            model 
+                |> deselect p deselection 
+                |> updateEndLocation p
 
         ( Up _, _ ) ->
             { model | selection = None }
@@ -40,17 +44,17 @@ update msg model =
 
 
 select : Location -> SelectionModel -> Model_ -> Model_
-select p { lastNode } model =
+select p ({ lastNode } as selection) model =
     case nearestNode p model of
         Just next ->
-            model |> selectNext lastNode next
+            model |> selectNext lastNode next p
 
         _ ->
-            model
+            { model | selection = Selection { selection | endLocation = p }}
 
 
-selectNext : NodeId -> NodeId -> Model_ -> Model_
-selectNext last next ({ links } as model) =
+selectNext : NodeId -> NodeId -> Location -> Model_ -> Model_
+selectNext last next p ({ links } as model) =
     let
         nextLink =
             links
@@ -70,12 +74,12 @@ selectNext last next ({ links } as model) =
                     |> Dict.justGet id
                     |> Link.select
                     |> link model id
-                    |> updateLastNode next
+                    |> updateLastNode next p
 
 
-updateLastNode : NodeId -> Model_ -> Model_
-updateLastNode id model =
-    { model | selection = Selection { lastNode = id } }
+updateLastNode : NodeId -> Location -> Model_ -> Model_
+updateLastNode id p model =
+    { model | selection = Selection { lastNode = id, endLocation = p } }
 
 
 nearestNode : Location -> Model_ -> Maybe NodeId
@@ -134,3 +138,15 @@ deselect p { startLocation } ({ links, nodes } as model) =
                                 link
                         )
         }
+
+
+updateEndLocation: Location -> Model_ -> Model_
+updateEndLocation p ({selection} as model) =
+    case selection of
+        Selection s ->
+            { model | selection = Selection {s | endLocation = p}}
+        
+        Deselection s ->
+            { model | selection = Deselection {s | endLocation = p}}
+
+        None -> model
