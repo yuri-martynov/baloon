@@ -10,7 +10,7 @@ import Atrapos.Game.Msg exposing (..)
 subscriptions : Model -> Sub Msg
 subscriptions model =
     case model of
-        Loading ->
+        Loading _ ->
             Sub.none
 
         Loaded ({ selection } as model) ->

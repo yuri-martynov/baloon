@@ -10,20 +10,17 @@ import Atrapos.Game.Msg exposing (Msg(Init))
 import Atrapos.Game.Solution as Solution
 import Atrapos.Game.Selection.Path as Selection
 import Atrapos.Game.Link.Init as Link
-import Atrapos.Game.Orientation as Orientation
-import Atrapos.Game.Cmd as Cmd
-
+import Atrapos.Game.Data.Model as Data
 
 init : LevelId -> ( Model, Cmd Msg )
 init id =
-    ( Loading
+    ( Loading id
     , Window.size
-        |> Task.andThen (\size -> id |> Cmd.load |> Task.map (\level -> ( size, level )))
-        |> Task.attempt Init
+        |> Task.perform Init
     )
 
 
-init_ : Window.Size -> Cmd.Level -> ( Model, Cmd Msg )
+init_ : Window.Size -> Data.Model -> ( Model, Cmd Msg )
 init_ s { nodes, links } =
     let
         minX =
@@ -77,13 +74,9 @@ init_ s { nodes, links } =
           , minLen = minLen
           , victory = False
           , selection = None
-          , nodesTurned = Nothing
           , menu = False
-          , swipe = Nothing
           }
             -- |> Solution.apply
-            |>
-                Orientation.update
             |> Loaded
         , Cmd.none
         )

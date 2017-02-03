@@ -1,15 +1,11 @@
 module Atrapos.Levels.Init exposing (init)
 
-import Dict
 import Atrapos.Levels.Model exposing (Model)
 import Atrapos.Levels.Msg exposing (Msg)
-import Atrapos.Levels.Cmd exposing (load)
+import Atrapos.Levels.Data exposing (data)
 
 
--- init : Model, Cmd Msg
-
-
+init : (Model, Cmd Msg)
 init =
-    { levels = Dict.empty
-    }
-        ! [ load ]
+    { levels = data
+    } ! []

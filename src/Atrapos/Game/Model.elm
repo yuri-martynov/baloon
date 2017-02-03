@@ -3,10 +3,11 @@ module Atrapos.Game.Model exposing (..)
 import Dict exposing (Dict)
 import Common.ViewBox as ViewBox
 import Common.Types exposing (Location, Len_)
+import Atrapos.Levels.Model exposing (LevelId)
 
 
 type Model
-    = Loading
+    = Loading LevelId
     | Loaded Model_
 
 
@@ -17,9 +18,7 @@ type alias Model_ =
         , minLen : Float
         , victory : Bool
         , selection : Selection
-        , nodesTurned : Maybe Nodes
         , menu : Menu
-        , swipe : Maybe Swipe
         }
 
 
@@ -81,6 +80,3 @@ type alias LinkId =
 type alias Menu =
     Bool
 
-
-type alias Swipe =
-    Location

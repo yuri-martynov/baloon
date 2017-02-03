@@ -2,21 +2,22 @@ module Atrapos.Game.Update exposing (update)
 
 import Dict
 import Navigation
+import Common.Dict exposing ((#))
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Solution as Solution
 import Atrapos.Game.Link.Update as Link
 import Atrapos.Game.Shared exposing (link, victory)
 import Atrapos.Game.Selection.Update as Selection
-import Atrapos.Game.Orientation as Orientation
 import Atrapos.Game.Init exposing (init_)
+import Atrapos.Game.Data.Levels as Data
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case ( msg, model ) of
-        ( Init (Ok ( size, level )), Loading ) ->
-            init_ size level
+        ( Init size, Loading id ) ->
+            init_ size (Data.model # id)
 
         ( _, Loaded model ) ->
             let
@@ -46,17 +47,8 @@ update_ msg ({ nodes, links, menu } as model) =
         Help ->
             (model |> Solution.apply |> victory) ! []
 
-        EdgeSwipeStarted p ->
-            { model | swipe = Just p } ! []
-
-        EdgeSwipeEnded ->
-            ( model, Navigation.back 1 )
-
         Mouse msg ->
             selection msg model
-
-        WindowSizeChanged size ->
-            ( { model | windowSize = size } |> Orientation.update, Cmd.none )
 
         _ ->
             model ! []

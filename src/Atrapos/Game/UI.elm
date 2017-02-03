@@ -14,7 +14,6 @@ view : Model_ -> Html Msg -> Html Msg
 view model viewGame =
     div
         [ class "container"
-        , onSwipe model
         ]
         [ viewGame
         , ui model
@@ -73,7 +72,7 @@ menuPopup =
     div [ class "menu-popup" ]
         [ label [ onClick Menu, class "name" ] [ text "PATHFINDER" ]
         , label [ onClick Reset, class "reset" ] [ text "Restart Level" ]
-        , label [ onClick EdgeSwipeEnded, class "back" ] [ text "Menu map" ]
+        , a [ class "back", href "#levels" ] [ text "Menu map" ]
         , label [ onClick Menu, class "close" ] [ text "Continue" ]
         ]
 
@@ -82,10 +81,3 @@ resetDisabled =
     .links >> Dict.values >> List.any .selected >> not >> disabled
 
 
-onSwipe { swipe } =
-    case swipe of
-        Nothing ->
-            onRightEdgeSwipeStart EdgeSwipeStarted
-
-        Just start ->
-            onRightEdgeSwipeEnd start EdgeSwipeEnded

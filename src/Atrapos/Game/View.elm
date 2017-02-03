@@ -18,7 +18,7 @@ import Atrapos.Game.Selection.View as Selection
 view : Model -> Svg Msg
 view model =
     case model of
-        Loading ->
+        Loading _ ->
             [ text_ [] [ text "loading" ] ] |> svg []
 
         Loaded model ->
@@ -50,7 +50,7 @@ defs_ =
 
 
 svg_ : Model_ -> List (Svg Msg) -> Svg Msg
-svg_ ({ swipe } as model) =
+svg_ model =
     let
         location =
             ViewBox.location model

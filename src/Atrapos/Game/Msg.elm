@@ -4,17 +4,14 @@ import Window
 import Mouse
 import Http
 import Common.Types exposing (Location)
-import Atrapos.Game.Cmd as Cmd
 
 
 type Msg
-    = Init (Result Http.Error ( Window.Size, Cmd.Level ))
+    = Init Window.Size
     | Help
     | Reset
     | Mouse MouseMsg
     | WindowSizeChanged Window.Size
-    | EdgeSwipeStarted Location
-    | EdgeSwipeEnded
     | Menu
 
 
