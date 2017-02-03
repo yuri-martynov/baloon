@@ -29,7 +29,7 @@ view model =
 
 view_ : Model_ -> List (Svg Msg)
 view_ ({ nodes, links, selection } as model) =
-    (links @ link model) ++ (nodes @ node model) ++ (selection selection)
+    (links @ link model) ++ (nodes @ node model) --++ (selection selection)
 
 
 link : Model_ -> LinkId -> Link -> Svg Msg
