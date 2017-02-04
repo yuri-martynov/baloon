@@ -23,13 +23,13 @@ update msg model =
                     { model | selection = Deselection { startLocation = p, endLocation = p } }
 
         ( Move p, Selection selection ) ->
-            model 
-                |> select p selection 
+            model
+                |> select p selection
                 |> updateEndLocation p
 
         ( Move p, Deselection deselection ) ->
-            model 
-                |> deselect p deselection 
+            model
+                |> deselect p deselection
                 |> updateEndLocation p
 
         ( Up _, _ ) ->
@@ -50,7 +50,7 @@ select p ({ lastNode } as selection) model =
             model |> selectNext lastNode next p
 
         _ ->
-            { model | selection = Selection { selection | endLocation = p }}
+            { model | selection = Selection { selection | endLocation = p } }
 
 
 selectNext : NodeId -> NodeId -> Location -> Model_ -> Model_
@@ -140,13 +140,14 @@ deselect p { startLocation } ({ links, nodes } as model) =
         }
 
 
-updateEndLocation: Location -> Model_ -> Model_
-updateEndLocation p ({selection} as model) =
+updateEndLocation : Location -> Model_ -> Model_
+updateEndLocation p ({ selection } as model) =
     case selection of
         Selection s ->
-            { model | selection = Selection {s | endLocation = p}}
-        
-        Deselection s ->
-            { model | selection = Deselection {s | endLocation = p}}
+            { model | selection = Selection { s | endLocation = p } }
 
-        None -> model
+        Deselection s ->
+            { model | selection = Deselection { s | endLocation = p } }
+
+        None ->
+            model

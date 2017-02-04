@@ -30,7 +30,7 @@ view model =
 
 view_ : Model_ -> List (Svg Msg)
 view_ ({ nodes, links, selection } as model) =
-    (links @ link model) ++ (nodes @ node model) ++ [selection |> Selection.view nodes]
+    (links @ link model) ++ (nodes @ node model) ++ [ selection |> Selection.view nodes ]
 
 
 link : Model_ -> LinkId -> Link -> Svg Msg

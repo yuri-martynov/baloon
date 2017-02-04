@@ -1,8 +1,6 @@
 module Atrapos.Game.Msg exposing (..)
 
 import Window
-import Mouse
-import Http
 import Common.Types exposing (Location)
 
 

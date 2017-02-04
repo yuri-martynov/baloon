@@ -2,13 +2,13 @@ module Atrapos.Routes exposing (Route(..), parse, url, navigateTo)
 
 import Navigation exposing (Location)
 import UrlParser exposing (map, s, string, int, oneOf, Parser, (</>), parseHash)
-import Atrapos.Levels.Model exposing (LevelId)
+import Atrapos.Data.Model as Level
 
 
 type Route
     = NotFound
     | Levels
-    | Level LevelId
+    | Level Level.Id
 
 
 url_ : Route -> String
@@ -18,7 +18,7 @@ url_ route =
             "levels"
 
         Level id ->
-            "levels/" ++ id
+            "levels/" ++ (toString id)
 
         _ ->
             Debug.crash "not found"
@@ -32,7 +32,7 @@ url =
 route : Parser (Route -> a) a
 route =
     oneOf
-        [ map Level (s "levels" </> string)
+        [ map Level (s "levels" </> int)
         , map Levels (s "levels")
         ]
 

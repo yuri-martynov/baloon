@@ -4,15 +4,15 @@ import Window
 import Dict
 import Task
 import Common.Maybe as Maybe
-import Atrapos.Levels.Model exposing (LevelId)
+import Atrapos.Data.Model as Data
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (Msg(Init))
 import Atrapos.Game.Solution as Solution
 import Atrapos.Game.Selection.Path as Selection
 import Atrapos.Game.Link.Init as Link
-import Atrapos.Game.Data.Model as Data
 
-init : LevelId -> ( Model, Cmd Msg )
+
+init : Data.Id -> ( Model, Cmd Msg )
 init id =
     ( Loading id
     , Window.size
@@ -77,6 +77,7 @@ init_ s { nodes, links } =
           , menu = False
           }
             -- |> Solution.apply
-            |> Loaded
+            |>
+                Loaded
         , Cmd.none
         )

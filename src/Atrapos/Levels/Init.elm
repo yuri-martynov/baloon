@@ -2,10 +2,11 @@ module Atrapos.Levels.Init exposing (init)
 
 import Atrapos.Levels.Model exposing (Model)
 import Atrapos.Levels.Msg exposing (Msg)
-import Atrapos.Levels.Data exposing (data)
+import Atrapos.Data.Levels as Levels
 
 
-init : (Model, Cmd Msg)
+init : ( Model, Cmd Msg )
 init =
-    { levels = data
-    } ! []
+    { levels = Levels.model
+    }
+        ! []

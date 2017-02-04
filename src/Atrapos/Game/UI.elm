@@ -79,5 +79,3 @@ menuPopup =
 
 resetDisabled =
     .links >> Dict.values >> List.any .selected >> not >> disabled
-
-

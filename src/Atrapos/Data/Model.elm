@@ -1,4 +1,7 @@
-module Atrapos.Game.Data.Model exposing (..)
+module Atrapos.Data.Model exposing (..)
+
+import Dict exposing (Dict)
+
 
 type alias Model =
     { nodes : List Node
@@ -12,3 +15,11 @@ type alias Node =
 
 type alias Link =
     ( Int, List Int )
+
+
+type alias Id =
+    Int
+
+
+type alias Levels =
+    Dict Id Model

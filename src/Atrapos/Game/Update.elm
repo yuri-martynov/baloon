@@ -1,7 +1,6 @@
 module Atrapos.Game.Update exposing (update)
 
 import Dict
-import Navigation
 import Common.Dict exposing ((#))
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
@@ -10,7 +9,7 @@ import Atrapos.Game.Link.Update as Link
 import Atrapos.Game.Shared exposing (link, victory)
 import Atrapos.Game.Selection.Update as Selection
 import Atrapos.Game.Init exposing (init_)
-import Atrapos.Game.Data.Levels as Data
+import Atrapos.Data.Levels as Data
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
