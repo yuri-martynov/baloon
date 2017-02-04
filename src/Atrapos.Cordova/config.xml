@@ -24,8 +24,7 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="orientation" value="portrait" /> 
-    <!--<preference name="fullscreen" value="false" />-->
-    <!--<plugin name="org.apache.cordova.statusbar" version="0.1.7" />-->
-    <!--<preference name="StatusBarOverlaysWebView" value="false" />-->
+    <preference name="orientation" value="portrait" />
+    <engine name="android" spec="~6.1.2" />
+    <engine name="osx" spec="~4.0.1" />
 </widget>
