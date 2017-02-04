@@ -10966,6 +10966,151 @@ var _user$project$Atrapos_Game_Data_A$model = {
 	}
 };
 
+var _user$project$Atrapos_Game_Data_B$model = {
+	nodes: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 1, _1: 1},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 1, _1: 13},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 3, _1: 7},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 5, _1: 13},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 5, _1: 20},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 7, _1: 7},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 8, _1: 16},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 9, _1: 1},
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	links: {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 1,
+			_1: {
+				ctor: '::',
+				_0: 3,
+				_1: {
+					ctor: '::',
+					_0: 6,
+					_1: {
+						ctor: '::',
+						_0: 8,
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 5,
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 6,
+							_1: {
+								ctor: '::',
+								_0: 8,
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 5,
+							_1: {
+								ctor: '::',
+								_0: 6,
+								_1: {
+									ctor: '::',
+									_0: 7,
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 5,
+							_1: {
+								ctor: '::',
+								_0: 7,
+								_1: {ctor: '[]'}
+							}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 6,
+								_1: {
+									ctor: '::',
+									_0: 7,
+									_1: {
+										ctor: '::',
+										_0: 8,
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+
 var _user$project$Common_WindowSize$init = function (msg) {
 	return A2(_elm_lang$core$Task$perform, msg, _elm_lang$window$Window$size);
 };
@@ -10981,7 +11126,11 @@ var _user$project$Atrapos_Game_Data_Levels$model = _elm_lang$core$Dict$fromList(
 	{
 		ctor: '::',
 		_0: {ctor: '_Tuple2', _0: 'A', _1: _user$project$Atrapos_Game_Data_A$model},
-		_1: {ctor: '[]'}
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'B', _1: _user$project$Atrapos_Game_Data_B$model},
+			_1: {ctor: '[]'}
+		}
 	});
 
 var _user$project$Common_Maybe$return = function (maybe) {
@@ -12736,7 +12885,15 @@ var _user$project$Atrapos_Levels_Data$data = _elm_lang$core$Dict$fromList(
 			_0: 'A',
 			_1: {title: 'A'}
 		},
-		_1: {ctor: '[]'}
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 'B',
+				_1: {title: 'B'}
+			},
+			_1: {ctor: '[]'}
+		}
 	});
 
 var _user$project$Atrapos_Levels_Init$init = A2(

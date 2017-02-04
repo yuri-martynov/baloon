@@ -7,7 +7,7 @@ import Atrapos.Levels.Model exposing (..)
 data : Levels
 data =
     [ ( "A", { title = "A"} )
-    -- , ( "B", { title = "B"} )
+    , ( "B", { title = "B"} )
     -- , ( "C", { title = "C"} )
     -- , ( "D", { title = "D"} )
     -- , ( "E", { title = "E"} )
