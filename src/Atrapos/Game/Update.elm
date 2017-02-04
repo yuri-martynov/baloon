@@ -32,6 +32,9 @@ update msg model =
 update_ : Msg -> Model_ -> ( Model_, Cmd Msg )
 update_ msg ({ nodes, links, menu } as model) =
     case msg of
+        WindowSizeChanged size ->
+            { model | windowSize = size }  ! []
+            
         Menu ->
             { model | menu = not menu } ! []
 
