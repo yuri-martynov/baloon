@@ -11,14 +11,14 @@ import Atrapos.Game.Shared as Game
 
 
 view : Model_ -> Html Msg -> Html Msg
-view ( {victory, minLen} as model) viewGame =
+view ({ victory, minLen } as model) viewGame =
     let
         len =
             model |> Game.linksLen
     in
         div
-            [ classList 
-                [ ("container", True) 
+            [ classList
+                [ ( "container", True )
                 , ( "active", True )
                 , ( "victory", victory )
                 , ( "overdraft", not victory && len > minLen )
@@ -68,7 +68,6 @@ ui ({ victory, links, menu, minLen } as model) =
             |> div
                 [ classList
                     [ ( "game-ui", True )
-                    
                     ]
                 ]
 

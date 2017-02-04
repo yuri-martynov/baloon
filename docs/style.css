@@ -257,16 +257,37 @@ body, html {
     }
 }
 
+@keyframes spin-push {
+    100% {
+        transform: rotate(360deg) scale(0);
+    }
+}
+
 .help {
     fill: green;
 }
 
-.victory {
+.victory .percent {
     color: gold;
 }
 
-.overdraft {
-    color: red;
+.victory .link {
+    stroke: transparent;
+}
+
+.victory .link.selected {
+    stroke: gold;
+}
+
+.victory .game-field {
+    animation:spin-push 3s ease-in infinite;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+
+.overdraft .link.selected {
+    stroke: red;
 }
 
 .reset {
