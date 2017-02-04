@@ -4,20 +4,30 @@ import Dict
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Common.Events exposing (onRightEdgeSwipeStart, onRightEdgeSwipeEnd)
+import Common.List exposing (lst)
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Shared as Game
 
 
 view : Model_ -> Html Msg -> Html Msg
-view model viewGame =
-    div
-        [ class "container"
-        ]
-        [ viewGame
-        , ui model
-        ]
+view ( {victory, minLen} as model) viewGame =
+    let
+        len =
+            model |> Game.linksLen
+    in
+        div
+            [ classList 
+                [ ("container", True) 
+                , ( "active", True )
+                , ( "victory", victory )
+                , ( "overdraft", not victory && len > minLen )
+                , ( "incomplete", not victory && len < minLen )
+                ]
+            ]
+            [ viewGame
+            , ui model
+            ]
 
 
 ui : Model_ -> Html Msg
@@ -27,21 +37,17 @@ ui ({ victory, links, menu, minLen } as model) =
             model |> Game.linksLen
 
         progress =
-            (len |> round |> toString)
-                ++ " / "
-                ++ (minLen |> round |> toString)
-
-        overdraft =
-            not victory && len > minLen
+            (minLen |> round)
+                - (len |> round)
     in
-        [ --label [ class "game-name" ] [ text "PATHFINDER" ]
-          [ text progress ]
+        [ progress
+            |> abs
+            |> toString
+            |> text
+            |> lst
             |> label
                 [ classList
-                    [ ( "percent", True )
-                    , ( "victory", victory )
-                    , ( "overdraft", overdraft )
-                    ]
+                    [ ( "percent", True ) ]
                 ]
         , button
             [ class "hint"
@@ -62,7 +68,7 @@ ui ({ victory, links, menu, minLen } as model) =
             |> div
                 [ classList
                     [ ( "game-ui", True )
-                    , ( "active", True )
+                    
                     ]
                 ]
 

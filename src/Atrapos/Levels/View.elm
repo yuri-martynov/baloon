@@ -27,7 +27,7 @@ level id { nodes, links } =
             [ class "pure-menu-link"
             , Level id |> url |> href
             ]
-            [ id |> toString |> text
+            [ id + 1 |> toString |> text
             , " (" |> text
             , nodes |> List.length |> toString |> text
             , "/" |> text

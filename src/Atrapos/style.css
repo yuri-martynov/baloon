@@ -261,12 +261,21 @@ body, html {
     fill: green;
 }
 
-.victory {
+.victory .percent {
     color: gold;
 }
 
-.overdraft {
-    color: red;
+.victory .link {
+    stroke: transparent;
+}
+
+.victory .link.selected {
+    stroke: gold;
+}
+
+
+.overdraft .link.selected {
+    stroke: red;
 }
 
 .reset {

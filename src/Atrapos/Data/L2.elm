@@ -1,4 +1,4 @@
-module Atrapos.Data.B exposing (model)
+module Atrapos.Data.L2 exposing (model)
 
 import Atrapos.Data.Model exposing (..)
 
