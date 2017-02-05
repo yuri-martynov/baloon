@@ -92,8 +92,9 @@ body, html {
     width: 60px;
     overflow: hidden;
     align-self: center;
-    margin-left: 15px;
+    margin-left: 20px;
     flex: 1;
+    font-size: x-large;
 }
 
 .game-name {
@@ -168,7 +169,8 @@ body, html {
 
 .link {
     stroke: whitesmoke;
-    stroke-dasharray: 0.2, 0.5;
+    stroke-dasharray: 0.1, 0.2;
+    opacity: 0.9;
     /*stroke: lightskyblue;*/
     stroke-width: 0.05;
     pointer-events: none;
@@ -177,7 +179,7 @@ body, html {
 
 .link.selected {
     stroke-width: 0.1;
-    stroke: lightblue;
+    stroke: #60E5FC;
     stroke-dasharray: none;
     transition: 0.2s;
 }
@@ -212,17 +214,19 @@ body, html {
 
 .orbit-2 {
     transform: scale(1.5) rotate(30deg);
+    display: none;
 }
 
 .orbit-3 {
     /*animation:spin 4s linear infinite;*/
-
     transform: scale(2);
     transition: all 0.2 ease-in-out;
+    display: none;
 }
 
 .orbit-4 {
     transform: scale(1.9) rotate(90deg);
+    display: none;
 }
 
 .orbit-3 .sputnik {
@@ -268,7 +272,7 @@ body, html {
 }
 
 .victory .percent {
-    color: gold;
+    color: orange;
 }
 
 .victory .link {
@@ -276,18 +280,56 @@ body, html {
 }
 
 .victory .link.selected {
-    stroke: gold;
+    stroke: orange;
 }
 
 .victory .game-field {
-    animation:spin-push 3s ease-in infinite;
+    animation:spin-push 5s ease-in infinite;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
 
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+.overdraft .game-field{
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
 
 .overdraft .link.selected {
+    stroke: #FF1111;
+    transition: stroke 2s;
+}
+
+.overdraft .selected .planet{
+    fill: white;
+    transition: fill 1s;
+}
+
+.overdraft .selected .orbit{
     stroke: red;
+    fill: #B9301B;
+}
+
+.overdraft .percent{
+    color: red;
 }
 
 .reset {
@@ -307,7 +349,7 @@ body, html {
 }
 
 .select {
-    stroke: green;
+    stroke: #60E5FC;
     stroke-width: 0.1;
 }
 
