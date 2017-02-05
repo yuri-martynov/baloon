@@ -92,8 +92,9 @@ body, html {
     width: 60px;
     overflow: hidden;
     align-self: center;
-    margin-left: 15px;
+    margin-left: 20px;
     flex: 1;
+    font-size: x-large;
 }
 
 .game-name {
@@ -288,6 +289,29 @@ body, html {
     animation-fill-mode: forwards;
 }
 
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+.overdraft .game-field{
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
 
 .overdraft .link.selected {
     stroke: #FF1111;
@@ -302,6 +326,10 @@ body, html {
 .overdraft .selected .orbit{
     stroke: red;
     fill: #B9301B;
+}
+
+.overdraft .percent{
+    color: red;
 }
 
 .reset {
