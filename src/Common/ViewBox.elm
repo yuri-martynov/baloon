@@ -57,9 +57,17 @@ center { padding, viewBoxSize, windowSize } =
 
 location_ : Model_ a -> (LeftTop, Size) -> Mouse.Position -> Location
 location_ { padding, windowSize } ({left, top}, { w, h }) { x, y } =
-    { x = (toFloat x - padding.left) * ( (w + left) / (toFloat windowSize.width - padding.left - padding.right))
-    , y = (toFloat y - padding.top) * ( (h+top) / (toFloat windowSize.height - padding.top - padding.bottom))
-    }
+    let
+        scaleX =
+            (w + 2 * left) / (toFloat windowSize.width - padding.left - padding.right)
+
+        scaleY = 
+            (h + 2 * top) / (toFloat windowSize.height - padding.top - padding.bottom)
+
+    in
+        { x = (toFloat x - padding.left ) * scaleX - left
+        , y = (toFloat y - padding.top  ) * scaleY - top
+        }
 
 
 fold_ a b =
