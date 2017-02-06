@@ -27,16 +27,17 @@ view { links, selection } id node =
                       ]
                         |> classList
                     ]
-        
-        (start, end) =
-            case selection of
-                Selection {lastNode} ->
-                    if lastNode == id then
-                        (True, False)
-                    else
-                        (False, id |> connectedWith links lastNode)
 
-                _ -> (False, False)
+        ( start, end ) =
+            case selection of
+                Selection { lastNode } ->
+                    if lastNode == id then
+                        ( True, False )
+                    else
+                        ( False, id |> connectedWith links lastNode )
+
+                _ ->
+                    ( False, False )
 
         orbits =
             List.range 1 connections
@@ -45,10 +46,10 @@ view { links, selection } id node =
         (planet :: orbits)
             |> g
                 [ translate node
-                , [ ( "selected", connections > 0 ) 
-                  , ( "selection-start", start)
-                  , ( "selection-end", end)
-                  ] 
+                , [ ( "selected", connections > 0 )
+                  , ( "selection-start", start )
+                  , ( "selection-end", end )
+                  ]
                     |> classList
                 ]
 
@@ -71,4 +72,4 @@ connectedWith links id1 id2 =
     links
         |> Dict.filter (always (not << .selected))
         |> Dict.values
-        |> List.any (\{node1, node2} -> (node1 == id1 && node2 == id2) || (node1 == id2 && node2 == id1) )
+        |> List.any (\{ node1, node2 } -> (node1 == id1 && node2 == id2) || (node1 == id2 && node2 == id1))

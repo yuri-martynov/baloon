@@ -24,8 +24,8 @@ init model =
     model |> center |> init_
 
 
-init_ : (LeftTop, Size) -> Attribute msg
-init_ ({left, top}, { w, h }) =
+init_ : ( LeftTop, Size ) -> Attribute msg
+init_ ( { left, top }, { w, h } ) =
     [ -left, -top, w, h ] |> List.foldl fold_ "" |> viewBox
 
 
@@ -38,7 +38,7 @@ location model mousePosition =
 -- PRIVATES ---------
 
 
-center : Model_ a -> (LeftTop, Size)
+center : Model_ a -> ( LeftTop, Size )
 center { padding, viewBoxSize, windowSize } =
     let
         aspectRation =
@@ -48,27 +48,30 @@ center { padding, viewBoxSize, windowSize } =
             viewBoxSize.w * aspectRation
     in
         if viewBoxSize.h > h then
-            ( { left = 0, top = 0 }
-            , { w = viewBoxSize.h / aspectRation, h = viewBoxSize.h }
-            )
+            let
+                w =
+                    viewBoxSize.h / aspectRation
+            in
+                ( { left = (w - viewBoxSize.w) / 2, top = 0 }
+                , { w = w, h = viewBoxSize.h }
+                )
         else
             ( { left = 0, top = (h - viewBoxSize.h) / 2 }
             , viewBoxSize
             )
 
 
-location_ : Model_ a -> (LeftTop, Size) -> Mouse.Position -> Location
-location_ { padding, windowSize } ({left, top}, { w, h }) { x, y } =
+location_ : Model_ a -> ( LeftTop, Size ) -> Mouse.Position -> Location
+location_ { padding, windowSize } ( { left, top }, { w, h } ) { x, y } =
     let
         scaleX =
             (w + 2 * left) / (toFloat windowSize.width - padding.left - padding.right)
 
-        scaleY = 
+        scaleY =
             (h + 2 * top) / (toFloat windowSize.height - padding.top - padding.bottom)
-
     in
-        { x = (toFloat x - padding.left ) * scaleX - left
-        , y = (toFloat y - padding.top  ) * scaleY - top
+        { x = (toFloat x - padding.left) * scaleX - left
+        , y = (toFloat y - padding.top) * scaleY - top
         }
 
 
