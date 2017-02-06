@@ -14101,6 +14101,9 @@ var _user$project$Atrapos_Game_Model$Selection = function (a) {
 };
 var _user$project$Atrapos_Game_Model$None = {ctor: 'None'};
 
+var _user$project$Atrapos_Game_Msg$Finished = function (a) {
+	return {ctor: 'Finished', _0: a};
+};
 var _user$project$Atrapos_Game_Msg$Menu = {ctor: 'Menu'};
 var _user$project$Atrapos_Game_Msg$WindowSizeChanged = function (a) {
 	return {ctor: 'WindowSizeChanged', _0: a};
@@ -14359,8 +14362,8 @@ var _user$project$Atrapos_Game_Link_Init$init = F3(
 		};
 	});
 
-var _user$project$Atrapos_Game_Init$init_ = F2(
-	function (s, _p0) {
+var _user$project$Atrapos_Game_Init$init_ = F3(
+	function (id, s, _p0) {
 		var _p1 = _p0;
 		var _p8 = _p1.nodes;
 		var offset = 1;
@@ -14443,7 +14446,8 @@ var _user$project$Atrapos_Game_Init$init_ = F2(
 					minLen: minLen,
 					victory: false,
 					selection: _user$project$Atrapos_Game_Model$None,
-					menu: false
+					menu: false,
+					levelId: id
 				}),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
@@ -15411,15 +15415,35 @@ var _user$project$Atrapos_Game_UI$view = F2(
 			});
 	});
 
-var _user$project$Atrapos_Game_Update$selection = F2(
-	function (msg, model) {
-		return {
-			ctor: '_Tuple2',
-			_0: _user$project$Atrapos_Game_Shared$victory(
-				A2(_user$project$Atrapos_Game_Selection_Update$update, msg, model)),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
+var _user$project$Common_Time$delay = F2(
+	function (time, msg) {
+		return A2(
+			_elm_lang$core$Task$perform,
+			_elm_lang$core$Basics$identity,
+			A2(
+				_elm_lang$core$Task$andThen,
+				_elm_lang$core$Basics$always(
+					_elm_lang$core$Task$succeed(msg)),
+				_elm_lang$core$Process$sleep(time)));
 	});
+
+var _user$project$Atrapos_Game_Update$checkVictory = function (model) {
+	var nextModel = _user$project$Atrapos_Game_Shared$victory(model);
+	return nextModel.victory ? A2(
+		_elm_lang$core$Platform_Cmd_ops['!'],
+		nextModel,
+		{
+			ctor: '::',
+			_0: A2(
+				_user$project$Common_Time$delay,
+				3 * _elm_lang$core$Time$second,
+				_user$project$Atrapos_Game_Msg$Finished(model.levelId)),
+			_1: {ctor: '[]'}
+		}) : A2(
+		_elm_lang$core$Platform_Cmd_ops['!'],
+		nextModel,
+		{ctor: '[]'});
+};
 var _user$project$Atrapos_Game_Update$update_ = F2(
 	function (msg, _p0) {
 		var _p1 = _p0;
@@ -15455,13 +15479,11 @@ var _user$project$Atrapos_Game_Update$update_ = F2(
 						}),
 					{ctor: '[]'});
 			case 'Help':
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					_user$project$Atrapos_Game_Shared$victory(
-						_user$project$Atrapos_Game_Solution$apply(_p3)),
-					{ctor: '[]'});
+				return _user$project$Atrapos_Game_Update$checkVictory(
+					_user$project$Atrapos_Game_Solution$apply(_p3));
 			case 'Mouse':
-				return A2(_user$project$Atrapos_Game_Update$selection, _p2._0, _p3);
+				return _user$project$Atrapos_Game_Update$checkVictory(
+					A2(_user$project$Atrapos_Game_Selection_Update$update, _p2._0, _p3));
 			default:
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
@@ -15477,17 +15499,19 @@ var _user$project$Atrapos_Game_Update$update = F2(
 			if (_p4.ctor === '_Tuple2') {
 				if (_p4._1.ctor === 'Loading') {
 					if (_p4._0.ctor === 'Init') {
-						return A2(
+						var _p5 = _p4._1._0;
+						return A3(
 							_user$project$Atrapos_Game_Init$init_,
+							_p5,
 							_p4._0._0,
-							A2(_user$project$Common_Dict_ops['#'], _user$project$Atrapos_Data_Levels$model, _p4._1._0));
+							A2(_user$project$Common_Dict_ops['#'], _user$project$Atrapos_Data_Levels$model, _p5));
 					} else {
 						break _v2_2;
 					}
 				} else {
-					var _p5 = A2(_user$project$Atrapos_Game_Update$update_, msg, _p4._1._0);
-					var model_ = _p5._0;
-					var cmd = _p5._1;
+					var _p6 = A2(_user$project$Atrapos_Game_Update$update_, msg, _p4._1._0);
+					var model_ = _p6._0;
+					var cmd = _p6._1;
 					return {
 						ctor: '_Tuple2',
 						_0: _user$project$Atrapos_Game_Model$Loaded(model_),
@@ -15501,8 +15525,8 @@ var _user$project$Atrapos_Game_Update$update = F2(
 		return _elm_lang$core$Native_Utils.crashCase(
 			'Atrapos.Game.Update',
 			{
-				start: {line: 17, column: 5},
-				end: {line: 29, column: 48}
+				start: {line: 19, column: 5},
+				end: {line: 31, column: 48}
 			},
 			_p4)('game update not found');
 	});
@@ -15870,7 +15894,7 @@ var _user$project$Atrapos_Levels_View$view = function (_p2) {
 var _user$project$Atrapos_Update$update = F2(
 	function (msg, model) {
 		var _p0 = {ctor: '_Tuple2', _0: model, _1: msg};
-		_v0_3:
+		_v0_4:
 		do {
 			if (_p0.ctor === '_Tuple2') {
 				switch (_p0._1.ctor) {
@@ -15878,13 +15902,32 @@ var _user$project$Atrapos_Update$update = F2(
 						return _user$project$Atrapos_Init$init(_p0._1._0);
 					case 'GameMsg':
 						if (_p0._0.ctor === 'Game') {
-							return A3(
-								_bloom$elm_return$Return$mapBoth,
-								_user$project$Atrapos_Msg$GameMsg,
-								_user$project$Atrapos_Model$Game,
-								A2(_user$project$Atrapos_Game_Update$update, _p0._1._0, _p0._0._0));
+							if (_p0._1._0.ctor === 'Finished') {
+								var next = _p0._1._0._0 + 1;
+								return A2(_elm_lang$core$Dict$member, next, _user$project$Atrapos_Data_Levels$model) ? A2(
+									_elm_lang$core$Platform_Cmd_ops['!'],
+									model,
+									{
+										ctor: '::',
+										_0: _elm_lang$navigation$Navigation$newUrl(
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												'#levels/',
+												_elm_lang$core$Basics$toString(next))),
+										_1: {ctor: '[]'}
+									}) : A2(
+									_elm_lang$core$Platform_Cmd_ops['!'],
+									model,
+									{ctor: '[]'});
+							} else {
+								return A3(
+									_bloom$elm_return$Return$mapBoth,
+									_user$project$Atrapos_Msg$GameMsg,
+									_user$project$Atrapos_Model$Game,
+									A2(_user$project$Atrapos_Game_Update$update, _p0._1._0, _p0._0._0));
+							}
 						} else {
-							break _v0_3;
+							break _v0_4;
 						}
 					default:
 						if (_p0._0.ctor === 'Levels') {
@@ -15894,11 +15937,11 @@ var _user$project$Atrapos_Update$update = F2(
 								_user$project$Atrapos_Model$Levels,
 								A2(_user$project$Atrapos_Levels_Update$update, _p0._1._0, _p0._0._0));
 						} else {
-							break _v0_3;
+							break _v0_4;
 						}
 				}
 			} else {
-				break _v0_3;
+				break _v0_4;
 			}
 		} while(false);
 		return A2(

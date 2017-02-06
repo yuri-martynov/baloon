@@ -294,7 +294,7 @@ body, html {
 }
 
 .victory .game-field {
-    animation:spin-push 5s ease-in infinite;
+    animation:spin-push 3s ease-in infinite;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }

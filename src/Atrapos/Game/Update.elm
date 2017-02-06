@@ -1,7 +1,9 @@
 module Atrapos.Game.Update exposing (update)
 
 import Dict
+import Time as Time
 import Common.Dict exposing ((#))
+import Common.Time as Time
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Solution as Solution
@@ -16,7 +18,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case ( msg, model ) of
         ( Init size, Loading id ) ->
-            init_ size (Data.model # id)
+            init_ id size  (Data.model # id)
 
         ( _, Loaded model ) ->
             let
@@ -47,14 +49,20 @@ update_ msg ({ nodes, links, menu } as model) =
                 ! []
 
         Help ->
-            (model |> Solution.apply |> victory) ! []
+            model |> Solution.apply |> checkVictory
 
         Mouse msg ->
-            selection msg model
+            model |> Selection.update msg |> checkVictory
 
         _ ->
             model ! []
 
 
-selection msg model =
-    ( Selection.update msg model |> victory, Cmd.none )
+checkVictory model =
+    let 
+        nextModel = model |> victory
+    in
+        if nextModel.victory then
+            nextModel ! [ Finished model.levelId |> Time.delay (3 * Time.second) ]
+        else
+            nextModel ! []

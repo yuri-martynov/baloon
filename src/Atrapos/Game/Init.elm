@@ -20,8 +20,8 @@ init id =
     )
 
 
-init_ : Window.Size -> Data.Model -> ( Model, Cmd Msg )
-init_ s { nodes, links } =
+init_ : Data.Id -> Window.Size -> Data.Model -> ( Model, Cmd Msg )
+init_ id s { nodes, links } =
     let
         minX =
             nodes |> List.map Tuple.first |> List.minimum |> Maybe.return
@@ -75,6 +75,7 @@ init_ s { nodes, links } =
           , victory = False
           , selection = None
           , menu = False
+          , levelId = id
           }
             -- |> Solution.apply
             |>
