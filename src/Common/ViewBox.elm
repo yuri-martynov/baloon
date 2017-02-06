@@ -65,7 +65,7 @@ location_ : Model_ a -> ( LeftTop, Size ) -> Mouse.Position -> Location
 location_ { padding, windowSize } ( { left, top }, { w, h } ) { x, y } =
     let
         scaleX =
-            (w + 2 * left) / (toFloat windowSize.width - padding.left - padding.right)
+            w / (toFloat windowSize.width - padding.left - padding.right)
 
         scaleY =
             (h + 2 * top) / (toFloat windowSize.height - padding.top - padding.bottom)

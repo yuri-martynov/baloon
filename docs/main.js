@@ -14015,38 +14015,37 @@ var _user$project$Common_ViewBox$fold_ = F2(
 var _user$project$Common_ViewBox$location_ = F3(
 	function (_p2, _p1, _p0) {
 		var _p3 = _p2;
-		var _p9 = _p3.windowSize;
-		var _p8 = _p3.padding;
+		var _p8 = _p3.windowSize;
+		var _p7 = _p3.padding;
 		var _p4 = _p1;
-		var _p7 = _p4._0.top;
-		var _p6 = _p4._0.left;
+		var _p6 = _p4._0.top;
 		var _p5 = _p0;
-		var scaleY = (_p4._1.h + (2 * _p7)) / ((_elm_lang$core$Basics$toFloat(_p9.height) - _p8.top) - _p8.bottom);
-		var scaleX = (_p4._1.w + (2 * _p6)) / ((_elm_lang$core$Basics$toFloat(_p9.width) - _p8.left) - _p8.right);
+		var scaleY = (_p4._1.h + (2 * _p6)) / ((_elm_lang$core$Basics$toFloat(_p8.height) - _p7.top) - _p7.bottom);
+		var scaleX = _p4._1.w / ((_elm_lang$core$Basics$toFloat(_p8.width) - _p7.left) - _p7.right);
 		return {
-			x: ((_elm_lang$core$Basics$toFloat(_p5.x) - _p8.left) * scaleX) - _p6,
-			y: ((_elm_lang$core$Basics$toFloat(_p5.y) - _p8.top) * scaleY) - _p7
+			x: ((_elm_lang$core$Basics$toFloat(_p5.x) - _p7.left) * scaleX) - _p4._0.left,
+			y: ((_elm_lang$core$Basics$toFloat(_p5.y) - _p7.top) * scaleY) - _p6
 		};
 	});
-var _user$project$Common_ViewBox$center = function (_p10) {
-	var _p11 = _p10;
-	var _p14 = _p11.windowSize;
-	var _p13 = _p11.viewBoxSize;
-	var _p12 = _p11.padding;
-	var aspectRation = ((_elm_lang$core$Basics$toFloat(_p14.height) - _p12.top) - _p12.bottom) / ((_elm_lang$core$Basics$toFloat(_p14.width) - _p12.left) - _p12.right);
-	var h = _p13.w * aspectRation;
-	if (_elm_lang$core$Native_Utils.cmp(_p13.h, h) > 0) {
-		var w = _p13.h / aspectRation;
+var _user$project$Common_ViewBox$center = function (_p9) {
+	var _p10 = _p9;
+	var _p13 = _p10.windowSize;
+	var _p12 = _p10.viewBoxSize;
+	var _p11 = _p10.padding;
+	var aspectRation = ((_elm_lang$core$Basics$toFloat(_p13.height) - _p11.top) - _p11.bottom) / ((_elm_lang$core$Basics$toFloat(_p13.width) - _p11.left) - _p11.right);
+	var h = _p12.w * aspectRation;
+	if (_elm_lang$core$Native_Utils.cmp(_p12.h, h) > 0) {
+		var w = _p12.h / aspectRation;
 		return {
 			ctor: '_Tuple2',
-			_0: {left: (w - _p13.w) / 2, top: 0},
-			_1: {w: w, h: _p13.h}
+			_0: {left: (w - _p12.w) / 2, top: 0},
+			_1: {w: w, h: _p12.h}
 		};
 	} else {
 		return {
 			ctor: '_Tuple2',
-			_0: {left: 0, top: (h - _p13.h) / 2},
-			_1: _p13
+			_0: {left: 0, top: (h - _p12.h) / 2},
+			_1: _p12
 		};
 	}
 };
@@ -14058,8 +14057,8 @@ var _user$project$Common_ViewBox$location = F2(
 			_user$project$Common_ViewBox$center(model),
 			mousePosition);
 	});
-var _user$project$Common_ViewBox$init_ = function (_p15) {
-	var _p16 = _p15;
+var _user$project$Common_ViewBox$init_ = function (_p14) {
+	var _p15 = _p14;
 	return _elm_lang$svg$Svg_Attributes$viewBox(
 		A3(
 			_elm_lang$core$List$foldl,
@@ -14067,16 +14066,16 @@ var _user$project$Common_ViewBox$init_ = function (_p15) {
 			'',
 			{
 				ctor: '::',
-				_0: 0 - _p16._0.left,
+				_0: 0 - _p15._0.left,
 				_1: {
 					ctor: '::',
-					_0: 0 - _p16._0.top,
+					_0: 0 - _p15._0.top,
 					_1: {
 						ctor: '::',
-						_0: _p16._1.w,
+						_0: _p15._1.w,
 						_1: {
 							ctor: '::',
-							_0: _p16._1.h,
+							_0: _p15._1.h,
 							_1: {ctor: '[]'}
 						}
 					}
