@@ -46,13 +46,15 @@ center { padding, viewBoxSize, windowSize } =
 
         h =
             viewBoxSize.w * aspectRation
-
-        leftTop =
-            { left = 0.0
-            , top = (h - viewBoxSize.h) / 2
-            }
     in
-        (leftTop, viewBoxSize)
+        if viewBoxSize.h > h then
+            ( { left = 0, top = 0 }
+            , { w = viewBoxSize.h / aspectRation, h = viewBoxSize.h }
+            )
+        else
+            ( { left = 0, top = (h - viewBoxSize.h) / 2 }
+            , viewBoxSize
+            )
 
 
 location_ : Model_ a -> (LeftTop, Size) -> Mouse.Position -> Location

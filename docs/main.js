@@ -14035,8 +14035,15 @@ var _user$project$Common_ViewBox$center = function (_p10) {
 	var _p12 = _p11.padding;
 	var aspectRation = ((_elm_lang$core$Basics$toFloat(_p14.height) - _p12.top) - _p12.bottom) / ((_elm_lang$core$Basics$toFloat(_p14.width) - _p12.left) - _p12.right);
 	var h = _p13.w * aspectRation;
-	var leftTop = {left: 0.0, top: (h - _p13.h) / 2};
-	return {ctor: '_Tuple2', _0: leftTop, _1: _p13};
+	return (_elm_lang$core$Native_Utils.cmp(_p13.h, h) > 0) ? {
+		ctor: '_Tuple2',
+		_0: {left: 0, top: 0},
+		_1: {w: _p13.h / aspectRation, h: _p13.h}
+	} : {
+		ctor: '_Tuple2',
+		_0: {left: 0, top: (h - _p13.h) / 2},
+		_1: _p13
+	};
 };
 var _user$project$Common_ViewBox$location = F2(
 	function (model, mousePosition) {
