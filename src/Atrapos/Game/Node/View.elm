@@ -9,7 +9,7 @@ import Common.Transform exposing (translate)
 
 
 view : Model_ -> NodeId -> Node -> Svg msg
-view { links } id node =
+view { links, selection } id node =
     let
         connections =
             connected links id
