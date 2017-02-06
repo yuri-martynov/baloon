@@ -50,13 +50,20 @@ type alias Circle_ a =
 
 
 type alias Padding_ a =
+    LeftTop_ 
+        { a
+            | right : Float
+            , bottom : Float
+        }
+
+
+type alias LeftTop_ a =
     { a
-        | left : Float
-        , top : Float
-        , right : Float
-        , bottom : Float
+        | left: Float
+        , top: Float
     }
 
+type alias LeftTop = LeftTop_ {}
 
 type alias Padding =
     Padding_ {}

@@ -14020,34 +14020,30 @@ var _user$project$Common_ViewBox$location_ = F3(
 		var _p4 = _p1;
 		var _p5 = _p0;
 		return {
-			x: (_elm_lang$core$Basics$toFloat(_p5.x) - _p6.left) * (_p4.w / ((_elm_lang$core$Basics$toFloat(_p7.width) - _p6.left) - _p6.right)),
-			y: (_elm_lang$core$Basics$toFloat(_p5.y) - _p6.top) * (_p4.h / ((_elm_lang$core$Basics$toFloat(_p7.height) - _p6.top) - _p6.bottom))
+			x: (_elm_lang$core$Basics$toFloat(_p5.x) - _p6.left) * ((_p4._1.w + _p4._0.left) / ((_elm_lang$core$Basics$toFloat(_p7.width) - _p6.left) - _p6.right)),
+			y: (_elm_lang$core$Basics$toFloat(_p5.y) - _p6.top) * ((_p4._1.h + _p4._0.top) / ((_elm_lang$core$Basics$toFloat(_p7.height) - _p6.top) - _p6.bottom))
 		};
 	});
-var _user$project$Common_ViewBox$size = function (_p8) {
+var _user$project$Common_ViewBox$center = function (_p8) {
 	var _p9 = _p8;
-	var _p14 = _p9.windowSize;
-	var _p13 = _p9.viewBoxSize;
-	var _p12 = _p9.padding;
-	var aspectRation = ((_elm_lang$core$Basics$toFloat(_p14.height) - _p12.top) - _p12.bottom) / ((_elm_lang$core$Basics$toFloat(_p14.width) - _p12.left) - _p12.right);
-	var viewBoxHeight = _p13.w * aspectRation;
-	var downScale = function (_p10) {
-		var _p11 = _p10;
-		return (_elm_lang$core$Native_Utils.cmp(_p11.h, _p13.h) < 0) ? {w: _p13.h / aspectRation, h: _p13.h} : _p11;
-	};
-	return downScale(
-		{w: _p13.w, h: viewBoxHeight});
+	var _p12 = _p9.windowSize;
+	var _p11 = _p9.viewBoxSize;
+	var _p10 = _p9.padding;
+	var aspectRation = ((_elm_lang$core$Basics$toFloat(_p12.height) - _p10.top) - _p10.bottom) / ((_elm_lang$core$Basics$toFloat(_p12.width) - _p10.left) - _p10.right);
+	var h = _p11.w * aspectRation;
+	var leftTop = {left: 0.0, top: (h - _p11.h) / 2};
+	return {ctor: '_Tuple2', _0: leftTop, _1: _p11};
 };
 var _user$project$Common_ViewBox$location = F2(
 	function (model, mousePosition) {
 		return A3(
 			_user$project$Common_ViewBox$location_,
 			model,
-			_user$project$Common_ViewBox$size(model),
+			_user$project$Common_ViewBox$center(model),
 			mousePosition);
 	});
-var _user$project$Common_ViewBox$init_ = function (_p15) {
-	var _p16 = _p15;
+var _user$project$Common_ViewBox$init_ = function (_p13) {
+	var _p14 = _p13;
 	return _elm_lang$svg$Svg_Attributes$viewBox(
 		A3(
 			_elm_lang$core$List$foldl,
@@ -14055,16 +14051,16 @@ var _user$project$Common_ViewBox$init_ = function (_p15) {
 			'',
 			{
 				ctor: '::',
-				_0: 0.0,
+				_0: 0 - _p14._0.left,
 				_1: {
 					ctor: '::',
-					_0: 0.0,
+					_0: 0 - _p14._0.top,
 					_1: {
 						ctor: '::',
-						_0: _p16.w,
+						_0: _p14._1.w,
 						_1: {
 							ctor: '::',
-							_0: _p16.h,
+							_0: _p14._1.h,
 							_1: {ctor: '[]'}
 						}
 					}
@@ -14073,7 +14069,7 @@ var _user$project$Common_ViewBox$init_ = function (_p15) {
 };
 var _user$project$Common_ViewBox$init = function (model) {
 	return _user$project$Common_ViewBox$init_(
-		_user$project$Common_ViewBox$size(model));
+		_user$project$Common_ViewBox$center(model));
 };
 
 var _user$project$Atrapos_Game_Model$Loaded = function (a) {
@@ -14621,14 +14617,35 @@ var _user$project$Common_Transform$translate = function (_p0) {
 						')')))));
 };
 
+var _user$project$Atrapos_Game_Node_View$connectedWith = F3(
+	function (links, id1, id2) {
+		return A2(
+			_elm_lang$core$List$any,
+			function (_p0) {
+				var _p1 = _p0;
+				var _p3 = _p1.node2;
+				var _p2 = _p1.node1;
+				return (_elm_lang$core$Native_Utils.eq(_p2, id1) && _elm_lang$core$Native_Utils.eq(_p3, id2)) || (_elm_lang$core$Native_Utils.eq(_p2, id2) && _elm_lang$core$Native_Utils.eq(_p3, id1));
+			},
+			_elm_lang$core$Dict$values(
+				A2(
+					_elm_lang$core$Dict$filter,
+					_elm_lang$core$Basics$always(
+						function (_p4) {
+							return !function (_) {
+								return _.selected;
+							}(_p4);
+						}),
+					links)));
+	});
 var _user$project$Atrapos_Game_Node_View$connected = F2(
 	function (links, id) {
 		return _elm_lang$core$List$length(
 			A2(
 				_elm_lang$core$List$filter,
-				function (_p0) {
-					var _p1 = _p0;
-					return _elm_lang$core$Native_Utils.eq(_p1.node1, id) || _elm_lang$core$Native_Utils.eq(_p1.node2, id);
+				function (_p5) {
+					var _p6 = _p5;
+					return _elm_lang$core$Native_Utils.eq(_p6.node1, id) || _elm_lang$core$Native_Utils.eq(_p6.node2, id);
 				},
 				_elm_lang$core$Dict$values(
 					A2(
@@ -14640,8 +14657,24 @@ var _user$project$Atrapos_Game_Node_View$connected = F2(
 						links))));
 	});
 var _user$project$Atrapos_Game_Node_View$view = F3(
-	function (_p2, id, node) {
-		var _p3 = _p2;
+	function (_p7, id, node) {
+		var _p8 = _p7;
+		var _p12 = _p8.links;
+		var _p9 = function () {
+			var _p10 = _p8.selection;
+			if (_p10.ctor === 'Selection') {
+				var _p11 = _p10._0.lastNode;
+				return _elm_lang$core$Native_Utils.eq(_p11, id) ? {ctor: '_Tuple2', _0: true, _1: false} : {
+					ctor: '_Tuple2',
+					_0: false,
+					_1: A3(_user$project$Atrapos_Game_Node_View$connectedWith, _p12, _p11, id)
+				};
+			} else {
+				return {ctor: '_Tuple2', _0: false, _1: false};
+			}
+		}();
+		var start = _p9._0;
+		var end = _p9._1;
 		var orbit = function (n) {
 			return A2(
 				_elm_lang$svg$Svg$g,
@@ -14710,7 +14743,7 @@ var _user$project$Atrapos_Game_Node_View$view = F3(
 				}
 			},
 			{ctor: '[]'});
-		var connections = A2(_user$project$Atrapos_Game_Node_View$connected, _p3.links, id);
+		var connections = A2(_user$project$Atrapos_Game_Node_View$connected, _p12, id);
 		var orbits = A2(
 			_elm_lang$core$List$map,
 			orbit,
@@ -14730,7 +14763,15 @@ var _user$project$Atrapos_Game_Node_View$view = F3(
 								_0: 'selected',
 								_1: _elm_lang$core$Native_Utils.cmp(connections, 0) > 0
 							},
-							_1: {ctor: '[]'}
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'selection-start', _1: start},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'selection-end', _1: end},
+									_1: {ctor: '[]'}
+								}
+							}
 						}),
 					_1: {ctor: '[]'}
 				}

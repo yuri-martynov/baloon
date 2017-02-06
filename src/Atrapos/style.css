@@ -19,6 +19,7 @@ body, html {
 .container {
     background: url(BG-2.png) no-repeat center center fixed;
     background-size: cover;
+    height: 100%;
 }
 
 .map-header {
@@ -194,6 +195,15 @@ body, html {
     animation-fill-mode: both;
     fill: #58E5FF;
 }
+
+.selection-start .planet {
+    fill: yellow;
+}
+
+.selection-end .planet {
+    fill: green;
+}
+
 
 .planet {
     fill: orangered;
