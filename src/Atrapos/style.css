@@ -197,11 +197,13 @@ body, html {
 }
 
 .selection-start .planet {
-    fill: yellow;
+    fill: mediumpurple;
 }
 
 .selection-end .planet {
-    fill: green;
+    fill: whitesmoke;
+    transform: scale(0.5);
+    transition: all 0.2s ease-in;
 }
 
 
