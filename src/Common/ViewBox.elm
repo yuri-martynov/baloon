@@ -41,37 +41,51 @@ location model mousePosition =
 center : Model_ a -> ( LeftTop, Size )
 center { padding, viewBoxSize, windowSize } =
     let
-        aspectRation =
-            (toFloat windowSize.height - padding.top - padding.bottom) / (toFloat windowSize.width - padding.left - padding.right)
+        height =
+            toFloat windowSize.height - padding.top - padding.bottom
 
-        h =
-            viewBoxSize.w * aspectRation
+        width = 
+            toFloat windowSize.width - padding.left - padding.right
+
+        scaleX =
+             viewBoxSize.w / width
+
+        scaleY =
+             viewBoxSize.h / height
+
+        left =
+            padding.left * scaleX
+
+        top = 
+            padding.top * scaleY
+
+        a = height / width
+
+        w = viewBoxSize.w + (padding.left + padding.right) * scaleX
     in
-        if viewBoxSize.h > h then
-            let
-                w =
-                    viewBoxSize.h / aspectRation
-            in
-                ( { left = (w - viewBoxSize.w) / 2, top = 0 }
-                , { w = w, h = viewBoxSize.h }
-                )
-        else
-            ( { left = 0, top = (h - viewBoxSize.h) / 2 }
-            , viewBoxSize
-            )
+        ( {left = left, top = top}
+        , {w = w, h = w * a}
+        )
+
 
 
 location_ : Model_ a -> ( LeftTop, Size ) -> Mouse.Position -> Location
 location_ { padding, windowSize } ( { left, top }, { w, h } ) { x, y } =
     let
+        height =
+            toFloat windowSize.height 
+
+        width = 
+            toFloat windowSize.width 
+
         scaleX =
-            w / (toFloat windowSize.width - padding.left - padding.right)
+             w / width
 
         scaleY =
-            (h + 2 * top) / (toFloat windowSize.height - padding.top - padding.bottom)
+            h  / height
     in
-        { x = (toFloat x - padding.left) * scaleX - left
-        , y = (toFloat y - padding.top) * scaleY - top
+        { x = (toFloat x - padding.left ) * scaleX 
+        , y = (toFloat y - padding.top ) * scaleY
         }
 
 
