@@ -28,6 +28,12 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+
+        StatusBar.hide();
+if (typeof AndroidFullScreen !== 'undefined') {   // Fullscreen plugin exists ?
+  function errorFunction(error) { console.error(error); }
+  AndroidFullScreen.isSupported(AndroidFullScreen.immersiveMode, errorFunction);
+}
     },
 
     // Update DOM on a Received Event
