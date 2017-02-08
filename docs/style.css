@@ -168,6 +168,10 @@ body, html {
     transition: 0.2s;
 }
 
+.menu-popup a{
+    text-decoration: none;
+}
+
 .link {
     stroke: whitesmoke;
     stroke-dasharray: 0.1, 0.2;
