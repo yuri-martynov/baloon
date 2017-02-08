@@ -16,6 +16,10 @@ type alias Size =
     Size_ {}
 
 
+type alias Scale_ a =
+    { a | scale : Float }
+
+
 type alias Angle_ a =
     { a | angle : Float }
 
@@ -50,12 +54,22 @@ type alias Circle_ a =
 
 
 type alias Padding_ a =
+    LeftTop_
+        { a
+            | right : Float
+            , bottom : Float
+        }
+
+
+type alias LeftTop_ a =
     { a
         | left : Float
         , top : Float
-        , right : Float
-        , bottom : Float
     }
+
+
+type alias LeftTop =
+    LeftTop_ {}
 
 
 type alias Padding =

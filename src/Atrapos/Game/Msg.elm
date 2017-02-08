@@ -2,6 +2,7 @@ module Atrapos.Game.Msg exposing (..)
 
 import Window
 import Common.Types exposing (Location)
+import Atrapos.Data.Model as Level
 
 
 type Msg
@@ -11,6 +12,7 @@ type Msg
     | Mouse MouseMsg
     | WindowSizeChanged Window.Size
     | Menu
+    | Finished Level.Id
 
 
 type MouseMsg

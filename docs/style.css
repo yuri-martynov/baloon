@@ -19,6 +19,7 @@ body, html {
 .container {
     background: url(BG-2.png) no-repeat center center fixed;
     background-size: cover;
+    height: 100%;
 }
 
 .map-header {
@@ -57,7 +58,7 @@ body, html {
 }
 
 .game-field {
-    margin: 75px 25px 25px 25px;
+    /*margin: 75px 25px 25px 25px;*/
     overflow: visible;
 }
 
@@ -92,8 +93,9 @@ body, html {
     width: 60px;
     overflow: hidden;
     align-self: center;
-    margin-left: 15px;
+    margin-left: 20px;
     flex: 1;
+    font-size: x-large;
 }
 
 .game-name {
@@ -166,9 +168,14 @@ body, html {
     transition: 0.2s;
 }
 
+.menu-popup a{
+    text-decoration: none;
+}
+
 .link {
     stroke: whitesmoke;
-    stroke-dasharray: 0.2, 0.5;
+    stroke-dasharray: 0.1, 0.2;
+    opacity: 0.9;
     /*stroke: lightskyblue;*/
     stroke-width: 0.05;
     pointer-events: none;
@@ -177,7 +184,7 @@ body, html {
 
 .link.selected {
     stroke-width: 0.1;
-    stroke: lightblue;
+    stroke: #60E5FC;
     stroke-dasharray: none;
     transition: 0.2s;
 }
@@ -192,6 +199,17 @@ body, html {
     animation-fill-mode: both;
     fill: #58E5FF;
 }
+
+.selection-start .planet {
+    fill: mediumpurple;
+}
+
+.selection-end .planet {
+    fill: whitesmoke;
+    transform: scale(0.5);
+    transition: all 0.2s ease-in;
+}
+
 
 .planet {
     fill: orangered;
@@ -212,17 +230,19 @@ body, html {
 
 .orbit-2 {
     transform: scale(1.5) rotate(30deg);
+    display: none;
 }
 
 .orbit-3 {
     /*animation:spin 4s linear infinite;*/
-
     transform: scale(2);
     transition: all 0.2 ease-in-out;
+    display: none;
 }
 
 .orbit-4 {
     transform: scale(1.9) rotate(90deg);
+    display: none;
 }
 
 .orbit-3 .sputnik {
@@ -237,6 +257,13 @@ body, html {
     fill-opacity: 0.3;
     transition: stroke 1.5s, fill 1s;
     filter: drop-shadow( -5px -5px 5px pink);
+}
+
+
+.selected.selection-start .orbit.orbit-1{
+    fill: mediumpurple;
+    fill-opacity: 0.6;
+    stroke: mediumpurple;
 }
 
 @keyframes orbit {
@@ -268,7 +295,7 @@ body, html {
 }
 
 .victory .percent {
-    color: gold;
+    color: orange;
 }
 
 .victory .link {
@@ -276,7 +303,7 @@ body, html {
 }
 
 .victory .link.selected {
-    stroke: gold;
+    stroke: orange;
 }
 
 .victory .game-field {
@@ -285,9 +312,47 @@ body, html {
     animation-fill-mode: forwards;
 }
 
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+.overdraft .game-field{
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
 
 .overdraft .link.selected {
+    stroke: #FF1111;
+    transition: stroke 2s;
+}
+
+.overdraft .selected .planet{
+    fill: white;
+    transition: fill 1s;
+}
+
+.overdraft .selected .orbit{
     stroke: red;
+    fill: #B9301B;
+}
+
+.overdraft .percent{
+    color: red;
 }
 
 .reset {
@@ -307,7 +372,7 @@ body, html {
 }
 
 .select {
-    stroke: green;
+    stroke: #60E5FC;
     stroke-width: 0.1;
 }
 

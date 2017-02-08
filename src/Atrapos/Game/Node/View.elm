@@ -9,7 +9,7 @@ import Common.Transform exposing (translate)
 
 
 view : Model_ -> NodeId -> Node -> Svg msg
-view { links } id node =
+view { links, selection } id node =
     let
         connections =
             connected links id
@@ -28,6 +28,17 @@ view { links } id node =
                         |> classList
                     ]
 
+        ( start, end ) =
+            case selection of
+                Selection { lastNode } ->
+                    if lastNode == id then
+                        ( True, False )
+                    else
+                        ( False, id |> connectedWith links lastNode )
+
+                _ ->
+                    ( False, False )
+
         orbits =
             List.range 1 connections
                 |> List.map orbit
@@ -35,7 +46,11 @@ view { links } id node =
         (planet :: orbits)
             |> g
                 [ translate node
-                , [ ( "selected", connections > 0 ) ] |> classList
+                , [ ( "selected", connections > 0 )
+                  , ( "selection-start", start )
+                  , ( "selection-end", end )
+                  ]
+                    |> classList
                 ]
 
 
@@ -50,3 +65,11 @@ connected links id =
         |> Dict.values
         |> List.filter (\{ node1, node2 } -> node1 == id || node2 == id)
         |> List.length
+
+
+connectedWith : Links -> NodeId -> NodeId -> Bool
+connectedWith links id1 id2 =
+    links
+        |> Dict.filter (always (not << .selected))
+        |> Dict.values
+        |> List.any (\{ node1, node2 } -> (node1 == id1 && node2 == id2) || (node1 == id2 && node2 == id1))

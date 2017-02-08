@@ -20,8 +20,8 @@ init id =
     )
 
 
-init_ : Window.Size -> Data.Model -> ( Model, Cmd Msg )
-init_ s { nodes, links } =
+init_ : Data.Id -> Window.Size -> Data.Model -> ( Model, Cmd Msg )
+init_ id s { nodes, links } =
     let
         minX =
             nodes |> List.map Tuple.first |> List.minimum |> Maybe.return
@@ -29,16 +29,13 @@ init_ s { nodes, links } =
         minY =
             nodes |> List.map Tuple.second |> List.minimum |> Maybe.return
 
-        offset =
-            1
-
         nodes_ =
             nodes
                 |> List.indexedMap
                     (\i ( x, y ) ->
                         ( i + 1
-                        , { x = toFloat <| x - minX + offset
-                          , y = toFloat <| y - minY + offset
+                        , { x = toFloat <| x - minX 
+                          , y = toFloat <| y - minY 
                           }
                         )
                     )
@@ -64,10 +61,10 @@ init_ s { nodes, links } =
             nodes_ |> Dict.toList |> List.map (Tuple.second >> .y) |> List.maximum |> Maybe.return
 
         viewBoxSize =
-            { w = maxX + offset, h = maxY + offset }
+            { w = maxX , h = maxY }
     in
         ( { windowSize = s
-          , padding = { left = 25, top = 75, right = 25, bottom = 25 }
+          , padding = { left = 50, top = 100, right = 50, bottom = 50 }
           , viewBoxSize = viewBoxSize
           , nodes = nodes_
           , links = links_
@@ -75,6 +72,7 @@ init_ s { nodes, links } =
           , victory = False
           , selection = None
           , menu = False
+          , levelId = id
           }
             -- |> Solution.apply
             |>
