@@ -168,6 +168,10 @@ body, html {
     transition: 0.2s;
 }
 
+.menu-popup a{
+    text-decoration: none;
+}
+
 .link {
     stroke: whitesmoke;
     stroke-dasharray: 0.1, 0.2;
@@ -253,6 +257,13 @@ body, html {
     fill-opacity: 0.3;
     transition: stroke 1.5s, fill 1s;
     filter: drop-shadow( -5px -5px 5px pink);
+}
+
+
+.selected.selection-start .orbit.orbit-1{
+    fill: mediumpurple;
+    fill-opacity: 0.6;
+    stroke: mediumpurple;
 }
 
 @keyframes orbit {
