@@ -29,16 +29,13 @@ init_ id s { nodes, links } =
         minY =
             nodes |> List.map Tuple.second |> List.minimum |> Maybe.return
 
-        offset =
-            1
-
         nodes_ =
             nodes
                 |> List.indexedMap
                     (\i ( x, y ) ->
                         ( i + 1
-                        , { x = toFloat <| x - minX + offset
-                          , y = toFloat <| y - minY + offset
+                        , { x = toFloat <| x - minX 
+                          , y = toFloat <| y - minY 
                           }
                         )
                     )
@@ -64,10 +61,10 @@ init_ id s { nodes, links } =
             nodes_ |> Dict.toList |> List.map (Tuple.second >> .y) |> List.maximum |> Maybe.return
 
         viewBoxSize =
-            { w = maxX + offset, h = maxY + offset }
+            { w = maxX , h = maxY }
     in
         ( { windowSize = s
-          , padding = { left = 25, top = 75, right = 25, bottom = 25 }
+          , padding = { left = 50, top = 100, right = 50, bottom = 50 }
           , viewBoxSize = viewBoxSize
           , nodes = nodes_
           , links = links_
