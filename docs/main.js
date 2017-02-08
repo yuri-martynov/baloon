@@ -15417,7 +15417,6 @@ var _user$project$Atrapos_Game_Init$init_ = F3(
 	function (id, s, _p0) {
 		var _p1 = _p0;
 		var _p8 = _p1.nodes;
-		var offset = 1;
 		var minY = _user$project$Common_Maybe$return(
 			_elm_lang$core$List$minimum(
 				A2(_elm_lang$core$List$map, _elm_lang$core$Tuple$second, _p8)));
@@ -15434,8 +15433,8 @@ var _user$project$Atrapos_Game_Init$init_ = F3(
 							ctor: '_Tuple2',
 							_0: i + 1,
 							_1: {
-								x: _elm_lang$core$Basics$toFloat((_p3._0 - minX) + offset),
-								y: _elm_lang$core$Basics$toFloat((_p3._1 - minY) + offset)
+								x: _elm_lang$core$Basics$toFloat(_p3._0 - minX),
+								y: _elm_lang$core$Basics$toFloat(_p3._1 - minY)
 							}
 						};
 					}),
@@ -15484,13 +15483,13 @@ var _user$project$Atrapos_Game_Init$init_ = F3(
 							_elm_lang$core$Tuple$second(_p7));
 					},
 					_elm_lang$core$Dict$toList(nodes_))));
-		var viewBoxSize = {w: maxX + offset, h: maxY + offset};
+		var viewBoxSize = {w: maxX, h: maxY};
 		return {
 			ctor: '_Tuple2',
 			_0: _user$project$Atrapos_Game_Model$Loaded(
 				{
 					windowSize: s,
-					padding: {left: 25, top: 75, right: 25, bottom: 25},
+					padding: {left: 50, top: 100, right: 50, bottom: 50},
 					viewBoxSize: viewBoxSize,
 					nodes: nodes_,
 					links: links_,
@@ -16852,7 +16851,7 @@ var _user$project$Atrapos_Levels_View$level = F2(
 			_elm_lang$html$Html$li,
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('pure-menu-item'),
+				_0: _elm_lang$html$Html_Attributes$class('level'),
 				_1: {ctor: '[]'}
 			},
 			{
@@ -16861,44 +16860,16 @@ var _user$project$Atrapos_Levels_View$level = F2(
 					_elm_lang$html$Html$a,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('pure-menu-link'),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$href(
-								_user$project$Atrapos_Routes$url(
-									_user$project$Atrapos_Routes$Level(id))),
-							_1: {ctor: '[]'}
-						}
+						_0: _elm_lang$html$Html_Attributes$href(
+							_user$project$Atrapos_Routes$url(
+								_user$project$Atrapos_Routes$Level(id))),
+						_1: {ctor: '[]'}
 					},
 					{
 						ctor: '::',
 						_0: _elm_lang$html$Html$text(
 							_elm_lang$core$Basics$toString(id + 1)),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$html$Html$text(' ('),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html$text(
-									_elm_lang$core$Basics$toString(
-										_elm_lang$core$List$length(_p1.nodes))),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html$text('/'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html$text(
-											_elm_lang$core$Basics$toString(
-												_elm_lang$core$List$length(_p1.links))),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html$text(')'),
-											_1: {ctor: '[]'}
-										}
-									}
-								}
-							}
-						}
+						_1: {ctor: '[]'}
 					}),
 				_1: {ctor: '[]'}
 			});
@@ -16909,21 +16880,17 @@ var _user$project$Atrapos_Levels_View$view = function (_p2) {
 		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('pure-menu'),
+			_0: _elm_lang$html$Html_Attributes$class('home'),
 			_1: {ctor: '[]'}
 		},
 		{
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$span,
+				_elm_lang$html$Html$h1,
+				{ctor: '[]'},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('map-header'),
-					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text('Levels'),
+					_0: _elm_lang$html$Html$text('Atrapos'),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
@@ -16932,7 +16899,7 @@ var _user$project$Atrapos_Levels_View$view = function (_p2) {
 					_elm_lang$html$Html$ul,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('pure-menu-list'),
+						_0: _elm_lang$html$Html_Attributes$class('levels'),
 						_1: {ctor: '[]'}
 					},
 					_elm_lang$core$Dict$values(
@@ -16961,10 +16928,8 @@ var _user$project$Atrapos_Update$update = F2(
 									{
 										ctor: '::',
 										_0: _elm_lang$navigation$Navigation$newUrl(
-											A2(
-												_elm_lang$core$Basics_ops['++'],
-												'#levels/',
-												_elm_lang$core$Basics$toString(next))),
+											_user$project$Atrapos_Routes$url(
+												_user$project$Atrapos_Routes$Level(next))),
 										_1: {ctor: '[]'}
 									}) : A2(
 									_elm_lang$core$Platform_Cmd_ops['!'],

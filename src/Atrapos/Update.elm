@@ -10,6 +10,8 @@ import Atrapos.Levels.Update as Levels
 import Atrapos.Game.Update as Game
 import Atrapos.Game.Msg as Game
 import Atrapos.Data.Levels as Data
+import Atrapos.Routes exposing (Route(Level), url)
+
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -24,7 +26,7 @@ update msg model =
                     id + 1
             in
                 if Data.model |> Dict.member next then
-                    model ! [ Navigation.newUrl <| "#levels/" ++ (toString next) ]
+                    model ! [ Level next |> url |> Navigation.newUrl ]
                 else
                     model ! []
 
