@@ -255,6 +255,13 @@ body, html {
     filter: drop-shadow( -5px -5px 5px pink);
 }
 
+
+.selected.selection-start .orbit.orbit-1{
+    fill: mediumpurple;
+    fill-opacity: 0.6;
+    stroke: mediumpurple;
+}
+
 @keyframes orbit {
     /*0% {fill: gold; }*/
     100% {
