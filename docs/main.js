@@ -15071,37 +15071,34 @@ var _user$project$Common_ViewBox$fold_ = F2(
 var _user$project$Common_ViewBox$location_ = F3(
 	function (_p2, _p1, _p0) {
 		var _p3 = _p2;
-		var _p7 = _p3.windowSize;
-		var _p6 = _p3.padding;
 		var _p4 = _p1;
+		var _p6 = _p4.scale;
 		var _p5 = _p0;
-		var width = _elm_lang$core$Basics$toFloat(_p7.width);
-		var scaleX = _p4._1.w / width;
-		var height = _elm_lang$core$Basics$toFloat(_p7.height);
-		var scaleY = _p4._1.h / height;
 		return {
-			x: (_elm_lang$core$Basics$toFloat(_p5.x) - _p6.left) * scaleX,
-			y: (_elm_lang$core$Basics$toFloat(_p5.y) - _p6.top) * scaleY
+			x: (_elm_lang$core$Basics$toFloat(_p5.x) * _p6) - _p4.left,
+			y: (_elm_lang$core$Basics$toFloat(_p5.y) * _p6) - _p4.top
 		};
 	});
-var _user$project$Common_ViewBox$center = function (_p8) {
-	var _p9 = _p8;
-	var _p12 = _p9.windowSize;
-	var _p11 = _p9.viewBoxSize;
-	var _p10 = _p9.padding;
+var _user$project$Common_ViewBox$center = function (_p7) {
+	var _p8 = _p7;
+	var _p12 = _p8.windowSize;
+	var _p11 = _p8.viewBoxSize;
+	var _p10 = _p8.padding;
 	var width = (_elm_lang$core$Basics$toFloat(_p12.width) - _p10.left) - _p10.right;
-	var scaleX = _p11.w / width;
-	var left = _p10.left * scaleX;
-	var w = _p11.w + ((_p10.left + _p10.right) * scaleX);
 	var height = (_elm_lang$core$Basics$toFloat(_p12.height) - _p10.top) - _p10.bottom;
-	var scaleY = _p11.h / height;
-	var top = _p10.top * scaleY;
-	var a = height / width;
-	return {
-		ctor: '_Tuple2',
-		_0: {left: left, top: top},
-		_1: {w: w, h: w * a}
-	};
+	var _p9 = {ctor: '_Tuple2', _0: _p11.w / width, _1: _p11.h / height};
+	var scaleX = _p9._0;
+	var scaleY = _p9._1;
+	var scale = A2(_elm_lang$core$Basics$max, scaleX, scaleY);
+	var left = _p10.left * scale;
+	var right = _p10.right * scale;
+	var top = _p10.top * scale;
+	var bottom = _p10.bottom * scale;
+	var h = (_p11.h + top) + bottom;
+	var w = ((width * scale) + right) + left;
+	var fullH = _elm_lang$core$Basics$toFloat(_p12.height) * scale;
+	var paddingTop = (fullH - h) / 2;
+	return {left: left, top: top + paddingTop, w: w, h: fullH, scale: scale};
 };
 var _user$project$Common_ViewBox$location = F2(
 	function (model, mousePosition) {
@@ -15120,16 +15117,16 @@ var _user$project$Common_ViewBox$init_ = function (_p13) {
 			'',
 			{
 				ctor: '::',
-				_0: 0 - _p14._0.left,
+				_0: 0 - _p14.left,
 				_1: {
 					ctor: '::',
-					_0: 0 - _p14._0.top,
+					_0: 0 - _p14.top,
 					_1: {
 						ctor: '::',
-						_0: _p14._1.w,
+						_0: _p14.w,
 						_1: {
 							ctor: '::',
-							_0: _p14._1.h,
+							_0: _p14.h,
 							_1: {ctor: '[]'}
 						}
 					}

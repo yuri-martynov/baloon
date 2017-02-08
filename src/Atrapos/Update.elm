@@ -18,12 +18,15 @@ update msg model =
         ( _, UrlChanged route ) ->
             init route
 
-        ( Game _, GameMsg (Game.Finished id)) ->
-            let next = id + 1 in
-            if Data.model |> Dict.member next then
-                model ! [ Navigation.newUrl <| "#levels/" ++ (toString next) ]
-            else
-                model ! []
+        ( Game _, GameMsg (Game.Finished id) ) ->
+            let
+                next =
+                    id + 1
+            in
+                if Data.model |> Dict.member next then
+                    model ! [ Navigation.newUrl <| "#levels/" ++ (toString next) ]
+                else
+                    model ! []
 
         ( Game model, GameMsg msg ) ->
             Game.update msg model

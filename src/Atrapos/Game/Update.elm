@@ -18,7 +18,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case ( msg, model ) of
         ( Init size, Loading id ) ->
-            init_ id size  (Data.model # id)
+            init_ id size (Data.model # id)
 
         ( _, Loaded model ) ->
             let
@@ -59,8 +59,9 @@ update_ msg ({ nodes, links, menu } as model) =
 
 
 checkVictory model =
-    let 
-        nextModel = model |> victory
+    let
+        nextModel =
+            model |> victory
     in
         if nextModel.victory then
             nextModel ! [ Finished model.levelId |> Time.delay (3 * Time.second) ]
