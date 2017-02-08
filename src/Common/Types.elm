@@ -16,6 +16,10 @@ type alias Size =
     Size_ {}
 
 
+type alias Scale_ a =
+    { a | scale : Float }
+
+
 type alias Angle_ a =
     { a | angle : Float }
 

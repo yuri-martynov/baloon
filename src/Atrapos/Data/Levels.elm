@@ -19,6 +19,9 @@ import Atrapos.Data.L14 as L14
 import Atrapos.Data.L15 as L15
 import Atrapos.Data.L16 as L16
 import Atrapos.Data.L17 as L17
+import Atrapos.Data.L18 as L18
+import Atrapos.Data.L19 as L19
+import Atrapos.Data.L20 as L20
 
 
 model : Levels
@@ -40,6 +43,9 @@ model =
     , L15.model
     , L16.model
     , L17.model
+    , L18.model
+    , L19.model
+    , L20.model
     ]
         |> List.indexedMap (,)
         |> Dict.fromList

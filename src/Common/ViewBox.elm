@@ -3,7 +3,7 @@ module Common.ViewBox exposing (Model_, Model, init, location)
 import Svg.Attributes exposing (viewBox, style)
 import Svg exposing (Attribute)
 import Mouse
-import Common.Types exposing (Size, Location, Padding, LeftTop)
+import Common.Types exposing (Size_, Size, Scale_, Location, Padding, LeftTop_)
 import Common.WindowSize as WindowSize
 
 
@@ -19,13 +19,17 @@ type alias Model =
     Model_ {}
 
 
+type alias ViewBox =
+    LeftTop_ (Size_ (Scale_ {}))
+
+
 init : Model_ a -> Attribute msg
 init model =
     model |> center |> init_
 
 
-init_ : ( LeftTop, Size ) -> Attribute msg
-init_ ( { left, top }, { w, h } ) =
+init_ : ViewBox -> Attribute msg
+init_ { left, top, w, h } =
     [ -left, -top, w, h ] |> List.foldl fold_ "" |> viewBox
 
 
@@ -38,41 +42,60 @@ location model mousePosition =
 -- PRIVATES ---------
 
 
-center : Model_ a -> ( LeftTop, Size )
+center : Model_ a -> ViewBox
 center { padding, viewBoxSize, windowSize } =
     let
-        aspectRation =
-            (toFloat windowSize.height - padding.top - padding.bottom) / (toFloat windowSize.width - padding.left - padding.right)
+        height =
+            toFloat windowSize.height - padding.top - padding.bottom
 
-        h =
-            viewBoxSize.w * aspectRation
-    in
-        if viewBoxSize.h > h then
-            let
-                w =
-                    viewBoxSize.h / aspectRation
-            in
-                ( { left = (w - viewBoxSize.w) / 2, top = 0 }
-                , { w = w, h = viewBoxSize.h }
-                )
-        else
-            ( { left = 0, top = (h - viewBoxSize.h) / 2 }
-            , viewBoxSize
+        width =
+            toFloat windowSize.width - padding.left - padding.right
+
+        ( scaleX, scaleY ) =
+            ( viewBoxSize.w / width
+            , viewBoxSize.h / height
             )
 
+        scale =
+            max scaleX scaleY
 
-location_ : Model_ a -> ( LeftTop, Size ) -> Mouse.Position -> Location
-location_ { padding, windowSize } ( { left, top }, { w, h } ) { x, y } =
-    let
-        scaleX =
-            w / (toFloat windowSize.width - padding.left - padding.right)
+        left =
+            padding.left * scale
 
-        scaleY =
-            (h + 2 * top) / (toFloat windowSize.height - padding.top - padding.bottom)
+        right =
+            padding.right * scale
+
+        top =
+            padding.top * scale
+
+        bottom =
+            padding.bottom * scale
+
+        w =
+            width * scale + right + left
+
+        h =
+            viewBoxSize.h + top + bottom
+
+        fullH =
+            toFloat windowSize.height * scale
+
+        paddingTop =
+            (fullH - h) / 2
     in
-        { x = (toFloat x - padding.left) * scaleX - left
-        , y = (toFloat y - padding.top) * scaleY - top
+        { left = left
+        , top = top + paddingTop
+        , w = w
+        , h = fullH
+        , scale = scale
         }
+
+
+location_ : Model_ a -> ViewBox -> Mouse.Position -> Location
+location_ { windowSize } { left, top, scale } { x, y } =
+    { x = toFloat x * scale - left
+    , y = toFloat y * scale - top
+    }
 
 
 fold_ a b =

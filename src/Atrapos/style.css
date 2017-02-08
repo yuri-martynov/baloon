@@ -58,7 +58,7 @@ body, html {
 }
 
 .game-field {
-    margin: 75px 25px 25px 25px;
+    /*margin: 75px 25px 25px 25px;*/
     overflow: visible;
 }
 
