@@ -3,6 +3,7 @@ module Atrapos.Game.Shared exposing (link, victory, linksLen)
 import Dict
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Selection.Path as Selection
+import Atrapos.Game.Solution as Solution
 
 
 link : Model_ -> LinkId -> Link -> Model_
@@ -35,7 +36,7 @@ isVictory ({ minLen, nodes, links } as model) =
     in
         round (len)
             == round (minLen)
-            && (nodes |> Dict.keys |> List.all (connected links))
+            && (Solution.isFullyConnected nodes links)
 
 
 connected links id =

@@ -20,6 +20,7 @@ type alias Model_ =
         , selection : Selection
         , menu : Menu
         , levelId : Level.Id
+        , solution : Solution
         }
 
 

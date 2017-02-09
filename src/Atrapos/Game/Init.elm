@@ -73,6 +73,7 @@ init_ id s { nodes, links } =
           , selection = None
           , menu = False
           , levelId = id
+          , solution = solution
           }
             -- |> Solution.apply
             |>

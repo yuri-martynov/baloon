@@ -1,4 +1,4 @@
-module Atrapos.Game.Solution exposing (solution, apply)
+module Atrapos.Game.Solution exposing (solution, apply, isFullyConnected)
 
 import Dict exposing (Dict)
 import Common.List as List
@@ -24,6 +24,26 @@ apply model =
                 |> Dict.map (\id link -> { link | selected = solution_ |> List.member id })
     in
         { model | links = links_ }
+
+
+isFullyConnected : Nodes -> Links -> Bool
+isFullyConnected nodes links =
+    let
+        links_ =
+            links |> orderedByLen
+
+        nodes_ =
+            nodes |> Dict.keys
+
+        isConnected n1 n2 =
+            n1 == n2 || (links_ |> path n1 n2)
+
+        isFullyConnected_ n1 =
+            nodes_
+                |> List.all (isConnected n1)
+    in
+        nodes_
+            |> List.all isFullyConnected_
 
 
 
