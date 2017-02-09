@@ -82,8 +82,11 @@ center { padding, viewBoxSize, windowSize } =
 
         paddingTop =
             (fullH - h) / 2
+
+        paddingLeft =
+            (w - viewBoxSize.w) / 2
     in
-        { left = left
+        { left = paddingLeft 
         , top = top + paddingTop
         , w = w
         , h = fullH
