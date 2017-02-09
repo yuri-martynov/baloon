@@ -15544,6 +15544,22 @@ var _user$project$Atrapos_Game_Solution$orderedByLen = function (_p8) {
 			},
 			_elm_lang$core$Dict$toList(_p8)));
 };
+var _user$project$Atrapos_Game_Solution$isFullyConnected = F2(
+	function (nodes, links) {
+		var nodes_ = _elm_lang$core$Dict$keys(nodes);
+		var links_ = _user$project$Atrapos_Game_Solution$orderedByLen(links);
+		var isConnected = F2(
+			function (n1, n2) {
+				return _elm_lang$core$Native_Utils.eq(n1, n2) || A3(_user$project$Atrapos_Game_Solution$path, n1, n2, links_);
+			});
+		var isFullyConnected_ = function (n1) {
+			return A2(
+				_elm_lang$core$List$all,
+				isConnected(n1),
+				nodes_);
+		};
+		return A2(_elm_lang$core$List$all, isFullyConnected_, nodes_);
+	});
 var _user$project$Atrapos_Game_Solution$solution = F2(
 	function (nodes, links) {
 		return A2(
@@ -15759,7 +15775,8 @@ var _user$project$Atrapos_Game_Init$init_ = F3(
 					victory: false,
 					selection: _user$project$Atrapos_Game_Model$None,
 					menu: false,
-					levelId: id
+					levelId: id,
+					solution: solution
 				}),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
@@ -16140,10 +16157,7 @@ var _user$project$Atrapos_Game_Shared$isVictory = function (_p5) {
 	var len = _user$project$Atrapos_Game_Shared$linksLen(_p6);
 	return _elm_lang$core$Native_Utils.eq(
 		_elm_lang$core$Basics$round(len),
-		_elm_lang$core$Basics$round(_p6.minLen)) && A2(
-		_elm_lang$core$List$all,
-		_user$project$Atrapos_Game_Shared$connected(_p6.links),
-		_elm_lang$core$Dict$keys(_p6.nodes));
+		_elm_lang$core$Basics$round(_p6.minLen)) && A2(_user$project$Atrapos_Game_Solution$isFullyConnected, _p6.nodes, _p6.links);
 };
 var _user$project$Atrapos_Game_Shared$victory = function (model) {
 	return _elm_lang$core$Native_Utils.update(
