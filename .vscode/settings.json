@@ -8,6 +8,7 @@
         "src/Atrapos/main.js": true,
         "**/elm-stuff":true,
         "docs": true,
-        "**/node_modules": true
+        "**/node_modules": true,
+        "**/main.js": true
     }
 }
