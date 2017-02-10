@@ -8,7 +8,7 @@ import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Solution as Solution
 import Atrapos.Game.Link.Update as Link
-import Atrapos.Game.Shared exposing (link, victory)
+import Atrapos.Game.Shared exposing (link)
 import Atrapos.Game.Selection.Update as Selection
 import Atrapos.Game.Init exposing (init_)
 import Atrapos.Data.Levels as Data
@@ -49,21 +49,26 @@ update_ msg ({ nodes, links, menu } as model) =
                 ! []
 
         Help ->
-            model |> Solution.apply |> checkVictory
+            ( model |> Solution.apply
+            , Cmd.none
+            )
 
         Mouse msg ->
-            model |> Selection.update msg |> checkVictory
+            model
+                |> Selection.update msg
+                |> checkVictory
 
         _ ->
             model ! []
 
 
-checkVictory model =
-    let
-        nextModel =
-            model |> victory
-    in
-        if nextModel.victory then
-            nextModel ! [ Finished model.levelId |> Time.delay (3 * Time.second) ]
-        else
-            nextModel ! []
+checkVictory ({ victory } as model) =
+    if victory then
+        model ! [ model |> nextLevel 3 ]
+    else
+        model ! []
+
+
+nextLevel timeoutSec { levelId } =
+    Finished levelId
+        |> Time.delay (timeoutSec * Time.second)

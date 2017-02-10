@@ -75,8 +75,6 @@ init_ id s { nodes, links } =
           , levelId = id
           , solution = solution
           }
-            -- |> Solution.apply
-            |>
-                Loaded
+            |> Loaded
         , Cmd.none
         )

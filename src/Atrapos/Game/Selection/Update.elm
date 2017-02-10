@@ -7,7 +7,7 @@ import Common.Math exposing (len, intersect)
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Link.Update as Link
-import Atrapos.Game.Shared exposing (link)
+import Atrapos.Game.Shared exposing (link, victory)
 import Atrapos.Game.Selection.Path exposing (selected)
 
 
@@ -75,6 +75,7 @@ selectNext last next p ({ links } as model) =
                     |> Link.select
                     |> link model id
                     |> updateLastNode next p
+                    |> victory
 
 
 updateLastNode : NodeId -> Location -> Model_ -> Model_
@@ -137,7 +138,7 @@ deselect p { startLocation } ({ links, nodes } as model) =
                             else
                                 link
                         )
-        }
+        } |> victory
 
 
 updateEndLocation : Location -> Model_ -> Model_
@@ -151,3 +152,5 @@ updateEndLocation p ({ selection } as model) =
 
         None ->
             model
+
+

@@ -15,14 +15,11 @@ solution nodes links =
 
 
 apply : Model_ -> Model_
-apply model =
+apply ( { solution, links } as model) =
     let
-        solution_ =
-            solution model.nodes model.links
-
         links_ =
-            model.links
-                |> Dict.map (\id link -> { link | selected = solution_ |> List.member id })
+            links
+                |> Dict.map (\id link -> { link | selected = solution |> List.member id })
     in
         { model | links = links_ }
 
@@ -40,7 +37,7 @@ isFullyConnected nodes links =
             nodes |> Dict.keys
 
         isConnected n1 n2 =
-            n1 == n2 || (links_ |> path n1 n2)
+            n1 <= n2 || (links_ |> path n1 n2)
 
         isFullyConnected_ n1 =
             nodes_
