@@ -17,16 +17,8 @@ view { links, selection } id node =
         planet =
             circle [ r "1", class "planet" ] []
 
-        orbit n =
-            [ circle [ r "1" ] []
-            , circle [ r "0.1", cx "1", class "sputnik" ] []
-            ]
-                |> g
-                    [ [ ( "orbit", True )
-                      , ( "orbit-" ++ toString n, True )
-                      ]
-                        |> classList
-                    ]
+        orbit =
+             circle [ r "1", class "orbit orbit-1" ] []
 
         ( start, end ) =
             case selection of
@@ -40,13 +32,15 @@ view { links, selection } id node =
                     ( False, False )
 
         orbits =
-            List.range 1 connections
-                |> List.map orbit
+            if connections then
+                [ orbit ]
+            else 
+                [ ]
     in
         (planet :: orbits)
             |> g
                 [ translate node
-                , [ ( "selected", connections > 0 )
+                , [ ( "selected", connections )
                   , ( "selection-start", start )
                   , ( "selection-end", end )
                   ]
@@ -58,13 +52,12 @@ view { links, selection } id node =
 -- PRIVATE ---------------
 
 
-connected : Links -> NodeId -> Int
+connected : Links -> NodeId -> Bool
 connected links id =
     links
         |> Dict.filter (always .selected)
         |> Dict.values
-        |> List.filter (\{ node1, node2 } -> node1 == id || node2 == id)
-        |> List.length
+        |> List.any (\{ node1, node2 } -> node1 == id || node2 == id)
 
 
 connectedWith : Links -> NodeId -> NodeId -> Bool

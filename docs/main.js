@@ -10380,6 +10380,10 @@ var _elm_lang$svg$Svg_Events$onMouseOut = _elm_lang$svg$Svg_Events$simpleOn('mou
 var _elm_lang$svg$Svg_Events$onMouseOver = _elm_lang$svg$Svg_Events$simpleOn('mouseover');
 var _elm_lang$svg$Svg_Events$onMouseUp = _elm_lang$svg$Svg_Events$simpleOn('mouseup');
 
+var _elm_lang$svg$Svg_Lazy$lazy3 = _elm_lang$virtual_dom$VirtualDom$lazy3;
+var _elm_lang$svg$Svg_Lazy$lazy2 = _elm_lang$virtual_dom$VirtualDom$lazy2;
+var _elm_lang$svg$Svg_Lazy$lazy = _elm_lang$virtual_dom$VirtualDom$lazy;
+
 var _elm_lang$window$Native_Window = function()
 {
 
@@ -16657,7 +16661,7 @@ var _user$project$Atrapos_Game_Selection_Path$len = F2(
 					}(
 						A2(_elm_lang$core$Basics$flip, _user$project$Common_Dict$justGet, links)(_p0));
 				},
-				_elm_lang$core$List$sort(path)));
+				path));
 	});
 var _user$project$Atrapos_Game_Selection_Path$selected = function (links) {
 	return _elm_lang$core$Dict$keys(
@@ -16826,6 +16830,82 @@ var _user$project$Atrapos_Game_Link_Update$reset = function (link) {
 		{selected: false});
 };
 
+var _user$project$Atrapos_Game_Link_View$stroke = A2(
+	_elm_lang$svg$Svg$linearGradient,
+	{
+		ctor: '::',
+		_0: _elm_lang$svg$Svg_Attributes$id('stroke'),
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$svg$Svg$stop,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$stopColor('silver'),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$svg$Svg$stop,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$offset('100%'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$stopColor('transparent'),
+						_1: {ctor: '[]'}
+					}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		}
+	});
+var _user$project$Atrapos_Game_Link_View$view = F2(
+	function (_p1, _p0) {
+		var _p2 = _p1;
+		var _p4 = _p2.nodes;
+		var _p3 = _p0;
+		var line_ = F3(
+			function (from, to, class_) {
+				return A2(
+					_elm_lang$svg$Svg$line,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$x1(
+							_elm_lang$core$Basics$toString(from.x)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$y1(
+								_elm_lang$core$Basics$toString(from.y)),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$x2(
+									_elm_lang$core$Basics$toString(to.x)),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$y2(
+										_elm_lang$core$Basics$toString(to.y)),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$class(class_),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					},
+					{ctor: '[]'});
+			});
+		var class_ = _p3.selected ? 'link selected' : 'link';
+		var n2 = A2(_user$project$Common_Dict_ops['#'], _p4, _p3.node2);
+		var n1 = A2(_user$project$Common_Dict_ops['#'], _p4, _p3.node1);
+		return A4(_elm_lang$svg$Svg_Lazy$lazy3, line_, n1, n2, class_);
+	});
+
 var _user$project$Common_Svg$classList = function (classes) {
 	var class_ = function (_p0) {
 		var _p1 = _p0;
@@ -16868,87 +16948,6 @@ var _user$project$Common_Svg$dLine = F2(
 									_elm_lang$core$Basics_ops['++'],
 									' ',
 									_elm_lang$core$Basics$toString(n2.y))))))));
-	});
-
-var _user$project$Atrapos_Game_Link_View$stroke = A2(
-	_elm_lang$svg$Svg$linearGradient,
-	{
-		ctor: '::',
-		_0: _elm_lang$svg$Svg_Attributes$id('stroke'),
-		_1: {ctor: '[]'}
-	},
-	{
-		ctor: '::',
-		_0: A2(
-			_elm_lang$svg$Svg$stop,
-			{
-				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$stopColor('silver'),
-				_1: {ctor: '[]'}
-			},
-			{ctor: '[]'}),
-		_1: {
-			ctor: '::',
-			_0: A2(
-				_elm_lang$svg$Svg$stop,
-				{
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$offset('100%'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$stopColor('transparent'),
-						_1: {ctor: '[]'}
-					}
-				},
-				{ctor: '[]'}),
-			_1: {ctor: '[]'}
-		}
-	});
-var _user$project$Atrapos_Game_Link_View$view = F2(
-	function (_p1, _p0) {
-		var _p2 = _p1;
-		var _p6 = _p2.nodes;
-		var _p3 = _p0;
-		var _p5 = _p3.node2;
-		var _p4 = _p3.node1;
-		var id_ = A2(
-			_elm_lang$core$Basics_ops['++'],
-			'link_',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				_elm_lang$core$Basics$toString(_p4),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'_',
-					_elm_lang$core$Basics$toString(_p5))));
-		var class_ = _p3.selected ? 'selected' : '';
-		var n2 = A2(_user$project$Common_Dict_ops['#'], _p6, _p5);
-		var n1 = A2(_user$project$Common_Dict_ops['#'], _p6, _p4);
-		return A2(
-			_elm_lang$svg$Svg$g,
-			{ctor: '[]'},
-			{
-				ctor: '::',
-				_0: A2(
-					_elm_lang$svg$Svg$path,
-					{
-						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$id(id_),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$d(
-								A2(_user$project$Common_Svg$dLine, n1, n2)),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$class(
-									A2(_elm_lang$core$Basics_ops['++'], 'link ', class_)),
-								_1: {ctor: '[]'}
-							}
-						}
-					},
-					{ctor: '[]'}),
-				_1: {ctor: '[]'}
-			});
 	});
 
 var _user$project$Common_Transform$scale = F2(
@@ -17014,21 +17013,20 @@ var _user$project$Atrapos_Game_Node_View$connectedWith = F3(
 	});
 var _user$project$Atrapos_Game_Node_View$connected = F2(
 	function (links, id) {
-		return _elm_lang$core$List$length(
-			A2(
-				_elm_lang$core$List$filter,
-				function (_p5) {
-					var _p6 = _p5;
-					return _elm_lang$core$Native_Utils.eq(_p6.node1, id) || _elm_lang$core$Native_Utils.eq(_p6.node2, id);
-				},
-				_elm_lang$core$Dict$values(
-					A2(
-						_elm_lang$core$Dict$filter,
-						_elm_lang$core$Basics$always(
-							function (_) {
-								return _.selected;
-							}),
-						links))));
+		return A2(
+			_elm_lang$core$List$any,
+			function (_p5) {
+				var _p6 = _p5;
+				return _elm_lang$core$Native_Utils.eq(_p6.node1, id) || _elm_lang$core$Native_Utils.eq(_p6.node2, id);
+			},
+			_elm_lang$core$Dict$values(
+				A2(
+					_elm_lang$core$Dict$filter,
+					_elm_lang$core$Basics$always(
+						function (_) {
+							return _.selected;
+						}),
+					links)));
 	});
 var _user$project$Atrapos_Game_Node_View$view = F3(
 	function (_p7, id, node) {
@@ -17049,62 +17047,18 @@ var _user$project$Atrapos_Game_Node_View$view = F3(
 		}();
 		var start = _p9._0;
 		var end = _p9._1;
-		var orbit = function (n) {
-			return A2(
-				_elm_lang$svg$Svg$g,
-				{
+		var orbit = A2(
+			_elm_lang$svg$Svg$circle,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$r('1'),
+				_1: {
 					ctor: '::',
-					_0: _user$project$Common_Svg$classList(
-						{
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'orbit', _1: true},
-							_1: {
-								ctor: '::',
-								_0: {
-									ctor: '_Tuple2',
-									_0: A2(
-										_elm_lang$core$Basics_ops['++'],
-										'orbit-',
-										_elm_lang$core$Basics$toString(n)),
-									_1: true
-								},
-								_1: {ctor: '[]'}
-							}
-						}),
+					_0: _elm_lang$svg$Svg_Attributes$class('orbit orbit-1'),
 					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: A2(
-						_elm_lang$svg$Svg$circle,
-						{
-							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$r('1'),
-							_1: {ctor: '[]'}
-						},
-						{ctor: '[]'}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$svg$Svg$circle,
-							{
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$r('0.1'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$cx('1'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$class('sputnik'),
-										_1: {ctor: '[]'}
-									}
-								}
-							},
-							{ctor: '[]'}),
-						_1: {ctor: '[]'}
-					}
-				});
-		};
+				}
+			},
+			{ctor: '[]'});
 		var planet = A2(
 			_elm_lang$svg$Svg$circle,
 			{
@@ -17118,10 +17072,11 @@ var _user$project$Atrapos_Game_Node_View$view = F3(
 			},
 			{ctor: '[]'});
 		var connections = A2(_user$project$Atrapos_Game_Node_View$connected, _p12, id);
-		var orbits = A2(
-			_elm_lang$core$List$map,
-			orbit,
-			A2(_elm_lang$core$List$range, 1, connections));
+		var orbits = connections ? {
+			ctor: '::',
+			_0: orbit,
+			_1: {ctor: '[]'}
+		} : {ctor: '[]'};
 		return A2(
 			_elm_lang$svg$Svg$g,
 			{
@@ -17132,11 +17087,7 @@ var _user$project$Atrapos_Game_Node_View$view = F3(
 					_0: _user$project$Common_Svg$classList(
 						{
 							ctor: '::',
-							_0: {
-								ctor: '_Tuple2',
-								_0: 'selected',
-								_1: _elm_lang$core$Native_Utils.cmp(connections, 0) > 0
-							},
+							_0: {ctor: '_Tuple2', _0: 'selected', _1: connections},
 							_1: {
 								ctor: '::',
 								_0: {ctor: '_Tuple2', _0: 'selection-start', _1: start},

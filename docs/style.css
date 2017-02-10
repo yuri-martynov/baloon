@@ -78,6 +78,7 @@ body, html {
 }
 
 .hint {
+    display: none;
     flex: 0.25;
     color: #4C61AB;
     font-size: 1em;

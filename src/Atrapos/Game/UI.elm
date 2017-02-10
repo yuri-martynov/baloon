@@ -61,7 +61,7 @@ ui ({ victory, links, menu, minLen } as model) =
             []
         ]
             ++ (if menu then
-                    [ menuPopup ]
+                    [ menuPopup  ]
                 else
                     []
                )
