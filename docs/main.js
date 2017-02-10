@@ -13803,6 +13803,1002 @@ var _user$project$Atrapos_Data_L21$model = {
 	}
 };
 
+var _user$project$Atrapos_Data_L22$model = {
+	nodes: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 1, _1: 12},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 2, _1: 15},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 2, _1: 7},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 3, _1: 4},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 3, _1: 9},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 5, _1: 1},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 6, _1: 5},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 6, _1: 11},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 6, _1: 15},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 7, _1: 1},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 9, _1: 4},
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: 9, _1: 9},
+													_1: {
+														ctor: '::',
+														_0: {ctor: '_Tuple2', _0: 10, _1: 7},
+														_1: {
+															ctor: '::',
+															_0: {ctor: '_Tuple2', _0: 10, _1: 15},
+															_1: {
+																ctor: '::',
+																_0: {ctor: '_Tuple2', _0: 11, _1: 12},
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	links: {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 1,
+			_1: {
+				ctor: '::',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 5,
+					_1: {
+						ctor: '::',
+						_0: 9,
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 9,
+					_1: {ctor: '[]'}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 5,
+							_1: {
+								ctor: '::',
+								_0: 7,
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 6,
+							_1: {
+								ctor: '::',
+								_0: 7,
+								_1: {ctor: '[]'}
+							}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 5,
+							_1: {
+								ctor: '::',
+								_0: 7,
+								_1: {
+									ctor: '::',
+									_0: 8,
+									_1: {
+										ctor: '::',
+										_0: 9,
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 6,
+								_1: {
+									ctor: '::',
+									_0: 7,
+									_1: {
+										ctor: '::',
+										_0: 10,
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 7,
+									_1: {
+										ctor: '::',
+										_0: 8,
+										_1: {
+											ctor: '::',
+											_0: 10,
+											_1: {
+												ctor: '::',
+												_0: 11,
+												_1: {
+													ctor: '::',
+													_0: 12,
+													_1: {
+														ctor: '::',
+														_0: 13,
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: 8,
+										_1: {
+											ctor: '::',
+											_0: 9,
+											_1: {
+												ctor: '::',
+												_0: 12,
+												_1: {ctor: '[]'}
+											}
+										}
+									},
+									_1: {
+										ctor: '::',
+										_0: {
+											ctor: '_Tuple2',
+											_0: 9,
+											_1: {
+												ctor: '::',
+												_0: 12,
+												_1: {
+													ctor: '::',
+													_0: 14,
+													_1: {
+														ctor: '::',
+														_0: 15,
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										},
+										_1: {
+											ctor: '::',
+											_0: {
+												ctor: '_Tuple2',
+												_0: 10,
+												_1: {
+													ctor: '::',
+													_0: 11,
+													_1: {ctor: '[]'}
+												}
+											},
+											_1: {
+												ctor: '::',
+												_0: {
+													ctor: '_Tuple2',
+													_0: 11,
+													_1: {
+														ctor: '::',
+														_0: 13,
+														_1: {ctor: '[]'}
+													}
+												},
+												_1: {
+													ctor: '::',
+													_0: {
+														ctor: '_Tuple2',
+														_0: 12,
+														_1: {
+															ctor: '::',
+															_0: 13,
+															_1: {
+																ctor: '::',
+																_0: 15,
+																_1: {ctor: '[]'}
+															}
+														}
+													},
+													_1: {
+														ctor: '::',
+														_0: {
+															ctor: '_Tuple2',
+															_0: 14,
+															_1: {
+																ctor: '::',
+																_0: 15,
+																_1: {ctor: '[]'}
+															}
+														},
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+
+var _user$project$Atrapos_Data_L23$model = {
+	nodes: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 1, _1: 1},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 1, _1: 7},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 1, _1: 13},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 4, _1: 1},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 4, _1: 7},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 7, _1: 1},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 7, _1: 7},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 7, _1: 13},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 10, _1: 1},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 10, _1: 7},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 10, _1: 13},
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	links: {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 1,
+			_1: {
+				ctor: '::',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 4,
+					_1: {
+						ctor: '::',
+						_0: 5,
+						_1: {
+							ctor: '::',
+							_0: 7,
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 6,
+							_1: {
+								ctor: '::',
+								_0: 8,
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 5,
+						_1: {
+							ctor: '::',
+							_0: 7,
+							_1: {
+								ctor: '::',
+								_0: 8,
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 6,
+							_1: {
+								ctor: '::',
+								_0: 7,
+								_1: {ctor: '[]'}
+							}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 5,
+							_1: {
+								ctor: '::',
+								_0: 6,
+								_1: {
+									ctor: '::',
+									_0: 8,
+									_1: {ctor: '[]'}
+								}
+							}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 6,
+								_1: {
+									ctor: '::',
+									_0: 7,
+									_1: {
+										ctor: '::',
+										_0: 9,
+										_1: {
+											ctor: '::',
+											_0: 10,
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 7,
+									_1: {
+										ctor: '::',
+										_0: 8,
+										_1: {
+											ctor: '::',
+											_0: 10,
+											_1: {
+												ctor: '::',
+												_0: 11,
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: 8,
+										_1: {
+											ctor: '::',
+											_0: 11,
+											_1: {ctor: '[]'}
+										}
+									},
+									_1: {
+										ctor: '::',
+										_0: {
+											ctor: '_Tuple2',
+											_0: 9,
+											_1: {
+												ctor: '::',
+												_0: 10,
+												_1: {ctor: '[]'}
+											}
+										},
+										_1: {
+											ctor: '::',
+											_0: {
+												ctor: '_Tuple2',
+												_0: 10,
+												_1: {
+													ctor: '::',
+													_0: 11,
+													_1: {ctor: '[]'}
+												}
+											},
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+
+var _user$project$Atrapos_Data_L24$model = {
+	nodes: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 1, _1: 6},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 1, _1: 12},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 4, _1: 1},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 4, _1: 17},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 7, _1: 5},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 7, _1: 13},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 10, _1: 1},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 10, _1: 17},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 13, _1: 6},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 13, _1: 13},
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	links: {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 1,
+			_1: {
+				ctor: '::',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 5,
+						_1: {
+							ctor: '::',
+							_0: 6,
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 4,
+					_1: {
+						ctor: '::',
+						_0: 5,
+						_1: {
+							ctor: '::',
+							_0: 6,
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 5,
+						_1: {
+							ctor: '::',
+							_0: 7,
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 6,
+							_1: {
+								ctor: '::',
+								_0: 8,
+								_1: {ctor: '[]'}
+							}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 5,
+							_1: {
+								ctor: '::',
+								_0: 7,
+								_1: {
+									ctor: '::',
+									_0: 9,
+									_1: {
+										ctor: '::',
+										_0: 10,
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 6,
+								_1: {
+									ctor: '::',
+									_0: 8,
+									_1: {
+										ctor: '::',
+										_0: 9,
+										_1: {
+											ctor: '::',
+											_0: 10,
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 7,
+									_1: {
+										ctor: '::',
+										_0: 9,
+										_1: {ctor: '[]'}
+									}
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: 8,
+										_1: {
+											ctor: '::',
+											_0: 10,
+											_1: {ctor: '[]'}
+										}
+									},
+									_1: {
+										ctor: '::',
+										_0: {
+											ctor: '_Tuple2',
+											_0: 9,
+											_1: {
+												ctor: '::',
+												_0: 10,
+												_1: {ctor: '[]'}
+											}
+										},
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+
+var _user$project$Atrapos_Data_L25$model = {
+	nodes: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 1, _1: 5},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 1, _1: 8},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 1, _1: 11},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 4, _1: 1},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 4, _1: 4},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 4, _1: 12},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 4, _1: 15},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 6, _1: 1},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 6, _1: 15},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 8, _1: 1},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 8, _1: 4},
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: 8, _1: 12},
+													_1: {
+														ctor: '::',
+														_0: {ctor: '_Tuple2', _0: 8, _1: 15},
+														_1: {
+															ctor: '::',
+															_0: {ctor: '_Tuple2', _0: 11, _1: 5},
+															_1: {
+																ctor: '::',
+																_0: {ctor: '_Tuple2', _0: 11, _1: 8},
+																_1: {
+																	ctor: '::',
+																	_0: {ctor: '_Tuple2', _0: 11, _1: 11},
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	links: {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 1,
+			_1: {
+				ctor: '::',
+				_0: 1,
+				_1: {
+					ctor: '::',
+					_0: 2,
+					_1: {
+						ctor: '::',
+						_0: 4,
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 5,
+						_1: {
+							ctor: '::',
+							_0: 6,
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 7,
+						_1: {ctor: '[]'}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 8,
+							_1: {ctor: '[]'}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 5,
+							_1: {
+								ctor: '::',
+								_0: 6,
+								_1: {
+									ctor: '::',
+									_0: 8,
+									_1: {
+										ctor: '::',
+										_0: 11,
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 6,
+								_1: {
+									ctor: '::',
+									_0: 9,
+									_1: {
+										ctor: '::',
+										_0: 12,
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 7,
+									_1: {
+										ctor: '::',
+										_0: 9,
+										_1: {ctor: '[]'}
+									}
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: 8,
+										_1: {
+											ctor: '::',
+											_0: 10,
+											_1: {
+												ctor: '::',
+												_0: 11,
+												_1: {ctor: '[]'}
+											}
+										}
+									},
+									_1: {
+										ctor: '::',
+										_0: {
+											ctor: '_Tuple2',
+											_0: 9,
+											_1: {
+												ctor: '::',
+												_0: 12,
+												_1: {
+													ctor: '::',
+													_0: 13,
+													_1: {ctor: '[]'}
+												}
+											}
+										},
+										_1: {
+											ctor: '::',
+											_0: {
+												ctor: '_Tuple2',
+												_0: 10,
+												_1: {
+													ctor: '::',
+													_0: 14,
+													_1: {ctor: '[]'}
+												}
+											},
+											_1: {
+												ctor: '::',
+												_0: {
+													ctor: '_Tuple2',
+													_0: 11,
+													_1: {
+														ctor: '::',
+														_0: 12,
+														_1: {
+															ctor: '::',
+															_0: 15,
+															_1: {ctor: '[]'}
+														}
+													}
+												},
+												_1: {
+													ctor: '::',
+													_0: {
+														ctor: '_Tuple2',
+														_0: 12,
+														_1: {
+															ctor: '::',
+															_0: 15,
+															_1: {ctor: '[]'}
+														}
+													},
+													_1: {
+														ctor: '::',
+														_0: {
+															ctor: '_Tuple2',
+															_0: 13,
+															_1: {
+																ctor: '::',
+																_0: 16,
+																_1: {ctor: '[]'}
+															}
+														},
+														_1: {
+															ctor: '::',
+															_0: {
+																ctor: '_Tuple2',
+																_0: 14,
+																_1: {
+																	ctor: '::',
+																	_0: 15,
+																	_1: {ctor: '[]'}
+																}
+															},
+															_1: {
+																ctor: '::',
+																_0: {
+																	ctor: '_Tuple2',
+																	_0: 15,
+																	_1: {
+																		ctor: '::',
+																		_0: 16,
+																		_1: {ctor: '[]'}
+																	}
+																},
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+
 var _user$project$Atrapos_Data_L3$model = {
 	nodes: {
 		ctor: '::',
@@ -15272,7 +16268,23 @@ var _user$project$Atrapos_Data_Levels$model = _elm_lang$core$Dict$fromList(
 																						_1: {
 																							ctor: '::',
 																							_0: _user$project$Atrapos_Data_L21$model,
-																							_1: {ctor: '[]'}
+																							_1: {
+																								ctor: '::',
+																								_0: _user$project$Atrapos_Data_L22$model,
+																								_1: {
+																									ctor: '::',
+																									_0: _user$project$Atrapos_Data_L23$model,
+																									_1: {
+																										ctor: '::',
+																										_0: _user$project$Atrapos_Data_L24$model,
+																										_1: {
+																											ctor: '::',
+																											_0: _user$project$Atrapos_Data_L25$model,
+																											_1: {ctor: '[]'}
+																										}
+																									}
+																								}
+																							}
 																						}
 																					}
 																				}
@@ -15547,7 +16559,21 @@ var _user$project$Atrapos_Game_Solution$orderedByLen = function (_p8) {
 var _user$project$Atrapos_Game_Solution$isFullyConnected = F2(
 	function (nodes, links) {
 		var nodes_ = _elm_lang$core$Dict$keys(nodes);
-		var links_ = _user$project$Atrapos_Game_Solution$orderedByLen(links);
+		var links_ = A2(
+			_elm_lang$core$List$map,
+			function (_p12) {
+				var _p13 = _p12;
+				return {ctor: '_Tuple3', _0: _p13._0, _1: _p13._1.node1, _2: _p13._1.node2};
+			},
+			A2(
+				_elm_lang$core$List$filter,
+				function (_p14) {
+					return function (_) {
+						return _.selected;
+					}(
+						_elm_lang$core$Tuple$second(_p14));
+				},
+				_elm_lang$core$Dict$toList(links)));
 		var isConnected = F2(
 			function (n1, n2) {
 				return _elm_lang$core$Native_Utils.eq(n1, n2) || A3(_user$project$Atrapos_Game_Solution$path, n1, n2, links_);
@@ -15564,9 +16590,9 @@ var _user$project$Atrapos_Game_Solution$solution = F2(
 	function (nodes, links) {
 		return A2(
 			_elm_lang$core$List$map,
-			function (_p12) {
-				var _p13 = _p12;
-				return _p13._0;
+			function (_p15) {
+				var _p16 = _p15;
+				return _p16._0;
 			},
 			A3(
 				_elm_lang$core$Basics$flip,

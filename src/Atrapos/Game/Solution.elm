@@ -1,6 +1,7 @@
 module Atrapos.Game.Solution exposing (solution, apply, isFullyConnected)
 
 import Dict exposing (Dict)
+import Tuple
 import Common.List as List
 import Atrapos.Game.Model exposing (..)
 
@@ -30,7 +31,10 @@ isFullyConnected : Nodes -> Links -> Bool
 isFullyConnected nodes links =
     let
         links_ =
-            links |> orderedByLen
+            links
+                |> Dict.toList
+                |> List.filter (Tuple.second >> .selected) 
+                |> List.map (\( id, { node1, node2 } ) -> ( id, node1, node2 ))
 
         nodes_ =
             nodes |> Dict.keys
