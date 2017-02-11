@@ -17552,7 +17552,7 @@ var _user$project$Atrapos_Game_UI$menuPopup = A2(
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text('Menu map'),
+						_0: _elm_lang$html$Html$text('Missions'),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
@@ -18150,11 +18150,15 @@ var _user$project$Atrapos_Levels_View$view = function (_p2) {
 		{
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$h1,
-				{ctor: '[]'},
+				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text('Atrapos'),
+					_0: _elm_lang$html$Html_Attributes$class('levels-name'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('PATHFINDER'),
 					_1: {ctor: '[]'}
 				}),
 			_1: {

@@ -151,7 +151,7 @@ body, html {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.menu-popup .reset, .menu-popup .back, .menu-popup .close {
+.menu-popup .reset, .menu-popup .back, .menu-popup .close, .levels-name {
     color: #4C61AB;
     font-size: 1.24em;
     font-family: Lato;
@@ -159,6 +159,10 @@ body, html {
     text-transform: uppercase;
     -webkit-appearance: none;
     -moz-appearance: none;
+}
+
+.levels-name {
+    text-align: center;
 }
 
 .menu-popup .name {
@@ -217,6 +221,7 @@ body, html {
 .planet {
     fill: orangered;
     transform: scale(0.4);
+    transition: all 0.2s ease-in;
 }
 
 .orbit {
@@ -385,7 +390,17 @@ body, html {
 }
 
 
+@keyframes offcanvas-left {
+    from {
+        transform: translate(-150px, 0);
+    }
+}
+
+
 ul.levels{
+    animation: offcanvas-left;
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     flex-direction: row;
     flex-flow: wrap;
     display: flex;
@@ -409,5 +424,10 @@ li.level a{
     text-decoration: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+}
+
+.li.level a::selection{
+    color: white;
+    transition: 0.2s;
 }
 

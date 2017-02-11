@@ -77,7 +77,7 @@ menuPopup =
     div [ class "menu-popup" ]
         [ label [ onClick Menu, class "name" ] [ text "PATHFINDER" ]
         , label [ onClick Reset, class "reset" ] [ text "Restart Level" ]
-        , a [ class "back", href "#levels" ] [ text "Menu map" ]
+        , a [ class "back", href "#levels" ] [ text "Missions" ]
         , label [ onClick Menu, class "close" ] [ text "Continue" ]
         ]
 

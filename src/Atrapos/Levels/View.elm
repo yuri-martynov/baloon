@@ -12,7 +12,7 @@ import Atrapos.Data.Model as Level
 view : Model -> Html Msg
 view { levels } =
     div [ class "home"]
-        [ h1 [] [text "Atrapos"]
+        [ div [class "levels-name"] [text "PATHFINDER"]
         , levels
             |> Dict.map level
             |> Dict.values
