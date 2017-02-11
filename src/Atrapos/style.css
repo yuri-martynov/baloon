@@ -11,7 +11,7 @@ body, html {
     padding:0;
     text-transform:uppercase;
     width:100%;
-    font-family: Lato;
+    font-family: -apple-system-body, Lato;
     background: #0C1122;
     overflow: hidden;
 }
@@ -35,7 +35,7 @@ body, html {
     background: #0C1122;
     color: #4C61AB;
     font-size: 1em;
-    font-family: Lato;
+    font-family: -apple-system-body, Lato;
     text-transform: uppercase;
     text-decoration: none;
     -webkit-appearance: none;
@@ -154,7 +154,7 @@ body, html {
 .menu-popup .reset, .menu-popup .back, .menu-popup .close, .levels-name {
     color: #4C61AB;
     font-size: 1.24em;
-    font-family: Lato;
+    font-family: -apple-system-body, Lato;
     margin: 15px 0;
     text-transform: uppercase;
     -webkit-appearance: none;
