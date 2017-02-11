@@ -22,7 +22,10 @@
 
 			app.ports.getMaxLevel.subscribe(function() {
 				var maxLevel = getMaxLevel();
-				app.ports.maxLevel.send(maxLevel);
+
+				setTimeout(function() {
+					app.ports.maxLevel.send(maxLevel);
+				});
 			});
 
 			function getMaxLevel() {
