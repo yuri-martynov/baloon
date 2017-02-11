@@ -48,6 +48,8 @@ body, html {
     transition: margin 0.2s;
 }
 
+
+
 @keyframes rotate {
     from {
         transform: rotate(0deg);
@@ -381,3 +383,31 @@ body, html {
     stroke: red;
     stroke-width: 0.1;
 }
+
+
+ul.levels{
+    flex-direction: row;
+    flex-flow: wrap;
+    display: flex;
+    list-style-type: none;
+}
+
+li.level{
+    border-radius: 50%;
+    background: #4C61AB;
+    border: 1px solid #4C61AB;
+    margin: 15;
+    width: 30;
+    height: 30;
+    color: #0C1122;
+    line-height: 30px;
+    text-align: center;
+}
+
+li.level a{
+    color: #0C1122;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
