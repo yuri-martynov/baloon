@@ -1,5 +1,6 @@
 module Atrapos.Levels.Msg exposing (..)
 
+import Atrapos.Data.Model as Level
 
 type Msg
-    = NoOp
+    = MaxLevel Level.Id
