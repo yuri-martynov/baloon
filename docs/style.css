@@ -431,3 +431,10 @@ li.level a{
     transition: 0.2s;
 }
 
+.level.closed {
+    opacity: 0.25;
+}
+
+.level.opened {
+}
+

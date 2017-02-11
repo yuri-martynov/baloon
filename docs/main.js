@@ -18050,9 +18050,10 @@ var _user$project$Atrapos_Routes$parse = function (_p4) {
 		A2(_evancz$url_parser$UrlParser$parseHash, _user$project$Atrapos_Routes$route, _p4));
 };
 
-var _user$project$Atrapos_Levels_Model$Model = function (a) {
-	return {levels: a};
-};
+var _user$project$Atrapos_Levels_Model$Model = F2(
+	function (a, b) {
+		return {levels: a, maxLevel: b};
+	});
 
 var _user$project$Atrapos_Model$Game = function (a) {
 	return {ctor: 'Game', _0: a};
@@ -18062,7 +18063,9 @@ var _user$project$Atrapos_Model$Levels = function (a) {
 };
 var _user$project$Atrapos_Model$NotFound = {ctor: 'NotFound'};
 
-var _user$project$Atrapos_Levels_Msg$NoOp = {ctor: 'NoOp'};
+var _user$project$Atrapos_Levels_Msg$MaxLevel = function (a) {
+	return {ctor: 'MaxLevel', _0: a};
+};
 
 var _user$project$Atrapos_Msg$GameMsg = function (a) {
 	return {ctor: 'GameMsg', _0: a};
@@ -18074,10 +18077,26 @@ var _user$project$Atrapos_Msg$UrlChanged = function (a) {
 	return {ctor: 'UrlChanged', _0: a};
 };
 
+var _user$project$Atrapos_Port$levelCompleted = _elm_lang$core$Native_Platform.outgoingPort(
+	'levelCompleted',
+	function (v) {
+		return v;
+	});
+var _user$project$Atrapos_Port$getMaxLevel = _elm_lang$core$Native_Platform.outgoingPort(
+	'getMaxLevel',
+	function (v) {
+		return v;
+	});
+var _user$project$Atrapos_Port$maxLevel = _elm_lang$core$Native_Platform.incomingPort('maxLevel', _elm_lang$core$Json_Decode$int);
+
 var _user$project$Atrapos_Levels_Init$init = A2(
 	_elm_lang$core$Platform_Cmd_ops['!'],
-	{levels: _user$project$Atrapos_Data_Levels$model},
-	{ctor: '[]'});
+	{levels: _user$project$Atrapos_Data_Levels$model, maxLevel: 0},
+	{
+		ctor: '::',
+		_0: _user$project$Atrapos_Port$getMaxLevel(0),
+		_1: {ctor: '[]'}
+	});
 
 var _user$project$Atrapos_Init$init = function (route) {
 	var _p0 = route;
@@ -18099,23 +18118,50 @@ var _user$project$Atrapos_Init$init = function (route) {
 	}
 };
 
+var _user$project$Atrapos_Levels_Sub$subscriptions = function (_p0) {
+	return _user$project$Atrapos_Port$maxLevel(_user$project$Atrapos_Levels_Msg$MaxLevel);
+};
+
 var _user$project$Atrapos_Levels_Update$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		return A2(
 			_elm_lang$core$Platform_Cmd_ops['!'],
-			model,
+			_elm_lang$core$Native_Utils.update(
+				model,
+				{maxLevel: _p0._0}),
 			{ctor: '[]'});
 	});
 
-var _user$project$Atrapos_Levels_View$level = F2(
-	function (id, _p0) {
+var _user$project$Atrapos_Levels_View$level = F3(
+	function (maxLevel, id, _p0) {
 		var _p1 = _p0;
 		return A2(
 			_elm_lang$html$Html$li,
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('level'),
+				_0: _elm_lang$html$Html_Attributes$classList(
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'level', _1: true},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 'opened',
+								_1: _elm_lang$core$Native_Utils.cmp(id, maxLevel) < 1
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 'closed',
+									_1: _elm_lang$core$Native_Utils.cmp(id, maxLevel) > 0
+								},
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
 				_1: {ctor: '[]'}
 			},
 			{
@@ -18171,12 +18217,31 @@ var _user$project$Atrapos_Levels_View$view = function (_p2) {
 						_1: {ctor: '[]'}
 					},
 					_elm_lang$core$Dict$values(
-						A2(_elm_lang$core$Dict$map, _user$project$Atrapos_Levels_View$level, _p3.levels))),
+						A2(
+							_elm_lang$core$Dict$map,
+							_user$project$Atrapos_Levels_View$level(_p3.maxLevel),
+							_p3.levels))),
 				_1: {ctor: '[]'}
 			}
 		});
 };
 
+var _user$project$Atrapos_Update$levelCompleted = F2(
+	function (id, model) {
+		var save = _user$project$Atrapos_Port$levelCompleted(id);
+		var next = id + 1;
+		var navigate = A2(_elm_lang$core$Dict$member, next, _user$project$Atrapos_Data_Levels$model) ? {
+			ctor: '::',
+			_0: _elm_lang$navigation$Navigation$newUrl(
+				_user$project$Atrapos_Routes$url(
+					_user$project$Atrapos_Routes$Level(next))),
+			_1: {ctor: '[]'}
+		} : {ctor: '[]'};
+		return A2(
+			_elm_lang$core$Platform_Cmd_ops['!'],
+			model,
+			{ctor: '::', _0: save, _1: navigate});
+	});
 var _user$project$Atrapos_Update$update = F2(
 	function (msg, model) {
 		var _p0 = {ctor: '_Tuple2', _0: model, _1: msg};
@@ -18189,20 +18254,7 @@ var _user$project$Atrapos_Update$update = F2(
 					case 'GameMsg':
 						if (_p0._0.ctor === 'Game') {
 							if (_p0._1._0.ctor === 'Finished') {
-								var next = _p0._1._0._0 + 1;
-								return A2(_elm_lang$core$Dict$member, next, _user$project$Atrapos_Data_Levels$model) ? A2(
-									_elm_lang$core$Platform_Cmd_ops['!'],
-									model,
-									{
-										ctor: '::',
-										_0: _elm_lang$navigation$Navigation$newUrl(
-											_user$project$Atrapos_Routes$url(
-												_user$project$Atrapos_Routes$Level(next))),
-										_1: {ctor: '[]'}
-									}) : A2(
-									_elm_lang$core$Platform_Cmd_ops['!'],
-									model,
-									{ctor: '[]'});
+								return A2(_user$project$Atrapos_Update$levelCompleted, _p0._1._0._0, model);
 							} else {
 								return A3(
 									_bloom$elm_return$Return$mapBoth,
@@ -18255,13 +18307,19 @@ var _user$project$Atrapos_View$view = function (model) {
 
 var _user$project$Atrapos_Sub$subscriptions = function (model) {
 	var _p0 = model;
-	if (_p0.ctor === 'Game') {
-		return A2(
-			_elm_lang$core$Platform_Sub$map,
-			_user$project$Atrapos_Msg$GameMsg,
-			_user$project$Atrapos_Game_Sub$subscriptions(_p0._0));
-	} else {
-		return _elm_lang$core$Platform_Sub$none;
+	switch (_p0.ctor) {
+		case 'Game':
+			return A2(
+				_elm_lang$core$Platform_Sub$map,
+				_user$project$Atrapos_Msg$GameMsg,
+				_user$project$Atrapos_Game_Sub$subscriptions(_p0._0));
+		case 'Levels':
+			return A2(
+				_elm_lang$core$Platform_Sub$map,
+				_user$project$Atrapos_Msg$LevelsMsg,
+				_user$project$Atrapos_Levels_Sub$subscriptions(_p0._0));
+		default:
+			return _elm_lang$core$Platform_Sub$none;
 	}
 };
 
