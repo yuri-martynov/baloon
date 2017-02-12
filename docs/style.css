@@ -17,8 +17,8 @@ body, html {
 }
 
 .container {
-    background: url(BG-2.png) no-repeat center center fixed;
-    background-size: cover;
+    background: url(BG-2.png) no-repeat;
+    /*background-position-x: -50px;*/
     height: 100%;
 }
 

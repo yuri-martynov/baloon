@@ -16702,6 +16702,10 @@ var _user$project$Common_Math$intersect = F4(
 			A3(area, c, d, a) * A3(area, c, d, b),
 			0) < 1)));
 	});
+var _user$project$Common_Math$angle = F2(
+	function (a, b) {
+		return A2(_elm_lang$core$Basics$atan2, b.y - a.y, a.x - b.x);
+	});
 var _user$project$Common_Math$len = F2(
 	function (a, b) {
 		return _elm_lang$core$Basics$sqrt(
@@ -17666,59 +17670,129 @@ var _user$project$Atrapos_Game_UI$ui = function (_p1) {
 				_1: {ctor: '[]'}
 			} : {ctor: '[]'}));
 };
+var _user$project$Atrapos_Game_UI$parallax = function (_p4) {
+	var _p5 = _p4;
+	var offset = F2(
+		function (a, b) {
+			var r = A2(_user$project$Common_Math$angle, a, b);
+			var l = A2(
+				_elm_lang$core$Basics$min,
+				2,
+				A2(_user$project$Common_Math$len, a, b));
+			return {
+				x: l * _elm_lang$core$Basics$cos(r),
+				y: l * _elm_lang$core$Basics$sin(r)
+			};
+		});
+	var _p6 = _p5.selection;
+	switch (_p6.ctor) {
+		case 'None':
+			return _elm_lang$core$Maybe$Nothing;
+		case 'Selection':
+			return _elm_lang$core$Maybe$Just(
+				A2(
+					offset,
+					A2(_user$project$Common_Dict_ops['#'], _p5.nodes, _p6._0.lastNode),
+					_p6._0.endLocation));
+		default:
+			return _elm_lang$core$Maybe$Just(
+				A2(offset, _p6._0.startLocation, _p6._0.endLocation));
+	}
+};
 var _user$project$Atrapos_Game_UI$view = F2(
-	function (_p4, viewGame) {
-		var _p5 = _p4;
-		var _p8 = _p5.victory;
-		var _p7 = _p5;
-		var _p6 = _p5.minLen;
-		var len = _user$project$Atrapos_Game_Shared$linksLen(_p7);
-		return A2(
-			_elm_lang$html$Html$div,
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$classList(
-					{
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'container', _1: true},
-						_1: {
+	function (_p7, viewGame) {
+		var _p8 = _p7;
+		var _p12 = _p8.victory;
+		var _p11 = _p8;
+		var _p10 = _p8.minLen;
+		var styles = function () {
+			var _p9 = _user$project$Atrapos_Game_UI$parallax(_p11);
+			if (_p9.ctor === 'Just') {
+				return {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
 							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'begin', _1: true},
+							_0: {
+								ctor: '_Tuple2',
+								_0: 'background-position-x',
+								_1: A2(
+									_elm_lang$core$Basics_ops['++'],
+									_elm_lang$core$Basics$toString(-25 + _p9._0.x),
+									'px')
+							},
 							_1: {
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'active', _1: true},
+								_0: {
+									ctor: '_Tuple2',
+									_0: 'background-position-y',
+									_1: A2(
+										_elm_lang$core$Basics_ops['++'],
+										_elm_lang$core$Basics$toString(-25 - _p9._0.y),
+										'px')
+								},
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {ctor: '[]'}
+				};
+			} else {
+				return {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'background-position', _1: '-25px -25px'},
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				};
+			}
+		}();
+		var len = _user$project$Atrapos_Game_Shared$linksLen(_p11);
+		var classes = _elm_lang$html$Html_Attributes$classList(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'container', _1: true},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'begin', _1: true},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'active', _1: true},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'victory', _1: _p12},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 'overdraft',
+									_1: (!_p12) && (_elm_lang$core$Native_Utils.cmp(len, _p10) > 0)
+								},
 								_1: {
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'victory', _1: _p8},
-									_1: {
-										ctor: '::',
-										_0: {
-											ctor: '_Tuple2',
-											_0: 'overdraft',
-											_1: (!_p8) && (_elm_lang$core$Native_Utils.cmp(len, _p6) > 0)
-										},
-										_1: {
-											ctor: '::',
-											_0: {
-												ctor: '_Tuple2',
-												_0: 'incomplete',
-												_1: (!_p8) && (_elm_lang$core$Native_Utils.cmp(len, _p6) < 0)
-											},
-											_1: {ctor: '[]'}
-										}
-									}
+									_0: {
+										ctor: '_Tuple2',
+										_0: 'incomplete',
+										_1: (!_p12) && (_elm_lang$core$Native_Utils.cmp(len, _p10) < 0)
+									},
+									_1: {ctor: '[]'}
 								}
 							}
 						}
-					}),
-				_1: {ctor: '[]'}
-			},
+					}
+				}
+			});
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '::', _0: classes, _1: styles},
 			{
 				ctor: '::',
 				_0: viewGame,
 				_1: {
 					ctor: '::',
-					_0: _user$project$Atrapos_Game_UI$ui(_p7),
+					_0: _user$project$Atrapos_Game_UI$ui(_p11),
 					_1: {ctor: '[]'}
 				}
 			});

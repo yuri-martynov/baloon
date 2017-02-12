@@ -2,9 +2,12 @@ module Atrapos.Game.UI exposing (view)
 
 import Dict
 import Html exposing (..)
-import Html.Attributes exposing (..)
+import Html.Attributes exposing (class, classList, href, disabled, style)
 import Html.Events exposing (..)
 import Common.List exposing (lst)
+import Common.Dict exposing ((#))
+import Common.Math as Math
+import Common.Types exposing (Location)
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Shared as Game
@@ -15,20 +18,60 @@ view ({ victory, minLen } as model) viewGame =
     let
         len =
             model |> Game.linksLen
+
+        styles =
+            case model |> parallax of
+                Just { x, y } ->
+                    [ style
+                        [ ( "background-position-x", (-25 + x |> toString) ++ "px" )
+                        , ( "background-position-y", (-25 - y |> toString) ++ "px" )
+                        ]
+                    ]
+
+                Nothing ->
+                    [ style [ ( "background-position", "-25px -25px" ) ] ]
+
+        classes = 
+            classList
+                    [ ( "container", True )
+                    , ( "begin", True )
+                    , ( "active", True )
+                    , ( "victory", victory )
+                    , ( "overdraft", not victory && len > minLen )
+                    , ( "incomplete", not victory && len < minLen )
+                    ]
     in
         div
-            [ classList
-                [ ( "container", True )
-                , ( "begin", True )
-                , ( "active", True )
-                , ( "victory", victory )
-                , ( "overdraft", not victory && len > minLen )
-                , ( "incomplete", not victory && len < minLen )
-                ]
-            ]
+            ( classes :: styles )
             [ viewGame
             , ui model
             ]
+
+
+parallax : Model_ -> Maybe Location
+parallax { selection, nodes } =
+    let
+        offset a b =
+            let
+                l =
+                    Math.len a b |> min 2
+
+                r =
+                    Math.angle a b
+            in
+                { x = l * (cos r)
+                , y = l * (sin r)
+                }
+    in
+        case selection of
+            None ->
+                Nothing
+
+            Selection { lastNode, endLocation } ->
+                offset (nodes # lastNode) endLocation |> Just
+
+            Deselection { startLocation, endLocation } ->
+                offset startLocation endLocation |> Just
 
 
 ui : Model_ -> Html Msg
@@ -62,7 +105,7 @@ ui ({ victory, links, menu, minLen } as model) =
             []
         ]
             ++ (if menu then
-                    [ menuPopup  ]
+                    [ menuPopup ]
                 else
                     []
                )
