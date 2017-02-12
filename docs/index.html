@@ -8,30 +8,11 @@
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
 		<link rel="StyleSheet" href="style.css" type="text/css" />
 		<script src="main.js"></script>
+		<script src="elm.js"></script>
 	</head>
 	<body>
 		<script>
-			var app = Elm.Atrapos.Main.fullscreen();
-
-			app.ports.levelCompleted.subscribe(function(levelId) {
-				var maxLevel = getMaxLevel();
-				if (!maxLevel || levelId > maxLevel) {
-					localStorage.maxLevel = levelId
-				}
-			});
-
-			app.ports.getMaxLevel.subscribe(function() {
-				var maxLevel = getMaxLevel();
-
-				setTimeout(function() {
-					app.ports.maxLevel.send(maxLevel);
-				});
-			});
-
-			function getMaxLevel() {
-				var maxLevelStr = localStorage.maxLevel
-				return maxLevelStr ? parseInt (maxLevelStr) : 0;
-			}
+			run()
 		</script>
 	</body>
 </html>
