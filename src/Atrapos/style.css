@@ -286,6 +286,24 @@ body, html {
         transform: scale(1.2);
     }
 }
+
+
+@keyframes pop-intro {
+    0% {
+        transform: scale(0.1);
+    }
+
+    100% {
+        transform: scale(0.7);
+        opacity: 0.5;
+        fill: white;
+        fill-opacity: 0.1;
+        stroke: white;
+        stroke-width: 1;
+
+    }
+}
+
 @keyframes spin {
     100% {
         transform: rotate(360deg);
@@ -426,13 +444,19 @@ li.level a{
     -moz-appearance: none;
 }
 
-.li.level a::selection{
+.li.level a:active{
     color: white;
     transition: 0.2s;
 }
 
 .level.closed {
-    opacity: 0.25;
+    background: transparent;
+    border: 1px solid #4C61AB;
+    pointer-events: none;
+}
+
+li.level.closed a{
+    color: #4C61AB;
 }
 
 .level.opened {
