@@ -8,6 +8,11 @@ len a b =
     sqrt ((a.x - b.x) ^ 2 + (a.y - b.y) ^ 2)
 
 
+angle : Location_ a -> Location_ b -> Float
+angle a b =
+    atan2 (b.y - a.y) (a.x - b.x)
+
+
 intersect : Location_ a -> Location_ b -> Location_ c -> Location_ d -> Bool
 intersect a b c d =
     let
