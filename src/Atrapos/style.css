@@ -12,14 +12,24 @@ body, html {
     text-transform:uppercase;
     width:100%;
     font-family: -apple-system-body, Lato;
-    background: #0C1122;
+    /*background: #0C1122;*/
     overflow: hidden;
 }
 
 .container {
-    background: url(BG-2.png) no-repeat center center fixed;
-    background-size: cover;
     height: 100%;
+}
+
+.background {
+    /*background: url(BG-2.png) no-repeat center center fixed;*/
+    /*background-size: cover;*/
+    height: 125%;    
+    width: 125%;
+    position: absolute;
+    z-index: -1;
+    transform: translate(-50px, -50px);
+    /*left: 25px;*/
+    /*top: -25px;*/
 }
 
 .map-header {
