@@ -2,11 +2,9 @@ module Atrapos.Game.UI exposing (view)
 
 import Dict
 import Html exposing (..)
-import Html.Attributes exposing (style, class, src, classList, href, disabled)
+import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Common.List exposing (lst)
-import Common.Dict exposing ((#))
-import Common.Math as Math
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Shared as Game
@@ -28,38 +26,10 @@ view ({ victory, minLen } as model) viewGame =
                 , ( "incomplete", not victory && len < minLen )
                 ]
             ]
-            [ background model
-            , viewGame
+            [ viewGame
             , ui model
             ]
 
-
-background {selection, nodes} =
-    let
-        style_ = 
-            case selection of
-                None -> []
-                Selection {lastNode, endLocation} ->
-                    offset (nodes # lastNode) endLocation 
-                Deselection {startLocation, endLocation} ->
-                    offset startLocation endLocation 
-        
-        offset a b =
-            let 
-                l = Math.len a b |> max 25
-                r = Math.angle a b
-            in
-                [ ("left", l * (cos r) |> toString)
-                , ("top", l * (sin r) |> toString)
-                ]
-
-
-    in
-        img 
-            [ class "background"
-            , src "BG-2.PNG" 
-            , style style_
-            ] []
 
 ui : Model_ -> Html Msg
 ui ({ victory, links, menu, minLen } as model) =
