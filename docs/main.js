@@ -17683,25 +17683,29 @@ var _user$project$Atrapos_Game_UI$view = F2(
 						_0: {ctor: '_Tuple2', _0: 'container', _1: true},
 						_1: {
 							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'active', _1: true},
+							_0: {ctor: '_Tuple2', _0: 'begin', _1: true},
 							_1: {
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'victory', _1: _p8},
+								_0: {ctor: '_Tuple2', _0: 'active', _1: true},
 								_1: {
 									ctor: '::',
-									_0: {
-										ctor: '_Tuple2',
-										_0: 'overdraft',
-										_1: (!_p8) && (_elm_lang$core$Native_Utils.cmp(len, _p6) > 0)
-									},
+									_0: {ctor: '_Tuple2', _0: 'victory', _1: _p8},
 									_1: {
 										ctor: '::',
 										_0: {
 											ctor: '_Tuple2',
-											_0: 'incomplete',
-											_1: (!_p8) && (_elm_lang$core$Native_Utils.cmp(len, _p6) < 0)
+											_0: 'overdraft',
+											_1: (!_p8) && (_elm_lang$core$Native_Utils.cmp(len, _p6) > 0)
 										},
-										_1: {ctor: '[]'}
+										_1: {
+											ctor: '::',
+											_0: {
+												ctor: '_Tuple2',
+												_0: 'incomplete',
+												_1: (!_p8) && (_elm_lang$core$Native_Utils.cmp(len, _p6) < 0)
+											},
+											_1: {ctor: '[]'}
+										}
 									}
 								}
 							}

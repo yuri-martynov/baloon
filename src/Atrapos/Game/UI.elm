@@ -19,6 +19,7 @@ view ({ victory, minLen } as model) viewGame =
         div
             [ classList
                 [ ( "container", True )
+                , ( "begin", True )
                 , ( "active", True )
                 , ( "victory", victory )
                 , ( "overdraft", not victory && len > minLen )
