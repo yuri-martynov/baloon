@@ -46,7 +46,7 @@ background {selection, nodes} =
         
         offset a b =
             let 
-                l = Math.len a b |> min 2
+                l = Math.len a b |> max 25
                 r = Math.angle a b
             in
                 [ ("left", l * (cos r) |> toString)

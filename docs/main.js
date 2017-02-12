@@ -16702,10 +16702,6 @@ var _user$project$Common_Math$intersect = F4(
 			A3(area, c, d, a) * A3(area, c, d, b),
 			0) < 1)));
 	});
-var _user$project$Common_Math$angle = F2(
-	function (a, b) {
-		return A2(_elm_lang$core$Basics$atan2, a.y - b.y, a.x - b.x);
-	});
 var _user$project$Common_Math$len = F2(
 	function (a, b) {
 		return _elm_lang$core$Basics$sqrt(
@@ -17670,73 +17666,13 @@ var _user$project$Atrapos_Game_UI$ui = function (_p1) {
 				_1: {ctor: '[]'}
 			} : {ctor: '[]'}));
 };
-var _user$project$Atrapos_Game_UI$background = function (_p4) {
-	var _p5 = _p4;
-	var offset = F2(
-		function (a, b) {
-			var r = A2(_user$project$Common_Math$angle, a, b);
-			var l = A2(
-				_elm_lang$core$Basics$min,
-				2,
-				A2(_user$project$Common_Math$len, a, b));
-			return {
-				ctor: '::',
-				_0: {
-					ctor: '_Tuple2',
-					_0: 'left',
-					_1: _elm_lang$core$Basics$toString(
-						l * _elm_lang$core$Basics$cos(r))
-				},
-				_1: {
-					ctor: '::',
-					_0: {
-						ctor: '_Tuple2',
-						_0: 'top',
-						_1: _elm_lang$core$Basics$toString(
-							l * _elm_lang$core$Basics$sin(r))
-					},
-					_1: {ctor: '[]'}
-				}
-			};
-		});
-	var style_ = function () {
-		var _p6 = _p5.selection;
-		switch (_p6.ctor) {
-			case 'None':
-				return {ctor: '[]'};
-			case 'Selection':
-				return A2(
-					offset,
-					A2(_user$project$Common_Dict_ops['#'], _p5.nodes, _p6._0.lastNode),
-					_p6._0.endLocation);
-			default:
-				return A2(offset, _p6._0.startLocation, _p6._0.endLocation);
-		}
-	}();
-	return A2(
-		_elm_lang$html$Html$img,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('background'),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$src('BG-2.PNG'),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$style(style_),
-					_1: {ctor: '[]'}
-				}
-			}
-		},
-		{ctor: '[]'});
-};
 var _user$project$Atrapos_Game_UI$view = F2(
-	function (_p7, viewGame) {
-		var _p8 = _p7;
-		var _p11 = _p8.victory;
-		var _p10 = _p8;
-		var _p9 = _p8.minLen;
-		var len = _user$project$Atrapos_Game_Shared$linksLen(_p10);
+	function (_p4, viewGame) {
+		var _p5 = _p4;
+		var _p8 = _p5.victory;
+		var _p7 = _p5;
+		var _p6 = _p5.minLen;
+		var len = _user$project$Atrapos_Game_Shared$linksLen(_p7);
 		return A2(
 			_elm_lang$html$Html$div,
 			{
@@ -17753,20 +17689,20 @@ var _user$project$Atrapos_Game_UI$view = F2(
 								_0: {ctor: '_Tuple2', _0: 'active', _1: true},
 								_1: {
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'victory', _1: _p11},
+									_0: {ctor: '_Tuple2', _0: 'victory', _1: _p8},
 									_1: {
 										ctor: '::',
 										_0: {
 											ctor: '_Tuple2',
 											_0: 'overdraft',
-											_1: (!_p11) && (_elm_lang$core$Native_Utils.cmp(len, _p9) > 0)
+											_1: (!_p8) && (_elm_lang$core$Native_Utils.cmp(len, _p6) > 0)
 										},
 										_1: {
 											ctor: '::',
 											_0: {
 												ctor: '_Tuple2',
 												_0: 'incomplete',
-												_1: (!_p11) && (_elm_lang$core$Native_Utils.cmp(len, _p9) < 0)
+												_1: (!_p8) && (_elm_lang$core$Native_Utils.cmp(len, _p6) < 0)
 											},
 											_1: {ctor: '[]'}
 										}
@@ -17779,15 +17715,11 @@ var _user$project$Atrapos_Game_UI$view = F2(
 			},
 			{
 				ctor: '::',
-				_0: _user$project$Atrapos_Game_UI$background(_p10),
+				_0: viewGame,
 				_1: {
 					ctor: '::',
-					_0: viewGame,
-					_1: {
-						ctor: '::',
-						_0: _user$project$Atrapos_Game_UI$ui(_p10),
-						_1: {ctor: '[]'}
-					}
+					_0: _user$project$Atrapos_Game_UI$ui(_p7),
+					_1: {ctor: '[]'}
 				}
 			});
 	});

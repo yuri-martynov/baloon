@@ -21,21 +21,15 @@ body, html {
 }
 
 .background {
-    height: 110%;    
-    width: 110%;
+    /*background: url(BG-2.png) no-repeat center center fixed;*/
+    /*background-size: cover;*/
+    height: 125%;    
+    width: 125%;
     position: absolute;
     z-index: -1;
-    transform: translate(-10px, -10px);
-}
-
-.selection-none {
-    animation-name: parallax-leave;
-    animation-duration: 300ms;
-    animation-timing-function: ease-in-out; 
-}
-
-@keyframes parallax-leave {
-    100% { left: 0; top: 0;}
+    transform: translate(-50px, -50px);
+    /*left: 25px;*/
+    /*top: -25px;*/
 }
 
 .map-header {
