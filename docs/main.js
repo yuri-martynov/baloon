@@ -18140,7 +18140,6 @@ var _user$project$Atrapos_Levels_Update$update = F2(
 var _user$project$Atrapos_Levels_View$level = F3(
 	function (maxLevel, id, _p0) {
 		var _p1 = _p0;
-		var opened = maxLevel + 1;
 		return A2(
 			_elm_lang$html$Html$li,
 			{
@@ -18154,14 +18153,14 @@ var _user$project$Atrapos_Levels_View$level = F3(
 							_0: {
 								ctor: '_Tuple2',
 								_0: 'opened',
-								_1: _elm_lang$core$Native_Utils.cmp(id, opened) < 1
+								_1: _elm_lang$core$Native_Utils.cmp(id, maxLevel) < 1
 							},
 							_1: {
 								ctor: '::',
 								_0: {
 									ctor: '_Tuple2',
 									_0: 'closed',
-									_1: _elm_lang$core$Native_Utils.cmp(id, opened) > 0
+									_1: _elm_lang$core$Native_Utils.cmp(id, maxLevel) > 0
 								},
 								_1: {ctor: '[]'}
 							}
@@ -18233,8 +18232,8 @@ var _user$project$Atrapos_Levels_View$view = function (_p2) {
 
 var _user$project$Atrapos_Update$levelCompleted = F2(
 	function (id, model) {
-		var save = _user$project$Atrapos_Port$levelCompleted(id);
 		var next = id + 1;
+		var save = _user$project$Atrapos_Port$levelCompleted(next);
 		var navigate = A2(_elm_lang$core$Dict$member, next, _user$project$Atrapos_Data_Levels$model) ? {
 			ctor: '::',
 			_0: _elm_lang$navigation$Navigation$newUrl(
