@@ -9,6 +9,7 @@
         "**/elm-stuff":true,
         "docs": true,
         "**/node_modules": true,
-        "**/main.js": true
+        "**/main.js": true,
+        "**/www/**/elm.js": true
     }
 }
