@@ -11,23 +11,28 @@ import Atrapos.Data.Model as Level
 
 view : Model -> Html Msg
 view { levels, maxLevel } =
-    div [ class "home"]
-        [ div [class "levels-name"] [text "PATHFINDER"]
+    div [ class "home" ]
+        [ div [ class "levels-name" ] [ text "PATHFINDER" ]
         , levels
             |> Dict.map (level maxLevel)
             |> Dict.values
             |> ul [ class "levels" ]
         ]
-        
 
 
 level : Level.Id -> Level.Id -> Level.Model -> Html Msg
 level maxLevel id { nodes, links } =
-    li [ [ ("level", True) 
-         , ("opened", id <= maxLevel)
-         , ("closed", id > maxLevel)
-         ] |> classList 
-       ]
-        [ a [ Level id |> url |> href ]
-            [ id + 1 |> toString |> text ]
-        ]
+    let
+        opened =
+            maxLevel + 1
+    in
+        li
+            [ [ ( "level", True )
+              , ( "opened", id <= opened )
+              , ( "closed", id > opened )
+              ]
+                |> classList
+            ]
+            [ a [ Level id |> url |> href ]
+                [ id + 1 |> toString |> text ]
+            ]
