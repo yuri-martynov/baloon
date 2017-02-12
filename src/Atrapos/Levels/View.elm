@@ -22,17 +22,13 @@ view { levels, maxLevel } =
 
 level : Level.Id -> Level.Id -> Level.Model -> Html Msg
 level maxLevel id { nodes, links } =
-    let
-        opened =
-            maxLevel + 1
-    in
-        li
-            [ [ ( "level", True )
-              , ( "opened", id <= opened )
-              , ( "closed", id > opened )
-              ]
-                |> classList
-            ]
-            [ a [ Level id |> url |> href ]
-                [ id + 1 |> toString |> text ]
-            ]
+    li
+        [ [ ( "level", True )
+          , ( "opened", id <= maxLevel )
+          , ( "closed", id > maxLevel )
+          ]
+            |> classList
+        ]
+        [ a [ Level id |> url |> href ]
+            [ id + 1 |> toString |> text ]
+        ]

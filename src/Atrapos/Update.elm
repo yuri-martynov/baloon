@@ -44,7 +44,7 @@ levelCompleted id model =
             id + 1
         
         save =
-            Port.levelCompleted id
+            Port.levelCompleted next
 
         navigate = 
             if Data.model |> Dict.member next then
