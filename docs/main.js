@@ -16661,7 +16661,7 @@ var _user$project$Atrapos_Game_Selection_Path$len = F2(
 					}(
 						A2(_elm_lang$core$Basics$flip, _user$project$Common_Dict$justGet, links)(_p0));
 				},
-				path));
+				_elm_lang$core$List$sort(path)));
 	});
 var _user$project$Atrapos_Game_Selection_Path$selected = function (links) {
 	return _elm_lang$core$Dict$keys(

@@ -15,5 +15,6 @@ selected links =
 len : Links -> List LinkId -> Float
 len links path =
     path
+        |> List.sort -- ??
         |> List.map (.len << (links |> flip Dict.justGet))
         |> List.sum

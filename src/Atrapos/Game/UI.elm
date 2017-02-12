@@ -82,7 +82,7 @@ ui ({ victory, links, menu, minLen } as model) =
 
         progress =
             (minLen |> round)
-                - (len |> round)
+                - (len  |> round)
     in
         [ progress
             |> abs
