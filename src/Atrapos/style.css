@@ -1,23 +1,41 @@
 * {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
 body, html {
-    -webkit-touch-callout: none;
-    /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none;
-    /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;
-    /* prevent copy paste, to allow, change 'none' to 'text' */
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    text-transform: uppercase;
-    width: 100%;
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    height:100%;
+    margin:0;
+    padding:0;
+    text-transform:uppercase;
+    width:100%;
     font-family: -apple-system-body, Lato;
-    background: #0C1122;
+    /*background: #0C1122;*/
     overflow: hidden;
+}
+
+.container {
+    height: 100%;
+}
+
+.background {
+    height: 110%;    
+    width: 110%;
+    position: absolute;
+    z-index: -1;
+    transform: translate(-10px, -10px);
+}
+
+.selection-none {
+    animation-name: parallax-leave;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out; 
+}
+
+@keyframes parallax-leave {
+    100% { left: 0; top: 0;}
 }
 
 .map-header {
@@ -46,6 +64,8 @@ body, html {
     transition: margin 0.2s;
 }
 
+
+
 @keyframes rotate {
     from {
         transform: rotate(0deg);
@@ -53,6 +73,38 @@ body, html {
     to {
         transform: rotate(360deg);
     }
+}
+
+.game-field {
+    /*margin: 75px 25px 25px 25px;*/
+    overflow: visible;
+}
+
+.game-ui {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 3em;
+    position: fixed;
+    /*background: #0C1122;*/
+    color: #4C61AB;
+    display: flex;
+    flex-direction: row;
+    border: 0 solid;
+    /*border-bottom-width: 1px;*/
+    padding-top: 10px;
+}
+
+.hint {
+    display: none;
+    flex: 0.25;
+    color: #4C61AB;
+    font-size: 1em;
+    border: 1px solid #4C61AB;
+    border-radius: 5px;
+    margin: 8px 10px;
+    /*background: #161D36;*/
+    background: transparent;
 }
 
 .percent {
@@ -139,14 +191,124 @@ body, html {
     transition: 0.2s;
 }
 
-.menu-popup a {
+.menu-popup a{
     text-decoration: none;
 }
+
+.link {
+    stroke: whitesmoke;
+    stroke-dasharray: 0.1, 0.2;
+    opacity: 0.9;
+    /*stroke: lightskyblue;*/
+    stroke-width: 0.05;
+    pointer-events: none;
+    transition: stroke 1s, stroke-dasharray 1.5s;
+}
+
+.link.selected {
+    stroke-width: 0.1;
+    stroke: #60E5FC;
+    stroke-dasharray: none;
+    transition: 0.2s;
+}
+
+.planet {
+    pointer-events: none;
+    /*fill: #58E5FF;*/
+}
+
+.selected .planet {
+    animation: node 0.5s ease-in-out;
+    animation-fill-mode: both;
+    fill: #58E5FF;
+}
+
+.selection-start .planet {
+    fill: mediumpurple;
+}
+
+.selection-end .planet {
+    fill: whitesmoke;
+    transform: scale(0.5);
+    transition: all 0.2s ease-in;
+}
+
+
+.planet {
+    fill: orangered;
+    transform: scale(0.4);
+    transition: all 0.2s ease-in;
+}
+
+.orbit {
+    opacity: 0.8;
+    fill: none;
+    stroke: red;
+    stroke-width: 0.05;
+}
+
+.orbit-1 {
+    animation: pop 0.2s ease-in-out;
+    
+}
+
+.orbit-2 {
+    transform: scale(1.5) rotate(30deg);
+    display: none;
+}
+
+.orbit-3 {
+    /*animation:spin 4s linear infinite;*/
+    transform: scale(2);
+    transition: all 0.2 ease-in-out;
+    display: none;
+}
+
+.orbit-4 {
+    transform: scale(1.9) rotate(90deg);
+    display: none;
+}
+
+.orbit-3 .sputnik {
+    stroke: gold;
+    fill: yellow;
+    fill-opacity: 0.8;
+}
+
+.selected .orbit {
+    stroke: #58E5FF;
+    fill: #59E5FF;
+    fill-opacity: 0.3;
+    transition: stroke 1.5s, fill 1s;
+    filter: drop-shadow( -5px -5px 5px pink);
+}
+
+
+.selected.selection-start .orbit.orbit-1{
+    fill: mediumpurple;
+    fill-opacity: 0.6;
+    stroke: mediumpurple;
+}
+
+@keyframes orbit {
+    /*0% {fill: gold; }*/
+    100% {
+        stroke: #58E5FF;
+    }
+}
+
+@keyframes pop {
+    100% {
+        transform: scale(1.2);
+    }
+}
+
 
 @keyframes pop-intro {
     0% {
         transform: scale(0.1);
     }
+
     100% {
         transform: scale(0.7);
         opacity: 0.5;
@@ -154,8 +316,113 @@ body, html {
         fill-opacity: 0.1;
         stroke: white;
         stroke-width: 1;
+
     }
 }
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin-push {
+    100% {
+        transform: rotate(360deg) scale(0);
+    }
+}
+
+.help {
+    fill: green;
+}
+
+.victory .percent {
+    color: orange;
+}
+
+.victory .link {
+    stroke: transparent;
+}
+
+.victory .link.selected {
+    stroke: orange;
+}
+
+.victory .game-field {
+    animation:spin-push 3s ease-in infinite;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+.overdraft .game-field{
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+
+.overdraft .link.selected {
+    stroke: #FF1111;
+    transition: stroke 2s;
+}
+
+.overdraft .selected .planet{
+    fill: white;
+    transition: fill 1s;
+}
+
+.overdraft .selected .orbit{
+    stroke: red;
+    fill: #B9301B;
+}
+
+.overdraft .percent{
+    color: red;
+}
+
+.reset {
+    fill: darkgray;
+    transform: translateX(5)
+}
+
+.len {
+    pointer-events: none;
+    color: dimgray;
+    font-size: 0.75;
+    text-anchor: middle;
+}
+
+.progress {
+    font-size: 0.5;
+}
+
+.select {
+    stroke: #60E5FC;
+    stroke-width: 0.1;
+}
+
+.deselect {
+    stroke: red;
+    stroke-width: 0.1;
+}
+
 
 @keyframes offcanvas-left {
     from {
@@ -163,7 +430,8 @@ body, html {
     }
 }
 
-ul.levels {
+
+ul.levels{
     animation: offcanvas-left;
     animation-duration: 300ms;
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -173,7 +441,7 @@ ul.levels {
     list-style-type: none;
 }
 
-li.level {
+li.level{
     border-radius: 50%;
     background: #4C61AB;
     border: 1px solid #4C61AB;
@@ -185,14 +453,14 @@ li.level {
     text-align: center;
 }
 
-li.level a {
+li.level a{
     color: #0C1122;
     text-decoration: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
 
-.li.level a:active {
+.li.level a:active{
     color: white;
     transition: 0.2s;
 }
@@ -203,8 +471,10 @@ li.level a {
     pointer-events: none;
 }
 
-li.level.closed a {
+li.level.closed a{
     color: #4C61AB;
 }
 
-.level.opened {}
+.level.opened {
+}
+
