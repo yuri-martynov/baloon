@@ -18,6 +18,8 @@ body, html {
 
 .container {
     background: url(BG-2.png) no-repeat;
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    
     /*background-position-x: -50px;*/
     height: 100%;
 }
