@@ -34,8 +34,8 @@ init_ id s { nodes, links } =
                 |> List.indexedMap
                     (\i ( x, y ) ->
                         ( i + 1
-                        , { x = toFloat <| x - minX 
-                          , y = toFloat <| y - minY 
+                        , { x = x - minX 
+                          , y = y - minY 
                           }
                         )
                     )

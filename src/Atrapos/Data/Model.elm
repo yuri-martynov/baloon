@@ -10,7 +10,7 @@ type alias Model =
 
 
 type alias Node =
-    ( Int, Int )
+    ( Float, Float )
 
 
 type alias Link =

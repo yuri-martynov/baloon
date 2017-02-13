@@ -27,6 +27,11 @@ import Atrapos.Data.L22 as L22
 import Atrapos.Data.L23 as L23
 import Atrapos.Data.L24 as L24
 import Atrapos.Data.L25 as L25
+import Atrapos.Data.L26 as L26
+import Atrapos.Data.L27 as L27
+import Atrapos.Data.L28 as L28
+import Atrapos.Data.L29 as L29 
+
 
 
 model : Levels
@@ -56,6 +61,10 @@ model =
     , L23.model
     , L24.model
     , L25.model
+    , L26.model
+    , L27.model
+    , L28.model
+    , L29.model
     ]
         |> List.indexedMap (,)
         |> Dict.fromList

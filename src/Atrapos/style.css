@@ -80,7 +80,7 @@ body, html {
 }
 
 .hint {
-    display: none;
+    /*display: none;*/
     flex: 0.25;
     color: #4C61AB;
     font-size: 1em;
@@ -429,9 +429,9 @@ li.level{
     border-radius: 50%;
     background: #4C61AB;
     border: 1px solid #4C61AB;
-    margin: 15;
-    width: 30;
-    height: 30;
+    margin: 15px;
+    width: 30px;
+    height: 30px;
     color: #0C1122;
     line-height: 30px;
     text-align: center;
