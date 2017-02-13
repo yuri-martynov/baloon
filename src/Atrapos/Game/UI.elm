@@ -54,7 +54,7 @@ parallax { selection, nodes } =
         offset a b =
             let
                 l =
-                    Math.len a b |> min 2
+                    Math.len a b |> min 3
 
                 r =
                     Math.angle a b

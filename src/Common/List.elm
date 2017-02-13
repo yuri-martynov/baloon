@@ -22,14 +22,17 @@ lst a =
     [ a ]
 
 
-crossCheck: (a -> a -> Bool) -> List a -> Bool
-crossCheck  predicate list =
+crossCheck : (a -> a -> Bool) -> List a -> Bool
+crossCheck predicate list =
     case list of
-        [] -> True
-        [a] -> True
+        [] ->
+            True
+
+        [ a ] ->
+            True
+
         a :: b :: tail ->
             if predicate a b then
                 crossCheck predicate (b :: tail)
-            else 
+            else
                 False
-      

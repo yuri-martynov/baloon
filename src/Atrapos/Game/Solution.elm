@@ -15,7 +15,7 @@ solution nodes links =
 
 
 apply : Model_ -> Model_
-apply ( { solution, links } as model) =
+apply ({ solution, links } as model) =
     let
         links_ =
             links
@@ -30,18 +30,20 @@ isFullyConnected nodes links =
         links_ =
             links
                 |> Dict.toList
-                |> List.filter (Tuple.second >> .selected) 
+                |> List.filter (Tuple.second >> .selected)
                 |> List.map (\( id, { node1, node2 } ) -> ( id, node1, node2 ))
 
         isConnected n1 n2 =
             links_ |> path n1 n2
-
     in
         case nodes |> Dict.keys of
-            n1 :: nodes -> 
+            n1 :: nodes ->
                 nodes
                     |> List.all (isConnected n1)
-            _ -> True
+
+            _ ->
+                True
+
 
 
 -- PRIVATE ---------------------

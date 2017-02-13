@@ -19036,7 +19036,7 @@ var _user$project$Atrapos_Game_UI$parallax = function (_p4) {
 			var r = A2(_user$project$Common_Math$angle, a, b);
 			var l = A2(
 				_elm_lang$core$Basics$min,
-				2,
+				3,
 				A2(_user$project$Common_Math$len, a, b));
 			return {
 				x: l * _elm_lang$core$Basics$cos(r),
