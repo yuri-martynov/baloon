@@ -17791,6 +17791,31 @@ var _user$project$Atrapos_Game_Msg$Down = function (a) {
 	return {ctor: 'Down', _0: a};
 };
 
+var _user$project$Common_List$crossCheck = F2(
+	function (predicate, list) {
+		crossCheck:
+		while (true) {
+			var _p0 = list;
+			if (_p0.ctor === '[]') {
+				return true;
+			} else {
+				if (_p0._1.ctor === '[]') {
+					return true;
+				} else {
+					var _p1 = _p0._1._0;
+					if (A2(predicate, _p0._0, _p1)) {
+						var _v1 = predicate,
+							_v2 = {ctor: '::', _0: _p1, _1: _p0._1._1};
+						predicate = _v1;
+						list = _v2;
+						continue crossCheck;
+					} else {
+						return false;
+					}
+				}
+			}
+		}
+	});
 var _user$project$Common_List$lst = function (a) {
 	return {
 		ctor: '::',
@@ -17804,23 +17829,23 @@ var _user$project$Common_List$headBy = F2(
 			function (list, acc) {
 				headBy_:
 				while (true) {
-					var _p0 = list;
-					if (_p0.ctor === '[]') {
+					var _p2 = list;
+					if (_p2.ctor === '[]') {
 						return acc;
 					} else {
-						var _p2 = _p0._1;
-						var _p1 = _p0._0;
-						if (predicate(_p1)) {
+						var _p4 = _p2._1;
+						var _p3 = _p2._0;
+						if (predicate(_p3)) {
 							return {
 								ctor: '::',
-								_0: _p1,
-								_1: A2(_elm_lang$core$Basics_ops['++'], _p2, acc)
+								_0: _p3,
+								_1: A2(_elm_lang$core$Basics_ops['++'], _p4, acc)
 							};
 						} else {
-							var _v1 = _p2,
-								_v2 = {ctor: '::', _0: _p1, _1: acc};
-							list = _v1;
-							acc = _v2;
+							var _v4 = _p4,
+								_v5 = {ctor: '::', _0: _p3, _1: acc};
+							list = _v4;
+							acc = _v5;
 							continue headBy_;
 						}
 					}
@@ -17916,15 +17941,9 @@ var _user$project$Atrapos_Game_Solution$isFullyConnected = F2(
 				_elm_lang$core$Dict$toList(links)));
 		var isConnected = F2(
 			function (n1, n2) {
-				return (_elm_lang$core$Native_Utils.cmp(n1, n2) < 1) || A3(_user$project$Atrapos_Game_Solution$path, n1, n2, links_);
+				return A3(_user$project$Atrapos_Game_Solution$path, n1, n2, links_);
 			});
-		var isFullyConnected_ = function (n1) {
-			return A2(
-				_elm_lang$core$List$all,
-				isConnected(n1),
-				nodes_);
-		};
-		return A2(_elm_lang$core$List$all, isFullyConnected_, nodes_);
+		return A2(_user$project$Common_List$crossCheck, isConnected, nodes_);
 	});
 var _user$project$Atrapos_Game_Solution$apply = function (_p15) {
 	var _p16 = _p15;
