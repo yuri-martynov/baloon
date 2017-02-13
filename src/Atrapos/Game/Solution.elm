@@ -37,15 +37,11 @@ isFullyConnected nodes links =
             nodes |> Dict.keys
 
         isConnected n1 n2 =
-            n1 <= n2 || (links_ |> path n1 n2)
+            links_ |> path n1 n2
 
-        isFullyConnected_ n1 =
-            nodes_
-                |> List.all (isConnected n1)
     in
         nodes_
-            |> List.all isFullyConnected_
-
+            |> List.crossCheck isConnected
 
 
 -- PRIVATE ---------------------

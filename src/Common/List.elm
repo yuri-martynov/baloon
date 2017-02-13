@@ -1,4 +1,4 @@
-module Common.List exposing (headBy, lst)
+module Common.List exposing (..)
 
 
 headBy : (a -> Bool) -> List a -> List a
@@ -20,3 +20,16 @@ headBy predicate list =
 
 lst a =
     [ a ]
+
+
+crossCheck: (a -> a -> Bool) -> List a -> Bool
+crossCheck  predicate list =
+    case list of
+        [] -> True
+        [a] -> True
+        a :: b :: tail ->
+            if predicate a b then
+                crossCheck predicate (b :: tail)
+            else 
+                False
+      
