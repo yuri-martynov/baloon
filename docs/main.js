@@ -17923,7 +17923,6 @@ var _user$project$Atrapos_Game_Solution$orderedByLen = function (_p8) {
 };
 var _user$project$Atrapos_Game_Solution$isFullyConnected = F2(
 	function (nodes, links) {
-		var nodes_ = _elm_lang$core$Dict$keys(nodes);
 		var links_ = A2(
 			_elm_lang$core$List$map,
 			function (_p12) {
@@ -17943,10 +17942,18 @@ var _user$project$Atrapos_Game_Solution$isFullyConnected = F2(
 			function (n1, n2) {
 				return A3(_user$project$Atrapos_Game_Solution$path, n1, n2, links_);
 			});
-		return A2(_user$project$Common_List$crossCheck, isConnected, nodes_);
+		var _p15 = _elm_lang$core$Dict$keys(nodes);
+		if (_p15.ctor === '::') {
+			return A2(
+				_elm_lang$core$List$all,
+				isConnected(_p15._0),
+				_p15._1);
+		} else {
+			return true;
+		}
 	});
-var _user$project$Atrapos_Game_Solution$apply = function (_p15) {
-	var _p16 = _p15;
+var _user$project$Atrapos_Game_Solution$apply = function (_p16) {
+	var _p17 = _p16;
 	var links_ = A2(
 		_elm_lang$core$Dict$map,
 		F2(
@@ -17954,21 +17961,21 @@ var _user$project$Atrapos_Game_Solution$apply = function (_p15) {
 				return _elm_lang$core$Native_Utils.update(
 					link,
 					{
-						selected: A2(_elm_lang$core$List$member, id, _p16.solution)
+						selected: A2(_elm_lang$core$List$member, id, _p17.solution)
 					});
 			}),
-		_p16.links);
+		_p17.links);
 	return _elm_lang$core$Native_Utils.update(
-		_p16,
+		_p17,
 		{links: links_});
 };
 var _user$project$Atrapos_Game_Solution$solution = F2(
 	function (nodes, links) {
 		return A2(
 			_elm_lang$core$List$map,
-			function (_p17) {
-				var _p18 = _p17;
-				return _p18._0;
+			function (_p18) {
+				var _p19 = _p18;
+				return _p19._0;
 			},
 			A3(
 				_elm_lang$core$Basics$flip,

@@ -33,15 +33,15 @@ isFullyConnected nodes links =
                 |> List.filter (Tuple.second >> .selected) 
                 |> List.map (\( id, { node1, node2 } ) -> ( id, node1, node2 ))
 
-        nodes_ =
-            nodes |> Dict.keys
-
         isConnected n1 n2 =
             links_ |> path n1 n2
 
     in
-        nodes_
-            |> List.crossCheck isConnected
+        case nodes |> Dict.keys of
+            n1 :: nodes -> 
+                nodes
+                    |> List.all (isConnected n1)
+            _ -> True
 
 
 -- PRIVATE ---------------------
