@@ -8,7 +8,7 @@ import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Solution as Solution
 import Atrapos.Game.Link.Update as Link
-import Atrapos.Game.Shared exposing (linksLen)
+import Atrapos.Game.Shared exposing (updateCounter)
 import Atrapos.Game.Selection.Update as Selection
 import Atrapos.Game.Init exposing (init_)
 import Atrapos.Data.Levels as Data
@@ -41,15 +41,16 @@ update_ msg ({ nodes, links, menu } as model) =
             { model | menu = not menu } ! []
 
         Reset ->
-            { model
+            ( { model
                 | links = links |> Dict.map (always Link.reset)
                 , victory = False
                 , menu = False
-            }
-                ! []
+            } |> updateCounter
+            , Cmd.none
+            )
 
         Help ->
-            ( model |> Solution.apply
+            ( model |> Solution.apply |> updateCounter
             , Cmd.none
             )
 

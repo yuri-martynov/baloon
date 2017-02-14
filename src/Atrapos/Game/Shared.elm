@@ -1,4 +1,4 @@
-module Atrapos.Game.Shared exposing (link, victory, linksLen)
+module Atrapos.Game.Shared exposing (link, victory, linksLen, updateCounter)
 
 import Dict
 import Atrapos.Game.Model exposing (..)
@@ -23,7 +23,12 @@ linksLen { links } =
         |> Selection.selected
         |> Selection.len links
 
-
+updateCounter : Model_ -> Model_
+updateCounter ( { counter } as model) =
+    { model 
+        | counter = 
+            (model |> linksLen) :: (counter |> List.take 1)
+    }
 
 -- PRIVATE --------------------
 
