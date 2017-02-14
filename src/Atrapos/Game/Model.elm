@@ -21,7 +21,8 @@ type alias Model_ =
         , menu : Menu
         , levelId : Level.Id
         , solution : Solution
-        , counter: List Float
+        , counter : List Float
+        , counterAnimation : Bool
         }
 
 

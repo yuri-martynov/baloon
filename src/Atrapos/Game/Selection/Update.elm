@@ -11,49 +11,53 @@ import Atrapos.Game.Shared exposing (link, victory, updateCounter)
 import Atrapos.Game.Selection.Path exposing (selected)
 
 
-update : MouseMsg -> Model_ -> Model_
+update : MouseMsg -> Model_ -> ( Model_, Cmd Msg )
 update msg model =
     case ( msg, model.selection ) of
         ( Down p, _ ) ->
             case nearestNode p model of
                 Just n ->
-                    model |> updateLastNode n p
+                    ( model |> updateLastNode n p
+                    , Cmd.none
+                    )
 
                 Nothing ->
-                    { model | selection = Deselection { startLocation = p, endLocation = p } }
+                    ( { model | selection = Deselection { startLocation = p, endLocation = p } }
+                    , Cmd.none
+                    )
 
         ( Move p, Selection selection ) ->
             model
-                |> select p selection
                 |> updateEndLocation p
+                |> select p selection
 
         ( Move p, Deselection deselection ) ->
             model
-                |> deselect p deselection
                 |> updateEndLocation p
+                |> deselect p deselection
 
         ( Up _, _ ) ->
-            { model | selection = None }
+            { model | selection = None } ! []
 
         _ ->
-            model
+            model ! []
 
 
 
 -- PRIVATE ---------------------------------------
 
 
-select : Location -> SelectionModel -> Model_ -> Model_
+select : Location -> SelectionModel -> Model_ -> ( Model_, Cmd Msg )
 select p ({ lastNode } as selection) model =
     case nearestNode p model of
         Just next ->
             model |> selectNext lastNode next p
 
         _ ->
-            { model | selection = Selection { selection | endLocation = p } }
+            { model | selection = Selection { selection | endLocation = p } } ! []
 
 
-selectNext : NodeId -> NodeId -> Location -> Model_ -> Model_
+selectNext : NodeId -> NodeId -> Location -> Model_ -> ( Model_, Cmd Msg )
 selectNext last next p ({ links } as model) =
     let
         nextLink =
@@ -67,7 +71,7 @@ selectNext last next p ({ links } as model) =
     in
         case nextLink of
             Nothing ->
-                model
+                ( model, Cmd.none )
 
             Just id ->
                 links
@@ -76,7 +80,7 @@ selectNext last next p ({ links } as model) =
                     |> link model id
                     |> updateLastNode next p
                     |> victory
-                    |> updateCounter 
+                    |> updateCounter
 
 
 updateLastNode : NodeId -> Location -> Model_ -> Model_
@@ -105,7 +109,7 @@ nearestNode p { nodes } =
                     Nothing
 
 
-deselect : Location -> DeselectionModel -> Model_ -> Model_
+deselect : Location -> DeselectionModel -> Model_ -> ( Model_, Cmd Msg )
 deselect p { startLocation } ({ links, nodes } as model) =
     let
         deselect_ a b linkIds acc =
@@ -130,7 +134,7 @@ deselect p { startLocation } ({ links, nodes } as model) =
             deselect_ startLocation p (selected links) []
     in
         if deselectIds == [] then
-            model
+            ( model, Cmd.none )
         else
             { model
                 | links =
@@ -142,7 +146,7 @@ deselect p { startLocation } ({ links, nodes } as model) =
                                 else
                                     link
                             )
-            } 
+            }
                 |> victory
                 |> updateCounter
 
@@ -158,7 +162,3 @@ updateEndLocation p ({ selection } as model) =
 
         None ->
             model
-
-
-
-

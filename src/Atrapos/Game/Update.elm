@@ -4,6 +4,7 @@ import Dict
 import Time as Time
 import Common.Dict exposing ((#))
 import Common.Time as Time
+import Return
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Solution as Solution
@@ -41,32 +42,31 @@ update_ msg ({ nodes, links, menu } as model) =
             { model | menu = not menu } ! []
 
         Reset ->
-            ( { model
+            { model
                 | links = links |> Dict.map (always Link.reset)
                 , victory = False
                 , menu = False
             } |> updateCounter
-            , Cmd.none
-            )
 
         Help ->
-            ( model |> Solution.apply |> updateCounter
-            , Cmd.none
-            )
+            model |> Solution.apply |> updateCounter
 
         Mouse msg ->
             model
                 |> Selection.update msg
                 |> checkVictory
 
+        CounterAnimationCompleted ->
+            { model | counterAnimation = False } ! []
+
         _ ->
             model ! []
 
-checkVictory ({ victory } as model) =
+checkVictory ({ victory } as model, cmd) =
     if victory then
-        model ! [ model |> nextLevel 3 ]
+        model ! [ cmd, model |> nextLevel 3 ]
     else
-        model ! []
+        (model, cmd)
 
 
 nextLevel timeoutSec { levelId } =

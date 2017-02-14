@@ -75,7 +75,7 @@ parallax { selection, nodes } =
 
 
 ui : Model_ -> Html Msg
-ui ({ victory, links, menu, minLen, counter } as model) =
+ui ({ victory, links, menu, minLen, counter, counterAnimation } as model) =
     let
         victoryLen = 
              round minLen
@@ -85,7 +85,7 @@ ui ({ victory, links, menu, minLen, counter } as model) =
                 |> List.map (\len -> victoryLen - (round len))
 
     in
-        (progressList |> List.indexedMap progress)
+        (progressList |> List.indexedMap (progress counterAnimation) )
         ++
         [ button
             [ class "hint"
@@ -109,8 +109,8 @@ ui ({ victory, links, menu, minLen, counter } as model) =
                     ]
                 ]
 
-progress: Int -> Int -> Html Msg
-progress index count =
+progress: Bool -> Int ->  Int -> Html Msg
+progress counterAnimation index  count =
     count
         |> abs
         |> toString
@@ -119,7 +119,7 @@ progress index count =
         |> label
             [ classList
                 [ ( "percent", True ) 
-                , ( "percent-" ++ (toString index), True)
+                , ( "percent-" ++ (toString index), counterAnimation)
                 ]
             ]
 

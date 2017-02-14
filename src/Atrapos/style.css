@@ -18,9 +18,8 @@ body, html {
 
 .container {
     background: url(BG-2.png) no-repeat;
-    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    /*background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);*/
     
-    /*background-position-x: -50px;*/
     height: 100%;
 }
 
@@ -464,3 +463,24 @@ li.level.closed a{
 .level.opened {
 }
 
+.percent.percent-0 {
+    animation-name: down;
+    animation-duration: 300ms;
+}
+
+.percent.percent-1 {
+    animation-name: up;
+    animation-duration: 300ms;
+}
+
+@keyframes up {
+    from {
+        transform: translate(0, -50px);
+    }
+}
+
+@keyframes down {
+    from {
+        transform: translate(0, +50px);
+    }
+}

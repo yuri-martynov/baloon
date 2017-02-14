@@ -13,6 +13,7 @@ type Msg
     | WindowSizeChanged Window.Size
     | Menu
     | Finished Level.Id
+    | CounterAnimationCompleted
 
 
 type MouseMsg

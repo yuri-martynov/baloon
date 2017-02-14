@@ -597,8 +597,7 @@ function toString(v)
 	var type = typeof v;
 	if (type === 'function')
 	{
-		var name = v.func ? v.func.name : v.name;
-		return '<function' + (name === '' ? '' : ':') + name + '>';
+		return '<function>';
 	}
 
 	if (type === 'boolean')
@@ -1138,6 +1137,13 @@ var _elm_lang$core$List$sortWith = _elm_lang$core$Native_List.sortWith;
 var _elm_lang$core$List$sortBy = _elm_lang$core$Native_List.sortBy;
 var _elm_lang$core$List$sort = function (xs) {
 	return A2(_elm_lang$core$List$sortBy, _elm_lang$core$Basics$identity, xs);
+};
+var _elm_lang$core$List$singleton = function (value) {
+	return {
+		ctor: '::',
+		_0: value,
+		_1: {ctor: '[]'}
+	};
 };
 var _elm_lang$core$List$drop = F2(
 	function (n, list) {
@@ -2014,7 +2020,7 @@ function endsWith(sub, str)
 function indexes(sub, str)
 {
 	var subLen = sub.length;
-	
+
 	if (subLen < 1)
 	{
 		return _elm_lang$core$Native_List.Nil;
@@ -2027,74 +2033,78 @@ function indexes(sub, str)
 	{
 		is.push(i);
 		i = i + subLen;
-	}	
-	
+	}
+
 	return _elm_lang$core$Native_List.fromArray(is);
 }
+
 
 function toInt(s)
 {
 	var len = s.length;
+
+	// if empty
 	if (len === 0)
 	{
-		return _elm_lang$core$Result$Err("could not convert string '" + s + "' to an Int" );
+		return intErr(s);
 	}
-	var start = 0;
-	if (s[0] === '-')
+
+	// if hex
+	var c = s[0];
+	if (c === '0' && s[1] === 'x')
 	{
-		if (len === 1)
+		for (var i = 2; i < len; ++i)
 		{
-			return _elm_lang$core$Result$Err("could not convert string '" + s + "' to an Int" );
+			var c = s[i];
+			if (('0' <= c && c <= '9') || ('A' <= c && c <= 'F') || ('a' <= c && c <= 'f'))
+			{
+				continue;
+			}
+			return intErr(s);
 		}
-		start = 1;
+		return _elm_lang$core$Result$Ok(parseInt(s, 16));
 	}
-	for (var i = start; i < len; ++i)
+
+	// is decimal
+	if (c > '9' || (c < '0' && c !== '-' && c !== '+'))
+	{
+		return intErr(s);
+	}
+	for (var i = 1; i < len; ++i)
 	{
 		var c = s[i];
 		if (c < '0' || '9' < c)
 		{
-			return _elm_lang$core$Result$Err("could not convert string '" + s + "' to an Int" );
+			return intErr(s);
 		}
 	}
+
 	return _elm_lang$core$Result$Ok(parseInt(s, 10));
 }
 
+function intErr(s)
+{
+	return _elm_lang$core$Result$Err("could not convert string '" + s + "' to an Int");
+}
+
+
 function toFloat(s)
 {
-	var len = s.length;
-	if (len === 0)
+	// check if it is a hex, octal, or binary number
+	if (s.length === 0 || /[\sxbo]/.test(s))
 	{
-		return _elm_lang$core$Result$Err("could not convert string '" + s + "' to a Float" );
+		return floatErr(s);
 	}
-	var start = 0;
-	if (s[0] === '-')
-	{
-		if (len === 1)
-		{
-			return _elm_lang$core$Result$Err("could not convert string '" + s + "' to a Float" );
-		}
-		start = 1;
-	}
-	var dotCount = 0;
-	for (var i = start; i < len; ++i)
-	{
-		var c = s[i];
-		if ('0' <= c && c <= '9')
-		{
-			continue;
-		}
-		if (c === '.')
-		{
-			dotCount += 1;
-			if (dotCount <= 1)
-			{
-				continue;
-			}
-		}
-		return _elm_lang$core$Result$Err("could not convert string '" + s + "' to a Float" );
-	}
-	return _elm_lang$core$Result$Ok(parseFloat(s));
+	var n = +s;
+	// faster isNaN check
+	return n === n ? _elm_lang$core$Result$Ok(n) : floatErr(s);
 }
+
+function floatErr(s)
+{
+	return _elm_lang$core$Result$Err("could not convert string '" + s + "' to a Float");
+}
+
 
 function toList(str)
 {
@@ -2799,15 +2809,8 @@ function setupIncomingPort(name, callback)
 		sentBeforeInit.push(value);
 	}
 
-	function postInitSend(incomingValue)
+	function postInitSend(value)
 	{
-		var result = A2(_elm_lang$core$Json_Decode$decodeValue, converter, incomingValue);
-		if (result.ctor === 'Err')
-		{
-			throw new Error('Trying to send an unexpected type of value through port `' + name + '`:\n' + result._0);
-		}
-
-		var value = result._0;
 		var temp = subs;
 		while (temp.ctor !== '[]')
 		{
@@ -2818,7 +2821,13 @@ function setupIncomingPort(name, callback)
 
 	function send(incomingValue)
 	{
-		currentSend(incomingValue);
+		var result = A2(_elm_lang$core$Json_Decode$decodeValue, converter, incomingValue);
+		if (result.ctor === 'Err')
+		{
+			throw new Error('Trying to send an unexpected type of value through port `' + name + '`:\n' + result._0);
+		}
+
+		currentSend(result._0);
 	}
 
 	return { send: send };
@@ -5613,11 +5622,6 @@ function badToString(problem)
 				problem = problem.rest;
 				break;
 
-			case 'index':
-				context += '[' + problem.index + ']';
-				problem = problem.rest;
-				break;
-
 			case 'oneOf':
 				var problems = problem.problems;
 				for (var i = 0; i < problems.length; i++)
@@ -6920,9 +6924,9 @@ function on(name, options, decoder)
 
 function equalEvents(a, b)
 {
-	if (!a.options === b.options)
+	if (a.options !== b.options)
 	{
-		if (a.stopPropagation !== b.stopPropagation || a.preventDefault !== b.preventDefault)
+		if (a.options.stopPropagation !== b.options.stopPropagation || a.options.preventDefault !== b.options.preventDefault)
 		{
 			return false;
 		}
@@ -8198,7 +8202,7 @@ function normalRenderer(parentNode, view)
 var rAF =
 	typeof requestAnimationFrame !== 'undefined'
 		? requestAnimationFrame
-		: function(callback) { callback(); };
+		: function(callback) { setTimeout(callback, 1000 / 60); };
 
 function makeStepper(domNode, view, initialVirtualNode, eventNode)
 {
@@ -9707,6 +9711,9 @@ _elm_lang$core$Native_Platform.effectManagers['Mouse'] = {pkg: 'elm-lang/mouse',
 
 var _elm_lang$navigation$Native_Navigation = function() {
 
+
+// FAKE NAVIGATION
+
 function go(n)
 {
 	return _elm_lang$core$Native_Scheduler.nativeBinding(function(callback)
@@ -9737,6 +9744,39 @@ function replaceState(url)
 	});
 }
 
+
+// REAL NAVIGATION
+
+function reloadPage(skipCache)
+{
+	return _elm_lang$core$Native_Scheduler.nativeBinding(function(callback)
+	{
+		document.location.reload(skipCache);
+		callback(_elm_lang$core$Native_Scheduler.succeed(_elm_lang$core$Native_Utils.Tuple0));
+	});
+}
+
+function setLocation(url)
+{
+	return _elm_lang$core$Native_Scheduler.nativeBinding(function(callback)
+	{
+		try
+		{
+			window.location = url;
+		}
+		catch(err)
+		{
+			// Only Firefox can throw a NS_ERROR_MALFORMED_URI exception here.
+			// Other browsers reload the page, so let's be consistent about that.
+			document.location.reload(false);
+		}
+		callback(_elm_lang$core$Native_Scheduler.succeed(_elm_lang$core$Native_Utils.Tuple0));
+	});
+}
+
+
+// GET LOCATION
+
 function getLocation()
 {
 	var location = document.location;
@@ -9757,11 +9797,22 @@ function getLocation()
 }
 
 
+// DETECT IE11 PROBLEMS
+
+function isInternetExplorer11()
+{
+	return window.navigator.userAgent.indexOf('Trident') !== -1;
+}
+
+
 return {
 	go: go,
+	setLocation: setLocation,
+	reloadPage: reloadPage,
 	pushState: pushState,
 	replaceState: replaceState,
-	getLocation: getLocation
+	getLocation: getLocation,
+	isInternetExplorer11: isInternetExplorer11
 };
 
 }();
@@ -9769,38 +9820,26 @@ return {
 var _elm_lang$navigation$Navigation$replaceState = _elm_lang$navigation$Native_Navigation.replaceState;
 var _elm_lang$navigation$Navigation$pushState = _elm_lang$navigation$Native_Navigation.pushState;
 var _elm_lang$navigation$Navigation$go = _elm_lang$navigation$Native_Navigation.go;
-var _elm_lang$navigation$Navigation$spawnPopState = function (router) {
-	return _elm_lang$core$Process$spawn(
-		A3(
-			_elm_lang$dom$Dom_LowLevel$onWindow,
-			'popstate',
-			_elm_lang$core$Json_Decode$value,
-			function (_p0) {
-				return A2(
-					_elm_lang$core$Platform$sendToSelf,
-					router,
-					_elm_lang$navigation$Native_Navigation.getLocation(
-						{ctor: '_Tuple0'}));
-			}));
-};
+var _elm_lang$navigation$Navigation$reloadPage = _elm_lang$navigation$Native_Navigation.reloadPage;
+var _elm_lang$navigation$Navigation$setLocation = _elm_lang$navigation$Native_Navigation.setLocation;
 var _elm_lang$navigation$Navigation_ops = _elm_lang$navigation$Navigation_ops || {};
 _elm_lang$navigation$Navigation_ops['&>'] = F2(
 	function (task1, task2) {
 		return A2(
 			_elm_lang$core$Task$andThen,
-			function (_p1) {
+			function (_p0) {
 				return task2;
 			},
 			task1);
 	});
 var _elm_lang$navigation$Navigation$notify = F3(
 	function (router, subs, location) {
-		var send = function (_p2) {
-			var _p3 = _p2;
+		var send = function (_p1) {
+			var _p2 = _p1;
 			return A2(
 				_elm_lang$core$Platform$sendToApp,
 				router,
-				_p3._0(location));
+				_p2._0(location));
 		};
 		return A2(
 			_elm_lang$navigation$Navigation_ops['&>'],
@@ -9809,30 +9848,45 @@ var _elm_lang$navigation$Navigation$notify = F3(
 			_elm_lang$core$Task$succeed(
 				{ctor: '_Tuple0'}));
 	});
+var _elm_lang$navigation$Navigation$cmdHelp = F3(
+	function (router, subs, cmd) {
+		var _p3 = cmd;
+		switch (_p3.ctor) {
+			case 'Jump':
+				return _elm_lang$navigation$Navigation$go(_p3._0);
+			case 'New':
+				return A2(
+					_elm_lang$core$Task$andThen,
+					A2(_elm_lang$navigation$Navigation$notify, router, subs),
+					_elm_lang$navigation$Navigation$pushState(_p3._0));
+			case 'Modify':
+				return A2(
+					_elm_lang$core$Task$andThen,
+					A2(_elm_lang$navigation$Navigation$notify, router, subs),
+					_elm_lang$navigation$Navigation$replaceState(_p3._0));
+			case 'Visit':
+				return _elm_lang$navigation$Navigation$setLocation(_p3._0);
+			default:
+				return _elm_lang$navigation$Navigation$reloadPage(_p3._0);
+		}
+	});
+var _elm_lang$navigation$Navigation$killPopWatcher = function (popWatcher) {
+	var _p4 = popWatcher;
+	if (_p4.ctor === 'Normal') {
+		return _elm_lang$core$Process$kill(_p4._0);
+	} else {
+		return A2(
+			_elm_lang$navigation$Navigation_ops['&>'],
+			_elm_lang$core$Process$kill(_p4._0),
+			_elm_lang$core$Process$kill(_p4._1));
+	}
+};
 var _elm_lang$navigation$Navigation$onSelfMsg = F3(
 	function (router, location, state) {
 		return A2(
 			_elm_lang$navigation$Navigation_ops['&>'],
 			A3(_elm_lang$navigation$Navigation$notify, router, state.subs, location),
 			_elm_lang$core$Task$succeed(state));
-	});
-var _elm_lang$navigation$Navigation$cmdHelp = F3(
-	function (router, subs, cmd) {
-		var _p4 = cmd;
-		switch (_p4.ctor) {
-			case 'Jump':
-				return _elm_lang$navigation$Navigation$go(_p4._0);
-			case 'New':
-				return A2(
-					_elm_lang$core$Task$andThen,
-					A2(_elm_lang$navigation$Navigation$notify, router, subs),
-					_elm_lang$navigation$Navigation$pushState(_p4._0));
-			default:
-				return A2(
-					_elm_lang$core$Task$andThen,
-					A2(_elm_lang$navigation$Navigation$notify, router, subs),
-					_elm_lang$navigation$Navigation$replaceState(_p4._0));
-		}
 	});
 var _elm_lang$navigation$Navigation$subscription = _elm_lang$core$Native_Platform.leaf('Navigation');
 var _elm_lang$navigation$Navigation$command = _elm_lang$core$Native_Platform.leaf('Navigation');
@@ -9861,59 +9915,27 @@ var _elm_lang$navigation$Navigation$Location = function (a) {
 };
 var _elm_lang$navigation$Navigation$State = F2(
 	function (a, b) {
-		return {subs: a, process: b};
+		return {subs: a, popWatcher: b};
 	});
 var _elm_lang$navigation$Navigation$init = _elm_lang$core$Task$succeed(
 	A2(
 		_elm_lang$navigation$Navigation$State,
 		{ctor: '[]'},
 		_elm_lang$core$Maybe$Nothing));
-var _elm_lang$navigation$Navigation$onEffects = F4(
-	function (router, cmds, subs, _p5) {
-		var _p6 = _p5;
-		var _p9 = _p6.process;
-		var stepState = function () {
-			var _p7 = {ctor: '_Tuple2', _0: subs, _1: _p9};
-			_v3_2:
-			do {
-				if (_p7._0.ctor === '[]') {
-					if (_p7._1.ctor === 'Just') {
-						return A2(
-							_elm_lang$navigation$Navigation_ops['&>'],
-							_elm_lang$core$Process$kill(_p7._1._0),
-							_elm_lang$core$Task$succeed(
-								A2(_elm_lang$navigation$Navigation$State, subs, _elm_lang$core$Maybe$Nothing)));
-					} else {
-						break _v3_2;
-					}
-				} else {
-					if (_p7._1.ctor === 'Nothing') {
-						return A2(
-							_elm_lang$core$Task$map,
-							function (_p8) {
-								return A2(
-									_elm_lang$navigation$Navigation$State,
-									subs,
-									_elm_lang$core$Maybe$Just(_p8));
-							},
-							_elm_lang$navigation$Navigation$spawnPopState(router));
-					} else {
-						break _v3_2;
-					}
-				}
-			} while(false);
-			return _elm_lang$core$Task$succeed(
-				A2(_elm_lang$navigation$Navigation$State, subs, _p9));
-		}();
-		return A2(
-			_elm_lang$navigation$Navigation_ops['&>'],
-			_elm_lang$core$Task$sequence(
-				A2(
-					_elm_lang$core$List$map,
-					A2(_elm_lang$navigation$Navigation$cmdHelp, router, subs),
-					cmds)),
-			stepState);
-	});
+var _elm_lang$navigation$Navigation$Reload = function (a) {
+	return {ctor: 'Reload', _0: a};
+};
+var _elm_lang$navigation$Navigation$reload = _elm_lang$navigation$Navigation$command(
+	_elm_lang$navigation$Navigation$Reload(false));
+var _elm_lang$navigation$Navigation$reloadAndSkipCache = _elm_lang$navigation$Navigation$command(
+	_elm_lang$navigation$Navigation$Reload(true));
+var _elm_lang$navigation$Navigation$Visit = function (a) {
+	return {ctor: 'Visit', _0: a};
+};
+var _elm_lang$navigation$Navigation$load = function (url) {
+	return _elm_lang$navigation$Navigation$command(
+		_elm_lang$navigation$Navigation$Visit(url));
+};
 var _elm_lang$navigation$Navigation$Modify = function (a) {
 	return {ctor: 'Modify', _0: a};
 };
@@ -9940,15 +9962,19 @@ var _elm_lang$navigation$Navigation$forward = function (n) {
 		_elm_lang$navigation$Navigation$Jump(n));
 };
 var _elm_lang$navigation$Navigation$cmdMap = F2(
-	function (_p10, myCmd) {
-		var _p11 = myCmd;
-		switch (_p11.ctor) {
+	function (_p5, myCmd) {
+		var _p6 = myCmd;
+		switch (_p6.ctor) {
 			case 'Jump':
-				return _elm_lang$navigation$Navigation$Jump(_p11._0);
+				return _elm_lang$navigation$Navigation$Jump(_p6._0);
 			case 'New':
-				return _elm_lang$navigation$Navigation$New(_p11._0);
+				return _elm_lang$navigation$Navigation$New(_p6._0);
+			case 'Modify':
+				return _elm_lang$navigation$Navigation$Modify(_p6._0);
+			case 'Visit':
+				return _elm_lang$navigation$Navigation$Visit(_p6._0);
 			default:
-				return _elm_lang$navigation$Navigation$Modify(_p11._0);
+				return _elm_lang$navigation$Navigation$Reload(_p6._0);
 		}
 	});
 var _elm_lang$navigation$Navigation$Monitor = function (a) {
@@ -10001,13 +10027,87 @@ var _elm_lang$navigation$Navigation$programWithFlags = F2(
 			{init: init, view: stuff.view, update: stuff.update, subscriptions: subs});
 	});
 var _elm_lang$navigation$Navigation$subMap = F2(
-	function (func, _p12) {
-		var _p13 = _p12;
+	function (func, _p7) {
+		var _p8 = _p7;
 		return _elm_lang$navigation$Navigation$Monitor(
-			function (_p14) {
+			function (_p9) {
 				return func(
-					_p13._0(_p14));
+					_p8._0(_p9));
 			});
+	});
+var _elm_lang$navigation$Navigation$InternetExplorer = F2(
+	function (a, b) {
+		return {ctor: 'InternetExplorer', _0: a, _1: b};
+	});
+var _elm_lang$navigation$Navigation$Normal = function (a) {
+	return {ctor: 'Normal', _0: a};
+};
+var _elm_lang$navigation$Navigation$spawnPopWatcher = function (router) {
+	var reportLocation = function (_p10) {
+		return A2(
+			_elm_lang$core$Platform$sendToSelf,
+			router,
+			_elm_lang$navigation$Native_Navigation.getLocation(
+				{ctor: '_Tuple0'}));
+	};
+	return _elm_lang$navigation$Native_Navigation.isInternetExplorer11(
+		{ctor: '_Tuple0'}) ? A3(
+		_elm_lang$core$Task$map2,
+		_elm_lang$navigation$Navigation$InternetExplorer,
+		_elm_lang$core$Process$spawn(
+			A3(_elm_lang$dom$Dom_LowLevel$onWindow, 'popstate', _elm_lang$core$Json_Decode$value, reportLocation)),
+		_elm_lang$core$Process$spawn(
+			A3(_elm_lang$dom$Dom_LowLevel$onWindow, 'hashchange', _elm_lang$core$Json_Decode$value, reportLocation))) : A2(
+		_elm_lang$core$Task$map,
+		_elm_lang$navigation$Navigation$Normal,
+		_elm_lang$core$Process$spawn(
+			A3(_elm_lang$dom$Dom_LowLevel$onWindow, 'popstate', _elm_lang$core$Json_Decode$value, reportLocation)));
+};
+var _elm_lang$navigation$Navigation$onEffects = F4(
+	function (router, cmds, subs, _p11) {
+		var _p12 = _p11;
+		var _p15 = _p12.popWatcher;
+		var stepState = function () {
+			var _p13 = {ctor: '_Tuple2', _0: subs, _1: _p15};
+			_v6_2:
+			do {
+				if (_p13._0.ctor === '[]') {
+					if (_p13._1.ctor === 'Just') {
+						return A2(
+							_elm_lang$navigation$Navigation_ops['&>'],
+							_elm_lang$navigation$Navigation$killPopWatcher(_p13._1._0),
+							_elm_lang$core$Task$succeed(
+								A2(_elm_lang$navigation$Navigation$State, subs, _elm_lang$core$Maybe$Nothing)));
+					} else {
+						break _v6_2;
+					}
+				} else {
+					if (_p13._1.ctor === 'Nothing') {
+						return A2(
+							_elm_lang$core$Task$map,
+							function (_p14) {
+								return A2(
+									_elm_lang$navigation$Navigation$State,
+									subs,
+									_elm_lang$core$Maybe$Just(_p14));
+							},
+							_elm_lang$navigation$Navigation$spawnPopWatcher(router));
+					} else {
+						break _v6_2;
+					}
+				}
+			} while(false);
+			return _elm_lang$core$Task$succeed(
+				A2(_elm_lang$navigation$Navigation$State, subs, _p15));
+		}();
+		return A2(
+			_elm_lang$navigation$Navigation_ops['&>'],
+			_elm_lang$core$Task$sequence(
+				A2(
+					_elm_lang$core$List$map,
+					A2(_elm_lang$navigation$Navigation$cmdHelp, router, subs),
+					cmds)),
+			stepState);
 	});
 _elm_lang$core$Native_Platform.effectManagers['Navigation'] = {pkg: 'elm-lang/navigation', init: _elm_lang$navigation$Navigation$init, onEffects: _elm_lang$navigation$Navigation$onEffects, onSelfMsg: _elm_lang$navigation$Navigation$onSelfMsg, tag: 'fx', cmdMap: _elm_lang$navigation$Navigation$cmdMap, subMap: _elm_lang$navigation$Navigation$subMap};
 
@@ -17666,6 +17766,7 @@ var _user$project$Atrapos_Game_Model$Selection = function (a) {
 };
 var _user$project$Atrapos_Game_Model$None = {ctor: 'None'};
 
+var _user$project$Atrapos_Game_Msg$CounterAnimationCompleted = {ctor: 'CounterAnimationCompleted'};
 var _user$project$Atrapos_Game_Msg$Finished = function (a) {
 	return {ctor: 'Finished', _0: a};
 };
@@ -18069,7 +18170,17 @@ var _user$project$Atrapos_Game_Init$init_ = F3(
 					selection: _user$project$Atrapos_Game_Model$None,
 					menu: false,
 					levelId: id,
-					solution: solution
+					solution: solution,
+					counter: {
+						ctor: '::',
+						_0: 0,
+						_1: {
+							ctor: '::',
+							_0: 0,
+							_1: {ctor: '[]'}
+						}
+					},
+					counterAnimation: true
 				}),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
@@ -18367,6 +18478,18 @@ var _user$project$Atrapos_Game_Node_View$view = F3(
 			{ctor: '::', _0: planet, _1: orbits});
 	});
 
+var _user$project$Common_Time$delay = F2(
+	function (time, msg) {
+		return A2(
+			_elm_lang$core$Task$perform,
+			_elm_lang$core$Basics$identity,
+			A2(
+				_elm_lang$core$Task$andThen,
+				_elm_lang$core$Basics$always(
+					_elm_lang$core$Task$succeed(msg)),
+				_elm_lang$core$Process$sleep(time)));
+	});
+
 var _user$project$Atrapos_Game_Shared$connected = F2(
 	function (links, id) {
 		return A2(
@@ -18392,12 +18515,30 @@ var _user$project$Atrapos_Game_Shared$linksLen = function (_p2) {
 		_p4,
 		_user$project$Atrapos_Game_Selection_Path$selected(_p4));
 };
-var _user$project$Atrapos_Game_Shared$isVictory = function (_p5) {
+var _user$project$Atrapos_Game_Shared$updateCounter = function (_p5) {
 	var _p6 = _p5;
-	var len = _user$project$Atrapos_Game_Shared$linksLen(_p6);
+	var _p7 = _p6;
+	return {
+		ctor: '_Tuple2',
+		_0: _elm_lang$core$Native_Utils.update(
+			_p7,
+			{
+				counter: {
+					ctor: '::',
+					_0: _user$project$Atrapos_Game_Shared$linksLen(_p7),
+					_1: A2(_elm_lang$core$List$take, 1, _p6.counter)
+				},
+				counterAnimation: true
+			}),
+		_1: A2(_user$project$Common_Time$delay, 0.3 * _elm_lang$core$Time$second, _user$project$Atrapos_Game_Msg$CounterAnimationCompleted)
+	};
+};
+var _user$project$Atrapos_Game_Shared$isVictory = function (_p8) {
+	var _p9 = _p8;
+	var len = _user$project$Atrapos_Game_Shared$linksLen(_p9);
 	return _elm_lang$core$Native_Utils.eq(
 		_elm_lang$core$Basics$round(len),
-		_elm_lang$core$Basics$round(_p6.minLen)) && A2(_user$project$Atrapos_Game_Solution$isFullyConnected, _p6.nodes, _p6.links);
+		_elm_lang$core$Basics$round(_p9.minLen)) && A2(_user$project$Atrapos_Game_Solution$isFullyConnected, _p9.nodes, _p9.links);
 };
 var _user$project$Atrapos_Game_Shared$victory = function (model) {
 	return _elm_lang$core$Native_Utils.update(
@@ -18407,13 +18548,13 @@ var _user$project$Atrapos_Game_Shared$victory = function (model) {
 		});
 };
 var _user$project$Atrapos_Game_Shared$link = F3(
-	function (_p7, id, link) {
-		var _p8 = _p7;
+	function (_p10, id, link) {
+		var _p11 = _p10;
 		return _user$project$Atrapos_Game_Shared$victory(
 			_elm_lang$core$Native_Utils.update(
-				_p8,
+				_p11,
 				{
-					links: A3(_elm_lang$core$Dict$insert, id, link, _p8.links)
+					links: A3(_elm_lang$core$Dict$insert, id, link, _p11.links)
 				}));
 	});
 
@@ -18449,7 +18590,8 @@ var _user$project$Atrapos_Game_Selection_Update$deselect = F3(
 	function (p, _p5, _p4) {
 		var _p6 = _p5;
 		var _p7 = _p4;
-		var _p12 = _p7.nodes;
+		var _p13 = _p7.nodes;
+		var _p12 = _p7;
 		var _p11 = _p7.links;
 		var deselect_ = F4(
 			function (a, b, linkIds, acc) {
@@ -18467,8 +18609,8 @@ var _user$project$Atrapos_Game_Selection_Update$deselect = F3(
 							_user$project$Common_Math$intersect,
 							a,
 							b,
-							A2(_user$project$Common_Dict_ops['#'], _p12, node1),
-							A2(_user$project$Common_Dict_ops['#'], _p12, node2)) ? {ctor: '::', _0: _p10, _1: acc} : acc;
+							A2(_user$project$Common_Dict_ops['#'], _p13, node1),
+							A2(_user$project$Common_Dict_ops['#'], _p13, node2)) ? {ctor: '::', _0: _p10, _1: acc} : acc;
 						var _v5 = a,
 							_v6 = b,
 							_v7 = _p8._1,
@@ -18487,22 +18629,25 @@ var _user$project$Atrapos_Game_Selection_Update$deselect = F3(
 			p,
 			_user$project$Atrapos_Game_Selection_Path$selected(_p11),
 			{ctor: '[]'});
-		return _user$project$Atrapos_Game_Shared$victory(
-			_elm_lang$core$Native_Utils.update(
-				_p7,
-				{
-					links: A2(
-						_elm_lang$core$Dict$map,
-						F2(
-							function (id, link) {
-								return A2(_elm_lang$core$List$member, id, deselectIds) ? _user$project$Atrapos_Game_Link_Update$reset(link) : link;
-							}),
-						_p11)
-				}));
+		return _elm_lang$core$Native_Utils.eq(
+			deselectIds,
+			{ctor: '[]'}) ? {ctor: '_Tuple2', _0: _p12, _1: _elm_lang$core$Platform_Cmd$none} : _user$project$Atrapos_Game_Shared$updateCounter(
+			_user$project$Atrapos_Game_Shared$victory(
+				_elm_lang$core$Native_Utils.update(
+					_p12,
+					{
+						links: A2(
+							_elm_lang$core$Dict$map,
+							F2(
+								function (id, link) {
+									return A2(_elm_lang$core$List$member, id, deselectIds) ? _user$project$Atrapos_Game_Link_Update$reset(link) : link;
+								}),
+							_p11)
+					})));
 	});
 var _user$project$Atrapos_Game_Selection_Update$nearestNode = F2(
-	function (p, _p13) {
-		var _p14 = _p13;
+	function (p, _p14) {
+		var _p15 = _p14;
 		var node = _elm_lang$core$List$head(
 			A2(
 				_elm_lang$core$List$sortBy,
@@ -18511,21 +18656,21 @@ var _user$project$Atrapos_Game_Selection_Update$nearestNode = F2(
 					A2(
 						_elm_lang$core$Dict$map,
 						F2(
-							function (_p15, n) {
+							function (_p16, n) {
 								return A2(_user$project$Common_Math$len, p, n);
 							}),
-						_p14.nodes))));
-		var _p16 = node;
-		if (_p16.ctor === 'Nothing') {
+						_p15.nodes))));
+		var _p17 = node;
+		if (_p17.ctor === 'Nothing') {
 			return _elm_lang$core$Native_Utils.crashCase(
 				'Atrapos.Game.Selection.Update',
 				{
-					start: {line: 96, column: 9},
-					end: {line: 104, column: 28}
+					start: {line: 101, column: 9},
+					end: {line: 109, column: 28}
 				},
-				_p16)('nearestNode');
+				_p17)('nearestNode');
 		} else {
-			return (_elm_lang$core$Native_Utils.cmp(_p16._0._1, 1.5) < 0) ? _elm_lang$core$Maybe$Just(_p16._0._0) : _elm_lang$core$Maybe$Nothing;
+			return (_elm_lang$core$Native_Utils.cmp(_p17._0._1, 1.5) < 0) ? _elm_lang$core$Maybe$Just(_p17._0._0) : _elm_lang$core$Maybe$Nothing;
 		}
 	});
 var _user$project$Atrapos_Game_Selection_Update$updateLastNode = F3(
@@ -18538,104 +18683,124 @@ var _user$project$Atrapos_Game_Selection_Update$updateLastNode = F3(
 			});
 	});
 var _user$project$Atrapos_Game_Selection_Update$selectNext = F4(
-	function (last, next, p, _p18) {
-		var _p19 = _p18;
-		var _p28 = _p19;
-		var _p27 = _p19.links;
+	function (last, next, p, _p19) {
+		var _p20 = _p19;
+		var _p29 = _p20;
+		var _p28 = _p20.links;
 		var nextLink = _elm_lang$core$List$head(
 			_elm_lang$core$Dict$keys(
 				A2(
 					_elm_lang$core$Dict$filter,
 					F2(
-						function (_p21, _p20) {
-							var _p22 = _p20;
-							var _p24 = _p22.node2;
-							var _p23 = _p22.node1;
-							return (_elm_lang$core$Native_Utils.eq(_p23, last) && _elm_lang$core$Native_Utils.eq(_p24, next)) || (_elm_lang$core$Native_Utils.eq(_p24, last) && _elm_lang$core$Native_Utils.eq(_p23, next));
+						function (_p22, _p21) {
+							var _p23 = _p21;
+							var _p25 = _p23.node2;
+							var _p24 = _p23.node1;
+							return (_elm_lang$core$Native_Utils.eq(_p24, last) && _elm_lang$core$Native_Utils.eq(_p25, next)) || (_elm_lang$core$Native_Utils.eq(_p25, last) && _elm_lang$core$Native_Utils.eq(_p24, next));
 						}),
-					_p27)));
-		var _p25 = nextLink;
-		if (_p25.ctor === 'Nothing') {
-			return _p28;
+					_p28)));
+		var _p26 = nextLink;
+		if (_p26.ctor === 'Nothing') {
+			return {ctor: '_Tuple2', _0: _p29, _1: _elm_lang$core$Platform_Cmd$none};
 		} else {
-			var _p26 = _p25._0;
-			return _user$project$Atrapos_Game_Shared$victory(
-				A3(
-					_user$project$Atrapos_Game_Selection_Update$updateLastNode,
-					next,
-					p,
+			var _p27 = _p26._0;
+			return _user$project$Atrapos_Game_Shared$updateCounter(
+				_user$project$Atrapos_Game_Shared$victory(
 					A3(
-						_user$project$Atrapos_Game_Shared$link,
-						_p28,
-						_p26,
-						_user$project$Atrapos_Game_Link_Update$select(
-							A2(_user$project$Common_Dict$justGet, _p26, _p27)))));
+						_user$project$Atrapos_Game_Selection_Update$updateLastNode,
+						next,
+						p,
+						A3(
+							_user$project$Atrapos_Game_Shared$link,
+							_p29,
+							_p27,
+							_user$project$Atrapos_Game_Link_Update$select(
+								A2(_user$project$Common_Dict$justGet, _p27, _p28))))));
 		}
 	});
 var _user$project$Atrapos_Game_Selection_Update$select = F3(
-	function (p, _p29, model) {
-		var _p30 = _p29;
-		var _p31 = A2(_user$project$Atrapos_Game_Selection_Update$nearestNode, p, model);
-		if (_p31.ctor === 'Just') {
-			return A4(_user$project$Atrapos_Game_Selection_Update$selectNext, _p30.lastNode, _p31._0, p, model);
+	function (p, _p30, model) {
+		var _p31 = _p30;
+		var _p32 = A2(_user$project$Atrapos_Game_Selection_Update$nearestNode, p, model);
+		if (_p32.ctor === 'Just') {
+			return A4(_user$project$Atrapos_Game_Selection_Update$selectNext, _p31.lastNode, _p32._0, p, model);
 		} else {
-			return _elm_lang$core$Native_Utils.update(
-				model,
-				{
-					selection: _user$project$Atrapos_Game_Model$Selection(
-						_elm_lang$core$Native_Utils.update(
-							_p30,
-							{endLocation: p}))
-				});
+			return A2(
+				_elm_lang$core$Platform_Cmd_ops['!'],
+				_elm_lang$core$Native_Utils.update(
+					model,
+					{
+						selection: _user$project$Atrapos_Game_Model$Selection(
+							_elm_lang$core$Native_Utils.update(
+								_p31,
+								{endLocation: p}))
+					}),
+				{ctor: '[]'});
 		}
 	});
 var _user$project$Atrapos_Game_Selection_Update$update = F2(
 	function (msg, model) {
-		var _p32 = {ctor: '_Tuple2', _0: msg, _1: model.selection};
+		var _p33 = {ctor: '_Tuple2', _0: msg, _1: model.selection};
 		_v16_4:
 		do {
-			if (_p32.ctor === '_Tuple2') {
-				switch (_p32._0.ctor) {
+			if (_p33.ctor === '_Tuple2') {
+				switch (_p33._0.ctor) {
 					case 'Down':
-						var _p34 = _p32._0._0;
-						var _p33 = A2(_user$project$Atrapos_Game_Selection_Update$nearestNode, _p34, model);
-						if (_p33.ctor === 'Just') {
-							return A3(_user$project$Atrapos_Game_Selection_Update$updateLastNode, _p33._0, _p34, model);
+						var _p35 = _p33._0._0;
+						var _p34 = A2(_user$project$Atrapos_Game_Selection_Update$nearestNode, _p35, model);
+						if (_p34.ctor === 'Just') {
+							return {
+								ctor: '_Tuple2',
+								_0: A3(_user$project$Atrapos_Game_Selection_Update$updateLastNode, _p34._0, _p35, model),
+								_1: _elm_lang$core$Platform_Cmd$none
+							};
 						} else {
-							return _elm_lang$core$Native_Utils.update(
-								model,
-								{
-									selection: _user$project$Atrapos_Game_Model$Deselection(
-										{startLocation: _p34, endLocation: _p34})
-								});
+							return {
+								ctor: '_Tuple2',
+								_0: _elm_lang$core$Native_Utils.update(
+									model,
+									{
+										selection: _user$project$Atrapos_Game_Model$Deselection(
+											{startLocation: _p35, endLocation: _p35})
+									}),
+								_1: _elm_lang$core$Platform_Cmd$none
+							};
 						}
 					case 'Move':
-						switch (_p32._1.ctor) {
+						switch (_p33._1.ctor) {
 							case 'Selection':
-								var _p35 = _p32._0._0;
-								return A2(
-									_user$project$Atrapos_Game_Selection_Update$updateEndLocation,
-									_p35,
-									A3(_user$project$Atrapos_Game_Selection_Update$select, _p35, _p32._1._0, model));
-							case 'Deselection':
-								var _p36 = _p32._0._0;
-								return A2(
-									_user$project$Atrapos_Game_Selection_Update$updateEndLocation,
+								var _p36 = _p33._0._0;
+								return A3(
+									_user$project$Atrapos_Game_Selection_Update$select,
 									_p36,
-									A3(_user$project$Atrapos_Game_Selection_Update$deselect, _p36, _p32._1._0, model));
+									_p33._1._0,
+									A2(_user$project$Atrapos_Game_Selection_Update$updateEndLocation, _p36, model));
+							case 'Deselection':
+								var _p37 = _p33._0._0;
+								return A3(
+									_user$project$Atrapos_Game_Selection_Update$deselect,
+									_p37,
+									_p33._1._0,
+									A2(_user$project$Atrapos_Game_Selection_Update$updateEndLocation, _p37, model));
 							default:
 								break _v16_4;
 						}
 					default:
-						return _elm_lang$core$Native_Utils.update(
-							model,
-							{selection: _user$project$Atrapos_Game_Model$None});
+						return A2(
+							_elm_lang$core$Platform_Cmd_ops['!'],
+							_elm_lang$core$Native_Utils.update(
+								model,
+								{selection: _user$project$Atrapos_Game_Model$None}),
+							{ctor: '[]'});
 				}
 			} else {
 				break _v16_4;
 			}
 		} while(false);
-		return model;
+		return A2(
+			_elm_lang$core$Platform_Cmd_ops['!'],
+			model,
+			{ctor: '[]'});
 	});
 
 var _user$project$Atrapos_Game_Selection_View$draw = F3(
@@ -18841,11 +19006,46 @@ var _user$project$Atrapos_Game_UI$menuPopup = A2(
 			}
 		}
 	});
+var _user$project$Atrapos_Game_UI$progress = F3(
+	function (counterAnimation, index, count) {
+		return A2(
+			_elm_lang$html$Html$label,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$classList(
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'percent', _1: true},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: A2(
+									_elm_lang$core$Basics_ops['++'],
+									'percent-',
+									_elm_lang$core$Basics$toString(index)),
+								_1: counterAnimation
+							},
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			},
+			_user$project$Common_List$lst(
+				_elm_lang$html$Html$text(
+					_elm_lang$core$Basics$toString(
+						_elm_lang$core$Basics$abs(count)))));
+	});
 var _user$project$Atrapos_Game_UI$ui = function (_p1) {
 	var _p2 = _p1;
 	var _p3 = _p2.menu;
-	var len = _user$project$Atrapos_Game_Shared$linksLen(_p2);
-	var progress = _elm_lang$core$Basics$round(_p2.minLen) - _elm_lang$core$Basics$round(len);
+	var victoryLen = _elm_lang$core$Basics$round(_p2.minLen);
+	var progressList = A2(
+		_elm_lang$core$List$map,
+		function (len) {
+			return victoryLen - _elm_lang$core$Basics$round(len);
+		},
+		_p2.counter);
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -18860,25 +19060,13 @@ var _user$project$Atrapos_Game_UI$ui = function (_p1) {
 		},
 		A2(
 			_elm_lang$core$Basics_ops['++'],
-			{
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$label,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$classList(
-							{
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'percent', _1: true},
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					},
-					_user$project$Common_List$lst(
-						_elm_lang$html$Html$text(
-							_elm_lang$core$Basics$toString(
-								_elm_lang$core$Basics$abs(progress))))),
-				_1: {
+			A2(
+				_elm_lang$core$List$indexedMap,
+				_user$project$Atrapos_Game_UI$progress(_p2.counterAnimation),
+				progressList),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				{
 					ctor: '::',
 					_0: A2(
 						_elm_lang$html$Html$button,
@@ -18921,13 +19109,12 @@ var _user$project$Atrapos_Game_UI$ui = function (_p1) {
 							{ctor: '[]'}),
 						_1: {ctor: '[]'}
 					}
-				}
-			},
-			_p3 ? {
-				ctor: '::',
-				_0: _user$project$Atrapos_Game_UI$menuPopup,
-				_1: {ctor: '[]'}
-			} : {ctor: '[]'}));
+				},
+				_p3 ? {
+					ctor: '::',
+					_0: _user$project$Atrapos_Game_UI$menuPopup,
+					_1: {ctor: '[]'}
+				} : {ctor: '[]'})));
 };
 var _user$project$Atrapos_Game_UI$parallax = function (_p4) {
 	var _p5 = _p4;
@@ -19008,7 +19195,10 @@ var _user$project$Atrapos_Game_UI$view = F2(
 				};
 			}
 		}();
-		var len = _user$project$Atrapos_Game_Shared$linksLen(_p11);
+		var len = A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			_elm_lang$core$List$head(_p8.counter));
 		var classes = _elm_lang$html$Html_Attributes$classList(
 			{
 				ctor: '::',
@@ -19057,18 +19247,6 @@ var _user$project$Atrapos_Game_UI$view = F2(
 			});
 	});
 
-var _user$project$Common_Time$delay = F2(
-	function (time, msg) {
-		return A2(
-			_elm_lang$core$Task$perform,
-			_elm_lang$core$Basics$identity,
-			A2(
-				_elm_lang$core$Task$andThen,
-				_elm_lang$core$Basics$always(
-					_elm_lang$core$Task$succeed(msg)),
-				_elm_lang$core$Process$sleep(time)));
-	});
-
 var _user$project$Atrapos_Game_Update$nextLevel = F2(
 	function (timeoutSec, _p0) {
 		var _p1 = _p0;
@@ -19079,90 +19257,94 @@ var _user$project$Atrapos_Game_Update$nextLevel = F2(
 	});
 var _user$project$Atrapos_Game_Update$checkVictory = function (_p2) {
 	var _p3 = _p2;
-	var _p4 = _p3;
-	return _p3.victory ? A2(
+	var _p5 = _p3._0;
+	var _p4 = _p3._1;
+	return _p3._0.victory ? A2(
 		_elm_lang$core$Platform_Cmd_ops['!'],
-		_p4,
+		_p5,
 		{
 			ctor: '::',
-			_0: A2(_user$project$Atrapos_Game_Update$nextLevel, 3, _p4),
-			_1: {ctor: '[]'}
-		}) : A2(
-		_elm_lang$core$Platform_Cmd_ops['!'],
-		_p4,
-		{ctor: '[]'});
+			_0: _p4,
+			_1: {
+				ctor: '::',
+				_0: A2(_user$project$Atrapos_Game_Update$nextLevel, 3, _p5),
+				_1: {ctor: '[]'}
+			}
+		}) : {ctor: '_Tuple2', _0: _p5, _1: _p4};
 };
 var _user$project$Atrapos_Game_Update$update_ = F2(
-	function (msg, _p5) {
-		var _p6 = _p5;
-		var _p8 = _p6;
-		var _p7 = msg;
-		switch (_p7.ctor) {
+	function (msg, _p6) {
+		var _p7 = _p6;
+		var _p9 = _p7;
+		var _p8 = msg;
+		switch (_p8.ctor) {
 			case 'WindowSizeChanged':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
-						_p8,
-						{windowSize: _p7._0}),
+						_p9,
+						{windowSize: _p8._0}),
 					{ctor: '[]'});
 			case 'Menu':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
-						_p8,
-						{menu: !_p6.menu}),
+						_p9,
+						{menu: !_p7.menu}),
 					{ctor: '[]'});
 			case 'Reset':
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
+				return _user$project$Atrapos_Game_Shared$updateCounter(
 					_elm_lang$core$Native_Utils.update(
-						_p8,
+						_p9,
 						{
 							links: A2(
 								_elm_lang$core$Dict$map,
 								_elm_lang$core$Basics$always(_user$project$Atrapos_Game_Link_Update$reset),
-								_p6.links),
+								_p7.links),
 							victory: false,
 							menu: false
-						}),
-					{ctor: '[]'});
+						}));
 			case 'Help':
-				return {
-					ctor: '_Tuple2',
-					_0: _user$project$Atrapos_Game_Solution$apply(_p8),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
+				return _user$project$Atrapos_Game_Shared$updateCounter(
+					_user$project$Atrapos_Game_Solution$apply(_p9));
 			case 'Mouse':
 				return _user$project$Atrapos_Game_Update$checkVictory(
-					A2(_user$project$Atrapos_Game_Selection_Update$update, _p7._0, _p8));
+					A2(_user$project$Atrapos_Game_Selection_Update$update, _p8._0, _p9));
+			case 'CounterAnimationCompleted':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						_p9,
+						{counterAnimation: false}),
+					{ctor: '[]'});
 			default:
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
-					_p8,
+					_p9,
 					{ctor: '[]'});
 		}
 	});
 var _user$project$Atrapos_Game_Update$update = F2(
 	function (msg, model) {
-		var _p9 = {ctor: '_Tuple2', _0: msg, _1: model};
+		var _p10 = {ctor: '_Tuple2', _0: msg, _1: model};
 		_v4_2:
 		do {
-			if (_p9.ctor === '_Tuple2') {
-				if (_p9._1.ctor === 'Loading') {
-					if (_p9._0.ctor === 'Init') {
-						var _p10 = _p9._1._0;
+			if (_p10.ctor === '_Tuple2') {
+				if (_p10._1.ctor === 'Loading') {
+					if (_p10._0.ctor === 'Init') {
+						var _p11 = _p10._1._0;
 						return A3(
 							_user$project$Atrapos_Game_Init$init_,
-							_p10,
-							_p9._0._0,
-							A2(_user$project$Common_Dict_ops['#'], _user$project$Atrapos_Data_Levels$model, _p10));
+							_p11,
+							_p10._0._0,
+							A2(_user$project$Common_Dict_ops['#'], _user$project$Atrapos_Data_Levels$model, _p11));
 					} else {
 						break _v4_2;
 					}
 				} else {
-					var _p11 = A2(_user$project$Atrapos_Game_Update$update_, msg, _p9._1._0);
-					var model_ = _p11._0;
-					var cmd = _p11._1;
+					var _p12 = A2(_user$project$Atrapos_Game_Update$update_, msg, _p10._1._0);
+					var model_ = _p12._0;
+					var cmd = _p12._1;
 					return {
 						ctor: '_Tuple2',
 						_0: _user$project$Atrapos_Game_Model$Loaded(model_),
@@ -19176,10 +19358,10 @@ var _user$project$Atrapos_Game_Update$update = F2(
 		return _elm_lang$core$Native_Utils.crashCase(
 			'Atrapos.Game.Update',
 			{
-				start: {line: 19, column: 5},
-				end: {line: 31, column: 48}
+				start: {line: 20, column: 5},
+				end: {line: 32, column: 48}
 			},
-			_p9)('game update not found');
+			_p10)('game update not found');
 	});
 
 var _user$project$Atrapos_Game_View$position = function (_p0) {
