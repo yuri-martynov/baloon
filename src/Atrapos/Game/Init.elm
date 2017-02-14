@@ -34,8 +34,8 @@ init_ id s { nodes, links } =
                 |> List.indexedMap
                     (\i ( x, y ) ->
                         ( i + 1
-                        , { x = x - minX 
-                          , y = y - minY 
+                        , { x = x - minX
+                          , y = y - minY
                           }
                         )
                     )
@@ -61,7 +61,7 @@ init_ id s { nodes, links } =
             nodes_ |> Dict.toList |> List.map (Tuple.second >> .y) |> List.maximum |> Maybe.return
 
         viewBoxSize =
-            { w = maxX , h = maxY }
+            { w = maxX, h = maxY }
     in
         ( { windowSize = s
           , padding = { left = 50, top = 100, right = 50, bottom = 50 }
@@ -74,7 +74,7 @@ init_ id s { nodes, links } =
           , menu = False
           , levelId = id
           , solution = solution
-          , counter = [0,0]
+          , counter = [ 0, 0 ]
           , counterAnimation = True
           }
             |> Loaded

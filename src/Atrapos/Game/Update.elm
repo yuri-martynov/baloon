@@ -46,7 +46,8 @@ update_ msg ({ nodes, links, menu } as model) =
                 | links = links |> Dict.map (always Link.reset)
                 , victory = False
                 , menu = False
-            } |> updateCounter
+            }
+                |> updateCounter
 
         Help ->
             model |> Solution.apply |> updateCounter
@@ -62,11 +63,12 @@ update_ msg ({ nodes, links, menu } as model) =
         _ ->
             model ! []
 
-checkVictory ({ victory } as model, cmd) =
+
+checkVictory ( { victory } as model, cmd ) =
     if victory then
         model ! [ cmd, model |> nextLevel 3 ]
     else
-        (model, cmd)
+        ( model, cmd )
 
 
 nextLevel timeoutSec { levelId } =

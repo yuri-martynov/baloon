@@ -15,7 +15,6 @@ import Atrapos.Routes exposing (Route(Level), url)
 import Atrapos.Port as Port
 
 
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case ( model, msg ) of
@@ -37,21 +36,19 @@ update msg model =
             model ! []
 
 
-levelCompleted : Level.Id -> Model -> (Model, Cmd Msg)
+levelCompleted : Level.Id -> Model -> ( Model, Cmd Msg )
 levelCompleted id model =
     let
         next =
             id + 1
-        
+
         save =
             Port.levelCompleted next
 
-        navigate = 
+        navigate =
             if Data.model |> Dict.member next then
                 [ Level next |> url |> Navigation.newUrl ]
             else
                 []
-        
     in
-        model ! ( save :: navigate ) 
-
+        model ! (save :: navigate)

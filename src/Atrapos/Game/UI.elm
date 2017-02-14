@@ -31,18 +31,18 @@ view ({ victory, minLen, counter } as model) viewGame =
                 Nothing ->
                     [ style [ ( "background-position", "-25px -25px" ) ] ]
 
-        classes = 
+        classes =
             classList
-                    [ ( "container", True )
-                    , ( "begin", True )
-                    , ( "active", True )
-                    , ( "victory", victory )
-                    , ( "overdraft", not victory && len > minLen )
-                    , ( "incomplete", not victory && len < minLen )
-                    ]
+                [ ( "container", True )
+                , ( "begin", True )
+                , ( "active", True )
+                , ( "victory", victory )
+                , ( "overdraft", not victory && len > minLen )
+                , ( "incomplete", not victory && len < minLen )
+                ]
     in
         div
-            ( classes :: styles )
+            (classes :: styles)
             [ viewGame
             , ui model
             ]
@@ -77,27 +77,25 @@ parallax { selection, nodes } =
 ui : Model_ -> Html Msg
 ui ({ victory, links, menu, minLen, counter, counterAnimation } as model) =
     let
-        victoryLen = 
-             round minLen
+        victoryLen =
+            round minLen
 
         progressList =
             counter
                 |> List.map (\len -> victoryLen - (round len))
-
     in
-        (progressList |> List.indexedMap (progress counterAnimation) )
-        ++
-        [ button
-            [ class "hint"
-            , onClick Help
-            ]
-            [ text "HINTS" ]
-        , button
-            [ classList [ ( "menu", True ), ( "active", menu ) ]
-            , onClick Menu
-            ]
-            []
-        ]
+        (progressList |> List.indexedMap (progress counterAnimation))
+            ++ [ button
+                    [ class "hint"
+                    , onClick Help
+                    ]
+                    [ text "HINTS" ]
+               , button
+                    [ classList [ ( "menu", True ), ( "active", menu ) ]
+                    , onClick Menu
+                    ]
+                    []
+               ]
             ++ (if menu then
                     [ menuPopup ]
                 else
@@ -109,8 +107,9 @@ ui ({ victory, links, menu, minLen, counter, counterAnimation } as model) =
                     ]
                 ]
 
-progress: Bool -> Int ->  Int -> Html Msg
-progress counterAnimation index  count =
+
+progress : Bool -> Int -> Int -> Html Msg
+progress counterAnimation index count =
     count
         |> abs
         |> toString
@@ -118,11 +117,10 @@ progress counterAnimation index  count =
         |> lst
         |> label
             [ classList
-                [ ( "percent", True ) 
-                , ( "percent-" ++ (toString index), counterAnimation)
+                [ ( "percent", True )
+                , ( "percent-" ++ (toString index), counterAnimation )
                 ]
             ]
-
 
 
 menuPopup : Html Msg

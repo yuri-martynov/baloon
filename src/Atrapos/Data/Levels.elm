@@ -30,8 +30,7 @@ import Atrapos.Data.L25 as L25
 import Atrapos.Data.L26 as L26
 import Atrapos.Data.L27 as L27
 import Atrapos.Data.L28 as L28
-import Atrapos.Data.L29 as L29 
-
+import Atrapos.Data.L29 as L29
 
 
 model : Levels

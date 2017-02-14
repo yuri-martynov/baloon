@@ -18,7 +18,7 @@ view { links, selection } id node =
             circle [ r "1", class "planet" ] []
 
         orbit =
-             circle [ r "1", class "orbit orbit-1" ] []
+            circle [ r "1", class "orbit orbit-1" ] []
 
         ( start, end ) =
             case selection of
@@ -34,8 +34,8 @@ view { links, selection } id node =
         orbits =
             if connections then
                 [ orbit ]
-            else 
-                [ ]
+            else
+                []
     in
         (planet :: orbits)
             |> g

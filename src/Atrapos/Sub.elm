@@ -10,13 +10,13 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     case model of
         Game model ->
-            model 
-                |> Game.subscriptions 
+            model
+                |> Game.subscriptions
                 |> Sub.map GameMsg
 
         Levels model ->
             model
-                |> Levels.subscriptions 
+                |> Levels.subscriptions
                 |> Sub.map LevelsMsg
 
         _ ->

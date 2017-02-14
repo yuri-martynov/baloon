@@ -26,15 +26,18 @@ linksLen { links } =
         |> Selection.selected
         |> Selection.len links
 
-updateCounter : Model_ -> (Model_, Cmd Msg)
-updateCounter ( { counter } as model) =
-    ( { model 
-        | counter = 
+
+updateCounter : Model_ -> ( Model_, Cmd Msg )
+updateCounter ({ counter } as model) =
+    ( { model
+        | counter =
             (model |> linksLen) :: (counter |> List.take 1)
         , counterAnimation = True
       }
     , CounterAnimationCompleted |> delay (0.3 * Time.second)
     )
+
+
 
 -- PRIVATE --------------------
 
