@@ -14,10 +14,10 @@ import Atrapos.Game.Shared as Game
 
 
 view : Model_ -> Html Msg -> Html Msg
-view ({ victory, minLen } as model) viewGame =
+view ({ victory, minLen, counter } as model) viewGame =
     let
         len =
-            model |> Game.linksLen
+            counter |> List.head |> Maybe.withDefault 0
 
         styles =
             case model |> parallax of
@@ -75,25 +75,19 @@ parallax { selection, nodes } =
 
 
 ui : Model_ -> Html Msg
-ui ({ victory, links, menu, minLen } as model) =
+ui ({ victory, links, menu, minLen, counter } as model) =
     let
-        len =
-            model |> Game.linksLen
+        victoryLen = 
+             round minLen
 
-        progress =
-            (minLen |> round)
-                - (len  |> round)
+        progressList =
+            counter
+                |> List.map (\len -> victoryLen - (round len))
+
     in
-        [ progress
-            |> abs
-            |> toString
-            |> text
-            |> lst
-            |> label
-                [ classList
-                    [ ( "percent", True ) ]
-                ]
-        , button
+        (progressList |> List.indexedMap progress)
+        ++
+        [ button
             [ class "hint"
             , onClick Help
             ]
@@ -114,6 +108,21 @@ ui ({ victory, links, menu, minLen } as model) =
                     [ ( "game-ui", True )
                     ]
                 ]
+
+progress: Int -> Int -> Html Msg
+progress index count =
+    count
+        |> abs
+        |> toString
+        |> text
+        |> lst
+        |> label
+            [ classList
+                [ ( "percent", True ) 
+                , ( "percent-" ++ (toString index), True)
+                ]
+            ]
+
 
 
 menuPopup : Html Msg

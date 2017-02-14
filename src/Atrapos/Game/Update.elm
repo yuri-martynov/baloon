@@ -8,7 +8,7 @@ import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Solution as Solution
 import Atrapos.Game.Link.Update as Link
-import Atrapos.Game.Shared exposing (link)
+import Atrapos.Game.Shared exposing (linksLen)
 import Atrapos.Game.Selection.Update as Selection
 import Atrapos.Game.Init exposing (init_)
 import Atrapos.Data.Levels as Data
@@ -60,7 +60,6 @@ update_ msg ({ nodes, links, menu } as model) =
 
         _ ->
             model ! []
-
 
 checkVictory ({ victory } as model) =
     if victory then

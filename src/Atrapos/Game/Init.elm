@@ -74,6 +74,7 @@ init_ id s { nodes, links } =
           , menu = False
           , levelId = id
           , solution = solution
+          , counter = [0,0]
           }
             |> Loaded
         , Cmd.none
