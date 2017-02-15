@@ -22,13 +22,13 @@ view ({ victory, minLen, counter } as model) viewGame =
             case model |> parallax of
                 Just { x, y } ->
                     [ style
-                        [ ( "background-position-x", (-25 + x |> toString) ++ "px" )
-                        , ( "background-position-y", (-25 - y |> toString) ++ "px" )
+                        [ ( "background-position-x", (0 + x |> toString) ++ "px" )
+                        , ( "background-position-y", (0 - y |> toString) ++ "px" )
                         ]
                     ]
 
                 Nothing ->
-                    [ style [ ( "background-position", "-25px -25px" ) ] ]
+                    [ style [ ( "background-position", "0 0" ) ] ]
 
         classes =
             classList
