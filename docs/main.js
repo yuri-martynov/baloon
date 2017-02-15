@@ -19770,17 +19770,17 @@ var _user$project$Atrapos_Game_UI$progress = F3(
 				_0: _elm_lang$html$Html_Attributes$classList(
 					{
 						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'percent', _1: true},
+						_0: {
+							ctor: '_Tuple2',
+							_0: A2(
+								_elm_lang$core$Basics_ops['++'],
+								'percent-',
+								_elm_lang$core$Basics$toString(index)),
+							_1: true
+						},
 						_1: {
 							ctor: '::',
-							_0: {
-								ctor: '_Tuple2',
-								_0: A2(
-									_elm_lang$core$Basics_ops['++'],
-									'percent-',
-									_elm_lang$core$Basics$toString(index)),
-								_1: counterAnimation
-							},
+							_0: {ctor: '_Tuple2', _0: 'changing', _1: counterAnimation},
 							_1: {ctor: '[]'}
 						}
 					}),
@@ -19801,6 +19801,17 @@ var _user$project$Atrapos_Game_UI$ui = function (_p1) {
 			return victoryLen - _elm_lang$core$Basics$round(len);
 		},
 		_p2.counter);
+	var progressDiv = A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('percent'),
+			_1: {ctor: '[]'}
+		},
+		A2(
+			_elm_lang$core$List$indexedMap,
+			_user$project$Atrapos_Game_UI$progress(_p2.counterAnimation),
+			progressList));
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -19813,13 +19824,10 @@ var _user$project$Atrapos_Game_UI$ui = function (_p1) {
 				}),
 			_1: {ctor: '[]'}
 		},
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			A2(
-				_elm_lang$core$List$indexedMap,
-				_user$project$Atrapos_Game_UI$progress(_p2.counterAnimation),
-				progressList),
-			A2(
+		{
+			ctor: '::',
+			_0: progressDiv,
+			_1: A2(
 				_elm_lang$core$Basics_ops['++'],
 				{
 					ctor: '::',
@@ -19869,7 +19877,8 @@ var _user$project$Atrapos_Game_UI$ui = function (_p1) {
 					ctor: '::',
 					_0: _user$project$Atrapos_Game_UI$menuPopup,
 					_1: {ctor: '[]'}
-				} : {ctor: '[]'})));
+				} : {ctor: '[]'})
+		});
 };
 var _user$project$Atrapos_Game_UI$parallax = function (_p4) {
 	var _p5 = _p4;

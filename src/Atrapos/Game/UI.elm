@@ -82,9 +82,14 @@ ui ({ victory, links, menu, minLen, counter, counterAnimation } as model) =
         progressList =
             counter
                 |> List.map (\len -> victoryLen - (round len))
+
+        progressDiv = 
+            progressList 
+                |> List.indexedMap (progress counterAnimation)
+                |> div [class "percent"] 
     in
-        (progressList |> List.indexedMap (progress counterAnimation))
-            ++ [ button
+            progressDiv
+            :: [ button
                     [ class "hint"
                     , onClick Help
                     ]
@@ -116,8 +121,8 @@ progress counterAnimation index count =
         |> lst
         |> label
             [ classList
-                [ ( "percent", True )
-                , ( "percent-" ++ (toString index), counterAnimation )
+                [ ( "percent-" ++ (toString index), True )
+                , ( "changing", counterAnimation )
                 ]
             ]
 

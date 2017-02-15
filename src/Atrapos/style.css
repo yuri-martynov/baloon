@@ -1,16 +1,20 @@
 * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
 body, html {
-    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    height:100%;
-    margin:0;
-    padding:0;
-    text-transform:uppercase;
-    width:100%;
+    -webkit-touch-callout: none;
+    /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;
+    /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;
+    /* prevent copy paste, to allow, change 'none' to 'text' */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    width: 100%;
     font-family: -apple-system-body, Lato;
     background: #0C1122;
     overflow: hidden;
@@ -19,7 +23,6 @@ body, html {
 .container {
     /*background: url(BG-2.png) no-repeat;*/
     background: linear-gradient(to top, #30cfd0 0%, #330867 100%);
-
     height: 100%;
 }
 
@@ -48,8 +51,6 @@ body, html {
     margin: 6px 0;
     transition: margin 0.2s;
 }
-
-
 
 @keyframes rotate {
     from {
@@ -81,7 +82,7 @@ body, html {
 }
 
 .hint {
-    /*display: none;*/
+    display: none;
     flex: 0.25;
     color: #4C61AB;
     font-size: 1em;
@@ -90,16 +91,6 @@ body, html {
     margin: 8px 10px;
     /*background: #161D36;*/
     background: transparent;
-}
-
-.percent {
-    color: #4C61AB;
-    width: 60px;
-    overflow: hidden;
-    align-self: center;
-    margin-left: 20px;
-    flex: 1;
-    font-size: x-large;
 }
 
 .game-name {
@@ -176,7 +167,7 @@ body, html {
     transition: 0.2s;
 }
 
-.menu-popup a{
+.menu-popup a {
     text-decoration: none;
 }
 
@@ -218,7 +209,6 @@ body, html {
     transition: all 0.2s ease-in;
 }
 
-
 .planet {
     fill: orangered;
     transform: scale(0.4);
@@ -234,7 +224,6 @@ body, html {
 
 .orbit-1 {
     animation: pop 0.2s ease-in-out;
-    
 }
 
 .orbit-2 {
@@ -268,8 +257,7 @@ body, html {
     filter: drop-shadow( -5px -5px 5px pink);
 }
 
-
-.selected.selection-start .orbit.orbit-1{
+.selected.selection-start .orbit.orbit-1 {
     fill: mediumpurple;
     fill-opacity: 0.6;
     stroke: mediumpurple;
@@ -287,7 +275,6 @@ body, html {
         transform: scale(1.2);
     }
 }
-
 
 @keyframes spin {
     100% {
@@ -324,45 +311,40 @@ body, html {
 }
 
 @keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-  
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
 }
 
-
-.overdraft .game-field{
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+.overdraft .game-field {
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
 }
-
 
 .overdraft .link.selected {
     stroke: white;
     transition: stroke 2s;
 }
 
-.overdraft .selected .planet{
+.overdraft .selected .planet {
     fill: white;
     transition: fill 1s;
 }
 
-.overdraft .selected .orbit{
+.overdraft .selected .orbit {
     stroke: red;
     fill: #B9301B;
 }
 
-.overdraft .percent{
+.overdraft .percent {
     color: red;
 }
 
@@ -392,15 +374,13 @@ body, html {
     stroke-width: 0.1;
 }
 
-
 @keyframes offcanvas-left {
     from {
         transform: translate(-150px, 0);
     }
 }
 
-
-ul.levels{
+ul.levels {
     animation: offcanvas-left;
     animation-duration: 300ms;
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -410,7 +390,7 @@ ul.levels{
     list-style-type: none;
 }
 
-li.level{
+li.level {
     border-radius: 50%;
     background: #4C61AB;
     border: 1px solid #4C61AB;
@@ -422,14 +402,14 @@ li.level{
     text-align: center;
 }
 
-li.level a{
+li.level a {
     color: #0C1122;
     text-decoration: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
 
-.li.level a:active{
+.li.level a:active {
     color: white;
     transition: 0.2s;
 }
@@ -440,36 +420,54 @@ li.level a{
     pointer-events: none;
 }
 
-li.level.closed a{
+li.level.closed a {
     color: #4C61AB;
 }
 
-.level.opened {
+.level.opened {}
+
+.percent {
+    color: #4C61AB;
+    width: 60px;
+    /*overflow: hidden;*/
+    align-self: center;
+    margin-left: 20px;
+    flex: 1;
+    font-size: x-large;
 }
 
-.percent.percent-0 {
-    animation-name: down;
-    animation-duration: 300ms;
+.percent .percent-0.changing {
+    animation-name: fromDown;
+    animation-duration: 250ms;
 }
 
-.percent.percent-1 {
-    animation-name: up;
-    animation-duration: 300ms;
-}
-
-@keyframes up {
+@keyframes fromDown {
     from {
+        transform: translate(0, 50px); /* doesn't work (((*/
+        opacity: 0;
+    }
+}
+
+.percent .percent-1 {
+    opacity: 0;
+    /*hack*/
+    position: fixed;
+    left: 20px;
+}
+
+.percent .percent-1.changing {
+    animation-name: toUp;
+    animation-duration: 250ms;
+}
+
+@keyframes toUp {
+    from {
+        opacity: 1
+    }
+    to {
         transform: translate(0, -50px);
     }
 }
-
-@keyframes down {
-    from {
-        transform: translate(0, +50px);
-    }
-}
-
-
 
 @keyframes pop-intro {
     100% {
@@ -478,14 +476,13 @@ li.level.closed a{
     }
 }
 
-
 .begin .planet {
     animation: pop-intro 0.4s ease-in-out;
 }
 
 .container.overdraft {
     background: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
-    transition: background 0.6s ease-in;    
+    transition: background 0.6s ease-in;
 }
 
 .container.victory {
