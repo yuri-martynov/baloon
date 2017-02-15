@@ -1,4 +1,4 @@
-module Atrapos.Game.Shared exposing (link, victory, linksLen, updateCounter)
+module Atrapos.Game.Shared exposing (link, victory, linksLen, updateCounter, completeAnimation)
 
 import Dict
 import Time
@@ -34,8 +34,11 @@ updateCounter ({ counter } as model) =
             (model |> linksLen) :: (counter |> List.take 1)
         , counterAnimation = True
       }
-    , CounterAnimationCompleted |> delay (0.3 * Time.second)
+    , completeAnimation
     )
+
+completeAnimation =
+    CounterAnimationCompleted |> delay (0.3 * Time.second)
 
 
 

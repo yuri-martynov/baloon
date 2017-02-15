@@ -10,7 +10,6 @@ import Common.Math as Math
 import Common.Types exposing (Location)
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
-import Atrapos.Game.Shared as Game
 
 
 view : Model_ -> Html Msg -> Html Msg
@@ -42,7 +41,7 @@ view ({ victory, minLen, counter } as model) viewGame =
                 ]
     in
         div
-            (classes :: styles)
+            [ classes ] 
             [ viewGame
             , ui model
             ]

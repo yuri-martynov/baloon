@@ -10,7 +10,7 @@ import Atrapos.Game.Msg exposing (Msg(Init))
 import Atrapos.Game.Solution as Solution
 import Atrapos.Game.Selection.Path as Selection
 import Atrapos.Game.Link.Init as Link
-
+import Atrapos.Game.Shared exposing (completeAnimation)
 
 init : Data.Id -> ( Model, Cmd Msg )
 init id =
@@ -78,5 +78,5 @@ init_ id s { nodes, links } =
           , counterAnimation = True
           }
             |> Loaded
-        , Cmd.none
+        , completeAnimation
         )
