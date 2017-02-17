@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="game.magic.atrapos" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Atrapos</name>
+<widget id="com.bestfriendgame.pathfinder" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Pathfinder</name>
     <description>
         Fun and easy puzze
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="yuri.martynov@gmail.com" href="https://yuri-martynov.github.io/baloon">
+        Yury Martynov
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />

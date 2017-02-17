@@ -20,6 +20,9 @@ init id =
     )
 
 
+offset =
+    1.0
+
 init_ : Data.Id -> Window.Size -> Data.Model -> ( Model, Cmd Msg )
 init_ id s { nodes, links } =
     let
@@ -34,8 +37,8 @@ init_ id s { nodes, links } =
                 |> List.indexedMap
                     (\i ( x, y ) ->
                         ( i + 1
-                        , { x = x - minX
-                          , y = y - minY
+                        , { x = x - minX + offset
+                          , y = y - minY + offset
                           }
                         )
                     )
@@ -61,10 +64,10 @@ init_ id s { nodes, links } =
             nodes_ |> Dict.toList |> List.map (Tuple.second >> .y) |> List.maximum |> Maybe.return
 
         viewBoxSize =
-            { w = maxX, h = maxY }
+            { w = maxX + offset, h = maxY + offset }
     in
         ( { windowSize = s
-          , padding = { left = 50, top = 100, right = 50, bottom = 50 }
+          , padding = { left = 25, top = 75, right = 25, bottom = 25 }
           , viewBoxSize = viewBoxSize
           , nodes = nodes_
           , links = links_

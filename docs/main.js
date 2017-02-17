@@ -19297,6 +19297,7 @@ var _user$project$Atrapos_Game_Shared$link = F3(
 				}));
 	});
 
+var _user$project$Atrapos_Game_Init$offset = 1.0;
 var _user$project$Atrapos_Game_Init$init_ = F3(
 	function (id, s, _p0) {
 		var _p1 = _p0;
@@ -19316,7 +19317,7 @@ var _user$project$Atrapos_Game_Init$init_ = F3(
 						return {
 							ctor: '_Tuple2',
 							_0: i + 1,
-							_1: {x: _p3._0 - minX, y: _p3._1 - minY}
+							_1: {x: (_p3._0 - minX) + _user$project$Atrapos_Game_Init$offset, y: (_p3._1 - minY) + _user$project$Atrapos_Game_Init$offset}
 						};
 					}),
 				_p8));
@@ -19364,13 +19365,13 @@ var _user$project$Atrapos_Game_Init$init_ = F3(
 							_elm_lang$core$Tuple$second(_p7));
 					},
 					_elm_lang$core$Dict$toList(nodes_))));
-		var viewBoxSize = {w: maxX, h: maxY};
+		var viewBoxSize = {w: maxX + _user$project$Atrapos_Game_Init$offset, h: maxY + _user$project$Atrapos_Game_Init$offset};
 		return {
 			ctor: '_Tuple2',
 			_0: _user$project$Atrapos_Game_Model$Loaded(
 				{
 					windowSize: s,
-					padding: {left: 50, top: 100, right: 50, bottom: 50},
+					padding: {left: 25, top: 75, right: 25, bottom: 25},
 					viewBoxSize: viewBoxSize,
 					nodes: nodes_,
 					links: links_,
@@ -20409,7 +20410,7 @@ var _user$project$Atrapos_Game_Update$checkVictory = function (_p2) {
 			_0: _p4,
 			_1: {
 				ctor: '::',
-				_0: A2(_user$project$Atrapos_Game_Update$nextLevel, 3, _p5),
+				_0: A2(_user$project$Atrapos_Game_Update$nextLevel, 1, _p5),
 				_1: {ctor: '[]'}
 			}
 		}) : {ctor: '_Tuple2', _0: _p5, _1: _p4};

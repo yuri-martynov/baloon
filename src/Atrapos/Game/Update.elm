@@ -66,7 +66,7 @@ update_ msg ({ nodes, links, menu } as model) =
 
 checkVictory ( { victory } as model, cmd ) =
     if victory then
-        model ! [ cmd, model |> nextLevel 3 ]
+        model ! [ cmd, model |> nextLevel 1 ]
     else
         ( model, cmd )
 
