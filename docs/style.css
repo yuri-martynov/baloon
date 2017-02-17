@@ -438,7 +438,7 @@ li.level.closed a {
 
 .percent .percent-0.changing {
     animation-name: fromDown;
-    animation-duration: 250ms;
+    animation-duration: 400ms;
 }
 
 @keyframes fromDown {
@@ -457,7 +457,7 @@ li.level.closed a {
 
 .percent .percent-1.changing {
     animation-name: toUp;
-    animation-duration: 250ms;
+    animation-duration: 400ms;
 }
 
 @keyframes toUp {
