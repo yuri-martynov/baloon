@@ -1,0 +1,11 @@
+{
+    "android": {
+        "release": {
+            "keystore": "games.keystore",
+            "storePassword": "aassdd1@",
+            "alias": "games",
+            "password" : "password",
+            "keystoreType": ""
+        }
+    }
+}
