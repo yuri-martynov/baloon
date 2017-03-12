@@ -4,7 +4,7 @@
             "keystore": "games.keystore",
             "storePassword": "aassdd1@",
             "alias": "games",
-            "password" : "password",
+            "password" : "aassdd1@",
             "keystoreType": ""
         }
     }
