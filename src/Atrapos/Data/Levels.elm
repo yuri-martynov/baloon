@@ -41,6 +41,11 @@ import Atrapos.Data.L36 as L36
 import Atrapos.Data.L37 as L37
 import Atrapos.Data.L38 as L38
 import Atrapos.Data.L39 as L39
+import Atrapos.Data.L40 as L40
+import Atrapos.Data.L41 as L41
+import Atrapos.Data.L42 as L42
+import Atrapos.Data.L43 as L43
+import Atrapos.Data.L44 as L44
 
 
 model : Levels
@@ -55,6 +60,10 @@ model =
     , L37.model
     , L38.model
     , L39.model
+    , L41.model
+    , L40.model
+    , L42.model
+    , L43.model
     , L1.model
     , L2.model
     , L3.model
@@ -71,6 +80,7 @@ model =
     , L14.model
     , L15.model
     , L16.model
+    , L43.model
     , L17.model
     , L18.model
     , L19.model
