@@ -22,6 +22,8 @@
         <icon src="res/ios/mdpi.png" density="mdpi" />
         <icon src="res/ios/hdpi.png" density="hdpi" />
         <icon src="res/ios/xhdpi.png" density="xhdpi" />
+        <icon src="res/ios/xxhdpi.png" density="xxhdpi" />
+        <icon src="res/ios/xxxhdpi.png" density="xxxhdpi" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
