@@ -1,11 +1,11 @@
 port module Atrapos.Port exposing (..)
 
-import Atrapos.Data.Model as Level
-
 type alias KeyLevel =
     { key: String
     , level: Int
     }
+
+port setMaxLevel : KeyLevel -> Cmd msg
 
 port setLevel : KeyLevel -> Cmd msg
 

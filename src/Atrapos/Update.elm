@@ -43,7 +43,8 @@ levelCompleted id model =
             id + 1
 
         save =
-            Port.setLevel {key = "maxLevel", level = next }
+            { key = "maxLevel", level = next }
+                |> Port.setMaxLevel
 
         navigate =
             if Data.model |> Dict.member next then
