@@ -11,13 +11,15 @@ import Atrapos.Game.Solution as Solution
 import Atrapos.Game.Selection.Path as Selection
 import Atrapos.Game.Link.Init as Link
 import Atrapos.Game.Shared exposing (completeAnimation)
+import Atrapos.Port as Port
 
 init : Data.Id -> ( Model, Cmd Msg )
 init id =
-    ( Loading id
-    , Window.size
-        |> Task.perform Init
-    )
+    Loading id !
+    [ Window.size |> Task.perform Init
+    , {key = "lastLevel", level = id } |> Port.setLevel 
+    ]
+    
 
 
 offset =

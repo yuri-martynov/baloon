@@ -1,7 +1,7 @@
 module Atrapos.Levels.Msg exposing (..)
 
-import Atrapos.Data.Model as Level
+import Atrapos.Port as Port
 
 
 type Msg
-    = MaxLevel Level.Id
+    = GotLevel Port.KeyLevel

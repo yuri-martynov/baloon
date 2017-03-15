@@ -19,7 +19,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case ( model, msg ) of
         ( _, UrlChanged route ) ->
-            init route
+            init 0 route
 
         ( Game _, GameMsg (Game.Finished id) ) ->
             model |> levelCompleted id
@@ -43,7 +43,7 @@ levelCompleted id model =
             id + 1
 
         save =
-            Port.levelCompleted next
+            Port.setLevel {key = "maxLevel", level = next }
 
         navigate =
             if Data.model |> Dict.member next then

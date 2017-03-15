@@ -11,4 +11,4 @@ init =
     { levels = Levels.model
     , maxLevel = 0
     }
-        ! [ Port.getMaxLevel 0 ]
+        ! [ Port.getLevel "maxLevel" ]
