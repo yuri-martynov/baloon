@@ -1,23 +1,32 @@
 function run() {
-    var app = Elm.Atrapos.Main.fullscreen();
+    var lastLevel = getLevel("lastLevel");
+    var app = Elm.Atrapos.Main.fullscreen(lastLevel);
 
-    app.ports.levelCompleted.subscribe(function (levelId) {
-        var maxLevel = getMaxLevel();
-        if (!maxLevel || levelId > maxLevel) {
-            localStorage.maxLevel = levelId
+    app.ports.setMaxLevel.subscribe(function (data) {
+        var l = getLevel(data.key);
+        if (!l || data.level > l) {
+            setLevel(data.key, data.level);
         }
     });
 
-    app.ports.getMaxLevel.subscribe(function () {
-        var maxLevel = getMaxLevel();
+    app.ports.setLevel.subscribe(function (data) {
+        setLevel(data.key, data.level);
+    });
+
+    app.ports.getLevel.subscribe(function (key) {
+        var l = getLevel(key);
 
         setTimeout(function () {
-            app.ports.maxLevel.send(maxLevel);
+            app.ports.level.send({ key: key, level: l });
         });
     });
 
-    function getMaxLevel() {
-        var maxLevelStr = localStorage.maxLevel
-        return maxLevelStr ? parseInt(maxLevelStr) : 0;
+    function getLevel(key) {
+        var l = localStorage[key];
+        return l ? parseInt(l) : 0;
+    }
+
+    function setLevel(key, level) {
+        localStorage[key] = level;
     }
 }

@@ -18200,7 +18200,7 @@ var _user$project$Atrapos_Data_L41$model = {
 				_0: {ctor: '_Tuple2', _0: 1, _1: 13},
 				_1: {
 					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 4, _1: 1},
+					_0: {ctor: '_Tuple2', _0: 4, _1: 0},
 					_1: {
 						ctor: '::',
 						_0: {ctor: '_Tuple2', _0: 4, _1: 2},
@@ -18209,7 +18209,7 @@ var _user$project$Atrapos_Data_L41$model = {
 							_0: {ctor: '_Tuple2', _0: 4, _1: 7},
 							_1: {
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 6, _1: 1},
+								_0: {ctor: '_Tuple2', _0: 6, _1: 0},
 								_1: {
 									ctor: '::',
 									_0: {ctor: '_Tuple2', _0: 6, _1: 2},
@@ -19111,6 +19111,209 @@ var _user$project$Atrapos_Data_L44$model = {
 						}
 					}
 				}
+			}
+		}
+	}
+};
+
+var _user$project$Atrapos_Data_L45$model = {
+	nodes: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 1, _1: 9},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 4, _1: 0},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 6, _1: 7},
+				_1: {ctor: '[]'}
+			}
+		}
+	},
+	links: {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 1,
+			_1: {
+				ctor: '::',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 3,
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 3,
+					_1: {ctor: '[]'}
+				}
+			},
+			_1: {ctor: '[]'}
+		}
+	}
+};
+
+var _user$project$Atrapos_Data_L46$model = {
+	nodes: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 1, _1: 4},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 3, _1: 1},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 4, _1: 5},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 4, _1: 10},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 7, _1: 4},
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	},
+	links: {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 1,
+			_1: {
+				ctor: '::',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 4,
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 5,
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 5,
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 5,
+							_1: {ctor: '[]'}
+						}
+					},
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	}
+};
+
+var _user$project$Atrapos_Data_L47$model = {
+	nodes: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 0, _1: 4},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 0, _1: 8},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 3, _1: 1},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 6, _1: 4},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 6, _1: 8},
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	},
+	links: {
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 1,
+			_1: {
+				ctor: '::',
+				_0: 4,
+				_1: {
+					ctor: '::',
+					_0: 5,
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 4,
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 5,
+						_1: {ctor: '[]'}
+					}
+				},
+				_1: {ctor: '[]'}
 			}
 		}
 	}
@@ -20182,137 +20385,153 @@ var _user$project$Atrapos_Data_Levels$model = _elm_lang$core$Dict$fromList(
 			}),
 		{
 			ctor: '::',
-			_0: _user$project$Atrapos_Data_L30$model,
+			_0: _user$project$Atrapos_Data_L45$model,
 			_1: {
 				ctor: '::',
-				_0: _user$project$Atrapos_Data_L31$model,
+				_0: _user$project$Atrapos_Data_L30$model,
 				_1: {
 					ctor: '::',
-					_0: _user$project$Atrapos_Data_L32$model,
+					_0: _user$project$Atrapos_Data_L46$model,
 					_1: {
 						ctor: '::',
-						_0: _user$project$Atrapos_Data_L33$model,
+						_0: _user$project$Atrapos_Data_L31$model,
 						_1: {
 							ctor: '::',
-							_0: _user$project$Atrapos_Data_L34$model,
+							_0: _user$project$Atrapos_Data_L47$model,
 							_1: {
 								ctor: '::',
-								_0: _user$project$Atrapos_Data_L35$model,
+								_0: _user$project$Atrapos_Data_L32$model,
 								_1: {
 									ctor: '::',
-									_0: _user$project$Atrapos_Data_L36$model,
+									_0: _user$project$Atrapos_Data_L33$model,
 									_1: {
 										ctor: '::',
-										_0: _user$project$Atrapos_Data_L37$model,
+										_0: _user$project$Atrapos_Data_L34$model,
 										_1: {
 											ctor: '::',
-											_0: _user$project$Atrapos_Data_L38$model,
+											_0: _user$project$Atrapos_Data_L35$model,
 											_1: {
 												ctor: '::',
-												_0: _user$project$Atrapos_Data_L39$model,
+												_0: _user$project$Atrapos_Data_L36$model,
 												_1: {
 													ctor: '::',
-													_0: _user$project$Atrapos_Data_L41$model,
+													_0: _user$project$Atrapos_Data_L37$model,
 													_1: {
 														ctor: '::',
-														_0: _user$project$Atrapos_Data_L40$model,
+														_0: _user$project$Atrapos_Data_L38$model,
 														_1: {
 															ctor: '::',
-															_0: _user$project$Atrapos_Data_L42$model,
+															_0: _user$project$Atrapos_Data_L39$model,
 															_1: {
 																ctor: '::',
-																_0: _user$project$Atrapos_Data_L43$model,
+																_0: _user$project$Atrapos_Data_L41$model,
 																_1: {
 																	ctor: '::',
-																	_0: _user$project$Atrapos_Data_L1$model,
+																	_0: _user$project$Atrapos_Data_L40$model,
 																	_1: {
 																		ctor: '::',
-																		_0: _user$project$Atrapos_Data_L2$model,
+																		_0: _user$project$Atrapos_Data_L42$model,
 																		_1: {
 																			ctor: '::',
-																			_0: _user$project$Atrapos_Data_L3$model,
+																			_0: _user$project$Atrapos_Data_L43$model,
 																			_1: {
 																				ctor: '::',
-																				_0: _user$project$Atrapos_Data_L4$model,
+																				_0: _user$project$Atrapos_Data_L44$model,
 																				_1: {
 																					ctor: '::',
-																					_0: _user$project$Atrapos_Data_L5$model,
+																					_0: _user$project$Atrapos_Data_L1$model,
 																					_1: {
 																						ctor: '::',
-																						_0: _user$project$Atrapos_Data_L6$model,
+																						_0: _user$project$Atrapos_Data_L2$model,
 																						_1: {
 																							ctor: '::',
-																							_0: _user$project$Atrapos_Data_L7$model,
+																							_0: _user$project$Atrapos_Data_L3$model,
 																							_1: {
 																								ctor: '::',
-																								_0: _user$project$Atrapos_Data_L8$model,
+																								_0: _user$project$Atrapos_Data_L4$model,
 																								_1: {
 																									ctor: '::',
-																									_0: _user$project$Atrapos_Data_L9$model,
+																									_0: _user$project$Atrapos_Data_L5$model,
 																									_1: {
 																										ctor: '::',
-																										_0: _user$project$Atrapos_Data_L10$model,
+																										_0: _user$project$Atrapos_Data_L6$model,
 																										_1: {
 																											ctor: '::',
-																											_0: _user$project$Atrapos_Data_L11$model,
+																											_0: _user$project$Atrapos_Data_L7$model,
 																											_1: {
 																												ctor: '::',
-																												_0: _user$project$Atrapos_Data_L12$model,
+																												_0: _user$project$Atrapos_Data_L8$model,
 																												_1: {
 																													ctor: '::',
-																													_0: _user$project$Atrapos_Data_L13$model,
+																													_0: _user$project$Atrapos_Data_L9$model,
 																													_1: {
 																														ctor: '::',
-																														_0: _user$project$Atrapos_Data_L14$model,
+																														_0: _user$project$Atrapos_Data_L10$model,
 																														_1: {
 																															ctor: '::',
-																															_0: _user$project$Atrapos_Data_L15$model,
+																															_0: _user$project$Atrapos_Data_L11$model,
 																															_1: {
 																																ctor: '::',
-																																_0: _user$project$Atrapos_Data_L16$model,
+																																_0: _user$project$Atrapos_Data_L12$model,
 																																_1: {
 																																	ctor: '::',
-																																	_0: _user$project$Atrapos_Data_L43$model,
+																																	_0: _user$project$Atrapos_Data_L13$model,
 																																	_1: {
 																																		ctor: '::',
-																																		_0: _user$project$Atrapos_Data_L17$model,
+																																		_0: _user$project$Atrapos_Data_L14$model,
 																																		_1: {
 																																			ctor: '::',
-																																			_0: _user$project$Atrapos_Data_L18$model,
+																																			_0: _user$project$Atrapos_Data_L15$model,
 																																			_1: {
 																																				ctor: '::',
-																																				_0: _user$project$Atrapos_Data_L19$model,
+																																				_0: _user$project$Atrapos_Data_L16$model,
 																																				_1: {
 																																					ctor: '::',
-																																					_0: _user$project$Atrapos_Data_L20$model,
+																																					_0: _user$project$Atrapos_Data_L43$model,
 																																					_1: {
 																																						ctor: '::',
-																																						_0: _user$project$Atrapos_Data_L21$model,
+																																						_0: _user$project$Atrapos_Data_L17$model,
 																																						_1: {
 																																							ctor: '::',
-																																							_0: _user$project$Atrapos_Data_L22$model,
+																																							_0: _user$project$Atrapos_Data_L18$model,
 																																							_1: {
 																																								ctor: '::',
-																																								_0: _user$project$Atrapos_Data_L23$model,
+																																								_0: _user$project$Atrapos_Data_L19$model,
 																																								_1: {
 																																									ctor: '::',
-																																									_0: _user$project$Atrapos_Data_L24$model,
+																																									_0: _user$project$Atrapos_Data_L20$model,
 																																									_1: {
 																																										ctor: '::',
-																																										_0: _user$project$Atrapos_Data_L25$model,
+																																										_0: _user$project$Atrapos_Data_L21$model,
 																																										_1: {
 																																											ctor: '::',
-																																											_0: _user$project$Atrapos_Data_L26$model,
+																																											_0: _user$project$Atrapos_Data_L22$model,
 																																											_1: {
 																																												ctor: '::',
-																																												_0: _user$project$Atrapos_Data_L27$model,
+																																												_0: _user$project$Atrapos_Data_L23$model,
 																																												_1: {
 																																													ctor: '::',
-																																													_0: _user$project$Atrapos_Data_L28$model,
+																																													_0: _user$project$Atrapos_Data_L24$model,
 																																													_1: {
 																																														ctor: '::',
-																																														_0: _user$project$Atrapos_Data_L29$model,
-																																														_1: {ctor: '[]'}
+																																														_0: _user$project$Atrapos_Data_L25$model,
+																																														_1: {
+																																															ctor: '::',
+																																															_0: _user$project$Atrapos_Data_L26$model,
+																																															_1: {
+																																																ctor: '::',
+																																																_0: _user$project$Atrapos_Data_L27$model,
+																																																_1: {
+																																																	ctor: '::',
+																																																	_0: _user$project$Atrapos_Data_L28$model,
+																																																	_1: {
+																																																		ctor: '::',
+																																																		_0: _user$project$Atrapos_Data_L29$model,
+																																																		_1: {ctor: '[]'}
+																																																	}
+																																																}
+																																															}
+																																														}
 																																													}
 																																												}
 																																											}
@@ -20880,6 +21099,40 @@ var _user$project$Atrapos_Game_Shared$link = F3(
 				}));
 	});
 
+var _user$project$Atrapos_Port$setMaxLevel = _elm_lang$core$Native_Platform.outgoingPort(
+	'setMaxLevel',
+	function (v) {
+		return {key: v.key, level: v.level};
+	});
+var _user$project$Atrapos_Port$setLevel = _elm_lang$core$Native_Platform.outgoingPort(
+	'setLevel',
+	function (v) {
+		return {key: v.key, level: v.level};
+	});
+var _user$project$Atrapos_Port$getLevel = _elm_lang$core$Native_Platform.outgoingPort(
+	'getLevel',
+	function (v) {
+		return v;
+	});
+var _user$project$Atrapos_Port$level = _elm_lang$core$Native_Platform.incomingPort(
+	'level',
+	A2(
+		_elm_lang$core$Json_Decode$andThen,
+		function (key) {
+			return A2(
+				_elm_lang$core$Json_Decode$andThen,
+				function (level) {
+					return _elm_lang$core$Json_Decode$succeed(
+						{key: key, level: level});
+				},
+				A2(_elm_lang$core$Json_Decode$field, 'level', _elm_lang$core$Json_Decode$int));
+		},
+		A2(_elm_lang$core$Json_Decode$field, 'key', _elm_lang$core$Json_Decode$string)));
+var _user$project$Atrapos_Port$KeyLevel = F2(
+	function (a, b) {
+		return {key: a, level: b};
+	});
+
 var _user$project$Atrapos_Game_Init$offset = 1.0;
 var _user$project$Atrapos_Game_Init$init_ = F3(
 	function (id, s, _p0) {
@@ -20979,11 +21232,19 @@ var _user$project$Atrapos_Game_Init$init_ = F3(
 		};
 	});
 var _user$project$Atrapos_Game_Init$init = function (id) {
-	return {
-		ctor: '_Tuple2',
-		_0: _user$project$Atrapos_Game_Model$Loading(id),
-		_1: A2(_elm_lang$core$Task$perform, _user$project$Atrapos_Game_Msg$Init, _elm_lang$window$Window$size)
-	};
+	return A2(
+		_elm_lang$core$Platform_Cmd_ops['!'],
+		_user$project$Atrapos_Game_Model$Loading(id),
+		{
+			ctor: '::',
+			_0: A2(_elm_lang$core$Task$perform, _user$project$Atrapos_Game_Msg$Init, _elm_lang$window$Window$size),
+			_1: {
+				ctor: '::',
+				_0: _user$project$Atrapos_Port$setLevel(
+					{key: 'lastLevel', level: id}),
+				_1: {ctor: '[]'}
+			}
+		});
 };
 
 var _user$project$Atrapos_Game_Link_Update$select = function (link) {
@@ -22308,8 +22569,8 @@ var _user$project$Atrapos_Model$Levels = function (a) {
 };
 var _user$project$Atrapos_Model$NotFound = {ctor: 'NotFound'};
 
-var _user$project$Atrapos_Levels_Msg$MaxLevel = function (a) {
-	return {ctor: 'MaxLevel', _0: a};
+var _user$project$Atrapos_Levels_Msg$GotLevel = function (a) {
+	return {ctor: 'GotLevel', _0: a};
 };
 
 var _user$project$Atrapos_Msg$GameMsg = function (a) {
@@ -22322,60 +22583,61 @@ var _user$project$Atrapos_Msg$UrlChanged = function (a) {
 	return {ctor: 'UrlChanged', _0: a};
 };
 
-var _user$project$Atrapos_Port$levelCompleted = _elm_lang$core$Native_Platform.outgoingPort(
-	'levelCompleted',
-	function (v) {
-		return v;
-	});
-var _user$project$Atrapos_Port$getMaxLevel = _elm_lang$core$Native_Platform.outgoingPort(
-	'getMaxLevel',
-	function (v) {
-		return v;
-	});
-var _user$project$Atrapos_Port$maxLevel = _elm_lang$core$Native_Platform.incomingPort('maxLevel', _elm_lang$core$Json_Decode$int);
-
 var _user$project$Atrapos_Levels_Init$init = A2(
 	_elm_lang$core$Platform_Cmd_ops['!'],
 	{levels: _user$project$Atrapos_Data_Levels$model, maxLevel: 0},
 	{
 		ctor: '::',
-		_0: _user$project$Atrapos_Port$getMaxLevel(0),
+		_0: _user$project$Atrapos_Port$getLevel('maxLevel'),
 		_1: {ctor: '[]'}
 	});
 
-var _user$project$Atrapos_Init$init = function (route) {
-	var _p0 = route;
-	switch (_p0.ctor) {
-		case 'NotFound':
-			return {
-				ctor: '_Tuple2',
-				_0: _user$project$Atrapos_Model$NotFound,
-				_1: _user$project$Atrapos_Routes$navigateTo(_user$project$Atrapos_Routes$Levels)
-			};
-		case 'Levels':
-			return A3(_bloom$elm_return$Return$mapBoth, _user$project$Atrapos_Msg$LevelsMsg, _user$project$Atrapos_Model$Levels, _user$project$Atrapos_Levels_Init$init);
-		default:
-			return A3(
-				_bloom$elm_return$Return$mapBoth,
-				_user$project$Atrapos_Msg$GameMsg,
-				_user$project$Atrapos_Model$Game,
-				_user$project$Atrapos_Game_Init$init(_p0._0));
-	}
-};
+var _user$project$Atrapos_Init$init = F2(
+	function (level, route) {
+		var _p0 = route;
+		switch (_p0.ctor) {
+			case 'NotFound':
+				return {
+					ctor: '_Tuple2',
+					_0: _user$project$Atrapos_Model$NotFound,
+					_1: _user$project$Atrapos_Routes$navigateTo(
+						_user$project$Atrapos_Routes$Level(level))
+				};
+			case 'Levels':
+				return A3(_bloom$elm_return$Return$mapBoth, _user$project$Atrapos_Msg$LevelsMsg, _user$project$Atrapos_Model$Levels, _user$project$Atrapos_Levels_Init$init);
+			default:
+				return A3(
+					_bloom$elm_return$Return$mapBoth,
+					_user$project$Atrapos_Msg$GameMsg,
+					_user$project$Atrapos_Model$Game,
+					_user$project$Atrapos_Game_Init$init(_p0._0));
+		}
+	});
 
 var _user$project$Atrapos_Levels_Sub$subscriptions = function (_p0) {
-	return _user$project$Atrapos_Port$maxLevel(_user$project$Atrapos_Levels_Msg$MaxLevel);
+	return _user$project$Atrapos_Port$level(_user$project$Atrapos_Levels_Msg$GotLevel);
 };
 
 var _user$project$Atrapos_Levels_Update$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		return A2(
-			_elm_lang$core$Platform_Cmd_ops['!'],
-			_elm_lang$core$Native_Utils.update(
-				model,
-				{maxLevel: _p0._0}),
-			{ctor: '[]'});
+		var _p1 = _p0._0.key;
+		if (_p1 === 'maxLevel') {
+			return A2(
+				_elm_lang$core$Platform_Cmd_ops['!'],
+				_elm_lang$core$Native_Utils.update(
+					model,
+					{maxLevel: _p0._0.level}),
+				{ctor: '[]'});
+		} else {
+			return _elm_lang$core$Native_Utils.crashCase(
+				'Atrapos.Levels.Update',
+				{
+					start: {line: 11, column: 13},
+					end: {line: 16, column: 46}
+				},
+				_p1)('unknown key');
+		}
 	});
 
 var _user$project$Atrapos_Levels_View$level = F3(
@@ -22474,7 +22736,8 @@ var _user$project$Atrapos_Levels_View$view = function (_p2) {
 var _user$project$Atrapos_Update$levelCompleted = F2(
 	function (id, model) {
 		var next = id + 1;
-		var save = _user$project$Atrapos_Port$levelCompleted(next);
+		var save = _user$project$Atrapos_Port$setMaxLevel(
+			{key: 'maxLevel', level: next});
 		var navigate = A2(_elm_lang$core$Dict$member, next, _user$project$Atrapos_Data_Levels$model) ? {
 			ctor: '::',
 			_0: _elm_lang$navigation$Navigation$newUrl(
@@ -22495,7 +22758,7 @@ var _user$project$Atrapos_Update$update = F2(
 			if (_p0.ctor === '_Tuple2') {
 				switch (_p0._1.ctor) {
 					case 'UrlChanged':
-						return _user$project$Atrapos_Init$init(_p0._1._0);
+						return A2(_user$project$Atrapos_Init$init, 0, _p0._1._0);
 					case 'GameMsg':
 						if (_p0._0.ctor === 'Game') {
 							if (_p0._1._0.ctor === 'Finished') {
@@ -22569,20 +22832,24 @@ var _user$project$Atrapos_Sub$subscriptions = function (model) {
 };
 
 var _user$project$Atrapos_Main$main = A2(
-	_elm_lang$navigation$Navigation$program,
+	_elm_lang$navigation$Navigation$programWithFlags,
 	function (_p0) {
 		return _user$project$Atrapos_Msg$UrlChanged(
 			_user$project$Atrapos_Routes$parse(_p0));
 	},
 	{
-		init: function (_p1) {
-			return _user$project$Atrapos_Init$init(
-				_user$project$Atrapos_Routes$parse(_p1));
+		init: function (f) {
+			return function (_p1) {
+				return A2(
+					_user$project$Atrapos_Init$init,
+					f,
+					_user$project$Atrapos_Routes$parse(_p1));
+			};
 		},
 		view: _user$project$Atrapos_View$view,
 		update: _user$project$Atrapos_Update$update,
 		subscriptions: _user$project$Atrapos_Sub$subscriptions
-	})();
+	})(_elm_lang$core$Json_Decode$int);
 
 var Elm = {};
 Elm['Atrapos'] = Elm['Atrapos'] || {};
