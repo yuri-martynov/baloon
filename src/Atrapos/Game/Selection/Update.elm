@@ -103,7 +103,7 @@ nearestNode p { nodes } =
                 Debug.crash "nearestNode"
 
             Just ( id, l ) ->
-                if l < 1.5 then
+                if l < 0.25 then
                     Just id
                 else
                     Nothing

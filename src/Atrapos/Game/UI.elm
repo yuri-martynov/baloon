@@ -4,6 +4,7 @@ import Dict
 import Html exposing (..)
 import Html.Attributes exposing (class, classList, href, disabled, style)
 import Html.Events exposing (..)
+import Html.Lazy exposing (lazy)
 import Common.List exposing (lst)
 import Common.Dict exposing ((#))
 import Common.Math as Math
@@ -41,7 +42,7 @@ view ({ victory, minLen, counter } as model) viewGame =
                 ]
     in
         div
-            [ classes ] 
+            [ classes ]
             [ viewGame
             , ui model
             ]
@@ -74,7 +75,7 @@ parallax { selection, nodes } =
 
 
 ui : Model_ -> Html Msg
-ui ({ victory, links, menu, minLen, counter, counterAnimation } as model) =
+ui ({ victory, links, nodes, menu, minLen, counter, counterAnimation, selection } as model) =
     let
         victoryLen =
             round minLen
@@ -83,13 +84,14 @@ ui ({ victory, links, menu, minLen, counter, counterAnimation } as model) =
             counter
                 |> List.map (\len -> victoryLen - (round len))
 
-        progressDiv = 
-            progressList 
+        progressDiv =
+            progressList
                 |> List.indexedMap (progress counterAnimation)
-                |> div [class "percent"] 
+                |> div [ class "percent" ]
     in
-            progressDiv
-            :: [ button
+        progressDiv
+            :: (selection |> selectionCounter nodes)
+            ++ [ button
                     [ class "hint"
                     , onClick Help
                     ]
@@ -125,6 +127,36 @@ progress counterAnimation index count =
                 , ( "changing", counterAnimation )
                 ]
             ]
+
+
+selectionCounter : Nodes -> Selection -> List (Html Msg)
+selectionCounter nodes selection =
+    case selection of
+        Selection { lastNode, endLocation } ->
+            let
+                startLocation =
+                    nodes # lastNode
+
+                len =
+                    Math.len startLocation endLocation |> round
+            in
+                if len == 0 then
+                    []
+                else
+                    [ lazy lenDiv len ]
+
+        _ ->
+            []
+
+
+lenDiv : Int -> Html Msg
+lenDiv =
+    toString
+        >> text
+        >> lst
+        >> label []
+        >> lst
+        >> div [ class "selection-len" ]
 
 
 menuPopup : Html Msg
