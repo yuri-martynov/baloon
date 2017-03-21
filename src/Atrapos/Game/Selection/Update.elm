@@ -46,6 +46,8 @@ update msg model =
 
 -- PRIVATE ---------------------------------------
 
+selectRadius = 0.85
+
 
 select : Location -> SelectionModel -> Model_ -> ( Model_, Cmd Msg )
 select p ({ lastNode } as selection) model =
@@ -103,7 +105,7 @@ nearestNode p { nodes } =
                 Debug.crash "nearestNode"
 
             Just ( id, l ) ->
-                if l < 0.25 then
+                if l < selectRadius then
                     Just id
                 else
                     Nothing
