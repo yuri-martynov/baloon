@@ -28,6 +28,7 @@ body, html {
 .container {
     background: linear-gradient(to top, #30cfd0 0%, #330867 100%);
     height: 100%;
+    position: relative;
 }
 
 .map-header {
@@ -66,8 +67,17 @@ body, html {
 }
 
 .game-field {
-    /*margin: 75px 25px 25px 25px;*/
     overflow: visible;
+    position: absolute;
+}
+
+.progress-lines {
+    overflow: hidden;
+    position: absolute;
+}
+
+.progress-lines.top {
+    top: 0;
 }
 
 .game-ui {

@@ -13,7 +13,7 @@ import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 
 
-view : Model_ -> Html Msg -> Html Msg
+view : Model_ -> List (Html Msg) -> Html Msg
 view ({ victory, minLen, counter } as model) viewGame =
     let
         len =
@@ -41,11 +41,9 @@ view ({ victory, minLen, counter } as model) viewGame =
                 , ( "incomplete", not victory && len < minLen )
                 ]
     in
-        div
-            [ classes ]
-            [ viewGame
-            , ui model
-            ]
+        viewGame
+            ++ [ ui model ]
+            |> div [ classes ]
 
 
 parallax : Model_ -> Maybe Location
@@ -83,25 +81,18 @@ ui ({ victory, links, nodes, menu, minLen, counter, counterAnimation, selection 
         progressList =
             counter
                 |> List.map (\len -> victoryLen - (round len))
-
-        progressDiv =
-            progressList
-                |> List.indexedMap (progress counterAnimation)
-                |> div [ class "percent" ]
     in
-        progressDiv
-            :: (selection |> selectionCounter nodes)
-            ++ [ button
-                    [ class "hint"
-                    , onClick Help
-                    ]
-                    [ text "HINTS" ]
-               , button
-                    [ classList [ ( "menu", True ), ( "active", menu ) ]
-                    , onClick Menu
-                    ]
-                    []
-               ]
+        [ button
+            [ class "hint"
+            , onClick Help
+            ]
+            [ text "HINTS" ]
+        , button
+            [ classList [ ( "menu", True ), ( "active", menu ) ]
+            , onClick Menu
+            ]
+            []
+        ]
             ++ (if menu then
                     [ menuPopup ]
                 else
@@ -113,40 +104,6 @@ ui ({ victory, links, nodes, menu, minLen, counter, counterAnimation, selection 
                     ]
                 ]
 
-
-progress : Bool -> Int -> Int -> Html Msg
-progress counterAnimation index count =
-    count
-        |> abs
-        |> toString
-        |> text
-        |> lst
-        |> label
-            [ classList
-                [ ( "percent-" ++ (toString index), True )
-                , ( "changing", counterAnimation )
-                ]
-            ]
-
-
-selectionCounter : Nodes -> Selection -> List (Html Msg)
-selectionCounter nodes selection =
-    case selection of
-        Selection { lastNode, endLocation } ->
-            let
-                startLocation =
-                    nodes # lastNode
-
-                len =
-                    Math.len startLocation endLocation |> round
-            in
-                if len == 0 then
-                    []
-                else
-                    [ lazy lenDiv len ]
-
-        _ ->
-            []
 
 
 lenDiv : Int -> Html Msg
