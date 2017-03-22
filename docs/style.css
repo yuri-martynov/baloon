@@ -420,7 +420,7 @@ li.level.closed a {
 .progress .line {
     transition: width 250ms ease-out;
     background-color: #60E5FC;;
-    height: 16em;
+    height: 0.4cm;
 }
 
 .progress .line.right {
