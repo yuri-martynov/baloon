@@ -57,9 +57,6 @@ update_ msg ({ nodes, links, menu } as model) =
                 |> Selection.update msg
                 |> checkVictory
 
-        CounterAnimationCompleted ->
-            { model | counterAnimation = False } ! []
-
         _ ->
             model ! []
 

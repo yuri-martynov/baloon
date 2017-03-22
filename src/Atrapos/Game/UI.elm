@@ -2,118 +2,44 @@ module Atrapos.Game.UI exposing (view)
 
 import Dict
 import Html exposing (..)
-import Html.Attributes exposing (class, classList, href, disabled, style)
+import Html.Attributes exposing (class, classList, href, disabled, style, attribute)
 import Html.Events exposing (..)
-import Html.Lazy exposing (lazy)
-import Common.List exposing (lst)
-import Common.Dict exposing ((#))
-import Common.Math as Math
-import Common.Types exposing (Location)
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 
 
-view : Model_ -> List (Html Msg) -> Html Msg
+view : Model_ -> Html Msg -> Html Msg
 view ({ victory, minLen, counter } as model) viewGame =
     let
-        len =
-            counter |> List.head |> Maybe.withDefault 0
-
-        styles =
-            case model |> parallax of
-                Just { x, y } ->
-                    [ style
-                        [ ( "background-position-x", (0 + x |> toString) ++ "px" )
-                        , ( "background-position-y", (0 - y |> toString) ++ "px" )
-                        ]
-                    ]
-
-                Nothing ->
-                    [ style [ ( "background-position", "0 0" ) ] ]
-
         classes =
             classList
                 [ ( "container", True )
                 , ( "begin", True )
                 , ( "active", True )
                 , ( "victory", victory )
-                , ( "overdraft", not victory && len > minLen )
-                , ( "incomplete", not victory && len < minLen )
+                , ( "overdraft", not victory && counter > minLen )
+                , ( "incomplete", not victory && counter < minLen )
                 ]
     in
-        viewGame
-            ++ [ ui model ]
+        [ viewGame, progress model, ui model ]
             |> div [ classes ]
 
 
-parallax : Model_ -> Maybe Location
-parallax { selection, nodes } =
-    let
-        offset a b =
-            let
-                l =
-                    Math.len a b |> min 3
-
-                r =
-                    Math.angle a b
-            in
-                { x = l * (cos r)
-                , y = l * (sin r)
-                }
-    in
-        case selection of
-            None ->
-                Nothing
-
-            Selection { lastNode, endLocation } ->
-                offset (nodes # lastNode) endLocation |> Just
-
-            Deselection { startLocation, endLocation } ->
-                offset startLocation endLocation |> Just
-
-
 ui : Model_ -> Html Msg
-ui ({ victory, links, nodes, menu, minLen, counter, counterAnimation, selection } as model) =
-    let
-        victoryLen =
-            round minLen
-
-        progressList =
-            counter
-                |> List.map (\len -> victoryLen - (round len))
-    in
-        [ button
-            [ class "hint"
-            , onClick Help
-            ]
-            [ text "HINTS" ]
-        , button
-            [ classList [ ( "menu", True ), ( "active", menu ) ]
-            , onClick Menu
-            ]
-            []
+ui ({ menu } as model) =
+    [ button
+        [ class "menu"
+        , onClick Menu
         ]
-            ++ (if menu then
-                    [ menuPopup ]
-                else
-                    []
-               )
-            |> div
-                [ classList
-                    [ ( "game-ui", True )
-                    ]
-                ]
-
-
-
-lenDiv : Int -> Html Msg
-lenDiv =
-    toString
-        >> text
-        >> lst
-        >> label []
-        >> lst
-        >> div [ class "selection-len" ]
+        []
+    ]
+        ++ (if menu then
+                [ menuPopup ]
+            else
+                []
+           )
+        |> div
+            [ class "game-ui" ]
 
 
 menuPopup : Html Msg
@@ -128,3 +54,26 @@ menuPopup =
 
 resetDisabled =
     .links >> Dict.values >> List.any .selected >> not >> disabled
+
+
+progress : Model_ -> Html Msg
+progress { counter, minLen } =
+    let
+        w =
+            (1 - counter / minLen) / 2
+    in
+        [ progressLine w "line"
+        , progressLine w "line right"
+        ]
+            |> div [ class "progress" ]
+
+
+progressLine w class_ =
+    if w > 0 then
+        div
+            [ class class_
+            , attribute "style" <| "width:" ++ toString (w * 100) ++ "%;"
+            ]
+            []
+    else
+        div [] []

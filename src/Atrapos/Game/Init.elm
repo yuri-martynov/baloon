@@ -10,7 +10,6 @@ import Atrapos.Game.Msg exposing (Msg(Init))
 import Atrapos.Game.Solution as Solution
 import Atrapos.Game.Selection.Path as Selection
 import Atrapos.Game.Link.Init as Link
-import Atrapos.Game.Shared exposing (completeAnimation)
 import Atrapos.Port as Port
 
 init : Data.Id -> ( Model, Cmd Msg )
@@ -79,9 +78,8 @@ init_ id s { nodes, links } =
           , menu = False
           , levelId = id
           , solution = solution
-          , counter = [ 0, 0 ]
-          , counterAnimation = True
+          , counter = 0
           }
             |> Loaded
-        , completeAnimation
+        , Cmd.none
         )

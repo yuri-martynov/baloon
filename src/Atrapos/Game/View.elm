@@ -23,9 +23,8 @@ view model =
             [ text_ [] [ text "loading" ] ] |> svg []
 
         Loaded model ->
-            [ progress model
-            , defs_ :: view_ model |> svg_ model
-            ]
+            defs_ :: view_ model |> svg_ model
+            
                 |> UI.view model
 
 
@@ -80,29 +79,7 @@ position { clientX, clientY } =
 
 
 
--- progress ---
 
 
-progress : Model_ -> Svg Msg
-progress { viewBoxSize, padding, counter, minLen } =
-    let
-        lines =
-            case counter of
-                c :: _ ->
-                    1
-                        - (c / minLen)
-                        |> borderLines
-
-                _ ->
-                    []
-    in
-        lines
-            |> svg [ version "1.1", viewBox "0 0 1 1", class "progress-lines bottom" ]
 
 
-borderLines : Float -> List (Svg Msg)
-borderLines p =
-    [ line [ x1 "0", y1 "0", p / 2 |> toString |> x2, y2 "0", class "link selected" ] []
-    , line [ x1 "1", y1 "0", 1 - p / 2 |> toString |> x2, y2 "0", class "link selected" ] []
-
-    ]

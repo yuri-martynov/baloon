@@ -1,10 +1,10 @@
-module Atrapos.Game.Shared exposing (link, victory, linksLen, updateCounter, completeAnimation)
+module Atrapos.Game.Shared exposing (link, victory, linksLen, updateCounter)
 
 import Dict
 import Time
 import Common.Time exposing (delay)
 import Atrapos.Game.Model exposing (..)
-import Atrapos.Game.Msg exposing (Msg(CounterAnimationCompleted))
+import Atrapos.Game.Msg exposing (Msg)
 import Atrapos.Game.Selection.Path as Selection
 import Atrapos.Game.Solution as Solution
 
@@ -30,15 +30,10 @@ linksLen { links } =
 updateCounter : Model_ -> ( Model_, Cmd Msg )
 updateCounter ({ counter } as model) =
     ( { model
-        | counter =
-            (model |> linksLen) :: (counter |> List.take 1)
-        , counterAnimation = True
+        | counter = model |> linksLen
       }
-    , completeAnimation
+    , Cmd.none
     )
-
-completeAnimation =
-    CounterAnimationCompleted |> delay (0.3 * Time.second)
 
 
 
