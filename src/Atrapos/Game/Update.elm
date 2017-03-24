@@ -1,10 +1,7 @@
 module Atrapos.Game.Update exposing (update)
 
 import Dict
-import Time as Time
 import Common.Dict exposing ((#))
-import Common.Time as Time
-import Return
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 import Atrapos.Game.Solution as Solution
@@ -59,7 +56,3 @@ update_ msg ({ nodes, links, menu } as model) =
         _ ->
             model ! []
 
-
-nextLevel timeoutSec { levelId } =
-    Finished levelId
-        |> Time.delay (timeoutSec * Time.second)
