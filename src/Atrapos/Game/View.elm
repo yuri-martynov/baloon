@@ -78,8 +78,3 @@ position { clientX, clientY } =
     { x = round clientX, y = round clientY }
 
 
-
-
-
-
-

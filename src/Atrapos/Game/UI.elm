@@ -60,7 +60,13 @@ progress : Model_ -> Html Msg
 progress { counter, minLen } =
     let
         w =
-            (1 - counter / minLen) / 2
+            (1 - counter / minLen)
+                / 2
+                * 100
+                |> Basics.abs
+                |> Basics.min 100
+                |> toString
+                |> (flip (++) "%;")
     in
         [ progressLine w "line"
         , progressLine w "line right"
@@ -68,12 +74,10 @@ progress { counter, minLen } =
             |> div [ class "progress" ]
 
 
+progressLine : String -> String -> Html msg
 progressLine w class_ =
-    if w > 0 then
-        div
-            [ class class_
-            , attribute "style" <| "width:" ++ toString (w * 100) ++ "%;"
-            ]
-            []
-    else
-        div [] []
+    div
+        [ class class_
+        , attribute "style" <| "width:" ++ w
+        ]
+        []

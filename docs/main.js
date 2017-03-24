@@ -21648,7 +21648,7 @@ var _user$project$Atrapos_Game_Selection_Update$selectNext = F4(
 								A2(_user$project$Common_Dict$justGet, _p22, _p23))))));
 		}
 	});
-var _user$project$Atrapos_Game_Selection_Update$selectRadius = 0.85;
+var _user$project$Atrapos_Game_Selection_Update$selectRadius = 1;
 var _user$project$Atrapos_Game_Selection_Update$nearestNode = F2(
 	function (p, _p25) {
 		var _p26 = _p25;
@@ -21871,7 +21871,7 @@ var _user$project$Atrapos_Game_Sub$subscriptions = function (model) {
 
 var _user$project$Atrapos_Game_UI$progressLine = F2(
 	function (w, class_) {
-		return (_elm_lang$core$Native_Utils.cmp(w, 0) > 0) ? A2(
+		return A2(
 			_elm_lang$html$Html$div,
 			{
 				ctor: '::',
@@ -21881,24 +21881,26 @@ var _user$project$Atrapos_Game_UI$progressLine = F2(
 					_0: A2(
 						_elm_lang$html$Html_Attributes$attribute,
 						'style',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							'width:',
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								_elm_lang$core$Basics$toString(w * 100),
-								'%;'))),
+						A2(_elm_lang$core$Basics_ops['++'], 'width:', w)),
 					_1: {ctor: '[]'}
 				}
 			},
-			{ctor: '[]'}) : A2(
-			_elm_lang$html$Html$div,
-			{ctor: '[]'},
 			{ctor: '[]'});
 	});
 var _user$project$Atrapos_Game_UI$progress = function (_p0) {
 	var _p1 = _p0;
-	var w = (1 - (_p1.counter / _p1.minLen)) / 2;
+	var w = A3(
+		_elm_lang$core$Basics$flip,
+		F2(
+			function (x, y) {
+				return A2(_elm_lang$core$Basics_ops['++'], x, y);
+			}),
+		'%;',
+		_elm_lang$core$Basics$toString(
+			A2(
+				_elm_lang$core$Basics$min,
+				100,
+				_elm_lang$core$Basics$abs(((1 - (_p1.counter / _p1.minLen)) / 2) * 100))));
 	return A2(
 		_elm_lang$html$Html$div,
 		{

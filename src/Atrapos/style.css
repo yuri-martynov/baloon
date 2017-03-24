@@ -419,7 +419,7 @@ li.level.closed a {
 
 .progress .line {
     transition: width 250ms ease-out;
-    background-color: #60E5FC;;
+    background-color: #60E5FC;
     height: 0.4cm;
 }
 
@@ -427,4 +427,8 @@ li.level.closed a {
     right: 0;
     top: 0;
     position: absolute;
+}
+
+.overdraft .progress .line {
+    background-color: #ff0844;
 }

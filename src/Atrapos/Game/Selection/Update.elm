@@ -46,7 +46,7 @@ update msg model =
 
 -- PRIVATE ---------------------------------------
 
-selectRadius = 0.85
+selectRadius = 1
 
 
 select : Location -> SelectionModel -> Model_ -> ( Model_, Cmd Msg )
