@@ -432,3 +432,10 @@ li.level.closed a {
 .overdraft .progress .line {
     background-color: #ff0844;
 }
+
+.level-completed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

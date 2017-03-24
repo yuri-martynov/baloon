@@ -55,17 +55,9 @@ update_ msg ({ nodes, links, menu } as model) =
         Mouse msg ->
             model
                 |> Selection.update msg
-                |> checkVictory
 
         _ ->
             model ! []
-
-
-checkVictory ( { victory } as model, cmd ) =
-    if victory then
-        model ! [ cmd, model |> nextLevel 1 ]
-    else
-        ( model, cmd )
 
 
 nextLevel timeoutSec { levelId } =

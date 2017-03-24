@@ -4,6 +4,8 @@ import Dict
 import Html exposing (..)
 import Html.Attributes exposing (class, classList, href, disabled, style, attribute)
 import Html.Events exposing (..)
+import Common.List exposing (lst)
+import Atrapos.Routes exposing (Route(Level), url)
 import Atrapos.Game.Model exposing (..)
 import Atrapos.Game.Msg exposing (..)
 
@@ -26,20 +28,30 @@ view ({ victory, minLen, counter } as model) viewGame =
 
 
 ui : Model_ -> Html Msg
-ui ({ menu } as model) =
-    [ button
-        [ class "menu"
-        , onClick Menu
-        ]
-        []
-    ]
-        ++ (if menu then
-                [ menuPopup ]
-            else
-                []
-           )
+ui ({ menu, victory } as model) =
+    button [ class "menu", onClick Menu ] []
+        :: (menu_ menu ++ levelCompleted model)
         |> div
             [ class "game-ui" ]
+
+
+menu_ : Bool -> List (Html Msg)
+menu_ menu =
+    if menu then
+        [ menuPopup ]
+    else
+        []
+
+
+levelCompleted : Model_ -> List (Html Msg)
+levelCompleted { victory, levelId } =
+    if victory then
+        [ text "Victory" 
+        , button [ Finished levelId |> onClick ] [ text "Next level"]
+        ] 
+            |> div [ class "level-completed" ] |> lst
+    else
+        []
 
 
 menuPopup : Html Msg
