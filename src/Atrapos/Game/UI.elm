@@ -46,8 +46,9 @@ menu_ menu =
 levelCompleted : Model_ -> List (Html Msg)
 levelCompleted { victory, levelId } =
     if victory then
-        [ text "Victory" 
-        , button [ Finished levelId |> onClick ] [ text "Next level"]
+        [ label [ class "score-label" ] [ text "Score" ]
+        , label [ class "score-value" ] [text "45" ]
+        , button [ Finished levelId |> onClick , class "next-level"] [ text "NEXT"]
         ] 
             |> div [ class "level-completed" ] |> lst
     else
