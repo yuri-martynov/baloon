@@ -5,12 +5,5 @@
   "orientation": "portrait",
   "Scope": "/baloon",
   "start_url": "/baloon",
-  "icons": [
-    {
-      "src": "/baloon/Icon-152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    }
-  ],
   "splash_pages": null
 }
