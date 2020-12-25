@@ -1,6 +1,6 @@
 {
-  "name": "Path Finder Puzzle Game",
-  "short_name": "Path Finder",
+  "name": "Path Finder Puzzle Game (beta)",
+  "short_name": "Path Finder (beta)",
   "display": "standalone",
   "orientation": "portrait",
   "Scope": "/",
