@@ -7,7 +7,7 @@
   "start_url": "/baloon",
   "icons": [
     {
-      "src": "Icon-152.png",
+      "src": "baloon/Icon-152.png",
       "sizes": "152x152",
       "type": "image/png"
     }
