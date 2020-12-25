@@ -3,7 +3,11 @@
   "short_name": "Path Finder (beta)",
   "display": "standalone",
   "orientation": "portrait",
-  "Scope": "/baloon",
-  "start_url": "/baloon",
-  "splash_pages": null
+  "icons": [
+    {
+      "src": "/baloon/Icon-xxxhdpi.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
 }
